@@ -331,6 +331,15 @@ const themes = {
       { text: "begin at the beginning, and go on till you come to the end: then stop.", author: "— the king of hearts" },
     ],
   },
+  ratatouille: {
+    searchPlaceholder: "sniff out the perfect query...",
+    quotes: [
+      { text: "anyone can cook.", author: "— chef gusteau" },
+      { text: "if you focus on what you left behind, you will never see what lies ahead.", author: "— chef gusteau" },
+      { text: "the only thing predictable about life is its unpredictability.", author: "— chef gusteau" },
+      { text: "change is nature.", author: "— chef gusteau" },
+    ],
+  },
   goldentwist: {
     searchPlaceholder: "unwrap one impossible answer...",
     quotes: [
@@ -782,7 +791,7 @@ function updateClock() {
     rivendelleve:
       hour < 5 ? "elven watch" : hour < 12 ? "misty departure hour" : hour < 17 ? "council daylight" : "evening hymn",
     mendlpastel:
-      hour < 5 ? "lobby insomnia" : hour < 12 ? "pastel breakfast service" : hour < 17 ? "symmetrical afternoon" : "concierge midnight",
+      hour < 5 ? "lobby insomnia" : hour < 12 ? "pastel breakfast service" : hour < 17 ? "symmetrical afternoon" : "evening turn-down, lobby quiet",
     topiaryshadow:
       hour < 5 ? "snow on sculpted hedges" : hour < 12 ? "suburban gothic coffee" : hour < 17 ? "long shadow lawns" : "handmade dusk",
     inkversepop:
@@ -790,11 +799,19 @@ function updateClock() {
     wastelyellow:
       hour < 5 ? "engine cool-down" : hour < 12 ? "war rig sunrise" : hour < 17 ? "dust devil noon" : "flame horizon night",
     bridesvengeance:
-      hour < 5 ? "list item: dawn" : hour < 12 ? "yellow morning clarity" : hour < 17 ? "blade-bright afternoon" : "vengeance weather",
+      hour < 5 ? "list item: dead hour" : hour < 12 ? "yellow morning clarity" : hour < 17 ? "blade-bright afternoon" : "vengeance weather",
     rabbitholedream:
       hour < 5 ? "late tea nonsense" : hour < 12 ? "shrinking morning" : hour < 17 ? "croquet o'clock somewhere" : "rabbit-hole night",
+    ratatouille:
+      hour < 5
+        ? "gusteau's after midnight"
+        : hour < 12
+          ? "paris kitchen prep light"
+          : hour < 17
+            ? "service window glow"
+            : "dinner hour at gusteau's",
     goldentwist:
-      hour < 5 ? "violet hour unease" : hour < 12 ? "factory whistle sweet" : hour < 17 ? "wrapper-glitter daylight" : "golden ticket dusk",
+      hour < 5 ? "small hours, uneasy sweet" : hour < 12 ? "factory whistle sweet" : hour < 17 ? "wrapper-glitter daylight" : "golden ticket dusk",
     shirecomfort:
       hour < 5 ? "seed-cake time" : hour < 12 ? "proper elevenses weather" : hour < 17 ? "hillside nap light" : "party field evening",
     lanternnarnia:
@@ -810,7 +827,7 @@ function updateClock() {
     mercersterile:
       hour < 5 ? "pre-market facial routine" : hour < 12 ? "boardroom sterile dawn" : hour < 17 ? "reservation at dorsia?" : "paul allen hours",
     buttonmothers:
-      hour < 5 ? "key on a string" : hour < 12 ? "other breakfast" : hour < 17 ? "tunnel light hour" : "button-eyed midnight",
+      hour < 5 ? "key on a string" : hour < 12 ? "other breakfast" : hour < 17 ? "tunnel light hour" : "supper with the other mother",
     spiralnight:
       hour < 5 ? "zero o'clock fiend" : hour < 12 ? "halloween town coffee" : hour < 17 ? "christmas plotting" : "pumpkin king patrol",
     bathspirited:
@@ -818,7 +835,7 @@ function updateClock() {
     swampfable:
       hour < 5 ? "onion-layer insomnia" : hour < 12 ? "donkey-bridge morning" : hour < 17 ? "storybook roast hour" : "far far away night",
     icecutcrystal:
-      hour < 5 ? "polar twilight calm" : hour < 12 ? "frozen fractal morning" : hour < 17 ? "summit thaw light" : "let-it-go midnight",
+      hour < 5 ? "polar twilight calm" : hour < 12 ? "frozen fractal morning" : hour < 17 ? "summit thaw light" : "twilight freeze, let it go",
     owlerytwilight:
       hour < 5 ? "night shift in the stacks" : hour < 12 ? "breakfast in the great hall" : hour < 17 ? "afternoon charms" : "astronomy tower hour",
     binarysunset:
@@ -842,7 +859,7 @@ function updateClock() {
     shimmerfractal:
       hour < 5 ? "boundary insomnia" : hour < 12 ? "prismatic morning sample" : hour < 17 ? "mutation of daylight" : "shimmer night math",
     howlchimney:
-      hour < 5 ? "castle door creak" : hour < 12 ? "sophie's cleaning shift" : hour < 17 ? "market square wander" : "calcifer midnight pact",
+      hour < 5 ? "castle door creak" : hour < 12 ? "sophie's cleaning shift" : hour < 17 ? "market square wander" : "calcifer's evening bargain",
     rapturedrown:
       hour < 5 ? "depth charge dreams" : hour < 12 ? "welcome to rapture day" : hour < 17 ? "art-deco pressure gauge" : "little sister hours",
     grandlinesea:

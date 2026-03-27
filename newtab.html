@@ -6,7 +6,7 @@
   <title>New Tab</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@500;600;800&family=Cinzel:wght@400;600&family=Cinzel+Decorative&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=Eagle+Lake&family=Elsie:wght@400;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Marcellus&family=News+Cycle:wght@400;700&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Rye&family=Space+Mono:ital@0;1&family=Syne:wght@400;700;800&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@500;600;800&family=Cinzel:wght@400;600&family=Cinzel+Decorative&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=Eagle+Lake&family=Elsie:wght@400;700&family=Fredoka:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Marcellus&family=News+Cycle:wght@400;700&family=Nunito:wght@600;700;800&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Rye&family=Space+Mono:ital@0;1&family=Syne:wght@400;700;800&family=VT323&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -78,6 +78,18 @@
       .search-btn:active,
       .search-bar:hover {
         transform: none !important;
+      }
+      body.lanternnarnia .page-wrapper::before,
+      body.lanternnarnia .page-wrapper::after {
+        animation: none !important;
+        opacity: 0 !important;
+        transform: none !important;
+      }
+      body.lanternnarnia .content {
+        animation: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+        transform: translateY(0) !important;
       }
     }
 
@@ -451,7 +463,7 @@
       background: #070504;
       font-family: 'Libre Baskerville', 'Cormorant Garamond', Georgia, serif;
       /* Hotspot (4 4): nudge if the click point on your art should move (coords from top-left, px). */
-      cursor: url('assets/cursors/common-room.png') 4 4, auto;
+      cursor: url('assets/commonroom/common-room.png') 4 4, auto;
     }
     body.commonroom input.search-bar,
     body.commonroom textarea {
@@ -493,7 +505,7 @@
       z-index: 0;
       background-image:
         radial-gradient(ellipse 85% 75% at 50% 42%, rgba(0, 0, 0, 0.15) 0%, rgba(5, 3, 2, 0.72) 100%),
-        url('assets/commonroom-bg.png');
+        url('assets/commonroom/commonroom-bg.png');
       background-size: cover, cover;
       background-position: center, center;
       background-repeat: no-repeat, no-repeat;
@@ -578,7 +590,7 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      background: url('assets/commonroom-scroll.png') center / 100% 100% no-repeat;
+      background: url('assets/commonroom/commonroom-scroll.png') center / 100% 100% no-repeat;
     }
     body.commonroom .search-shell .search-bar {
       position: relative;
@@ -958,6 +970,132 @@
     body.rabbitholedream .search-bar::placeholder { color:#7ab0c8; } body.rabbitholedream .search-bar:focus { box-shadow:0 0 20px rgba(255,255,255,0.5); }
     body.rabbitholedream .quote { color:#fff; text-shadow:1px 1px 3px #4a8098; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.rabbitholedream .quote-author { color:#f0ffff; }
 
+    /* ─── RATATOUILLE (Pixar — film still + saturated Paris warmth) ─ */
+    body.ratatouille {
+      background: #2a1812;
+      font-family: 'Fredoka', 'Nunito', system-ui, sans-serif;
+      --vs-drift-hue: 5deg;
+      /* Spoon cursor: intrinsic PNG size (32×101), hotspot from top-left */
+      cursor: url('assets/ratatouille/spoon.png') 16 10, auto;
+    }
+    body.ratatouille input.search-bar,
+    body.ratatouille textarea {
+      cursor: text;
+    }
+    body.ratatouille .search-btn,
+    body.ratatouille .search-mag {
+      cursor: pointer;
+    }
+    body.ratatouille::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        /* Subtle center “read” veil: darker mid-field, clears toward edges (keeps photo bright in corners) */
+        radial-gradient(ellipse 82% 78% at 50% 42%, rgba(8, 6, 14, 0.5) 0%, rgba(8, 6, 14, 0.2) 45%, transparent 72%),
+        radial-gradient(ellipse 85% 50% at 50% 0%, rgba(255, 230, 170, 0.22) 0%, transparent 48%),
+        radial-gradient(ellipse 55% 45% at 88% 28%, rgba(120, 205, 255, 0.16) 0%, transparent 52%),
+        radial-gradient(ellipse 95% 72% at 50% 108%, rgba(18, 10, 28, 0.52) 0%, transparent 55%),
+        linear-gradient(185deg, rgba(255, 98, 70, 0.08) 0%, transparent 30%, rgba(45, 75, 140, 0.12) 100%),
+        url('assets/ratatouille/ratatouille.webp');
+      background-size: cover, cover, cover, cover, cover, cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    /* Still frame: disable global ::before drift + filters so the photo doesn’t nudge */
+    body.ratatouille.motion-enabled::before {
+      animation: none !important;
+      will-change: auto;
+      transform: none;
+      filter: none;
+    }
+    body.ratatouille .stars { display: none; }
+    body.ratatouille .content { position: relative; z-index: 2; }
+    body.ratatouille .clock {
+      font-weight: 600;
+      color: #fff8ef;
+      letter-spacing: 0.02em;
+      text-shadow:
+        0 0 18px rgba(255, 200, 120, 0.5),
+        0 2px 0 rgba(200, 80, 45, 0.35),
+        0 4px 24px rgba(40, 30, 80, 0.45);
+    }
+    body.ratatouille .greeting {
+      font-weight: 600;
+      color: #ffe8c8;
+      font-size: clamp(1.05rem, 2vw, 1.38rem) !important;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55), 0 0 20px rgba(255, 180, 90, 0.2);
+    }
+    body.ratatouille .date-line {
+      color: #ffd7a8;
+      font-size: clamp(1.05rem, 1.3vw, 1.14rem) !important;
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+    }
+    body.ratatouille .search-bar {
+      background: rgba(255, 252, 245, 0.92);
+      border: 3px solid #fff;
+      border-radius: 14px;
+      color: #3d2838;
+      font-weight: 500;
+      box-shadow:
+        0 4px 0 rgba(200, 65, 48, 0.35),
+        0 12px 28px rgba(40, 20, 30, 0.25),
+        inset 0 2px 0 rgba(255, 255, 255, 0.95);
+    }
+    body.ratatouille .search-bar::placeholder { color: #9a7a72; }
+    body.ratatouille .search-bar:focus {
+      outline: none;
+      border-color: #5ec8ff;
+      box-shadow:
+        0 0 0 3px rgba(94, 200, 255, 0.55),
+        0 6px 0 rgba(200, 65, 48, 0.3),
+        0 14px 32px rgba(40, 20, 30, 0.3);
+    }
+    body.ratatouille .quote {
+      color: #fff5e8;
+      font-style: normal;
+      font-weight: 500;
+      font-size: clamp(1.18rem, 2.15vw, 1.48rem) !important;
+      text-shadow:
+        0 2px 16px rgba(0, 0, 0, 0.65),
+        0 0 28px rgba(90, 160, 255, 0.15);
+    }
+    body.ratatouille .quote-author {
+      color: #ffd49a;
+      font-weight: 600;
+      font-size: clamp(1.1rem, 1.9vw, 1.28rem) !important;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    }
+    body.ratatouille .search-actions .search-btn:first-of-type {
+      border-radius: 12px;
+      border: 3px solid #1e6cb0;
+      border-bottom-color: #124a80;
+      background: linear-gradient(180deg, #4db4ff 0%, #2488e8 45%, #1a70d8 100%);
+      color: #fff;
+      font-weight: 600;
+      box-shadow:
+        0 4px 0 rgba(18, 70, 130, 0.55),
+        0 10px 22px rgba(30, 100, 200, 0.35),
+        inset 0 2px 0 rgba(255, 255, 255, 0.35);
+      text-shadow: 0 1px 2px rgba(0, 40, 100, 0.4);
+    }
+    body.ratatouille .search-actions .search-btn:last-of-type {
+      border-radius: 12px;
+      border: 3px solid #d4901a;
+      border-bottom-color: #a86a0c;
+      background: linear-gradient(180deg, #ffe878 0%, #ffcd38 40%, #f0a818 100%);
+      color: #4a2a08;
+      font-weight: 600;
+      box-shadow:
+        0 4px 0 rgba(140, 90, 10, 0.6),
+        0 10px 22px rgba(200, 120, 20, 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.55);
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+
     /* ─── GOLDEN TWIST (colorful whimsy / eerie undertone) ────────── */
     body.goldentwist { background:#2a1438; font-family:'Elsie', 'Cormorant Garamond', serif; }
     body.goldentwist::before { content:''; position:fixed; inset:0; background: radial-gradient(circle at 20% 20%, rgba(201,75,123,0.28) 0%, transparent 40%), radial-gradient(circle at 85% 85%, rgba(107,63,160,0.35) 0%, transparent 45%), linear-gradient(180deg, #3a1850 0%, #1a0a24 100%); pointer-events:none; z-index:0; }
@@ -979,14 +1117,122 @@
     body.shirecomfort .quote { color:#d8e4c0; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.shirecomfort .quote-author { color:#b8c898; }
 
     /* ─── LANTERN NARNIA (mythic winter / lamp magic) ─────────────── */
-    body.lanternnarnia { background:#1a2838; font-family:'Cinzel', serif; }
-    body.lanternnarnia::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(200,220,255,0.25) 0%, transparent 50%), radial-gradient(circle at 50% 85%, rgba(212,168,75,0.2) 0%, transparent 40%), linear-gradient(180deg, #2a4060 0%, #152028 100%); pointer-events:none; z-index:0; }
-    body.lanternnarnia .stars { display:none; } body.lanternnarnia .content { position:relative; z-index:2; }
-    body.lanternnarnia .clock { color:#e8f0f8; text-shadow:0 0 20px rgba(180,210,255,0.35); }
-    body.lanternnarnia .greeting { color:#c8d8e8; } body.lanternnarnia .date-line { color:#8aa0b8; }
-    body.lanternnarnia .search-bar { background:rgba(232,240,248,0.08); border:1px solid rgba(212,168,75,0.35); color:#e8f0f8; }
-    body.lanternnarnia .search-bar::placeholder { color:#7090a8; } body.lanternnarnia .search-bar:focus { box-shadow:0 0 20px rgba(212,168,75,0.2); }
-    body.lanternnarnia .quote { color:#b8c8d8; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.lanternnarnia .quote-author { color:#90a8c0; }
+    body.lanternnarnia { background: #161412; font-family: 'Cinzel', serif; }
+    body.lanternnarnia::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        /* Soft lift around the UI stack — does not touch text styles */
+        radial-gradient(ellipse 78% 72% at 50% 44%, rgba(255, 248, 238, 0.09) 0%, transparent 58%),
+        radial-gradient(ellipse 82% 78% at 50% 42%, rgba(0, 0, 0, 0.13) 0%, rgba(0, 0, 0, 0.05) 52%, transparent 72%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.13) 0%, rgba(0, 0, 0, 0.24) 100%),
+        url('assets/lanternnarnia/wardrobe.webp');
+      background-size: cover, cover, cover, cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    body.lanternnarnia.motion-enabled::before {
+      animation: none !important;
+      will-change: auto;
+      transform: none;
+      filter: none;
+    }
+    body.lanternnarnia .stars { display: none; }
+    body.lanternnarnia .content { position: relative; }
+    body.lanternnarnia .clock {
+      color: #f5f0e8;
+      text-shadow:
+        0 2px 16px rgba(0, 0, 0, 0.45),
+        0 0 28px rgba(255, 235, 200, 0.12);
+    }
+    body.lanternnarnia .greeting { color: #e4ddd2; }
+    body.lanternnarnia .date-line {
+      color: #ebe6de;
+      text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.9),
+        0 0 16px rgba(0, 0, 0, 0.72),
+        0 0 32px rgba(0, 0, 0, 0.48),
+        0 0 48px rgba(0, 0, 0, 0.28);
+    }
+    body.lanternnarnia .search-bar {
+      background: rgba(10, 8, 7, 0.62);
+      border: 1px solid rgba(160, 138, 102, 0.38);
+      color: #f0ebe4;
+    }
+    body.lanternnarnia .search-bar::placeholder { color: #8a8278; }
+    body.lanternnarnia .search-bar:focus { box-shadow: 0 0 22px rgba(212, 175, 120, 0.18); }
+    body.lanternnarnia .search-btn {
+      position: relative;
+      border-radius: 5px;
+      border: 1px solid rgba(120, 98, 72, 0.55);
+      border-top-color: rgba(210, 185, 145, 0.42);
+      border-bottom-color: rgba(45, 36, 28, 0.9);
+      background:
+        linear-gradient(
+          168deg,
+          rgba(56, 48, 40, 0.92) 0%,
+          rgba(24, 20, 16, 0.96) 48%,
+          rgba(12, 10, 8, 1) 100%
+        );
+      color: #f2ebe3;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      box-shadow:
+        0 1px 0 rgba(255, 248, 232, 0.11) inset,
+        0 -10px 20px rgba(0, 0, 0, 0.28) inset,
+        0 5px 16px rgba(0, 0, 0, 0.38),
+        0 0 0 1px rgba(8, 6, 5, 0.65);
+    }
+    body.lanternnarnia .search-actions .search-btn:first-of-type {
+      border-top-color: rgba(225, 195, 140, 0.48);
+      border-left-color: rgba(170, 145, 110, 0.45);
+      box-shadow:
+        0 1px 0 rgba(255, 248, 232, 0.12) inset,
+        0 -10px 20px rgba(0, 0, 0, 0.28) inset,
+        0 5px 16px rgba(0, 0, 0, 0.38),
+        0 0 0 1px rgba(8, 6, 5, 0.65),
+        0 0 22px rgba(200, 155, 90, 0.08);
+    }
+    body.lanternnarnia .search-actions .search-btn:last-of-type {
+      border-top-color: rgba(190, 205, 220, 0.35);
+      border-right-color: rgba(110, 125, 145, 0.4);
+      border-bottom-color: rgba(35, 40, 48, 0.88);
+      box-shadow:
+        0 1px 0 rgba(235, 242, 255, 0.08) inset,
+        0 -10px 20px rgba(0, 0, 0, 0.26) inset,
+        0 5px 16px rgba(0, 0, 0, 0.36),
+        0 0 0 1px rgba(8, 6, 5, 0.65),
+        0 0 20px rgba(140, 170, 200, 0.07);
+    }
+    body.lanternnarnia .search-btn:focus-visible {
+      outline: none;
+      box-shadow:
+        0 1px 0 rgba(255, 248, 232, 0.11) inset,
+        0 -8px 18px rgba(0, 0, 0, 0.25) inset,
+        0 0 0 2px rgba(212, 185, 140, 0.45),
+        0 0 0 5px rgba(6, 5, 4, 0.85);
+    }
+    body.lanternnarnia .quote {
+      color: #e2dcd4;
+      font-size: clamp(1.22rem, 2.3vw, 1.52rem) !important;
+      text-shadow:
+        0 2px 14px rgba(0, 0, 0, 0.5),
+        0 0 24px rgba(0, 0, 0, 0.25);
+    }
+    body.lanternnarnia .quote-author {
+      color: #d4cbbf;
+      font-size: clamp(1.05rem, 2vw, 1.28rem) !important;
+      font-weight: 600;
+      text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.85),
+        0 0 18px rgba(0, 0, 0, 0.45);
+    }
 
     /* ─── MINISTRY GREY (bleak surveillance minimalism) ───────────── */
     body.ministrygrey { background:#3a3a38; font-family:'Space Mono', monospace; }
@@ -1469,6 +1715,7 @@
     body.wastelyellow { --vs-clock-scale: 0.78; }
     body.bridesvengeance { --vs-clock-scale: 0.74; }
     body.rabbitholedream { --vs-clock-scale: 0.96; }
+    body.ratatouille { --vs-clock-scale: 0.94; }
     body.goldentwist { --vs-clock-scale: 0.95; }
     body.shirecomfort { --vs-clock-scale: 0.96; }
     body.lanternnarnia { --vs-clock-scale: 0.94; }
@@ -1579,6 +1826,7 @@
     body.herhaze .search-mag,
     body.discoverywhite .search-mag,
     body.rabbitholedream .search-mag,
+    body.ratatouille .search-mag,
     body.topiaryshadow .search-mag {
       color: rgba(35, 32, 28, 0.45);
     }
@@ -1602,6 +1850,7 @@
     body.herhaze .search-mag:hover,
     body.discoverywhite .search-mag:hover,
     body.rabbitholedream .search-mag:hover,
+    body.ratatouille .search-mag:hover,
     body.topiaryshadow .search-mag:hover {
       color: rgba(35, 32, 28, 0.78);
       background: rgba(0, 0, 0, 0.05);
@@ -1660,6 +1909,7 @@
     body.herhaze .search-btn,
     body.discoverywhite .search-btn,
     body.rabbitholedream .search-btn,
+    body.ratatouille .search-btn,
     body.topiaryshadow .search-btn {
       border-color: rgba(40, 35, 32, 0.22);
       background: rgba(40, 35, 32, 0.06);
@@ -1679,6 +1929,7 @@
     body.herhaze .search-btn:focus-visible,
     body.discoverywhite .search-btn:focus-visible,
     body.rabbitholedream .search-btn:focus-visible,
+    body.ratatouille .search-btn:focus-visible,
     body.topiaryshadow .search-btn:focus-visible {
       box-shadow: 0 0 0 2px rgba(40, 35, 32, 0.25), 0 0 0 4px rgba(255, 255, 255, 0.5);
     }
@@ -1854,10 +2105,40 @@
       box-shadow: 0 8px 22px rgba(200, 180, 120, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.18);
     }
     body.lanternnarnia .search-btn:hover {
-      border-color: rgba(255, 235, 190, 0.52);
-      background: rgba(255, 252, 248, 0.14);
-      color: #fafcff;
-      box-shadow: 0 8px 22px rgba(212, 168, 75, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      color: #fffaf5;
+      background:
+        linear-gradient(
+          168deg,
+          rgba(64, 54, 44, 0.95) 0%,
+          rgba(30, 25, 20, 0.98) 50%,
+          rgba(16, 12, 10, 1) 100%
+        );
+      box-shadow:
+        0 1px 0 rgba(255, 252, 240, 0.16) inset,
+        0 -8px 18px rgba(0, 0, 0, 0.22) inset,
+        0 7px 22px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(12, 9, 7, 0.75);
+    }
+    body.lanternnarnia .search-actions .search-btn:first-of-type:hover {
+      border-top-color: rgba(240, 210, 155, 0.55);
+      border-bottom-color: rgba(40, 32, 24, 0.92);
+      box-shadow:
+        0 1px 0 rgba(255, 252, 240, 0.18) inset,
+        0 -8px 18px rgba(0, 0, 0, 0.22) inset,
+        0 7px 22px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(12, 9, 7, 0.75),
+        0 0 28px rgba(210, 160, 95, 0.18);
+    }
+    body.lanternnarnia .search-actions .search-btn:last-of-type:hover {
+      border-top-color: rgba(210, 225, 238, 0.42);
+      border-right-color: rgba(130, 148, 168, 0.48);
+      border-bottom-color: rgba(38, 44, 52, 0.9);
+      box-shadow:
+        0 1px 0 rgba(240, 248, 255, 0.12) inset,
+        0 -8px 18px rgba(0, 0, 0, 0.22) inset,
+        0 7px 22px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(12, 9, 7, 0.75),
+        0 0 26px rgba(130, 165, 195, 0.14);
     }
     body.ministrygrey .search-btn:hover {
       border-color: rgba(200, 200, 196, 0.55);
@@ -2086,6 +2367,24 @@
       color: #2a6a90;
       box-shadow: 0 8px 28px rgba(122, 176, 200, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.95);
     }
+    body.ratatouille .search-actions .search-btn:first-of-type:hover {
+      border-color: #2a8ef0;
+      background: linear-gradient(180deg, #62c4ff 0%, #3a9ef5 45%, #2080e8 100%);
+      color: #fff;
+      box-shadow:
+        0 5px 0 rgba(18, 70, 130, 0.5),
+        0 14px 28px rgba(30, 120, 220, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.45);
+    }
+    body.ratatouille .search-actions .search-btn:last-of-type:hover {
+      border-color: #e8a820;
+      background: linear-gradient(180deg, #fff198 0%, #ffd948 42%, #ffb420 100%);
+      color: #3d2206;
+      box-shadow:
+        0 5px 0 rgba(130, 85, 8, 0.55),
+        0 14px 28px rgba(220, 150, 30, 0.35),
+        inset 0 2px 0 rgba(255, 255, 255, 0.65);
+    }
     body.topiaryshadow .search-btn:hover {
       border-color: rgba(58, 53, 72, 0.16);
       background: rgba(255, 255, 255, 0.94);
@@ -2209,6 +2508,99 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .content { animation: fadeIn 1s ease forwards; }
+
+    /* Lantern Narnia: armoire doors — hinges on OUTER frame (not center “book” spine) */
+    @keyframes lanternnarniaDoorLeft {
+      0% {
+        transform: rotateY(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: rotateY(-76deg);
+        opacity: 0;
+      }
+    }
+    @keyframes lanternnarniaDoorRight {
+      0% {
+        transform: rotateY(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: rotateY(76deg);
+        opacity: 0;
+      }
+    }
+    /* No blur — matches default load position (translateY(0), same as global fadeIn end state) */
+    @keyframes lanternnarniaStepThrough {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.97);
+      }
+      38% {
+        opacity: 0.92;
+        transform: translateY(0) scale(0.995);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    body.lanternnarnia .page-wrapper {
+      perspective: 1400px;
+      perspective-origin: 50% 45%;
+    }
+    body.lanternnarnia .page-wrapper::before,
+    body.lanternnarnia .page-wrapper::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      width: 50.5vw;
+      z-index: 40;
+      pointer-events: none;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+      box-shadow:
+        0 0 0 1px rgba(12, 9, 7, 0.65),
+        0 12px 40px rgba(0, 0, 0, 0.55);
+    }
+    body.lanternnarnia .page-wrapper::before {
+      left: 0;
+      transform-origin: left center;
+      background:
+        linear-gradient(92deg, rgba(22, 18, 14, 0.97) 0%, rgba(42, 35, 28, 0.93) 42%, rgba(62, 52, 44, 0.9) 100%),
+        repeating-linear-gradient(
+          88deg,
+          transparent 0 11px,
+          rgba(0, 0, 0, 0.04) 11px 12px
+        );
+      box-shadow:
+        inset -3px 0 0 rgba(255, 248, 235, 0.07),
+        inset -14px 0 28px rgba(0, 0, 0, 0.35),
+        6px 0 28px rgba(0, 0, 0, 0.45);
+      animation: lanternnarniaDoorLeft 2.45s cubic-bezier(0.22, 0.68, 0.18, 1) forwards;
+    }
+    body.lanternnarnia .page-wrapper::after {
+      right: 0;
+      transform-origin: right center;
+      background:
+        linear-gradient(-92deg, rgba(22, 18, 14, 0.97) 0%, rgba(42, 35, 28, 0.93) 42%, rgba(62, 52, 44, 0.9) 100%),
+        repeating-linear-gradient(
+          -88deg,
+          transparent 0 11px,
+          rgba(0, 0, 0, 0.04) 11px 12px
+        );
+      box-shadow:
+        inset 3px 0 0 rgba(255, 248, 235, 0.07),
+        inset 14px 0 28px rgba(0, 0, 0, 0.35),
+        -6px 0 28px rgba(0, 0, 0, 0.45);
+      animation: lanternnarniaDoorRight 2.45s cubic-bezier(0.22, 0.68, 0.18, 1) forwards;
+    }
+    body.lanternnarnia .content {
+      position: relative;
+      z-index: 5;
+      animation: lanternnarniaStepThrough 2.65s cubic-bezier(0.2, 0.78, 0.28, 1) 0.08s both;
+    }
   </style>
 </head>
 <body class="twilight">
