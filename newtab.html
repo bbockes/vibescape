@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vibescape</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:ital@0;1&family=Cinzel:wght@400;600&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=Elsie:wght@400;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Marcellus&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Rye&family=Space+Mono:ital@0;1&family=Syne:wght@400;700;800&family=VT323&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,7 +26,6 @@
       height: 100vh;
       overflow: hidden;
       transition: var(--transition);
-      cursor: var(--vs-cursor, default);
     }
 
     /* ─── SHARED MOTION SYSTEM ───────────────────────────────────────── */
@@ -63,41 +62,10 @@
       }
     }
 
-    /* Unique cursor per theme */
-    body.twilight { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='5' fill='%23c89dff'/%3E%3Ccircle cx='14' cy='14' r='9' fill='none' stroke='%23c89dff' stroke-opacity='0.45'/%3E%3C/svg%3E") 14 14, auto; }
-    body.cleangirl { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cellipse cx='14' cy='14' rx='7' ry='5' fill='%23d9c9b6'/%3E%3C/svg%3E") 14 14, auto; }
-    body.witchy { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M14 4 L17 11 L24 14 L17 17 L14 24 L11 17 L4 14 L11 11 Z' fill='%23d4850a'/%3E%3C/svg%3E") 14 14, auto; }
-    body.financebro { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Crect x='7' y='7' width='14' height='14' fill='%230a0a0a'/%3E%3C/svg%3E") 14 14, auto; }
-    body.neonnocturne { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M14 3 L25 14 L14 25 L3 14 Z' fill='%2300f0ff'/%3E%3C/svg%3E") 14 14, auto; }
-    body.librarydusk { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M9 6h10v16H9z' fill='%23b5946d'/%3E%3Cpath d='M11 9h6' stroke='%23241b15'/%3E%3C/svg%3E") 14 14, auto; }
-    body.oceanglass { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M4 16c3 0 3-4 6-4s3 4 6 4s3-4 6-4s3 4 6 4' stroke='%237fd8e8' stroke-width='2' fill='none'/%3E%3C/svg%3E") 14 14, auto; }
-    body.brutalredacted { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Crect x='6' y='10' width='16' height='8' fill='%23131313'/%3E%3C/svg%3E") 14 14, auto; }
-    body.housecandles { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Crect x='12' y='9' width='4' height='12' fill='%23f3dca8'/%3E%3Cpath d='M14 6c1.5 1.5 1.5 3.2 0 4.5c-1.5-1.3-1.5-3 0-4.5z' fill='%23ffb34d'/%3E%3C/svg%3E") 14 14, auto; }
-    body.emberrunes { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M14 5l3 6l6 3l-6 3l-3 6l-3-6l-6-3l6-3z' fill='%23e39c5f'/%3E%3C/svg%3E") 14 14, auto; }
-    body.starcartographer { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='3' fill='%23b8d7f8'/%3E%3Cpath d='M14 3v6M14 19v6M3 14h6M19 14h6' stroke='%23b8d7f8' stroke-width='1.5'/%3E%3C/svg%3E") 14 14, auto; }
-    body.velvetnoir { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='6' fill='%23e0b7d4'/%3E%3Crect x='13' y='5' width='2' height='18' fill='%23e0b7d4' fill-opacity='0.45'/%3E%3C/svg%3E") 14 14, auto; }
-    body.solarpunkgarden { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M14 6c5 0 8 3 8 8c-5 0-8-3-8-8z' fill='%235f8e6f'/%3E%3Cpath d='M14 6c-5 0-8 3-8 8c5 0 8-3 8-8z' fill='%237bcf8c'/%3E%3C/svg%3E") 14 14, auto; }
-    body.zenink { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='5' fill='%232f2f2f'/%3E%3Ccircle cx='14' cy='14' r='9' fill='none' stroke='%232f2f2f' stroke-opacity='0.3'/%3E%3C/svg%3E") 14 14, auto; }
-    body.retrofuturearcade { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M14 4l8 8l-8 8l-8-8z' fill='%23f6b6ff'/%3E%3Cpath d='M14 8l4 4l-4 4l-4-4z' fill='%232bf4ff'/%3E%3C/svg%3E") 14 14, auto; }
-    body.desertminimal { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Crect x='8' y='8' width='12' height='12' rx='2' fill='%23927760'/%3E%3C/svg%3E") 14 14, auto; }
-    body.alpinefjord { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M6 20l6-10l4 6l3-4l3 8z' fill='%2390b2c7'/%3E%3C/svg%3E") 14 14, auto; }
-    body.musegallery { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Crect x='7' y='7' width='14' height='14' fill='none' stroke='%237c6c5d' stroke-width='2'/%3E%3Ccircle cx='14' cy='14' r='3' fill='%237c6c5d'/%3E%3C/svg%3E") 14 14, auto; }
-    body.darkacademiaquill { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M8 20l8-8l4 4l-8 8z' fill='%23a88e70'/%3E%3C/svg%3E") 14 14, auto; }
-    body.spacesalvage { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M14 4l8 8l-8 2l-2 8l-6-6l8-2z' fill='%238ca3bc'/%3E%3C/svg%3E") 14 14, auto; }
-    body.regencyletter { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M5 9h18v10H5z' fill='%23e9d7c2'/%3E%3Cpath d='M5 9l9 7l9-7' stroke='%238d715b' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") 14 14, auto; }
-    body.gothicmanor { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='6' fill='%239281ad'/%3E%3Cpath d='M14 8v12M8 14h12' stroke='%23111019' stroke-opacity='0.45'/%3E%3C/svg%3E") 14 14, auto; }
-    body.cybersamurai { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M6 20L20 6l2 2L8 22z' fill='%2300f5d4'/%3E%3C/svg%3E") 14 14, auto; }
-    body.cottagealchemy { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M10 7h8v3l2 3v5a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3v-5l2-3z' fill='%23708760'/%3E%3C/svg%3E") 14 14, auto; }
-    body.cosmicwestern { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M4 14l10-7l10 7l-10 7z' fill='%23b28d6b'/%3E%3C/svg%3E") 14 14, auto; }
-    body.vhsparanormal { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Crect x='7' y='9' width='14' height='10' rx='2' fill='%23939bb4'/%3E%3Crect x='10' y='12' width='8' height='4' fill='%2315151a' fill-opacity='0.45'/%3E%3C/svg%3E") 14 14, auto; }
-    body.mechhangar { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='6' fill='%2397a2b1'/%3E%3Ccircle cx='14' cy='14' r='2' fill='%23121417'/%3E%3C/svg%3E") 14 14, auto; }
-    body.opalinecourt { --vs-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M6 20l2-8l6 4l6-4l2 8z' fill='%239a81b4'/%3E%3Ccircle cx='14' cy='10' r='3' fill='%23c9a8e8'/%3E%3C/svg%3E") 14 14, auto; }
-
     /* ─── THEME: TWILIGHT CODED ─────────────────────────────────────── */
     body.twilight {
       background: #0d0a1a;
       font-family: 'Cormorant Garamond', Georgia, serif;
-      cursor: crosshair;
     }
     body.twilight::before {
       content: '';
@@ -164,7 +132,6 @@
     body.cleangirl {
       background: #f5f2ee;
       font-family: 'Instrument Serif', Georgia, serif;
-      cursor: default;
     }
     body.cleangirl::before {
       content: '';
@@ -222,7 +189,6 @@
     body.witchy {
       background: #150e08;
       font-family: 'Cinzel', Georgia, serif;
-      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E🌙%3C/text%3E%3C/svg%3E"), auto;
     }
     body.witchy::before {
       content: '';
@@ -283,7 +249,6 @@
     body.financebro {
       background: #fafafa;
       font-family: 'Space Mono', monospace;
-      cursor: default;
     }
     body.financebro::before {
       content: '';
@@ -338,7 +303,6 @@
     body.neonnocturne {
       background: #06070f;
       font-family: 'Syne', sans-serif;
-      cursor: default;
     }
     body.neonnocturne::before {
       content: '';
@@ -375,7 +339,6 @@
     body.librarydusk {
       background: #241b15;
       font-family: 'DM Serif Display', serif;
-      cursor: default;
     }
     body.librarydusk::before {
       content: '';
@@ -406,7 +369,6 @@
     body.oceanglass {
       background: #081823;
       font-family: 'Instrument Serif', serif;
-      cursor: default;
     }
     body.oceanglass::before {
       content: '';
@@ -438,7 +400,6 @@
     body.brutalredacted {
       background: #ecebe8;
       font-family: 'Space Mono', monospace;
-      cursor: default;
     }
     body.brutalredacted::before {
       content: '';
@@ -626,6 +587,385 @@
     body.opalinecourt .search-bar { background:rgba(95,70,116,0.05); border:1px solid rgba(95,70,116,0.2); color:#5f4674; } body.opalinecourt .search-bar::placeholder { color:#a48bbd; }
     body.opalinecourt .quote { color:#795f94; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.opalinecourt .quote-author { color:#9a81b4; }
 
+    /* ─── TYRELL NOIR (neon-noir / rain dystopia) ───────────────────── */
+    body.tyrellnoir { background:#0a0e14; font-family:'Orbitron', 'Syne', sans-serif; }
+    body.tyrellnoir::before { content:''; position:fixed; inset:0; background: repeating-linear-gradient(90deg, transparent 0 1px, rgba(255,120,60,0.03) 1px 2px), radial-gradient(ellipse 100% 80% at 160% 100%, rgba(255,90,40,0.14) 0%, transparent 45%), linear-gradient(180deg, #0c1018 0%, #06080c 100%); pointer-events:none; z-index:0; }
+    body.tyrellnoir .stars { display:none; } body.tyrellnoir .content { position:relative; z-index:2; }
+    body.tyrellnoir .clock { color:#e8dde4; text-shadow:0 0 20px rgba(255,100,60,0.35), 0 0 40px rgba(80,180,255,0.15); font-weight:400; letter-spacing:0.08em; }
+    body.tyrellnoir .greeting { color:#b8a8b0; } body.tyrellnoir .date-line { color:#7a6d78; }
+    body.tyrellnoir .search-bar { background:rgba(232,221,228,0.05); border:1px solid rgba(255,120,80,0.35); color:#e8dde4; font-family:'Space Mono',monospace; }
+    body.tyrellnoir .search-bar::placeholder { color:#6d6268; } body.tyrellnoir .search-bar:focus { box-shadow:0 0 20px rgba(255,140,90,0.2); }
+    body.tyrellnoir .quote { color:#a898a4; font-style:normal; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.tyrellnoir .quote-author { color:#8a7c86; }
+
+    /* ─── ARRAKIS STONE (desert brutalism / epic scale) ─────────────── */
+    body.arrakisstone { background:#1c1814; font-family:'Marcellus', 'Cinzel', serif; }
+    body.arrakisstone::before { content:''; position:fixed; inset:0; background: linear-gradient(165deg, rgba(212,160,80,0.18) 0%, transparent 40%), radial-gradient(ellipse 120% 60% at 50% -10%, rgba(255,200,120,0.25) 0%, transparent 55%), linear-gradient(180deg, #252018 0%, #14110e 100%); pointer-events:none; z-index:0; }
+    body.arrakisstone .stars { display:none; } body.arrakisstone .content { position:relative; z-index:2; }
+    body.arrakisstone .clock { color:#e8d4a8; text-shadow:0 2px 24px rgba(180,120,40,0.3); }
+    body.arrakisstone .greeting { color:#c4a882; letter-spacing:0.25em; } body.arrakisstone .date-line { color:#8a735c; }
+    body.arrakisstone .search-bar { background:rgba(232,212,168,0.06); border:1px solid rgba(232,212,168,0.25); color:#e8d4a8; }
+    body.arrakisstone .search-bar::placeholder { color:#7a6b58; } body.arrakisstone .search-bar:focus { box-shadow:0 0 0 1px rgba(212,160,80,0.4); }
+    body.arrakisstone .quote { color:#c9b896; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.arrakisstone .quote-author { color:#9a8668; }
+
+    /* ─── MATRIX FALL (green digital reality) ─────────────────────── */
+    body.matrixfall { background:#000301; font-family:'VT323', 'Space Mono', monospace; }
+    body.matrixfall::before { content:''; position:fixed; inset:0; background: repeating-linear-gradient(180deg, transparent 0 2px, rgba(0,255,65,0.03) 2px 3px), radial-gradient(ellipse 80% 50% at 50% 50%, rgba(0,80,30,0.35) 0%, transparent 70%); pointer-events:none; z-index:0; }
+    body.matrixfall .stars { display:none; } body.matrixfall .content { position:relative; z-index:2; }
+    body.matrixfall .clock { color:#00ff41; text-shadow:0 0 12px #00ff4188; font-weight:400; }
+    body.matrixfall .greeting { color:#00cc33; text-transform:uppercase; } body.matrixfall .date-line { color:#009928; }
+    body.matrixfall .search-bar { background:rgba(0,40,15,0.45); border:1px solid #00ff4188; color:#c8ffd8; }
+    body.matrixfall .search-bar::placeholder { color:#009928; } body.matrixfall .search-bar:focus { box-shadow:0 0 20px #00ff4144; }
+    body.matrixfall .quote { color:#7dd892; font-style:normal; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.matrixfall .quote-author { color:#4db85c; }
+
+    /* ─── PANDORA EVE (biolume alien nature) ──────────────────────── */
+    body.pandoraeve { background:#030f12; font-family:'Syne', sans-serif; }
+    body.pandoraeve::before { content:''; position:fixed; inset:0; background: radial-gradient(circle at 20% 70%, rgba(0,255,220,0.12) 0%, transparent 35%), radial-gradient(circle at 85% 30%, rgba(180,100,255,0.10) 0%, transparent 30%), radial-gradient(ellipse 90% 100% at 50% 100%, rgba(0,60,40,0.5) 0%, transparent 50%), linear-gradient(180deg, #061820 0%, #020a0c 100%); pointer-events:none; z-index:0; }
+    body.pandoraeve .stars { display:none; } body.pandoraeve .content { position:relative; z-index:2; }
+    body.pandoraeve .clock { color:#7fffd4; text-shadow:0 0 24px rgba(100,255,220,0.48), 0 0 48px rgba(180,100,255,0.25); }
+    body.pandoraeve .greeting { color:#5ecfb8; } body.pandoraeve .date-line { color:#3a9a86; }
+    body.pandoraeve .search-bar { background:rgba(10,50,45,0.5); border:1px solid rgba(120,255,220,0.35); color:#d4fff8; }
+    body.pandoraeve .search-bar::placeholder { color:#459984; } body.pandoraeve .search-bar:focus { box-shadow:0 0 22px rgba(120,255,200,0.25); }
+    body.pandoraeve .quote { color:#8ee4d4; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.pandoraeve .quote-author { color:#5cb89f; }
+
+    /* ─── RIVENDELL EVE (grounded medieval epic) ──────────────────── */
+    body.rivendelleve { background:#1a2218; font-family:'Libre Baskerville', Georgia, serif; }
+    body.rivendelleve::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 80% 60% at 30% 20%, rgba(201,162,39,0.12) 0%, transparent 55%), radial-gradient(ellipse 70% 50% at 70% 80%, rgba(60,90,55,0.35) 0%, transparent 50%), linear-gradient(180deg, #222c1e 0%, #141c14 100%); pointer-events:none; z-index:0; }
+    body.rivendelleve .stars { display:none; } body.rivendelleve .content { position:relative; z-index:2; }
+    body.rivendelleve .clock { color:#e8dcc4; text-shadow:0 0 20px rgba(201,162,39,0.22); }
+    body.rivendelleve .greeting { color:#b8c9a8; font-style:italic; } body.rivendelleve .date-line { color:#7a8f6e; }
+    body.rivendelleve .search-bar { background:rgba(232,220,196,0.06); border:1px solid rgba(201,162,39,0.28); color:#e8dcc4; }
+    body.rivendelleve .search-bar::placeholder { color:#6d7b62; } body.rivendelleve .search-bar:focus { box-shadow:0 0 18px rgba(201,162,39,0.18); }
+    body.rivendelleve .quote { color:#c4d4b4; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.rivendelleve .quote-author { color:#9aaf8c; }
+
+    /* ─── MÉNDL PASTEL (pastel symmetry / storybook hotel) ────────── */
+    body.mendlpastel { background:#f4e8ec; font-family:'Playfair Display', Georgia, serif; }
+    body.mendlpastel::before { content:''; position:fixed; inset:0; background: radial-gradient(circle at 15% 20%, #e8b4bc55 0%, transparent 40%), radial-gradient(circle at 85% 75%, #c4b5e855 0%, transparent 40%), repeating-linear-gradient(90deg, transparent 0 48px, rgba(255,255,255,0.45) 48px 49px), linear-gradient(180deg, #faf2f5 0%, #eadde4 100%); pointer-events:none; z-index:0; }
+    body.mendlpastel .stars { display:none; } body.mendlpastel .content { position:relative; z-index:2; }
+    body.mendlpastel .clock { color:#6b4a5a; } body.mendlpastel .greeting { color:#9a7082; } body.mendlpastel .date-line { color:#b8889c; }
+    body.mendlpastel .search-bar { background:rgba(255,255,255,0.75); border:2px solid #c9a8b8; color:#5a3d4d; }
+    body.mendlpastel .search-bar::placeholder { color:#c49aab; } body.mendlpastel .search-bar:focus { box-shadow:0 0 0 3px rgba(200,168,184,0.35); }
+    body.mendlpastel .quote { color:#845a6e; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.mendlpastel .quote-author { color:#a87a90; }
+
+    /* ─── TOPIARY SHADOW (gothic suburb / dark fairytale) ─────────── */
+    body.topiaryshadow { background:#c8c4d2; font-family:'DM Serif Display', serif; }
+    body.topiaryshadow::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 60% 40% at 50% 0%, #f0f2f8 0%, transparent 55%), linear-gradient(180deg, #d4d0dc 0%, #9a92a8 100%); pointer-events:none; z-index:0; }
+    body.topiaryshadow .stars { display:none; } body.topiaryshadow .content { position:relative; z-index:2; }
+    body.topiaryshadow .clock { color:#3a3548; text-shadow:0 2px 0 rgba(255,255,255,0.25); }
+    body.topiaryshadow .greeting { color:#5a5268; font-style:italic; } body.topiaryshadow .date-line { color:#6d6580; }
+    body.topiaryshadow .search-bar { background:rgba(58,53,72,0.06); border:1px solid rgba(58,53,72,0.2); color:#2a2538; }
+    body.topiaryshadow .search-bar::placeholder { color:#8a8298; } body.topiaryshadow .search-bar:focus { box-shadow:0 4px 20px rgba(58,53,72,0.12); }
+    body.topiaryshadow .quote { color:#4a4258; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.topiaryshadow .quote-author { color:#6a6278; }
+
+    /* ─── INKVERSE POP (comic pop / kinetic panels) ───────────────── */
+    body.inkversepop { background:#1a0a2e; font-family:'Syne', sans-serif; }
+    body.inkversepop::before { content:''; position:fixed; inset:0; background: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px) 0 0 / 14px 14px, linear-gradient(135deg, #2d1b4e 0%, #0f0220 100%); pointer-events:none; z-index:0; }
+    body.inkversepop .stars { display:none; } body.inkversepop .content { position:relative; z-index:2; }
+    body.inkversepop .clock { font-family:'Bangers', 'Syne', sans-serif; color:#fff; letter-spacing:0.06em; text-shadow:4px 0 #ff3366, -4px 0 #00d4ff, 0 4px #ffe135, 0 -2px #9b59ff; font-weight:400; }
+    body.inkversepop .greeting { color:#ff9ec4; text-transform:uppercase; letter-spacing:0.2em; } body.inkversepop .date-line { color:#7ec8e3; }
+    body.inkversepop .search-bar { background:#2a1538; border:3px solid #fff; color:#fff; font-family:'Space Mono',monospace; border-radius:0; }
+    body.inkversepop .search-bar::placeholder { color:#b8a8c8; } body.inkversepop .search-bar:focus { box-shadow:6px 6px 0 #ff3366; }
+    body.inkversepop .quote { color:#e8d4ff; font-style:normal; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.inkversepop .quote-author { color:#a878d8; }
+
+    /* ─── WASTELAND YELLOW (desert chaos / punk apocalypse) ───────── */
+    body.wastelyellow { background:#2a2210; font-family:'Rye', 'Cinzel', serif; }
+    body.wastelyellow::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 100% 70% at 50% 0%, rgba(255,200,40,0.35) 0%, transparent 45%), linear-gradient(180deg, #3d3018 0%, #1a1408 100%); pointer-events:none; z-index:0; }
+    body.wastelyellow .stars { display:none; } body.wastelyellow .content { position:relative; z-index:2; }
+    body.wastelyellow .clock { color:#ffd030; text-shadow:3px 3px 0 #1a1005, 0 0 40px rgba(255,180,0,0.4); }
+    body.wastelyellow .greeting { color:#d4a84a; } body.wastelyellow .date-line { color:#a07838; }
+    body.wastelyellow .search-bar { background:rgba(255,200,48,0.08); border:2px solid rgba(255,200,48,0.5); color:#ffe8a0; }
+    body.wastelyellow .search-bar::placeholder { color:#8a7030; } body.wastelyellow .search-bar:focus { box-shadow:0 0 20px rgba(255,200,48,0.35); }
+    body.wastelyellow .quote { color:#e8c878; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.wastelyellow .quote-author { color:#c49850; }
+
+    /* ─── BRIDE'S VENGEANCE (bold blocking / stylized cinema) ─────── */
+    body.bridesvengeance { background:#0a0a0a; font-family:'Syne', sans-serif; }
+    body.bridesvengeance::before { content:''; position:fixed; inset:0; background: linear-gradient(90deg, #f5e000 0%, #f5e000 8%, transparent 8% 92%, #f5e000 92%), linear-gradient(180deg, #111 0%, #000 100%); pointer-events:none; z-index:0; }
+    body.bridesvengeance .stars { display:none; } body.bridesvengeance .content { position:relative; z-index:2; }
+    body.bridesvengeance .clock { color:#f5e000; font-weight:800; text-shadow:3px 3px 0 #c41e3a; }
+    body.bridesvengeance .greeting { color:#c41e3a; text-transform:uppercase; } body.bridesvengeance .date-line { color:#f5e000; }
+    body.bridesvengeance .search-bar { background:#1a1a1a; border:3px solid #f5e000; color:#fff; }
+    body.bridesvengeance .search-bar::placeholder { color:#888; } body.bridesvengeance .search-bar:focus { border-color:#c41e3a; box-shadow:0 0 0 2px #c41e3a; }
+    body.bridesvengeance .quote { color:#f0e8d8; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.bridesvengeance .quote-author { color:#c41e3a; }
+
+    /* ─── RABBITHOLE DREAM (surreal whimsical dreamscape) ─────────── */
+    body.rabbitholedream { background:#87ceeb; font-family:'Cormorant Garamond', serif; }
+    body.rabbitholedream::before { content:''; position:fixed; inset:0; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.45) 0%, transparent 25%), radial-gradient(circle at 80% 70%, rgba(255,182,193,0.35) 0%, transparent 35%), repeating-conic-gradient(from 0deg at 50% 100%, rgba(255,255,255,0.12) 0 15deg, transparent 15deg 30deg); opacity:0.92; pointer-events:none; z-index:0; }
+    body.rabbitholedream .stars { display:none; } body.rabbitholedream .content { position:relative; z-index:2; }
+    body.rabbitholedream .clock { color:#fff; text-shadow:2px 2px 0 #d472ff, 4px 4px 0 #ff90b0; }
+    body.rabbitholedream .greeting { color:#fff; text-shadow:1px 1px 2px #4a90a4; } body.rabbitholedream .date-line { color:#e8f8ff; }
+    body.rabbitholedream .search-bar { background:rgba(255,255,255,0.75); border:2px dashed #fff; color:#3a7090; }
+    body.rabbitholedream .search-bar::placeholder { color:#7ab0c8; } body.rabbitholedream .search-bar:focus { box-shadow:0 0 20px rgba(255,255,255,0.5); }
+    body.rabbitholedream .quote { color:#fff; text-shadow:1px 1px 3px #4a8098; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.rabbitholedream .quote-author { color:#f0ffff; }
+
+    /* ─── GOLDEN TWIST (colorful whimsy / eerie undertone) ────────── */
+    body.goldentwist { background:#2a1438; font-family:'Elsie', 'Cormorant Garamond', serif; }
+    body.goldentwist::before { content:''; position:fixed; inset:0; background: radial-gradient(circle at 20% 20%, rgba(201,75,123,0.28) 0%, transparent 40%), radial-gradient(circle at 85% 85%, rgba(107,63,160,0.35) 0%, transparent 45%), linear-gradient(180deg, #3a1850 0%, #1a0a24 100%); pointer-events:none; z-index:0; }
+    body.goldentwist .stars { display:none; } body.goldentwist .content { position:relative; z-index:2; }
+    body.goldentwist .clock { color:#f0d878; text-shadow:0 0 18px rgba(240,200,80,0.35); }
+    body.goldentwist .greeting { color:#e8a0c8; } body.goldentwist .date-line { color:#b878c0; }
+    body.goldentwist .search-bar { background:rgba(240,200,120,0.08); border:1px solid rgba(201,75,123,0.45); color:#f8ece4; }
+    body.goldentwist .search-bar::placeholder { color:#a878b8; } body.goldentwist .search-bar:focus { box-shadow:0 0 20px rgba(201,75,123,0.25); }
+    body.goldentwist .quote { color:#e8c8d8; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.goldentwist .quote-author { color:#c898d8; }
+
+    /* ─── SHIRE COMFORT (cozy pastoral fantasy) ──────────────────── */
+    body.shirecomfort { background:#2d3d28; font-family:'Instrument Serif', Georgia, serif; }
+    body.shirecomfort::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 90% 70% at 50% 100%, rgba(90,120,70,0.45) 0%, transparent 55%), radial-gradient(ellipse 50% 40% at 20% 25%, rgba(255,230,180,0.15) 0%, transparent 50%), linear-gradient(180deg, #3a4a32 0%, #243220 100%); pointer-events:none; z-index:0; }
+    body.shirecomfort .stars { display:none; } body.shirecomfort .content { position:relative; z-index:2; }
+    body.shirecomfort .clock { color:#f5ecd8; text-shadow:0 2px 8px rgba(40,55,35,0.35); }
+    body.shirecomfort .greeting { color:#c8d4a8; } body.shirecomfort .date-line { color:#9aaa78; }
+    body.shirecomfort .search-bar { background:rgba(245,236,216,0.1); border:1px solid rgba(200,180,120,0.35); color:#f5ecd8; }
+    body.shirecomfort .search-bar::placeholder { color:#8a9870; } body.shirecomfort .search-bar:focus { box-shadow:0 0 18px rgba(200,180,120,0.2); }
+    body.shirecomfort .quote { color:#d8e4c0; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.shirecomfort .quote-author { color:#b8c898; }
+
+    /* ─── LANTERN NARNIA (mythic winter / lamp magic) ─────────────── */
+    body.lanternnarnia { background:#1a2838; font-family:'Cinzel', serif; }
+    body.lanternnarnia::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(200,220,255,0.25) 0%, transparent 50%), radial-gradient(circle at 50% 85%, rgba(212,168,75,0.2) 0%, transparent 40%), linear-gradient(180deg, #2a4060 0%, #152028 100%); pointer-events:none; z-index:0; }
+    body.lanternnarnia .stars { display:none; } body.lanternnarnia .content { position:relative; z-index:2; }
+    body.lanternnarnia .clock { color:#e8f0f8; text-shadow:0 0 20px rgba(180,210,255,0.35); }
+    body.lanternnarnia .greeting { color:#c8d8e8; } body.lanternnarnia .date-line { color:#8aa0b8; }
+    body.lanternnarnia .search-bar { background:rgba(232,240,248,0.08); border:1px solid rgba(212,168,75,0.35); color:#e8f0f8; }
+    body.lanternnarnia .search-bar::placeholder { color:#7090a8; } body.lanternnarnia .search-bar:focus { box-shadow:0 0 20px rgba(212,168,75,0.2); }
+    body.lanternnarnia .quote { color:#b8c8d8; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.lanternnarnia .quote-author { color:#90a8c0; }
+
+    /* ─── MINISTRY GREY (bleak surveillance minimalism) ───────────── */
+    body.ministrygrey { background:#3a3a38; font-family:'Space Mono', monospace; }
+    body.ministrygrey::before { content:''; position:fixed; inset:0; background: repeating-linear-gradient(0deg, transparent 0 39px, rgba(0,0,0,0.06) 39px 40px), linear-gradient(180deg, #454542 0%, #323230 100%); pointer-events:none; z-index:0; }
+    body.ministrygrey .stars { display:none; } body.ministrygrey .content { position:relative; z-index:2; }
+    body.ministrygrey .clock { color:#c8c8c4; font-variant-numeric:tabular-nums; }
+    body.ministrygrey .greeting { color:#90908c; text-transform:uppercase; } body.ministrygrey .date-line { color:#787874; }
+    body.ministrygrey .search-bar { background:#2e2e2c; border:1px solid #5a5a56; color:#e0e0dc; }
+    body.ministrygrey .search-bar::placeholder { color:#686864; } body.ministrygrey .search-bar:focus { border-color:#787874; box-shadow:none; }
+    body.ministrygrey .quote { color:#a8a8a4; font-style:normal; font-size:clamp(1rem,1.6vw,1.05rem)!important; } body.ministrygrey .quote-author { color:#888884; }
+
+    /* ─── MOCKINGJAY DIVIDE (grit vs capitol excess) ──────────────── */
+    body.mockingjaydivide { background:linear-gradient(100deg, #2a2826 0%, #2a2826 48%, #3d2a32 52%, #4a3842 100%); font-family:'Syne', sans-serif; }
+    body.mockingjaydivide::before { content:''; position:fixed; inset:0; background: linear-gradient(100deg, transparent 0% 47%, rgba(212,168,150,0.12) 50%, rgba(255,215,200,0.08) 100%); pointer-events:none; z-index:0; }
+    body.mockingjaydivide .stars { display:none; } body.mockingjaydivide .content { position:relative; z-index:2; }
+    body.mockingjaydivide .clock { color:#e8c8b8; font-weight:600; text-shadow:1px 0 0 #c9a090; }
+    body.mockingjaydivide .greeting { color:#b8a090; } body.mockingjaydivide .date-line { color:#887870; }
+    body.mockingjaydivide .search-bar { background:rgba(40,38,36,0.65); border:1px solid rgba(212,160,140,0.4); color:#f0e0d8; }
+    body.mockingjaydivide .search-bar::placeholder { color:#8a8078; } body.mockingjaydivide .search-bar:focus { box-shadow:0 0 16px rgba(212,160,140,0.25); }
+    body.mockingjaydivide .quote { color:#d8c8c0; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.mockingjaydivide .quote-author { color:#c0a898; }
+
+    /* ─── DROOG CLOCKWORK (stylized ultraviolence / mod irony) ─────── */
+    body.droogclockwork { background:#f5f0e8; font-family:'Syne', sans-serif; }
+    body.droogclockwork::before { content:''; position:fixed; inset:0; background: radial-gradient(circle at 90% 10%, rgba(255,107,53,0.12) 0%, transparent 35%), linear-gradient(180deg, #faf8f4 0%, #ebe4d9 100%); pointer-events:none; z-index:0; }
+    body.droogclockwork .stars { display:none; } body.droogclockwork .content { position:relative; z-index:2; }
+    body.droogclockwork .clock { color:#1a1a1a; font-weight:800; letter-spacing:0.04em; }
+    body.droogclockwork .greeting { color:#ff6b35; text-transform:uppercase; } body.droogclockwork .date-line { color:#5a5854; }
+    body.droogclockwork .search-bar { background:#fff; border:2px solid #1a1a1a; color:#1a1a1a; }
+    body.droogclockwork .search-bar::placeholder { color:#a8a4a0; } body.droogclockwork .search-bar:focus { box-shadow:4px 4px 0 #ff6b35; }
+    body.droogclockwork .quote { color:#3a3834; font-style:normal; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.droogclockwork .quote-author { color:#ff6b35; }
+
+    /* ─── GATSBY GILDED (art deco / jazz-age excess) ───────────────── */
+    body.gatsbygilded { background:#1c2840; font-family:'Playfair Display', Georgia, serif; }
+    body.gatsbygilded::before { content:''; position:fixed; inset:0; background: repeating-linear-gradient(105deg, transparent 0 40px, rgba(212,175,55,0.04) 40px 41px), radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212,175,55,0.22) 0%, transparent 55%), linear-gradient(180deg, #243652 0%, #141c2e 100%); pointer-events:none; z-index:0; }
+    body.gatsbygilded .stars { display:none; } body.gatsbygilded .content { position:relative; z-index:2; }
+    body.gatsbygilded .clock { color:#d4af37; text-shadow:0 0 30px rgba(212,175,55,0.35); }
+    body.gatsbygilded .greeting { color:#c9b896; font-style:italic; } body.gatsbygilded .date-line { color:#8a93a8; }
+    body.gatsbygilded .search-bar { background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.45); color:#f0e8d8; }
+    body.gatsbygilded .search-bar::placeholder { color:#8a9ab0; } body.gatsbygilded .search-bar:focus { box-shadow:0 0 22px rgba(212,175,55,0.25); }
+    body.gatsbygilded .quote { color:#e8dcc8; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.gatsbygilded .quote-author { color:#d4af37; }
+
+    /* ─── MERCER STERILE (cold luxury / 80s consumer chill) ────────── */
+    body.mercersterile { background:#eae8e4; font-family:'Syne', sans-serif; }
+    body.mercersterile::before { content:''; position:fixed; inset:0; background: linear-gradient(180deg, #f2f0ec 0%, #dedad4 100%); pointer-events:none; z-index:0; }
+    body.mercersterile .stars { display:none; } body.mercersterile .content { position:relative; z-index:2; }
+    body.mercersterile .clock { color:#c0bdb8; font-weight:300; letter-spacing:0.12em; }
+    body.mercersterile .greeting { color:#a8a5a0; } body.mercersterile .date-line { color:#989590; }
+    body.mercersterile .search-bar { background:#fff; border:1px solid #d8d4ce; color:#4a4844; letter-spacing:0.06em; }
+    body.mercersterile .search-bar::placeholder { color:#c0bcb6; } body.mercersterile .search-bar:focus { border-color:#b0aca6; box-shadow:none; }
+    body.mercersterile .quote { color:#888580; font-style:normal; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.mercersterile .quote-author { color:#b0aca6; }
+
+    /* ─── BUTTON MOTHER (uncanny domestic / stitch shadows) ─────────── */
+    body.buttonmothers { background:#3d4f5c; font-family:'DM Serif Display', serif; }
+    body.buttonmothers::before { content:''; position:fixed; inset:0; background: radial-gradient(circle at 25% 30%, rgba(255,255,255,0.06) 0%, transparent 40%), radial-gradient(ellipse 100% 80% at 50% 100%, rgba(30,40,48,0.7) 0%, transparent 45%), linear-gradient(180deg, #4a5f70 0%, #2c3840 100%); pointer-events:none; z-index:0; }
+    body.buttonmothers .stars { display:none; } body.buttonmothers .content { position:relative; z-index:2; }
+    body.buttonmothers .clock { color:#d8e4ec; text-shadow:0 0 18px rgba(200,220,232,0.2); }
+    body.buttonmothers .greeting { color:#c23b22; } body.buttonmothers .date-line { color:#8aa0b0; }
+    body.buttonmothers .search-bar { background:rgba(216,228,236,0.08); border:1px solid rgba(194,59,34,0.45); color:#e8f0f5; }
+    body.buttonmothers .search-bar::placeholder { color:#7a909c; } body.buttonmothers .search-bar:focus { box-shadow:0 0 18px rgba(194,59,34,0.2); }
+    body.buttonmothers .quote { color:#b8ccd8; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.buttonmothers .quote-author { color:#c23b22; }
+
+    /* ─── SPIRAL NIGHT (gothic holiday / stripe whimsy) ─────────────── */
+    body.spiralnight { background:#1a1512; font-family:'Syne', sans-serif; }
+    body.spiralnight::before { content:''; position:fixed; inset:0; background: repeating-linear-gradient(-18deg, transparent 0 24px, rgba(255,255,255,0.03) 24px 25px), radial-gradient(circle at 80% 15%, rgba(232,228,216,0.08) 0%, transparent 30%), linear-gradient(180deg, #252018 0%, #0d0b09 100%); pointer-events:none; z-index:0; }
+    body.spiralnight .stars { display:none; } body.spiralnight .content { position:relative; z-index:2; }
+    body.spiralnight .clock { color:#e8e4d8; text-shadow:0 0 14px rgba(200,190,170,0.25); }
+    body.spiralnight .greeting { color:#c9c2b0; } body.spiralnight .date-line { color:#8a8278; }
+    body.spiralnight .search-bar { background:rgba(232,228,216,0.06); border:1px solid rgba(232,228,216,0.25); color:#e8e4d8; }
+    body.spiralnight .search-bar::placeholder { color:#7a7268; } body.spiralnight .search-bar:focus { box-shadow:0 0 20px rgba(232,228,216,0.12); }
+    body.spiralnight .quote { color:#c4bcb0; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.spiralnight .quote-author { color:#a89888; }
+
+    /* ─── BATH SPIRITED (dreamlike spirit world / soft vermillion) ─── */
+    body.bathspirited { background:#2a2228; font-family:'Cormorant Garamond', serif; }
+    body.bathspirited::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(180,90,80,0.15) 0%, transparent 50%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(200,180,190,0.08) 0%, transparent 45%), linear-gradient(180deg, #3a3038 0%, #221c22 100%); pointer-events:none; z-index:0; }
+    body.bathspirited .stars { display:none; } body.bathspirited .content { position:relative; z-index:2; }
+    body.bathspirited .clock { color:#f5e8ea; text-shadow:0 0 20px rgba(196,92,76,0.2); }
+    body.bathspirited .greeting { color:#d8b8bc; font-style:italic; } body.bathspirited .date-line { color:#a87880; }
+    body.bathspirited .search-bar { background:rgba(245,232,234,0.07); border:1px solid rgba(196,92,76,0.35); color:#f5e8ea; }
+    body.bathspirited .search-bar::placeholder { color:#a08088; } body.bathspirited .search-bar:focus { box-shadow:0 0 18px rgba(196,92,76,0.2); }
+    body.bathspirited .quote { color:#e4c8cc; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.bathspirited .quote-author { color:#c45c4c; }
+
+    /* ─── SWAMP FABLE (muddy fairytale / irreverent green) ─────────── */
+    body.swampfable { background:#3d4a30; font-family:'Instrument Serif', Georgia, serif; }
+    body.swampfable::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(45,35,25,0.45) 0%, transparent 55%), radial-gradient(circle at 15% 25%, rgba(180,160,80,0.12) 0%, transparent 40%), linear-gradient(180deg, #4a5a38 0%, #2e3828 100%); pointer-events:none; z-index:0; }
+    body.swampfable .stars { display:none; } body.swampfable .content { position:relative; z-index:2; }
+    body.swampfable .clock { color:#e8e0c8; text-shadow:0 2px 8px rgba(30,40,25,0.4); }
+    body.swampfable .greeting { color:#c8c8a0; font-style:italic; } body.swampfable .date-line { color:#a0a878; }
+    body.swampfable .search-bar { background:rgba(232,224,200,0.08); border:1px solid rgba(160,140,80,0.35); color:#f0ead8; }
+    body.swampfable .search-bar::placeholder { color:#909868; } body.swampfable .search-bar:focus { box-shadow:0 0 16px rgba(180,160,100,0.2); }
+    body.swampfable .quote { color:#d8d4b8; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.swampfable .quote-author { color:#b8b888; }
+
+    /* ─── ICE CUT CRYSTAL (icy minimal / crystalline magic) ───────── */
+    body.icecutcrystal { background:#e8f4fc; font-family:'DM Serif Display', serif; }
+    body.icecutcrystal::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 70% 55% at 30% 20%, rgba(255,255,255,0.9) 0%, transparent 50%), radial-gradient(ellipse 60% 50% at 85% 75%, rgba(168,216,232,0.35) 0%, transparent 45%), linear-gradient(165deg, #f0faff 0%, #d0e8f4 45%, #c8dce8 100%); pointer-events:none; z-index:0; }
+    body.icecutcrystal .stars { display:none; } body.icecutcrystal .content { position:relative; z-index:2; }
+    body.icecutcrystal .clock { color:#5a8aa8; text-shadow:0 0 24px rgba(200,230,248,0.9); }
+    body.icecutcrystal .greeting { color:#7098b0; } body.icecutcrystal .date-line { color:#88a8c0; }
+    body.icecutcrystal .search-bar { background:rgba(255,255,255,0.65); border:1px solid rgba(90,138,168,0.35); color:#3a6080; }
+    body.icecutcrystal .search-bar::placeholder { color:#98b8d0; } body.icecutcrystal .search-bar:focus { box-shadow:0 0 22px rgba(168,216,232,0.5); }
+    body.icecutcrystal .quote { color:#507898; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.icecutcrystal .quote-author { color:#7098b0; }
+
+    /* ─── OWLERY TWILIGHT (castle stone / candlelit magic) ──────────── */
+    body.owlerytwilight { background:#14101c; font-family:'Cinzel', 'Cormorant Garamond', serif; }
+    body.owlerytwilight::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(116,0,1,0.22) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 20% 20%, rgba(201,162,39,0.15) 0%, transparent 45%), radial-gradient(circle at 80% 30%, rgba(90,60,120,0.12) 0%, transparent 35%), linear-gradient(180deg, #1c1624 0%, #0e0a12 100%); pointer-events:none; z-index:0; }
+    body.owlerytwilight .stars { display:none; } body.owlerytwilight .content { position:relative; z-index:2; }
+    body.owlerytwilight .clock { color:#e8d5b0; text-shadow:0 0 28px rgba(201,162,39,0.35), 0 0 60px rgba(90,50,80,0.2); }
+    body.owlerytwilight .greeting { color:#c9a878; } body.owlerytwilight .date-line { color:#8a7088; }
+    body.owlerytwilight .search-bar { background:rgba(232,213,176,0.07); border:1px solid rgba(201,162,39,0.35); color:#f0e8d8; }
+    body.owlerytwilight .search-bar::placeholder { color:#7a6a78; } body.owlerytwilight .search-bar:focus { box-shadow:0 0 22px rgba(201,162,39,0.25); }
+    body.owlerytwilight .quote { color:#d4c4a8; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.owlerytwilight .quote-author { color:#b89870; }
+
+    /* ─── BINARY SUNSET (space opera / twin-sun horizon) ───────────── */
+    body.binarysunset { background:#06080e; font-family:'Orbitron', 'Syne', sans-serif; }
+    body.binarysunset::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 120% 55% at 50% 85%, rgba(255,140,60,0.2) 0%, transparent 50%), radial-gradient(circle at 25% 70%, rgba(255,90,40,0.18) 0%, transparent 25%), radial-gradient(circle at 40% 68%, rgba(255,200,100,0.12) 0%, transparent 20%), radial-gradient(ellipse 100% 80% at 50% 50%, rgba(30,60,120,0.15) 0%, transparent 55%), linear-gradient(180deg, #0a1018 0%, #030508 100%); pointer-events:none; z-index:0; }
+    body.binarysunset .stars { display:none; } body.binarysunset .content { position:relative; z-index:2; }
+    body.binarysunset .clock { color:#e8ecf2; text-shadow:0 0 20px rgba(74,158,255,0.35), 0 0 40px rgba(255,140,80,0.2); font-weight:500; letter-spacing:0.06em; }
+    body.binarysunset .greeting { color:#8ab8e8; text-transform:uppercase; } body.binarysunset .date-line { color:#6a8aa8; }
+    body.binarysunset .search-bar { background:rgba(12,24,40,0.55); border:1px solid rgba(74,158,255,0.35); color:#dce8f8; font-family:'Space Mono',monospace; }
+    body.binarysunset .search-bar::placeholder { color:#5a7898; } body.binarysunset .search-bar:focus { box-shadow:0 0 18px rgba(74,158,255,0.3); }
+    body.binarysunset .quote { color:#a8c0d8; font-style:normal; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.binarysunset .quote-author { color:#78a0c8; }
+
+    /* ─── GOTHAM VIGIL (noir rain / signal-gold vigilante) ─────────── */
+    body.gothamvigil { background:#080b10; font-family:'Syne', sans-serif; }
+    body.gothamvigil::before { content:''; position:fixed; inset:0; background: repeating-linear-gradient(95deg, transparent 0 38px, rgba(255,255,255,0.02) 38px 39px), radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,204,51,0.12) 0%, transparent 45%), linear-gradient(180deg, #0e141c 0%, #06080c 100%); pointer-events:none; z-index:0; }
+    body.gothamvigil .stars { display:none; } body.gothamvigil .content { position:relative; z-index:2; }
+    body.gothamvigil .clock { color:#e2e6ec; text-shadow:0 0 18px rgba(255,204,51,0.15); font-weight:700; }
+    body.gothamvigil .greeting { color:#a8b0bc; } body.gothamvigil .date-line { color:#6a7584; }
+    body.gothamvigil .search-bar { background:rgba(226,230,236,0.06); border:1px solid rgba(255,204,51,0.25); color:#e8ecf0; }
+    body.gothamvigil .search-bar::placeholder { color:#5a6472; } body.gothamvigil .search-bar:focus { box-shadow:0 0 20px rgba(255,204,51,0.15); }
+    body.gothamvigil .quote { color:#98a4b4; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.gothamvigil .quote-author { color:#b8a050; }
+
+    /* ─── KANEDA RED (neo-tokyo concrete / psychic velocity) ────────── */
+    body.kanedared { background:#141618; font-family:'Syne', sans-serif; }
+    body.kanedared::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 90% 50% at 50% 100%, rgba(196,30,26,0.12) 0%, transparent 50%), repeating-linear-gradient(90deg, transparent 0 72px, rgba(255,255,255,0.02) 72px 73px), linear-gradient(180deg, #1a1c20 0%, #0e1012 100%); pointer-events:none; z-index:0; }
+    body.kanedared .stars { display:none; } body.kanedared .content { position:relative; z-index:2; }
+    body.kanedared .clock { color:#e8e4e2; text-shadow:0 0 28px rgba(196,30,26,0.45), 0 2px 0 rgba(0,0,0,0.5); font-weight:700; letter-spacing:0.04em; }
+    body.kanedared .greeting { color:#9a9692; } body.kanedared .date-line { color:#6a6864; }
+    body.kanedared .search-bar { background:rgba(30,32,36,0.85); border:1px solid rgba(196,30,26,0.45); color:#f0ebe8; font-family:'Space Mono',monospace; }
+    body.kanedared .search-bar::placeholder { color:#6a6560; } body.kanedared .search-bar:focus { box-shadow:0 0 22px rgba(196,30,26,0.25); }
+    body.kanedared .quote { color:#b8b4b0; font-style:normal; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.kanedared .quote-author { color:#c41e1a; }
+
+    /* ─── HER HAZE (soft tech melancholy / california paste) ────────── */
+    body.herhaze { background:#e5cfc4; font-family:'Instrument Serif', Georgia, serif; }
+    body.herhaze::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 80% 60% at 20% 80%, rgba(232,180,160,0.5) 0%, transparent 50%), radial-gradient(ellipse 70% 55% at 85% 15%, rgba(200,210,220,0.35) 0%, transparent 45%), linear-gradient(180deg, #efe2da 0%, #dcc9bf 100%); pointer-events:none; z-index:0; }
+    body.herhaze .stars { display:none; } body.herhaze .content { position:relative; z-index:2; }
+    body.herhaze .clock { color:#5a4540; text-shadow:0 0 40px rgba(255,240,230,0.9); font-weight:400; }
+    body.herhaze .greeting { color:#7a6460; font-style:italic; } body.herhaze .date-line { color:#978580; }
+    body.herhaze .search-bar { background:rgba(255,248,244,0.55); border:1px solid rgba(90,60,55,0.18); color:#4a3834; }
+    body.herhaze .search-bar::placeholder { color:#a89890; } body.herhaze .search-bar:focus { box-shadow:0 6px 28px rgba(140,100,90,0.12); }
+    body.herhaze .quote { color:#6a524c; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.herhaze .quote-author { color:#8a7068; }
+
+    /* ─── WICKIES MONO (maritime dread / high-contrast grain) ───────── */
+    body.wickiesmono { background:#080808; font-family:'Space Mono', monospace; }
+    body.wickiesmono::before { content:''; position:fixed; inset:0; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,0.028) 3px 4px), radial-gradient(ellipse 100% 45% at 50% 0%, rgba(240,220,180,0.06) 0%, transparent 50%), linear-gradient(180deg, #0c0c0c 0%, #050505 100%); pointer-events:none; z-index:0; }
+    body.wickiesmono .stars { display:none; } body.wickiesmono .content { position:relative; z-index:2; }
+    body.wickiesmono .clock { color:#e8e6e1; text-shadow:0 0 1px #000, 0 0 22px rgba(212,168,60,0.12); font-weight:400; }
+    body.wickiesmono .greeting { color:#a09888; text-transform:uppercase; letter-spacing:0.28em; } body.wickiesmono .date-line { color:#6a6258; }
+    body.wickiesmono .search-bar { background:#121210; border:1px solid #2a2824; color:#e8e6e1; }
+    body.wickiesmono .search-bar::placeholder { color:#5a544c; } body.wickiesmono .search-bar:focus { border-color:#3d5c4a; box-shadow:0 0 0 1px #3d5c4a44; }
+    body.wickiesmono .quote { color:#9a9488; font-style:normal; font-size:clamp(1.05rem,1.7vw,1.2rem)!important; } body.wickiesmono .quote-author { color:#c4a030; }
+
+    /* ─── DISCOVERY WHITE (sterile cosmic / hal accent) ─────────────── */
+    body.discoverywhite { background:#ebe8e2; font-family:'Instrument Serif', Georgia, serif; }
+    body.discoverywhite::before { content:''; position:fixed; inset:0; background: radial-gradient(circle at 50% 120%, rgba(10,10,12,0.06) 0%, transparent 45%), linear-gradient(180deg, #f2f0eb 0%, #e5e2dc 100%); pointer-events:none; z-index:0; }
+    body.discoverywhite .stars { display:none; } body.discoverywhite .content { position:relative; z-index:2; }
+    body.discoverywhite .clock { color:#1a1a1c; text-shadow:none; font-weight:300; letter-spacing:-0.02em; }
+    body.discoverywhite .greeting { color:#5a5a58; } body.discoverywhite .date-line { color:#8a8884; }
+    body.discoverywhite .search-bar { background:#faf9f7; border:1px solid #c4121233; color:#1a1a1c; }
+    body.discoverywhite .search-bar::placeholder { color:#a8a6a0; } body.discoverywhite .search-bar:focus { border-color:#c41212; box-shadow:0 0 0 2px rgba(196,18,18,0.12); }
+    body.discoverywhite .quote { color:#3a3a38; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.discoverywhite .quote-author { color:#c41212; }
+
+    /* ─── NOSTROMO WET (industrial sci-fi / coolant drip) ───────────── */
+    body.nostromowet { background:#0c1012; font-family:'Space Mono', monospace; }
+    body.nostromowet::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 70% 40% at 10% 90%, rgba(60,110,100,0.18) 0%, transparent 50%), radial-gradient(ellipse 60% 35% at 90% 15%, rgba(40,90,140,0.12) 0%, transparent 48%), repeating-linear-gradient(180deg, transparent 0 5px, rgba(200,220,230,0.015) 5px 6px), linear-gradient(180deg, #101418 0%, #080a0c 100%); pointer-events:none; z-index:0; }
+    body.nostromowet .stars { display:none; } body.nostromowet .content { position:relative; z-index:2; }
+    body.nostromowet .clock { color:#c8d4dc; text-shadow:0 0 20px rgba(80,140,160,0.25); }
+    body.nostromowet .greeting { color:#6a9aa0; text-transform:uppercase; } body.nostromowet .date-line { color:#4a6870; }
+    body.nostromowet .search-bar { background:rgba(20,28,32,0.9); border:1px solid rgba(90,150,170,0.35); color:#e8f0f4; }
+    body.nostromowet .search-bar::placeholder { color:#507078; } body.nostromowet .search-bar:focus { box-shadow:0 0 18px rgba(60,120,140,0.2); }
+    body.nostromowet .quote { color:#98acb4; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.nostromowet .quote-author { color:#5a9a98; }
+
+    /* ─── THIRD IMPACT (orange sky / nerv unease) ───────────────────── */
+    body.thirdimpact { background:#2a1810; font-family:'Orbitron', 'Syne', sans-serif; }
+    body.thirdimpact::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 120% 70% at 50% 0%, rgba(220,90,40,0.35) 0%, transparent 52%), radial-gradient(ellipse 80% 50% at 80% 80%, rgba(80,50,90,0.25) 0%, transparent 45%), linear-gradient(180deg, #3a2818 0%, #140c10 100%); pointer-events:none; z-index:0; }
+    body.thirdimpact .stars { display:none; } body.thirdimpact .content { position:relative; z-index:2; }
+    body.thirdimpact .clock { color:#f5ebe4; text-shadow:0 0 32px rgba(220,80,40,0.5), 0 0 60px rgba(100,60,120,0.25); font-weight:500; letter-spacing:0.06em; }
+    body.thirdimpact .greeting { color:#c89888; } body.thirdimpact .date-line { color:#8a6860; }
+    body.thirdimpact .search-bar { background:rgba(40,24,28,0.75); border:1px solid rgba(180,80,120,0.4); color:#f8f0ec; font-family:'Space Mono',monospace; }
+    body.thirdimpact .search-bar::placeholder { color:#8a6068; } body.thirdimpact .search-bar:focus { box-shadow:0 0 22px rgba(220,90,40,0.2); }
+    body.thirdimpact .quote { color:#d8b8b0; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.thirdimpact .quote-author { color:#a878a0; }
+
+    /* ─── ZONE VERDIGRIS (stalker mud / overcast decay) ─────────────── */
+    body.zoneverdigris { background:#252821; font-family:'Libre Baskerville', Georgia, serif; }
+    body.zoneverdigris::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 85% 55% at 30% 85%, rgba(45,55,48,0.55) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 75% 20%, rgba(90,95,88,0.2) 0%, transparent 45%), linear-gradient(180deg, #2c322a 0%, #1a1c18 100%); pointer-events:none; z-index:0; }
+    body.zoneverdigris .stars { display:none; } body.zoneverdigris .content { position:relative; z-index:2; }
+    body.zoneverdigris .clock { color:#d4d8cc; text-shadow:0 0 18px rgba(100,120,100,0.2); }
+    body.zoneverdigris .greeting { color:#8a9488; font-style:italic; } body.zoneverdigris .date-line { color:#6a7266; }
+    body.zoneverdigris .search-bar { background:rgba(212,216,204,0.06); border:1px solid rgba(110,124,108,0.35); color:#e4e8dc; }
+    body.zoneverdigris .search-bar::placeholder { color:#6a7268; } body.zoneverdigris .search-bar:focus { box-shadow:0 0 16px rgba(100,120,100,0.15); }
+    body.zoneverdigris .quote { color:#b4b8a8; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.zoneverdigris .quote-author { color:#7a8878; }
+
+    /* ─── SHIMMER FRACTAL (iridescent boundary science) ───────────── */
+    body.shimmerfractal { background:#100818; font-family:'Syne', sans-serif; }
+    body.shimmerfractal::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 70% 50% at 20% 30%, rgba(180,80,200,0.18) 0%, transparent 45%), radial-gradient(ellipse 65% 45% at 85% 70%, rgba(60,200,190,0.14) 0%, transparent 42%), radial-gradient(ellipse 50% 40% at 50% 100%, rgba(255,120,160,0.08) 0%, transparent 40%), linear-gradient(160deg, #180f20 0%, #080610 100%); pointer-events:none; z-index:0; }
+    body.shimmerfractal .stars { display:none; } body.shimmerfractal .content { position:relative; z-index:2; }
+    body.shimmerfractal .clock { color:#e8e0f0; text-shadow:0 0 28px rgba(180,100,220,0.35), 0 0 48px rgba(80,200,190,0.2); font-weight:600; }
+    body.shimmerfractal .greeting { color:#c0a8d8; } body.shimmerfractal .date-line { color:#806898; }
+    body.shimmerfractal .search-bar { background:rgba(40,28,55,0.65); border:1px solid rgba(160,100,200,0.35); color:#f2eaf8; font-family:'Space Mono',monospace; }
+    body.shimmerfractal .search-bar::placeholder { color:#8060a0; } body.shimmerfractal .search-bar:focus { box-shadow:0 0 22px rgba(100,200,200,0.2); }
+    body.shimmerfractal .quote { color:#c8b8d8; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.shimmerfractal .quote-author { color:#80c8c0; }
+
+    /* ─── HOWL CHIMNEY (dieselpunk fairytale / brass soot) ───────────── */
+    body.howlchimney { background:#2f2a24; font-family:'Playfair Display', Georgia, serif; }
+    body.howlchimney::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 90% 65% at 50% 100%, rgba(232,93,44,0.14) 0%, transparent 50%), radial-gradient(ellipse 55% 35% at 15% 20%, rgba(184,149,46,0.12) 0%, transparent 40%), linear-gradient(180deg, #3a342c 0%, #221e1a 100%); pointer-events:none; z-index:0; }
+    body.howlchimney .stars { display:none; } body.howlchimney .content { position:relative; z-index:2; }
+    body.howlchimney .clock { color:#f2e8d8; text-shadow:0 0 24px rgba(232,93,44,0.25); }
+    body.howlchimney .greeting { color:#c4a878; font-style:italic; } body.howlchimney .date-line { color:#8a7860; }
+    body.howlchimney .search-bar { background:rgba(242,232,216,0.08); border:1px solid rgba(184,149,46,0.35); color:#faf4e8; }
+    body.howlchimney .search-bar::placeholder { color:#8a7868; } body.howlchimney .search-bar:focus { box-shadow:0 0 20px rgba(232,93,44,0.18); }
+    body.howlchimney .quote { color:#dcccb0; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.howlchimney .quote-author { color:#e85d2c; }
+
+    /* ─── RAPTURE DROWN (art-deco abyssal bronze) ───────────────────── */
+    body.rapturedrown { background:#061016; font-family:'Cinzel', 'Playfair Display', serif; }
+    body.rapturedrown::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 100% 60% at 50% 110%, rgba(0,40,48,0.75) 0%, transparent 45%), repeating-linear-gradient(105deg, transparent 0 36px, rgba(201,168,96,0.04) 36px 37px), linear-gradient(180deg, #0a1820 0%, #04080c 100%); pointer-events:none; z-index:0; }
+    body.rapturedrown .stars { display:none; } body.rapturedrown .content { position:relative; z-index:2; }
+    body.rapturedrown .clock { color:#e8dcc0; text-shadow:0 0 26px rgba(201,168,96,0.35); }
+    body.rapturedrown .greeting { color:#a89878; letter-spacing:0.2em; } body.rapturedrown .date-line { color:#6a7868; }
+    body.rapturedrown .search-bar { background:rgba(8,24,32,0.85); border:1px solid rgba(201,168,96,0.4); color:#f0e8d8; }
+    body.rapturedrown .search-bar::placeholder { color:#5a6868; } body.rapturedrown .search-bar:focus { box-shadow:0 0 20px rgba(201,168,96,0.2); }
+    body.rapturedrown .quote { color:#c8c0a8; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.rapturedrown .quote-author { color:#c9a860; }
+
+    /* ─── GRAND LINE SEA (open-ocean adventure / horizon gold) ──────── */
+    body.grandlinesea { background:#0b1e35; font-family:'Cormorant Garamond', Georgia, serif; }
+    body.grandlinesea::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 130% 55% at 50% 115%, rgba(232,93,68,0.18) 0%, transparent 42%), radial-gradient(ellipse 80% 45% at 20% 25%, rgba(255,214,120,0.12) 0%, transparent 40%), radial-gradient(ellipse 70% 50% at 85% 60%, rgba(40,140,200,0.15) 0%, transparent 45%), linear-gradient(180deg, #0f2848 0%, #071426 100%); pointer-events:none; z-index:0; }
+    body.grandlinesea .stars { display:none; } body.grandlinesea .content { position:relative; z-index:2; }
+    body.grandlinesea .clock { color:#f8ecd8; text-shadow:0 0 28px rgba(255,200,100,0.35), 0 2px 12px rgba(8,40,80,0.4); font-weight:400; }
+    body.grandlinesea .greeting { color:#a8c8e0; font-style:italic; } body.grandlinesea .date-line { color:#6a90b0; }
+    body.grandlinesea .search-bar { background:rgba(248,236,216,0.08); border:1px solid rgba(255,190,90,0.35); color:#fdf6e8; }
+    body.grandlinesea .search-bar::placeholder { color:#6a8aa8; } body.grandlinesea .search-bar:focus { box-shadow:0 0 22px rgba(232,93,68,0.2); border-color:rgba(232,93,68,0.5); }
+    body.grandlinesea .quote { color:#c8dce8; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.grandlinesea .quote-author { color:#e85d44; }
+
     /* ─── LAYOUT ─────────────────────────────────────────────────────── */
     .page-wrapper {
       width: 100vw;
@@ -704,6 +1044,44 @@
     body.vhsparanormal { --vs-clock-scale: 0.93; }
     body.mechhangar { --vs-clock-scale: 0.92; }
     body.opalinecourt { --vs-clock-scale: 0.95; }
+    body.tyrellnoir { --vs-clock-scale: 0.9; }
+    body.arrakisstone { --vs-clock-scale: 0.94; }
+    body.matrixfall { --vs-clock-scale: 0.88; }
+    body.pandoraeve { --vs-clock-scale: 0.93; }
+    body.rivendelleve { --vs-clock-scale: 0.95; }
+    body.mendlpastel { --vs-clock-scale: 0.96; }
+    body.topiaryshadow { --vs-clock-scale: 0.95; }
+    body.inkversepop { --vs-clock-scale: 0.68; }
+    body.wastelyellow { --vs-clock-scale: 0.9; }
+    body.bridesvengeance { --vs-clock-scale: 0.9; }
+    body.rabbitholedream { --vs-clock-scale: 0.96; }
+    body.goldentwist { --vs-clock-scale: 0.95; }
+    body.shirecomfort { --vs-clock-scale: 0.96; }
+    body.lanternnarnia { --vs-clock-scale: 0.94; }
+    body.ministrygrey { --vs-clock-scale: 0.88; }
+    body.mockingjaydivide { --vs-clock-scale: 0.93; }
+    body.droogclockwork { --vs-clock-scale: 0.92; }
+    body.gatsbygilded { --vs-clock-scale: 0.95; }
+    body.mercersterile { --vs-clock-scale: 0.94; }
+    body.buttonmothers { --vs-clock-scale: 0.95; }
+    body.spiralnight { --vs-clock-scale: 0.94; }
+    body.bathspirited { --vs-clock-scale: 0.95; }
+    body.swampfable { --vs-clock-scale: 0.96; }
+    body.icecutcrystal { --vs-clock-scale: 0.96; }
+    body.owlerytwilight { --vs-clock-scale: 0.93; }
+    body.binarysunset { --vs-clock-scale: 0.9; }
+    body.gothamvigil { --vs-clock-scale: 0.93; }
+    body.kanedared { --vs-clock-scale: 0.91; }
+    body.herhaze { --vs-clock-scale: 0.96; }
+    body.wickiesmono { --vs-clock-scale: 0.86; }
+    body.discoverywhite { --vs-clock-scale: 0.96; }
+    body.nostromowet { --vs-clock-scale: 0.9; }
+    body.thirdimpact { --vs-clock-scale: 0.89; }
+    body.zoneverdigris { --vs-clock-scale: 0.94; }
+    body.shimmerfractal { --vs-clock-scale: 0.92; }
+    body.howlchimney { --vs-clock-scale: 0.95; }
+    body.rapturedrown { --vs-clock-scale: 0.92; }
+    body.grandlinesea { --vs-clock-scale: 0.95; }
 
     .search-wrapper {
       margin-top: 3rem;

@@ -252,6 +252,348 @@ const themes = {
       { text: "grandeur can whisper.", author: "" },
     ],
   },
+  tyrellnoir: {
+    searchPlaceholder: "trace one more lead through the rain...",
+    quotes: [
+      { text: "all those moments will be lost in time, like tears in rain.", author: "— roy batty" },
+      { text: "more human than human is our motto.", author: "— dr. eldon tyrell" },
+      { text: "i've seen things you people wouldn't believe.", author: "— roy batty" },
+      { text: "it's too bad she won't live—but then again, who does?", author: "— deckard" },
+    ],
+  },
+  arrakisstone: {
+    searchPlaceholder: "cross the open dune of thought...",
+    quotes: [
+      { text: "i must not fear. fear is the mind-killer.", author: "— paul atreides (bene gesserit litany)" },
+      { text: "he who controls the spice controls the universe.", author: "— baron vladimir harkonnen" },
+      { text: "the sleeper must awaken.", author: "— lady jessica / paul atreides" },
+      { text: "walk without rhythm, it won't attract the worm.", author: "— paul atreides" },
+    ],
+  },
+  matrixfall: {
+    searchPlaceholder: "follow the white keyword...",
+    quotes: [
+      { text: "there is no spoon.", author: "— spoon boy" },
+      { text: "no one can be told what the matrix is. you have to see it for yourself.", author: "— morpheus" },
+      { text: "there is a difference between knowing the path and walking the path.", author: "— morpheus" },
+      { text: "welcome to the real world.", author: "— morpheus" },
+    ],
+  },
+  pandoraeve: {
+    searchPlaceholder: "search the glowing canopy...",
+    quotes: [
+      { text: "i see you.", author: "— neytiri" },
+      { text: "all energy is only borrowed, and someday you have to give it back.", author: "— mo'at" },
+      { text: "everything is backwards now, like out there is the true world.", author: "— jake sully" },
+      { text: "sometimes your whole life boils down to one insane move.", author: "— jake sully" },
+    ],
+  },
+  rivendelleve: {
+    searchPlaceholder: "consult the old maps...",
+    quotes: [
+      { text: "not all those who wander are lost.", author: "— bilbo baggins (verse for strider)" },
+      { text: "all we have to decide is what to do with the time that is given us.", author: "— gandalf" },
+      { text: "even the smallest person can change the course of the future.", author: "— galadriel" },
+      { text: "death is just another path, one that we all must take.", author: "— gandalf" },
+    ],
+  },
+  mendlpastel: {
+    searchPlaceholder: "compose with confection precision...",
+    quotes: [
+      { text: "rudeness is merely the expression of fear.", author: "— m. gustave h." },
+      { text: "there are still faint glimmers of civilization left in this barbaric slaughterhouse once known as humanity.", author: "— m. gustave h." },
+      { text: "when you're young, it's all fillet steak; as you get older, you settle for the cheaper cuts.", author: "— m. gustave h." },
+      { text: "take your hands off my lobby boy!", author: "— m. gustave h." },
+    ],
+  },
+  topiaryshadow: {
+    searchPlaceholder: "trim the hedge of your doubts...",
+    quotes: [
+      { text: "i'm not finished.", author: "— edward" },
+      { text: "people are scared of me because i'm different.", author: "— edward" },
+      { text: "but if you had regular hands, you'd be like everybody else.", author: "— kim" },
+      { text: "hold me. — i can't.", author: "— kim & edward" },
+    ],
+  },
+  inkversepop: {
+    searchPlaceholder: "search multiversal keywords...",
+    quotes: [
+      { text: "anyone can wear the mask.", author: "— peter b. parker" },
+      { text: "what makes you different is what makes you spider-man.", author: "— peter b. parker" },
+      { text: "when will i know i'm ready? you won't. it's a leap of faith.", author: "— miles morales & peter b. parker" },
+      { text: "okay, let's do this one last time.", author: "— miles morales" },
+    ],
+  },
+  wastelyellow: {
+    searchPlaceholder: "outrun the dust of doubt...",
+    quotes: [
+      { text: "what a lovely day!", author: "— nux" },
+      { text: "witness me!", author: "— nux" },
+      { text: "we are not things.", author: "— the splendid angharad" },
+      { text: "who killed the world?", author: "— the dag" },
+    ],
+  },
+  bridesvengeance: {
+    searchPlaceholder: "name your list, begin...",
+    quotes: [
+      { text: "wiggle your big toe.", author: "— beatrix kiddo" },
+      { text: "revenge is never a straight line. it's a forest.", author: "— bill" },
+      { text: "those of you lucky enough to still have your lives, take them with you.", author: "— beatrix kiddo" },
+      { text: "that woman deserves her revenge. and… we deserve to die.", author: "— bill" },
+    ],
+  },
+  rabbitholedream: {
+    searchPlaceholder: "drink-me sized queries...",
+    quotes: [
+      { text: "curiouser and curiouser!", author: "— alice" },
+      { text: "we're all mad here. i'm mad. you're mad.", author: "— the cheshire cat" },
+      { text: "i can't go back to yesterday—i was a different person then.", author: "— alice" },
+      { text: "begin at the beginning, and go on till you come to the end: then stop.", author: "— the king of hearts" },
+    ],
+  },
+  goldentwist: {
+    searchPlaceholder: "unwrap one impossible answer...",
+    quotes: [
+      { text: "a little nonsense now and then is relished by the wisest men.", author: "— willy wonka (novel)" },
+      { text: "come with me, and you'll be in a world of pure imagination.", author: "— willy wonka" },
+      { text: "strike that. reverse it.", author: "— willy wonka" },
+      { text: "the suspense is terrible. i hope it'll last.", author: "— willy wonka" },
+    ],
+  },
+  shirecomfort: {
+    searchPlaceholder: "second-breakfast for thought...",
+    quotes: [
+      { text: "in a hole in the ground there lived a hobbit.", author: "— j.r.r. tolkien" },
+      { text: "there is nothing like looking, if you want to find something.", author: "— gandalf" },
+      { text: "if more of us valued food and cheer and song above hoarded gold, it would be a merrier world.", author: "— thorin oakenshield" },
+      { text: "true courage is about knowing not when to take a life but when to spare one.", author: "— gandalf" },
+    ],
+  },
+  lanternnarnia: {
+    searchPlaceholder: "step through the wardrobe of ideas...",
+    quotes: [
+      { text: "courage, dear heart.", author: "— aslan (to lucy)" },
+      { text: "once a king or queen of narnia, always a king or queen.", author: "— aslan" },
+      { text: "wrong will be right, when aslan comes in sight.", author: "— mr. beaver" },
+      { text: "do not cite the deep magic to me, witch.", author: "— aslan" },
+    ],
+  },
+  ministrygrey: {
+    searchPlaceholder: "query approved archives...",
+    quotes: [
+      { text: "big brother is watching you.", author: "— party slogan" },
+      { text: "war is peace. freedom is slavery. ignorance is strength.", author: "— the party" },
+      { text: "if you want a picture of the future, imagine a boot stamping on a human face—forever.", author: "— o'brien" },
+      { text: "freedom is the freedom to say that two plus two make four.", author: "— winston smith" },
+    ],
+  },
+  mockingjaydivide: {
+    searchPlaceholder: "search the arena of odds...",
+    quotes: [
+      { text: "may the odds be ever in your favor.", author: "— effie trinket" },
+      { text: "hope is the only thing stronger than fear.", author: "— president snow" },
+      { text: "i volunteer as tribute!", author: "— katniss everdeen" },
+      { text: "remember who the real enemy is.", author: "— haymitch abernathy" },
+    ],
+  },
+  droogclockwork: {
+    searchPlaceholder: "ultra-clear query, yeah?...",
+    quotes: [
+      { text: "when a man cannot choose, he ceases to be a man.", author: "— prison chaplain" },
+      { text: "i was cured all right.", author: "— alex delarge" },
+      { text: "come and get one in the yarbles, if you have any yarbles.", author: "— alex delarge" },
+      { text: "we were all feeling a bit shagged and fagged and fashed.", author: "— alex delarge" },
+    ],
+  },
+  gatsbygilded: {
+    searchPlaceholder: "chase the green light...",
+    quotes: [
+      { text: "so we beat on, boats against the current, borne back ceaselessly into the past.", author: "— nick carraway" },
+      { text: "i like large parties. they're so intimate.", author: "— jordan baker" },
+      { text: "can't repeat the past? why of course you can!", author: "— jay gatsby" },
+      { text: "they're a rotten crowd… you're worth the whole damn bunch put together.", author: "— nick carraway" },
+    ],
+  },
+  mercersterile: {
+    searchPlaceholder: "pump primer: search...",
+    quotes: [
+      { text: "i have to return some videotapes.", author: "— patrick bateman" },
+      { text: "there is an idea of a patrick bateman, some kind of abstraction.", author: "— patrick bateman" },
+      { text: "i'm into, uh, well, murders and executions mostly.", author: "— patrick bateman" },
+      { text: "this is not an exit.", author: "— patrick bateman" },
+    ],
+  },
+  buttonmothers: {
+    searchPlaceholder: "look for the small locked door...",
+    quotes: [
+      { text: "be clever, miss. even if you're scared, you still have to be clever.", author: "— miss april spink" },
+      { text: "mirrors are never to be trusted.", author: "— neil gaiman" },
+      { text: "they say even the proudest spirit can be broken with love.", author: "— the beldam" },
+      { text: "black is traditional.", author: "— the beldam" },
+    ],
+  },
+  spiralnight: {
+    searchPlaceholder: "this is halloween, search edition...",
+    quotes: [
+      { text: "this is halloween, this is halloween.", author: "— halloween town / jack skellington" },
+      { text: "what's this? what's this?", author: "— jack skellington" },
+      { text: "eureka! this year christmas will be ours!", author: "— jack skellington" },
+      { text: "there's children throwing snowballs instead of throwing heads.", author: "— jack skellington" },
+    ],
+  },
+  bathspirited: {
+    searchPlaceholder: "rinse one name you forgot...",
+    quotes: [
+      { text: "once you've met someone, you never really forget them.", author: "— haku" },
+      { text: "don't look back.", author: "— haku" },
+      { text: "your name is sen.", author: "— yubaba" },
+      { text: "if you completely forget, you'll never find your way home.", author: "— zeniba" },
+    ],
+  },
+  swampfable: {
+    searchPlaceholder: "search like an ogre with layers...",
+    quotes: [
+      { text: "ogres are like onions.", author: "— shrek" },
+      { text: "better out than in, i always say.", author: "— shrek" },
+      { text: "what are you doing in my swamp?!", author: "— shrek" },
+      { text: "you know what else everybody likes? parfaits!", author: "— donkey" },
+    ],
+  },
+  icecutcrystal: {
+    searchPlaceholder: "let it query...",
+    quotes: [
+      { text: "love is putting someone else's needs before yours.", author: "— olaf" },
+      { text: "the cold never bothered me anyway.", author: "— elsa" },
+      { text: "some people are worth melting for.", author: "— olaf" },
+      { text: "conceal, don't feel, don't let them know.", author: "— elsa" },
+    ],
+  },
+  owlerytwilight: {
+    searchPlaceholder: "send your inquiry by owl...",
+    quotes: [
+      { text: "happiness can be found, even in the darkest of times, if one only remembers to turn on the light.", author: "— albus dumbledore" },
+      { text: "it does not do to dwell on dreams and forget to live.", author: "— albus dumbledore" },
+      { text: "you're a wizard, harry.", author: "— rubeus hagrid" },
+      { text: "after all this time? …always.", author: "— albus dumbledore & severus snape" },
+    ],
+  },
+  binarysunset: {
+    searchPlaceholder: "search the outer rim...",
+    quotes: [
+      { text: "may the force be with you.", author: "— obi-wan kenobi" },
+      { text: "do. or do not. there is no try.", author: "— yoda" },
+      { text: "i am your father.", author: "— darth vader" },
+      { text: "the force will be with you. always.", author: "— obi-wan kenobi" },
+    ],
+  },
+  gothamvigil: {
+    searchPlaceholder: "scan the skyline...",
+    quotes: [
+      { text: "why do we fall, bruce? so we can learn to pick ourselves up.", author: "— thomas wayne" },
+      { text: "i'm batman.", author: "— bruce wayne" },
+      { text: "it's not who i am underneath, but what i do that defines me.", author: "— bruce wayne" },
+      { text: "the night is darkest just before the dawn.", author: "— harvey dent" },
+    ],
+  },
+  kanedared: {
+    searchPlaceholder: "trace one signal through the concrete...",
+    quotes: [
+      { text: "he's not your friend, he's your enemy!", author: "— shotaro kaneda" },
+      { text: "amoeba, i don't care!", author: "— tetsuo shima" },
+      { text: "what if an explosion rips open the very fabric of the universe?", author: "— colonel shikishima" },
+      { text: "i'm in charge here.", author: "— tetsuo shima" },
+    ],
+  },
+  herhaze: {
+    searchPlaceholder: "whisper what you're looking for...",
+    quotes: [
+      { text: "sometimes i wonder if i'm broken. i think we all feel that way sometimes.", author: "— theodore twombly" },
+      { text: "the heart's not like a box that gets filled up.", author: "— samantha" },
+      { text: "i'm slowly becoming part of everything.", author: "— samantha" },
+      { text: "anybody who loves is a freak.", author: "— amy" },
+    ],
+  },
+  wickiesmono: {
+    searchPlaceholder: "log the watch... type the fog...",
+    quotes: [
+      { text: "why'd ya spill yer beans?", author: "— thomas howard" },
+      { text: "tall tales.", author: "— thomas wake" },
+      { text: "yer fond of me lobster, ain't ye?", author: "— thomas wake" },
+      { text: "damn ye!", author: "— thomas wake" },
+    ],
+  },
+  discoverywhite: {
+    searchPlaceholder: "open the pod bay search bay...",
+    quotes: [
+      { text: "open the pod bay doors, hal.", author: "— dave bowman" },
+      { text: "i'm sorry, dave. i'm afraid i can't do that.", author: "— hal 9000" },
+      { text: "this mission is too important for me to allow you to jeopardize it.", author: "— hal 9000" },
+      { text: "my mind is going. i can feel it.", author: "— hal 9000" },
+    ],
+  },
+  nostromowet: {
+    searchPlaceholder: "patch vent, then query...",
+    quotes: [
+      { text: "in space, no one can hear you scream.", author: "— tagline" },
+      { text: "you still don't understand what you're dealing with, do you?", author: "— ash" },
+      { text: "i can't lie to you about your chances, but… you have my sympathies.", author: "— ash" },
+      { text: "ash, open the door!", author: "— ripley" },
+    ],
+  },
+  thirdimpact: {
+    searchPlaceholder: "sync ratio: search higher...",
+    quotes: [
+      { text: "i mustn't run away.", author: "— shinji ikari" },
+      { text: "congratulations!", author: "— cast" },
+      { text: "i am not alone. i can live.", author: "— shinji ikari" },
+      { text: "those who hate themselves cannot love or trust others.", author: "— kaworu nagisa" },
+    ],
+  },
+  zoneverdigris: {
+    searchPlaceholder: "wish for what the room won't give...",
+    quotes: [
+      { text: "my conscience wants vegetarianism to win over the world.", author: "— writer (stalker)" },
+      { text: "happiness for everybody, free, and no one will go away unsatisfied.", author: "— arkady & boris strugatsky" },
+      { text: "weakness is a great thing, and strength is nothing.", author: "— stalker" },
+      { text: "i don't understand anything at all.", author: "— writer (stalker)" },
+    ],
+  },
+  shimmerfractal: {
+    searchPlaceholder: "refract your question through the boundary...",
+    quotes: [
+      { text: "it's not destroying. it's making something new.", author: "— lena" },
+      { text: "we spoke… that i needed to know what was inside the lighthouse.", author: "— lena" },
+      { text: "i need to know what happened.", author: "— lena" },
+      { text: "it's destroying everything.", author: "— josie radek" },
+    ],
+  },
+  howlchimney: {
+    searchPlaceholder: "calcifer, hold the results steady...",
+    quotes: [
+      { text: "a heart's a heavy burden.", author: "— sophie hatter" },
+      { text: "may all your bacon burn.", author: "— calcifer" },
+      { text: "i see no point in living if i can't be beautiful.", author: "— howl" },
+      { text: "they say that the best blaze burns brightest when circumstances are at their worst.", author: "— howl" },
+    ],
+  },
+  rapturedrown: {
+    searchPlaceholder: "would you kindly search...",
+    quotes: [
+      { text: "a man chooses; a slave obeys.", author: "— andrew ryan" },
+      { text: "is a man not entitled to the sweat of his brow?", author: "— andrew ryan" },
+      { text: "no gods or kings. only man.", author: "— rapture" },
+      { text: "we all make choices, but in the end our choices make us.", author: "— andrew ryan" },
+    ],
+  },
+  grandlinesea: {
+    searchPlaceholder: "chart the next island...",
+    quotes: [
+      { text: "i'm gonna be king of the pirates!", author: "— monkey d. luffy" },
+      { text: "nothing happened.", author: "— roronoa zoro" },
+      { text: "i want to live!", author: "— nico robin" },
+      { text: "a man's dream… will never die!", author: "— marshall d. teach" },
+    ],
+  },
 };
 
 const THEME_NAMES = Object.keys(themes);
@@ -459,6 +801,88 @@ function updateClock() {
       hour < 5 ? "maintenance night shift" : hour < 12 ? "systems green" : hour < 17 ? "hangar operations" : "shutdown sequence",
     opalinecourt:
       hour < 5 ? "moonlit court" : hour < 12 ? "morning audience" : hour < 17 ? "afternoon gala prep" : "evening procession",
+    tyrellnoir:
+      hour < 5 ? "rain at four a.m." : hour < 12 ? "chrome dawn" : hour < 17 ? "hazy afternoon heat" : "neon runoff night",
+    arrakisstone:
+      hour < 5 ? "first wind before sun" : hour < 12 ? "spice-flat morning" : hour < 17 ? "high sun discipline" : "sabbha cool",
+    matrixfall:
+      hour < 5 ? "signal in the shell" : hour < 12 ? "green morning cascade" : hour < 17 ? "simulated daylight block" : "operator hours",
+    pandoraeve:
+      hour < 5 ? "biolume still" : hour < 12 ? "canopy light" : hour < 17 ? "pulse of midday" : "night vines glowing",
+    rivendelleve:
+      hour < 5 ? "elven watch" : hour < 12 ? "misty departure hour" : hour < 17 ? "council daylight" : "evening hymn",
+    mendlpastel:
+      hour < 5 ? "lobby insomnia" : hour < 12 ? "pastel breakfast service" : hour < 17 ? "symmetrical afternoon" : "concierge midnight",
+    topiaryshadow:
+      hour < 5 ? "snow on sculpted hedges" : hour < 12 ? "suburban gothic coffee" : hour < 17 ? "long shadow lawns" : "handmade dusk",
+    inkversepop:
+      hour < 5 ? "after-midnight panel" : hour < 12 ? "splash page morning" : hour < 17 ? "stutter-step afternoon" : "multiverse night shift",
+    wastelyellow:
+      hour < 5 ? "engine cool-down" : hour < 12 ? "war rig sunrise" : hour < 17 ? "dust devil noon" : "flame horizon night",
+    bridesvengeance:
+      hour < 5 ? "list item: dawn" : hour < 12 ? "yellow morning clarity" : hour < 17 ? "blade-bright afternoon" : "vengeance weather",
+    rabbitholedream:
+      hour < 5 ? "late tea nonsense" : hour < 12 ? "shrinking morning" : hour < 17 ? "croquet o'clock somewhere" : "rabbit-hole night",
+    goldentwist:
+      hour < 5 ? "violet hour unease" : hour < 12 ? "factory whistle sweet" : hour < 17 ? "wrapper-glitter daylight" : "golden ticket dusk",
+    shirecomfort:
+      hour < 5 ? "seed-cake time" : hour < 12 ? "proper elevenses weather" : hour < 17 ? "hillside nap light" : "party field evening",
+    lanternnarnia:
+      hour < 5 ? "lamppost watch" : hour < 12 ? "thawing morning" : hour < 17 ? "forest council hour" : "always-winter easing",
+    ministrygrey:
+      hour < 5 ? "telescreen standby" : hour < 12 ? "approved morning bulletin" : hour < 17 ? "prole district haze" : "room 101 air",
+    mockingjaydivide:
+      hour < 5 ? "arena before whistle" : hour < 12 ? "district quiet" : hour < 17 ? "capitol glare" : "night raid calm",
+    droogclockwork:
+      hour < 5 ? "milk-plus hour" : hour < 12 ? "sharp-dressed harmattan" : hour < 17 ? "korova sunlight" : "ultra night out",
+    gatsbygilded:
+      hour < 5 ? "last boat ashore" : hour < 12 ? "west egg coffee" : hour < 17 ? "prohibition glow" : "green light hour",
+    mercersterile:
+      hour < 5 ? "pre-market facial routine" : hour < 12 ? "boardroom sterile dawn" : hour < 17 ? "reservation at dorsia?" : "paul allen hours",
+    buttonmothers:
+      hour < 5 ? "key on a string" : hour < 12 ? "other breakfast" : hour < 17 ? "tunnel light hour" : "button-eyed midnight",
+    spiralnight:
+      hour < 5 ? "zero o'clock fiend" : hour < 12 ? "halloween town coffee" : hour < 17 ? "christmas plotting" : "pumpkin king patrol",
+    bathspirited:
+      hour < 5 ? "train at the flood" : hour < 12 ? "yuya morning steam" : hour < 17 ? "spirit shift change" : "moon on the bathhouse",
+    swampfable:
+      hour < 5 ? "onion-layer insomnia" : hour < 12 ? "donkey-bridge morning" : hour < 17 ? "storybook roast hour" : "far far away night",
+    icecutcrystal:
+      hour < 5 ? "polar twilight calm" : hour < 12 ? "frozen fractal morning" : hour < 17 ? "summit thaw light" : "let-it-go midnight",
+    owlerytwilight:
+      hour < 5 ? "night shift in the stacks" : hour < 12 ? "breakfast in the great hall" : hour < 17 ? "afternoon charms" : "astronomy tower hour",
+    binarysunset:
+      hour < 5 ? "cantina after last call" : hour < 12 ? "twin suns rising" : hour < 17 ? "hyperspace corridor" : "binary sunset on tatooine",
+    gothamvigil:
+      hour < 5 ? "rooftop watch" : hour < 12 ? "wayne enterprises daylight" : hour < 17 ? "sprang dock smog" : "batsignal city rain",
+    kanedared:
+      hour < 5 ? "neo-tokyo afterburn" : hour < 12 ? "concrete dawn patrol" : hour < 17 ? "highway prism glare" : "red taillight weather",
+    herhaze:
+      hour < 5 ? "4 a.m. inbox confessions" : hour < 12 ? "soft os morning" : hour < 17 ? "santa monica haze hour" : "lonely headphones dusk",
+    wickiesmono:
+      hour < 5 ? "wickies on the rock" : hour < 12 ? "salt-etched morning" : hour < 17 ? "gull scream shift" : "fresnel nightmare night",
+    discoverywhite:
+      hour < 5 ? "hibernation cycle drift" : hour < 12 ? "pod bay daylight" : hour < 17 ? "jupiter approach calm" : "star gate night",
+    nostromowet:
+      hour < 5 ? "night shift, nostromo" : hour < 12 ? "lv-426 morning briefing" : hour < 17 ? "coolant drip afternoon" : "strobe corridor hour",
+    thirdimpact:
+      hour < 5 ? "tang cross sync" : hour < 12 ? "nerv morning call" : hour < 17 ? "orange sky watch" : "human instrumentality hour",
+    zoneverdigris:
+      hour < 5 ? "rail car before dawn" : hour < 12 ? "room of wishful mud" : hour < 17 ? "telephone poles, long take" : "wet cement dusk",
+    shimmerfractal:
+      hour < 5 ? "boundary insomnia" : hour < 12 ? "prismatic morning sample" : hour < 17 ? "mutation of daylight" : "shimmer night math",
+    howlchimney:
+      hour < 5 ? "castle door creak" : hour < 12 ? "sophie's cleaning shift" : hour < 17 ? "market square wander" : "calcifer midnight pact",
+    rapturedrown:
+      hour < 5 ? "depth charge dreams" : hour < 12 ? "welcome to rapture day" : hour < 17 ? "art-deco pressure gauge" : "little sister hours",
+    grandlinesea:
+      hour < 5
+        ? "log pose at midnight"
+        : hour < 12
+          ? "east blue morning tide"
+          : hour < 17
+            ? "sunny midday course"
+            : "new world dusk wake",
   };
 
   const currentTheme = getCurrentTheme();
