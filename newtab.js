@@ -1016,6 +1016,49 @@ window.addEventListener("resize", () => {
   generateStars(180);
 });
 
+// ── COMMON ROOM: SNITCH MOTION AURA (soft glow follows pointer, no click) ─
+(function initSnitchMotionAura() {
+  const root = document.getElementById("snitch-motion");
+  const core = root?.querySelector?.(".snitch-motion__core");
+  if (!root || !core) return;
+
+  let mx = window.innerWidth * 0.5;
+  let my = window.innerHeight * 0.5;
+
+  /* Match body.commonroom cursor: url(...) <hotspotX> <hotspotY>; PNG 40×32 */
+  const SNITCH_CURSOR = { w: 40, h: 32, hx: 4, hy: 4 };
+
+  window.addEventListener(
+    "mousemove",
+    (e) => {
+      if (getCurrentTheme() !== "commonroom") return;
+      mx = e.clientX;
+      my = e.clientY;
+    },
+    { passive: true }
+  );
+
+  function tick() {
+    const theme = getCurrentTheme();
+    const reduced = document.body.classList.contains("motion-reduced");
+    if (theme !== "commonroom" || reduced) {
+      root.hidden = true;
+      requestAnimationFrame(tick);
+      return;
+    }
+    root.hidden = false;
+
+    /* Center glow on Snitch art (pointer = hotspot, not image center) */
+    const cx = mx - SNITCH_CURSOR.hx + SNITCH_CURSOR.w * 0.5;
+    const cy = my - SNITCH_CURSOR.hy + SNITCH_CURSOR.h * 0.5;
+    core.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+})();
+
 // ── THEME SWITCHER ───────────────────────────────────────────────────
 function switchTheme(theme) {
   setBodyThemeClass(theme);
