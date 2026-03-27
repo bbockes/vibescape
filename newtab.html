@@ -12,6 +12,11 @@
 
     :root {
       --transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      /* Chrome draws a bottom strip we can't control; design around it. */
+      --vs-chrome-strip-h: clamp(44px, 6vh, 64px);
+      --vs-strip-gap: 12px;
+      /* Reserve extra room so the main stack "breathes". */
+      --vs-bottom-safe: calc(var(--vs-chrome-strip-h) + clamp(56px, 9vh, 110px));
     }
 
     body {
@@ -81,12 +86,11 @@
     body.twilight .quote {
       color: #9b7dc8;
       font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.35rem) !important;
     }
-    body.twilight .quote-author { color: #5a4070; }
-    body.twilight .theme-pill {
-      background: rgba(155, 89, 255, 0.1);
-      border: 1px solid rgba(155, 89, 255, 0.3);
-      color: #c89dff;
+    body.twilight .quote-author {
+      color: #7d64a5;
+      font-size: 1.08rem !important;
     }
 
     /* ─── THEME: CLEAN GIRL DEPRESSED ───────────────────────────────── */
@@ -143,13 +147,9 @@
     body.cleangirl .quote {
       color: #7a6e64;
       font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.35rem) !important;
     }
-    body.cleangirl .quote-author { color: #b0a89e; }
-    body.cleangirl .theme-pill {
-      background: rgba(42, 37, 32, 0.06);
-      border: 1px solid rgba(42, 37, 32, 0.1);
-      color: #8a7e74;
-    }
+    body.cleangirl .quote-author { color: #7f746a; }
 
     /* ─── THEME: WITCHY FALL ─────────────────────────────────────────── */
     body.witchy {
@@ -205,13 +205,12 @@
       border-color: rgba(212, 133, 10, 0.5);
       box-shadow: 0 0 40px rgba(212, 133, 10, 0.1);
     }
-    body.witchy .quote { color: #8a6030; font-style: italic; }
-    body.witchy .quote-author { color: #4a3010; }
-    body.witchy .theme-pill {
-      background: rgba(212, 133, 10, 0.08);
-      border: 1px solid rgba(212, 133, 10, 0.25);
-      color: #d4850a;
+    body.witchy .quote {
+      color: #8a6030;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.35rem) !important;
     }
+    body.witchy .quote-author { color: #362108; }
 
     /* ─── THEME: FINANCE BRO IRONIC ─────────────────────────────────── */
     body.financebro {
@@ -266,13 +265,7 @@
       box-shadow: 4px 4px 0 #0a0a0a;
     }
     body.financebro .quote { color: #555; font-style: italic; font-size: 0.85rem; }
-    body.financebro .quote-author { color: #bbb; font-size: 0.75rem; }
-    body.financebro .theme-pill {
-      background: white;
-      border: 1px solid #e0e0e0;
-      color: #888;
-      font-size: 0.72rem;
-    }
+    body.financebro .quote-author { color: #7a7a7a; font-size: 0.75rem; }
 
     /* ─── LAYOUT ─────────────────────────────────────────────────────── */
     .page-wrapper {
@@ -283,6 +276,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      padding-bottom: var(--vs-bottom-safe);
     }
 
     .content {
@@ -291,11 +285,42 @@
       flex-direction: column;
       align-items: center;
       gap: 0;
+      transform: translateY(-8vh);
     }
 
     .clock { transition: var(--transition); }
     .greeting { transition: var(--transition); }
     .date-line { transition: var(--transition); }
+
+    /* ─── THEME-INVARIANT SIZING / SPACING ───────────────────────────── */
+    /* Keep the layout fixed across themes; only colors/fonts/shadows vary. */
+    .clock {
+      font-size: calc(clamp(5rem, 14vw, 11rem) * var(--vs-clock-scale, 1)) !important;
+      line-height: 1 !important;
+      min-height: 1em;
+    }
+    .greeting {
+      margin-top: 0.5rem !important;
+      letter-spacing: 0.15em !important;
+      text-transform: lowercase !important;
+      font-size: clamp(0.95rem, 1.8vw, 1.25rem) !important;
+      line-height: 1.2 !important;
+      min-height: 1.2em;
+    }
+    .date-line {
+      margin-top: 1.25rem !important;
+      letter-spacing: 0.3em !important;
+      text-transform: uppercase !important;
+      font-size: 1rem !important;
+      line-height: 1.2 !important;
+      min-height: 1.2em;
+    }
+
+    /* Clock visual normalization (witchy/finance read bigger due to fonts) */
+    body.twilight { --vs-clock-scale: 1; }
+    body.cleangirl { --vs-clock-scale: 1; }
+    body.witchy { --vs-clock-scale: 0.86; }
+    body.financebro { --vs-clock-scale: 0.88; }
 
     .search-wrapper {
       margin-top: 3rem;
@@ -312,38 +337,20 @@
 
     .quote-block {
       margin-top: 3rem;
-      max-width: 420px;
+      max-width: min(88vw, 900px);
       text-align: center;
       opacity: 0.9;
     }
-    .quote { font-size: clamp(0.85rem, 1.5vw, 1rem); line-height: 1.6; transition: var(--transition); }
-    .quote-author { font-size: 0.75rem; margin-top: 0.5rem; letter-spacing: 0.1em; transition: var(--transition); }
+    .search-bar { font-size: 1.2rem !important; }
+    .quote { font-size: clamp(0.95rem, 1.6vw, 1.1rem) !important; line-height: 1.65; transition: var(--transition); }
+    .quote-author { font-size: 1rem !important; margin-top: 0.6rem; letter-spacing: 0.1em; transition: var(--transition); }
 
-    /* ─── THEME SWITCHER ─────────────────────────────────────────────── */
-    .theme-dock {
-      position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 0.5rem;
-      z-index: 100;
-      align-items: center;
+    /* Prefer a single-line quote on desktop; allow wrapping on smaller viewports */
+    @media (min-width: 900px) {
+      .quote {
+        white-space: nowrap;
+      }
     }
-
-    .theme-pill {
-      padding: 0.4rem 1rem;
-      border-radius: 100px;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-      user-select: none;
-      backdrop-filter: blur(10px);
-    }
-    .theme-pill:hover { opacity: 0.7; transform: translateY(-2px); }
-    .theme-pill.active { opacity: 1 !important; transform: translateY(-3px) scale(1.05); }
 
     /* ─── STARS CANVAS ───────────────────────────────────────────────── */
     canvas.stars {
@@ -356,10 +363,10 @@
     .ticker {
       display: none;
       position: fixed;
-      bottom: 5rem;
+      bottom: calc(var(--vs-chrome-strip-h) + var(--vs-strip-gap) + 3.4rem);
       left: 0; right: 0;
       font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
+      font-size: 0.95rem;
       color: #bbb;
       overflow: hidden;
       white-space: nowrap;
@@ -440,188 +447,6 @@
     </span>
   </div>
 
-  <div class="theme-dock" id="theme-dock">
-    <div class="theme-pill active" data-theme="twilight">🌙 twilight coded</div>
-    <div class="theme-pill" data-theme="cleangirl">🫧 clean girl</div>
-    <div class="theme-pill" data-theme="witchy">🍂 witchy fall</div>
-    <div class="theme-pill" data-theme="financebro">📈 finance bro</div>
-  </div>
-
-<script>
-  // ── THEME DATA ───────────────────────────────────────────────────────
-  const themes = {
-    twilight: {
-      searchPlaceholder: 'search the void...',
-      quotes: [
-        { text: 'the stars are not wanted now; put out every one.', author: '— w.h. auden' },
-        { text: 'i have loved the stars too fondly to be fearful of the night.', author: '— sarah williams' },
-        { text: 'she was a girl who knew how to be happy even when she was sad.', author: '— marilyn monroe' },
-        { text: 'we are all just walking each other home.', author: '— ram dass' },
-      ]
-    },
-    cleangirl: {
-      searchPlaceholder: 'search something...',
-      quotes: [
-        { text: "i'm fine. (somewhere inside that sentence is a scream.)", author: '— r.h. sin' },
-        { text: 'she had a galaxy in her eyes, a universe in her mind.', author: '' },
-        { text: 'soft life is a radical act.', author: '' },
-        { text: 'healing is not linear. neither is blush application.', author: '' },
-      ]
-    },
-    witchy: {
-      searchPlaceholder: 'seek what calls to you...',
-      quotes: [
-        { text: 'she is a wildness, impossible to tame.', author: '— r.h. sin' },
-        { text: 'magic is just science we don\'t understand yet.', author: '— arthur c. clarke' },
-        { text: 'when autumn comes, it doesn\'t ask.', author: '' },
-        { text: 'the moon will guide those who are lost.', author: '' },
-      ]
-    },
-    financebro: {
-      searchPlaceholder: '// search query...',
-      quotes: [
-        { text: 'time in the market beats timing the market. also drink water.', author: '— warren buffett (paraphrased, kind of)' },
-        { text: 'the best investment you can make is in yourself. and index funds.', author: '— someone on twitter' },
-        { text: 'past performance is not indicative of future results. please be okay.', author: '— every prospectus ever' },
-        { text: 'buy the dip. also please call your mother.', author: '— anon' },
-      ]
-    }
-  };
-
-  // ── CLOCK ────────────────────────────────────────────────────────────
-  function updateClock() {
-    const now = new Date();
-    const h = String(now.getHours()).padStart(2, '0');
-    const m = String(now.getMinutes()).padStart(2, '0');
-    document.getElementById('clock').textContent = `${h}:${m}`;
-
-    const hour = now.getHours();
-    const greetings = {
-      twilight: hour < 5 ? 'still awake, i see' : hour < 12 ? 'good morning, starlight' : hour < 17 ? 'drifting through the afternoon' : 'good evening, dreamer',
-      cleangirl: hour < 5 ? "couldn't sleep either" : hour < 12 ? 'good morning' : hour < 17 ? 'good afternoon' : 'good evening',
-      witchy: hour < 5 ? 'the witching hour' : hour < 12 ? 'blessed morning' : hour < 17 ? 'the day turns' : 'dusk descends',
-      financebro: hour < 5 ? 'markets open in ' + (9 - hour) + 'h' : hour < 12 ? 'pre-market grind' : hour < 17 ? 'market hours' : 'after-hours'
-    };
-
-    const currentTheme = document.body.className;
-    document.getElementById('greeting').textContent = greetings[currentTheme] || greetings.twilight;
-
-    const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
-    const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
-    const dateStr = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
-    document.getElementById('dateline').textContent = currentTheme === 'financebro'
-      ? `// ${dateStr.toUpperCase()} — Q${Math.ceil((now.getMonth()+1)/3)}`
-      : dateStr;
-  }
-
-  setInterval(updateClock, 1000);
-  updateClock();
-
-  // ── QUOTE ────────────────────────────────────────────────────────────
-  function setQuote(themeName) {
-    const qs = themes[themeName].quotes;
-    const q = qs[Math.floor(Math.random() * qs.length)];
-    document.getElementById('quote').textContent = `"${q.text}"`;
-    document.getElementById('quote-author').textContent = q.author;
-    document.getElementById('search').placeholder = themes[themeName].searchPlaceholder;
-  }
-
-  // ── STARS ────────────────────────────────────────────────────────────
-  const canvas = document.getElementById('stars');
-  const ctx = canvas.getContext('2d');
-  let stars = [];
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  function generateStars(count) {
-    stars = [];
-    for (let i = 0; i < count; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.2 + 0.2,
-        opacity: Math.random(),
-        speed: Math.random() * 0.003 + 0.001,
-        phase: Math.random() * Math.PI * 2
-      });
-    }
-  }
-
-  function drawStars(theme) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (theme !== 'twilight' && theme !== 'witchy') return;
-    const color = theme === 'witchy' ? '212, 133, 10' : '232, 213, 255';
-    const t = Date.now() * 0.001;
-    stars.forEach(s => {
-      const o = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(t * s.speed * 200 + s.phase));
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${color}, ${o * 0.9})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(() => drawStars(document.body.className));
-  }
-
-  resizeCanvas();
-  generateStars(180);
-  drawStars('twilight');
-  window.addEventListener('resize', () => { resizeCanvas(); generateStars(180); });
-
-  // ── THEME SWITCHER ───────────────────────────────────────────────────
-  let currentTheme = 'twilight';
-
-  function switchTheme(theme) {
-    document.body.className = theme;
-    currentTheme = theme;
-    document.querySelectorAll('.theme-pill').forEach(p => {
-      p.classList.toggle('active', p.dataset.theme === theme);
-    });
-    setQuote(theme);
-    updateClock();
-    if (theme === 'twilight' || theme === 'witchy') {
-      drawStars(theme);
-    }
-    chrome?.storage?.local?.set({ vibeTheme: theme });
-  }
-
-  document.querySelectorAll('.theme-pill').forEach(pill => {
-    pill.addEventListener('click', () => switchTheme(pill.dataset.theme));
-  });
-
-  // ── SEARCH ───────────────────────────────────────────────────────────
-  document.getElementById('search').addEventListener('keydown', e => {
-    if (e.key === 'Enter' && e.target.value.trim()) {
-      window.location.href = `https://www.google.com/search?q=${encodeURIComponent(e.target.value)}`;
-    }
-  });
-
-  // ── WITCHY PARTICLES ─────────────────────────────────────────────────
-  const witchyEmojis = ['🍂','🍁','✨','🌙','🕯️','🌿','⭐'];
-  setInterval(() => {
-    if (document.body.className !== 'witchy') return;
-    const el = document.createElement('div');
-    el.className = 'particle';
-    el.textContent = witchyEmojis[Math.floor(Math.random() * witchyEmojis.length)];
-    el.style.left = Math.random() * 100 + 'vw';
-    el.style.bottom = '0';
-    el.style.animationDuration = (4 + Math.random() * 4) + 's';
-    el.style.fontSize = (0.7 + Math.random() * 0.8) + 'rem';
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 8000);
-  }, 1200);
-
-  // ── INIT ─────────────────────────────────────────────────────────────
-  try {
-    chrome?.storage?.local?.get('vibeTheme', (data) => {
-      if (data?.vibeTheme) switchTheme(data.vibeTheme);
-      else setQuote('twilight');
-    });
-  } catch {
-    setQuote('twilight');
-  }
-</script>
+<script src="newtab.js"></script>
 </body>
 </html>

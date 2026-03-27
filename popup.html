@@ -113,68 +113,8 @@
   </div>
 
   <div class="divider"></div>
-
-  <div class="theme-option" id="toggle-enabled" style="justify-content: space-between;">
-    <div style="display:flex; align-items:center; gap:0.75rem;">
-      <div class="theme-emoji">✨</div>
-      <div class="theme-info">
-        <div class="theme-name">apply to websites</div>
-        <div class="theme-desc">keep pages usable (no overlays)</div>
-      </div>
-    </div>
-    <div id="enabled-pill" style="
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      padding: 0.25rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(155,89,255,0.35);
-      background: rgba(155,89,255,0.10);
-      color: #c89dff;
-      user-select: none;
-    ">on</div>
-  </div>
-
-  <div class="divider"></div>
   <div class="footer">open a new tab to see your vibe ✦</div>
 
-  <script>
-    const options = document.querySelectorAll('.theme-option');
-    const toggleEnabled = document.getElementById('toggle-enabled');
-    const enabledPill = document.getElementById('enabled-pill');
-
-    function setActive(theme) {
-      options.forEach(o => o.classList.toggle('active', o.dataset.theme === theme));
-    }
-
-    function setEnabledUI(enabled) {
-      enabledPill.textContent = enabled ? 'on' : 'off';
-      enabledPill.style.borderColor = enabled ? 'rgba(155,89,255,0.35)' : 'rgba(122,95,160,0.35)';
-      enabledPill.style.background = enabled ? 'rgba(155,89,255,0.10)' : 'rgba(122,95,160,0.08)';
-      enabledPill.style.color = enabled ? '#c89dff' : '#7a5fa0';
-    }
-
-    // Load saved theme
-    chrome.storage.local.get({ vibeTheme: 'twilight', vibeEnabled: true }, (data) => {
-      if (data.vibeTheme) setActive(data.vibeTheme);
-      setEnabledUI(!!data.vibeEnabled);
-    });
-
-    options.forEach(option => {
-      if (!option.dataset.theme) return;
-      option.addEventListener('click', () => {
-        const theme = option.dataset.theme;
-        chrome.storage.local.set({ vibeTheme: theme });
-        setActive(theme);
-      });
-    });
-
-    toggleEnabled.addEventListener('click', () => {
-      chrome.storage.local.get({ vibeEnabled: true }, (data) => {
-        const next = !data.vibeEnabled;
-        chrome.storage.local.set({ vibeEnabled: next });
-        setEnabledUI(next);
-      });
-    });
-  </script>
+  <script src="popup.js"></script>
 </body>
 </html>
