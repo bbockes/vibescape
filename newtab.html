@@ -267,6 +267,138 @@
     body.financebro .quote { color: #555; font-style: italic; font-size: 0.85rem; }
     body.financebro .quote-author { color: #7a7a7a; font-size: 0.75rem; }
 
+    /* ─── THEME: NEON NOCTURNE ───────────────────────────────────────── */
+    body.neonnocturne {
+      background: #06070f;
+      font-family: 'Syne', sans-serif;
+      cursor: default;
+    }
+    body.neonnocturne::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, #00f0ff33 0%, transparent 45%),
+        radial-gradient(circle at 80% 75%, #ff2bd633 0%, transparent 40%),
+        linear-gradient(180deg, #06070f 0%, #0c1026 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.neonnocturne .stars { display: none; }
+    body.neonnocturne .content { position: relative; z-index: 2; }
+    body.neonnocturne .clock {
+      color: #e8fbff;
+      letter-spacing: 0.02em;
+      text-shadow: 0 0 24px #00f0ff66, 0 0 48px #ff2bd633;
+      font-weight: 700;
+    }
+    body.neonnocturne .greeting { font-family: 'Syne', sans-serif; color: #88d9ff; text-transform: uppercase; letter-spacing: 0.22em; }
+    body.neonnocturne .date-line { color: #5ca2c7; }
+    body.neonnocturne .search-bar {
+      background: rgba(6, 14, 40, 0.55);
+      border: 1px solid #00f0ff55;
+      color: #d9fbff;
+      font-family: 'Space Mono', monospace;
+    }
+    body.neonnocturne .search-bar::placeholder { color: #7cc7de; }
+    body.neonnocturne .search-bar:focus { box-shadow: 0 0 24px #00f0ff44; }
+    body.neonnocturne .quote { color: #9be9ff; font-style: normal; font-size: clamp(1.1rem, 2vw, 1.35rem) !important; }
+    body.neonnocturne .quote-author { color: #6ba9c0; }
+
+    /* ─── THEME: LIBRARY DUSK ────────────────────────────────────────── */
+    body.librarydusk {
+      background: #241b15;
+      font-family: 'DM Serif Display', serif;
+      cursor: default;
+    }
+    body.librarydusk::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 45% at 50% 0%, #6a4b2b2e 0%, transparent 60%),
+        linear-gradient(180deg, #2f221b 0%, #1f1713 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.librarydusk .stars { display: none; }
+    body.librarydusk .content { position: relative; z-index: 2; }
+    body.librarydusk .clock { color: #f2e2c9; text-shadow: 0 0 26px #ad7f4f33; letter-spacing: -0.015em; }
+    body.librarydusk .greeting { font-family: 'Cormorant Garamond', serif; color: #ceb08a; font-style: italic; text-transform: lowercase; }
+    body.librarydusk .date-line { color: #a37f56; }
+    body.librarydusk .search-bar {
+      background: rgba(84, 58, 35, 0.26);
+      border: 1px solid rgba(214, 181, 141, 0.25);
+      color: #f3e6d4;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    body.librarydusk .search-bar::placeholder { color: #b5946d; }
+    body.librarydusk .search-bar:focus { box-shadow: 0 0 22px rgba(214, 181, 141, 0.14); }
+    body.librarydusk .quote { color: #dbc2a1; font-style: italic; font-size: clamp(1.1rem, 2vw, 1.35rem) !important; }
+    body.librarydusk .quote-author { color: #aa8760; }
+
+    /* ─── THEME: OCEAN GLASS ─────────────────────────────────────────── */
+    body.oceanglass {
+      background: #081823;
+      font-family: 'Instrument Serif', serif;
+      cursor: default;
+    }
+    body.oceanglass::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 75% 55% at 20% 80%, #0f4f703d 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 15%, #31a1b83b 0%, transparent 50%),
+        linear-gradient(180deg, #0a2233 0%, #081823 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.oceanglass .stars { display: none; }
+    body.oceanglass .content { position: relative; z-index: 2; }
+    body.oceanglass .clock { color: #d9f6ff; text-shadow: 0 0 30px #66e0ff30; }
+    body.oceanglass .greeting { color: #97d8eb; font-style: italic; text-transform: lowercase; }
+    body.oceanglass .date-line { color: #6fb2c6; }
+    body.oceanglass .search-bar {
+      background: rgba(126, 214, 238, 0.08);
+      border: 1px solid rgba(126, 214, 238, 0.3);
+      color: #dcf8ff;
+      font-family: 'Instrument Serif', serif;
+    }
+    body.oceanglass .search-bar::placeholder { color: #8fc5d3; }
+    body.oceanglass .search-bar:focus { box-shadow: 0 0 20px rgba(126, 214, 238, 0.22); }
+    body.oceanglass .quote { color: #b8ecfa; font-style: italic; font-size: clamp(1.1rem, 2vw, 1.35rem) !important; }
+    body.oceanglass .quote-author { color: #7fb6c8; }
+
+    /* ─── THEME: BRUTAL REDACTED ─────────────────────────────────────── */
+    body.brutalredacted {
+      background: #ecebe8;
+      font-family: 'Space Mono', monospace;
+      cursor: default;
+    }
+    body.brutalredacted::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 62px, #0f0f0f0a 62px 63px),
+        repeating-linear-gradient(90deg, transparent 0 62px, #0f0f0f0a 62px 63px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.brutalredacted .stars { display: none; }
+    body.brutalredacted .content { position: relative; z-index: 2; }
+    body.brutalredacted .clock { color: #131313; text-shadow: none; letter-spacing: -0.05em; font-weight: 700; }
+    body.brutalredacted .greeting { color: #555; text-transform: uppercase; letter-spacing: 0.2em; }
+    body.brutalredacted .date-line { color: #777; }
+    body.brutalredacted .search-bar {
+      background: #ffffff;
+      border: 2px solid #131313;
+      color: #131313;
+      font-family: 'Space Mono', monospace;
+      border-radius: 0;
+    }
+    body.brutalredacted .search-bar::placeholder { color: #8b8b8b; }
+    body.brutalredacted .search-bar:focus { box-shadow: 6px 6px 0 #13131344; }
+    body.brutalredacted .quote { color: #2e2e2e; font-style: normal; font-size: clamp(1.1rem, 2vw, 1.35rem) !important; }
+    body.brutalredacted .quote-author { color: #5d5d5d; }
+
     /* ─── LAYOUT ─────────────────────────────────────────────────────── */
     .page-wrapper {
       width: 100vw;
@@ -321,6 +453,10 @@
     body.cleangirl { --vs-clock-scale: 1; }
     body.witchy { --vs-clock-scale: 0.86; }
     body.financebro { --vs-clock-scale: 0.88; }
+    body.neonnocturne { --vs-clock-scale: 0.92; }
+    body.librarydusk { --vs-clock-scale: 0.94; }
+    body.oceanglass { --vs-clock-scale: 0.95; }
+    body.brutalredacted { --vs-clock-scale: 0.9; }
 
     .search-wrapper {
       margin-top: 3rem;

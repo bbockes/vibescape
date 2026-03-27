@@ -9,45 +9,48 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      width: 280px;
+      width: 380px;
+      height: min(90vh, 680px);
       background: #0d0a1a;
       color: #e8d5ff;
       font-family: 'Syne', sans-serif;
       padding: 1.5rem;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
 
     .logo {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
     }
     .logo span { color: #9b59ff; }
 
     .tagline {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: #7a5fa0;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.95rem;
     }
 
     .label {
-      font-size: 0.65rem;
+      font-size: 0.64rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #5a4070;
-      margin-bottom: 0.75rem;
+      color: #9b84bf;
+      margin-bottom: 0.55rem;
     }
 
-    .theme-list { display: flex; flex-direction: column; gap: 0.4rem; }
+    .theme-list { display: flex; flex-direction: column; gap: 0.3rem; }
 
     .theme-option {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.65rem 0.85rem;
-      border-radius: 8px;
+      gap: 0.7rem;
+      padding: 0.55rem 0.72rem;
+      border-radius: 9px;
       cursor: pointer;
       border: 1px solid transparent;
       transition: all 0.2s ease;
@@ -56,22 +59,57 @@
     .theme-option:hover { background: rgba(155, 89, 255, 0.1); border-color: rgba(155,89,255,0.2); }
     .theme-option.active { background: rgba(155, 89, 255, 0.15); border-color: rgba(155,89,255,0.4); }
 
-    .theme-emoji { font-size: 1.1rem; width: 1.5rem; text-align: center; }
+    .theme-emoji { font-size: 1.05rem; width: 1.3rem; text-align: center; }
 
     .theme-info { flex: 1; }
-    .theme-name { font-size: 0.82rem; font-weight: 700; color: #e8d5ff; }
-    .theme-desc { font-size: 0.68rem; color: #5a4070; margin-top: 0.1rem; }
+    .theme-name { font-size: 0.82rem; font-weight: 700; color: #e8d5ff; line-height: 1.15; }
+    .theme-desc { font-size: 0.74rem; color: #8d76ad; margin-top: 0.1rem; line-height: 1.25; }
 
     .theme-option.active .theme-name { color: #c89dff; }
-    .theme-option.active .theme-desc { color: #7a5fa0; }
+    .theme-option.active .theme-desc { color: #b69de3; }
 
-    .divider { height: 1px; background: rgba(155,89,255,0.1); margin: 1rem 0; }
+    .pager {
+      margin-top: 1rem;
+      padding-top: 0.55rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .pager-btn {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(155,89,255,0.22);
+      color: #c5a8ea;
+      border-radius: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.55rem;
+      cursor: pointer;
+    }
+    .pager-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+    .pager-status {
+      color: #7a5fa0;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: 'Space Mono', monospace;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .divider { height: 1px; background: rgba(155,89,255,0.1); margin: 0.8rem 0; }
 
     .footer {
-      font-size: 0.65rem;
-      color: #3a2a50;
+      font-size: 0.78rem;
+      color: #8b73b4;
       text-align: center;
       letter-spacing: 0.1em;
+      padding-bottom: 0.45rem;
     }
   </style>
 </head>
@@ -110,6 +148,39 @@
         <div class="theme-desc">ironic minimalism, drink water</div>
       </div>
     </div>
+    <div class="theme-option" data-theme="neonnocturne">
+      <div class="theme-emoji">🪩</div>
+      <div class="theme-info">
+        <div class="theme-name">neon nocturne</div>
+        <div class="theme-desc">night coders + synthwave glow</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="librarydusk">
+      <div class="theme-emoji">📚</div>
+      <div class="theme-info">
+        <div class="theme-name">library dusk</div>
+        <div class="theme-desc">bookish, warm, quiet focus</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="oceanglass">
+      <div class="theme-emoji">🌊</div>
+      <div class="theme-info">
+        <div class="theme-name">ocean glass</div>
+        <div class="theme-desc">calm, minimal, sea breeze brain</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="brutalredacted">
+      <div class="theme-emoji">🧱</div>
+      <div class="theme-info">
+        <div class="theme-name">brutal redacted</div>
+        <div class="theme-desc">hard contrast, no fluff, ship it</div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">
+    <button class="pager-btn" id="prev-batch" type="button">previous 5</button>
+    <div class="pager-status" id="batch-status">batch 1 of 1</div>
+    <button class="pager-btn" id="next-batch" type="button">next 5</button>
   </div>
 
   <div class="divider"></div>

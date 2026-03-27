@@ -36,6 +36,42 @@ const themes = {
       { text: "buy the dip. also please call your mother.", author: "— anon" },
     ],
   },
+  neonnocturne: {
+    searchPlaceholder: "trace signal in the noise...",
+    quotes: [
+      { text: "the future is already here, it's just unevenly distributed.", author: "— william gibson" },
+      { text: "we're all made of stardust and screenlight.", author: "— anon" },
+      { text: "night is where ideas go to glow.", author: "" },
+      { text: "make it neon, then make it useful.", author: "" },
+    ],
+  },
+  librarydusk: {
+    searchPlaceholder: "look up a thought worth keeping...",
+    quotes: [
+      { text: "a reader lives a thousand lives before he dies.", author: "— george r.r. martin" },
+      { text: "books are a uniquely portable magic.", author: "— stephen king" },
+      { text: "quiet is not empty. it is full of answers.", author: "" },
+      { text: "leave room for slow, beautiful work.", author: "" },
+    ],
+  },
+  oceanglass: {
+    searchPlaceholder: "drift toward what matters...",
+    quotes: [
+      { text: "you can't cross the sea merely by standing and staring at the water.", author: "— rabindranath tagore" },
+      { text: "the cure for anything is salt water: sweat, tears, or the sea.", author: "— isak dinesen" },
+      { text: "breathe in. tide in. breathe out. tide out.", author: "" },
+      { text: "clarity arrives in still water.", author: "" },
+    ],
+  },
+  brutalredacted: {
+    searchPlaceholder: "> run query",
+    quotes: [
+      { text: "perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.", author: "— antoine de saint-exupery" },
+      { text: "less, but better.", author: "— dieter rams" },
+      { text: "ship first. polish second.", author: "" },
+      { text: "clarity is a feature.", author: "" },
+    ],
+  },
 };
 
 // ── CLOCK ────────────────────────────────────────────────────────────
@@ -79,6 +115,38 @@ function updateClock() {
           : hour < 17
             ? "market hours"
             : "after-hours",
+    neonnocturne:
+      hour < 5
+        ? "after-hours energy"
+        : hour < 12
+          ? "signal check"
+          : hour < 17
+            ? "daylight debug"
+            : "night mode active",
+    librarydusk:
+      hour < 5
+        ? "one more chapter"
+        : hour < 12
+          ? "quiet morning pages"
+          : hour < 17
+            ? "afternoon study hall"
+            : "evening reading light",
+    oceanglass:
+      hour < 5
+        ? "tide is low, mind is clear"
+        : hour < 12
+          ? "gentle morning current"
+          : hour < 17
+            ? "drifting through daylight"
+            : "sunset over calm water",
+    brutalredacted:
+      hour < 5
+        ? "build mode: focused"
+        : hour < 12
+          ? "clear intent"
+          : hour < 17
+            ? "deep work block"
+            : "shutdown checklist",
   };
 
   const currentTheme = document.body.className || "twilight";
