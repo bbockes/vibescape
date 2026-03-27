@@ -610,6 +610,15 @@ const themes = {
       { text: "a man's dream… will never die!", author: "— marshall d. teach" },
     ],
   },
+  openingcrawl: {
+    searchPlaceholder: "search the holonet archives...",
+    quotes: [
+      { text: "that's no moon.", author: "— obi-wan kenobi" },
+      { text: "do. or do not. there is no try.", author: "— yoda" },
+      { text: "may the force be with you.", author: "— general kenobi" },
+      { text: "never tell me the odds.", author: "— han solo" },
+    ],
+  },
 };
 
 const THEME_NAMES = Object.keys(themes);
@@ -899,6 +908,14 @@ function updateClock() {
           : hour < 17
             ? "sunny midday course"
             : "new world dusk wake",
+    openingcrawl:
+      hour < 5
+        ? "hyperspace drift, lights dimmed"
+        : hour < 12
+          ? "a new day in the outer rim"
+          : hour < 17
+            ? "twin suns, high in the sky"
+            : "cantina hours somewhere",
   };
 
   const currentTheme = getCurrentTheme();
@@ -960,8 +977,9 @@ function generateStars(count) {
 
 function drawStars(theme) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (theme !== "twilight" && theme !== "witchy") return;
-  const color = theme === "witchy" ? "212, 133, 10" : "232, 213, 255";
+  if (theme !== "twilight" && theme !== "witchy" && theme !== "openingcrawl") return;
+  const color =
+    theme === "witchy" ? "212, 133, 10" : theme === "openingcrawl" ? "235, 242, 255" : "232, 213, 255";
   const t = Date.now() * 0.001;
   stars.forEach((s) => {
     const o = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(t * s.speed * 200 + s.phase));
@@ -986,7 +1004,7 @@ function switchTheme(theme) {
   setBodyThemeClass(theme);
   setQuote(theme);
   updateClock();
-  if (theme === "twilight" || theme === "witchy") drawStars(theme);
+  if (theme === "twilight" || theme === "witchy" || theme === "openingcrawl") drawStars(theme);
   chrome.storage.local.set({ vibeTheme: theme });
 }
 
@@ -1009,6 +1027,7 @@ document.getElementById("search").addEventListener("keydown", (e) => {
 });
 
 document.getElementById("search-go")?.addEventListener("click", () => runGoogleSearch());
+document.getElementById("search-mag")?.addEventListener("click", () => runGoogleSearch());
 
 function randomTheme() {
   if (THEME_NAMES.length < 2) return;

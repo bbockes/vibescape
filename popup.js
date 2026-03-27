@@ -1,6 +1,32 @@
 /** Paste your walkthrough URL here once the video is up (Chrome footer toggle). */
 const CHROME_FOOTER_HELP_VIDEO_URL = "";
 
+/** If the user is already on Chrome's new-tab surface, load Vibescape without opening another tab. */
+function activateNewTabSurfaceInActiveTab() {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const tab = tabs?.[0];
+    if (!tab?.id) return;
+    const raw = tab.url || tab.pendingUrl || "";
+    const base = raw.split(/[#?]/)[0].toLowerCase();
+
+    const isChromeNewTabSurface =
+      base === "chrome://newtab" ||
+      base === "chrome://newtab/" ||
+      base.startsWith("chrome://newtab/") ||
+      base === "chrome://new-tab-page" ||
+      base === "chrome://new-tab-page/" ||
+      base.startsWith("chrome://new-tab-page/");
+
+    const isExtensionNewTabPage = /^chrome-extension:\/\/[^/]+\/newtab\.html$/i.test(base);
+
+    if (isChromeNewTabSurface) {
+      chrome.tabs.update(tab.id, { url: "chrome://newtab" });
+    } else if (isExtensionNewTabPage) {
+      chrome.tabs.reload(tab.id);
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const powerToggle = document.getElementById("vibe-power-toggle");
   const powerLabel = document.getElementById("vibe-power-label");
@@ -18,7 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.get({ vibeEnabled: true }, (d) => {
       const cur = d.vibeEnabled !== false;
       const next = !cur;
-      chrome.storage.local.set({ vibeEnabled: next }, () => setPowerUi(next));
+      chrome.storage.local.set({ vibeEnabled: next }, () => {
+        setPowerUi(next);
+        if (next) activateNewTabSurfaceInActiveTab();
+      });
     });
   });
 
