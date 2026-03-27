@@ -19,6 +19,11 @@
       overflow-x: hidden;
     }
 
+    :root {
+      --theme-row-h: 66px;
+      --theme-row-gap: 0.3rem;
+    }
+
     .logo {
       font-size: 1.35rem;
       font-weight: 800;
@@ -43,7 +48,12 @@
       margin-bottom: 0.55rem;
     }
 
-    .theme-list { display: flex; flex-direction: column; gap: 0.3rem; }
+    .theme-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--theme-row-gap);
+      min-height: calc((var(--theme-row-h) * 5) + (var(--theme-row-gap) * 4));
+    }
 
     .theme-option {
       display: flex;
@@ -51,6 +61,7 @@
       gap: 0.7rem;
       padding: 0.55rem 0.72rem;
       border-radius: 9px;
+      min-height: var(--theme-row-h);
       cursor: pointer;
       border: 1px solid transparent;
       transition: all 0.2s ease;
@@ -174,6 +185,146 @@
       <div class="theme-info">
         <div class="theme-name">brutal redacted</div>
         <div class="theme-desc">hard contrast, no fluff, ship it</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="housecandles">
+      <div class="theme-emoji">🕯️</div>
+      <div class="theme-info">
+        <div class="theme-name">house candles</div>
+        <div class="theme-desc">old halls, brass light, winter ink</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="emberrunes">
+      <div class="theme-emoji">⚔️</div>
+      <div class="theme-info">
+        <div class="theme-name">ember runes</div>
+        <div class="theme-desc">mythic dusk, oathfire, long roads</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="starcartographer">
+      <div class="theme-emoji">🗺️</div>
+      <div class="theme-info">
+        <div class="theme-name">star cartographer</div>
+        <div class="theme-desc">constellation maps + explorer calm</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="velvetnoir">
+      <div class="theme-emoji">🎷</div>
+      <div class="theme-info">
+        <div class="theme-name">velvet noir</div>
+        <div class="theme-desc">late-night lounge + muted glamour</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="solarpunkgarden">
+      <div class="theme-emoji">🌱</div>
+      <div class="theme-info">
+        <div class="theme-name">solarpunk garden</div>
+        <div class="theme-desc">optimistic green city daylight</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="zenink">
+      <div class="theme-emoji">🖌️</div>
+      <div class="theme-info">
+        <div class="theme-name">zen ink</div>
+        <div class="theme-desc">quiet brushwork + monochrome peace</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="retrofuturearcade">
+      <div class="theme-emoji">🕹️</div>
+      <div class="theme-info">
+        <div class="theme-name">retro future arcade</div>
+        <div class="theme-desc">CRT glow and playful velocity</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="desertminimal">
+      <div class="theme-emoji">🏜️</div>
+      <div class="theme-info">
+        <div class="theme-name">desert minimal</div>
+        <div class="theme-desc">sunwashed neutrals and clean air</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="alpinefjord">
+      <div class="theme-emoji">🏔️</div>
+      <div class="theme-info">
+        <div class="theme-name">alpine fjord</div>
+        <div class="theme-desc">cold clarity + northern depth</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="musegallery">
+      <div class="theme-emoji">🖼️</div>
+      <div class="theme-info">
+        <div class="theme-name">muse gallery</div>
+        <div class="theme-desc">editorial cream + artbook mood</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="darkacademiaquill">
+      <div class="theme-emoji">🪶</div>
+      <div class="theme-info">
+        <div class="theme-name">dark academia quill</div>
+        <div class="theme-desc">ink, brass lamps, midnight essays</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="spacesalvage">
+      <div class="theme-emoji">🚀</div>
+      <div class="theme-info">
+        <div class="theme-name">space salvage</div>
+        <div class="theme-desc">scrapyard stars + frontier grit</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="regencyletter">
+      <div class="theme-emoji">💌</div>
+      <div class="theme-info">
+        <div class="theme-name">regency letter</div>
+        <div class="theme-desc">powdered paper + ballroom calm</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="gothicmanor">
+      <div class="theme-emoji">🕰️</div>
+      <div class="theme-info">
+        <div class="theme-name">gothic manor</div>
+        <div class="theme-desc">storm windows and velvet dusk</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="cybersamurai">
+      <div class="theme-emoji">🗡️</div>
+      <div class="theme-info">
+        <div class="theme-name">cyber samurai</div>
+        <div class="theme-desc">neon discipline + steel silence</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="cottagealchemy">
+      <div class="theme-emoji">🧪</div>
+      <div class="theme-info">
+        <div class="theme-name">cottage alchemy</div>
+        <div class="theme-desc">herbal notes + sunlit potions</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="cosmicwestern">
+      <div class="theme-emoji">🤠</div>
+      <div class="theme-info">
+        <div class="theme-name">cosmic western</div>
+        <div class="theme-desc">desert dust meets star lanes</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="vhsparanormal">
+      <div class="theme-emoji">📼</div>
+      <div class="theme-info">
+        <div class="theme-name">vhs paranormal</div>
+        <div class="theme-desc">grain, static, midnight suburb</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="mechhangar">
+      <div class="theme-emoji">🤖</div>
+      <div class="theme-info">
+        <div class="theme-name">mech hangar</div>
+        <div class="theme-desc">industrial steel + pilot HUD</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="opalinecourt">
+      <div class="theme-emoji">👑</div>
+      <div class="theme-info">
+        <div class="theme-name">opaline court</div>
+        <div class="theme-desc">pastel royalty + jeweled mist</div>
       </div>
     </div>
   </div>
