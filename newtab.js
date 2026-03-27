@@ -1,3 +1,19 @@
+// ── NEW TAB GATE (top of file; MV3 new-tab page disallows inline scripts; keep gate in this file) ──
+(function () {
+  chrome.storage.local.get({ vibeEnabled: true }, (data) => {
+    if (data.vibeEnabled === false) {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const t = tabs?.[0];
+        if (t?.id != null) {
+          chrome.tabs.update(t.id, { url: "chrome://new-tab-page" });
+        }
+      });
+      return;
+    }
+    document.documentElement.classList.add("vibe-enabled");
+  });
+})();
+
 // ── THEME DATA ───────────────────────────────────────────────────────
 const themes = {
   twilight: {
@@ -975,11 +991,36 @@ function switchTheme(theme) {
 }
 
 // ── SEARCH ───────────────────────────────────────────────────────────
+function runGoogleSearch() {
+  const input = document.getElementById("search");
+  const q = input.value.trim();
+  if (!q) {
+    input.focus();
+    return;
+  }
+  window.location.href = `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+}
+
 document.getElementById("search").addEventListener("keydown", (e) => {
-  if (e.key === "Enter" && e.target.value.trim()) {
-    window.location.href = `https://www.google.com/search?q=${encodeURIComponent(e.target.value)}`;
+  if (e.key === "Enter") {
+    e.preventDefault();
+    runGoogleSearch();
   }
 });
+
+document.getElementById("search-go")?.addEventListener("click", () => runGoogleSearch());
+
+function randomTheme() {
+  if (THEME_NAMES.length < 2) return;
+  let next;
+  const current = getCurrentTheme();
+  do {
+    next = THEME_NAMES[Math.floor(Math.random() * THEME_NAMES.length)];
+  } while (next === current);
+  switchTheme(next);
+}
+
+document.getElementById("random-vibe")?.addEventListener("click", () => randomTheme());
 
 // ── WITCHY PARTICLES ─────────────────────────────────────────────────
 const witchyEmojis = ["🍂", "🍁", "✨", "🌙", "🕯️", "🌿", "⭐"];
@@ -997,7 +1038,8 @@ setInterval(() => {
 }, 1200);
 
 // ── INIT ─────────────────────────────────────────────────────────────
-chrome.storage.local.get({ vibeTheme: "twilight" }, (data) => {
+chrome.storage.local.get({ vibeTheme: "twilight", vibeEnabled: true }, (data) => {
+  if (data?.vibeEnabled === false) return;
   const theme = data?.vibeTheme || "twilight";
   setupMotionPreference();
   switchTheme(theme);
@@ -1006,6 +1048,13 @@ chrome.storage.local.get({ vibeTheme: "twilight" }, (data) => {
 // React instantly to popup changes (no refresh required)
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area !== "local") return;
+  if (changes.vibeEnabled?.newValue === false) {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const t = tabs?.[0];
+      if (t?.id != null) chrome.tabs.update(t.id, { url: "chrome://new-tab-page" });
+    });
+    return;
+  }
   if (changes.vibeTheme?.newValue) {
     switchTheme(changes.vibeTheme.newValue);
   }
