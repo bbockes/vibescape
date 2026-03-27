@@ -88,15 +88,6 @@ const themes = {
       { text: "clarity is a feature.", author: "" },
     ],
   },
-  housecandles: {
-    searchPlaceholder: "search the stacks...",
-    quotes: [
-      { text: "it is our choices that show what we truly are.", author: "— albus dumbledore" },
-      { text: "words are, in my not-so-humble opinion, our most inexhaustible source of magic.", author: "— albus dumbledore" },
-      { text: "some halls are old enough to remember your name.", author: "" },
-      { text: "study first, destiny second.", author: "" },
-    ],
-  },
   commonroom: {
     searchPlaceholder: "ink your inquiry upon the scroll…",
     quotes: [
@@ -122,15 +113,6 @@ const themes = {
       { text: "across the sea of space, the stars are other suns.", author: "— carl sagan" },
       { text: "maps are promises made visible.", author: "" },
       { text: "find north, then find yourself.", author: "" },
-    ],
-  },
-  velvetnoir: {
-    searchPlaceholder: "search after midnight...",
-    quotes: [
-      { text: "the night is always darker before the dawn.", author: "— thomas fuller" },
-      { text: "in a world of noise, elegance is a whisper.", author: "" },
-      { text: "some answers only show up in low light.", author: "" },
-      { text: "slow down; mystery likes patience.", author: "" },
     ],
   },
   solarpunkgarden: {
@@ -178,24 +160,6 @@ const themes = {
       { text: "let the mountain set your tempo.", author: "" },
     ],
   },
-  musegallery: {
-    searchPlaceholder: "curate your next thought...",
-    quotes: [
-      { text: "art enables us to find ourselves and lose ourselves at the same time.", author: "— thomas merton" },
-      { text: "creativity takes courage.", author: "— henri matisse" },
-      { text: "taste is memory plus attention.", author: "" },
-      { text: "compose your day like a frame.", author: "" },
-    ],
-  },
-  darkacademiaquill: {
-    searchPlaceholder: "search the marginalia...",
-    quotes: [
-      { text: "there is no friend as loyal as a book.", author: "— ernest hemingway" },
-      { text: "the pages are still warm from thought.", author: "" },
-      { text: "write like nobody is grading you.", author: "" },
-      { text: "the lamp is lit; continue.", author: "" },
-    ],
-  },
   spacesalvage: {
     searchPlaceholder: "scan the outer belt...",
     quotes: [
@@ -203,15 +167,6 @@ const themes = {
       { text: "patch the hull, keep flying.", author: "" },
       { text: "every map starts as a rumor.", author: "" },
       { text: "nothing elegant survives first contact.", author: "" },
-    ],
-  },
-  regencyletter: {
-    searchPlaceholder: "compose your next correspondence...",
-    quotes: [
-      { text: "there is no charm equal to tenderness of heart.", author: "— jane austen" },
-      { text: "a well-timed letter changes everything.", author: "" },
-      { text: "grace is strategy in silk gloves.", author: "" },
-      { text: "manners are architecture for conversation.", author: "" },
     ],
   },
   gothicmanor: {
@@ -638,9 +593,10 @@ function getCurrentTheme() {
 }
 
 function setBodyThemeClass(theme) {
+  const resolved = themes[theme] ? theme : "twilight";
   THEME_NAMES.forEach((name) => document.body.classList.remove(name));
-  document.body.classList.add(theme);
-  document.body.dataset.theme = theme;
+  document.body.classList.add(resolved);
+  document.body.dataset.theme = resolved;
 }
 
 function setupMotionPreference() {
@@ -735,14 +691,6 @@ function updateClock() {
           : hour < 17
             ? "deep work block"
             : "shutdown checklist",
-    housecandles:
-      hour < 5
-        ? "late study hall"
-        : hour < 12
-          ? "morning at the library"
-          : hour < 17
-            ? "afternoon in the common room"
-            : "candlelit revision",
     commonroom:
       hour < 5
         ? "midnight oil and moving portraits"
@@ -767,14 +715,6 @@ function updateClock() {
           : hour < 17
             ? "surveying bright horizons"
             : "starlight navigation",
-    velvetnoir:
-      hour < 5
-        ? "after-hours lounge"
-        : hour < 12
-          ? "soft morning blues"
-          : hour < 17
-            ? "golden-hour cool"
-            : "midnight city mood",
     solarpunkgarden:
       hour < 5
         ? "pre-dawn greenhouse"
@@ -815,20 +755,8 @@ function updateClock() {
           : hour < 17
             ? "clear-air momentum"
             : "fjord twilight calm",
-    musegallery:
-      hour < 5
-        ? "studio lights on"
-        : hour < 12
-          ? "morning curation"
-          : hour < 17
-            ? "afternoon composition"
-            : "gallery at dusk",
-    darkacademiaquill:
-      hour < 5 ? "midnight footnotes" : hour < 12 ? "morning seminar" : hour < 17 ? "library session" : "after-hours study",
     spacesalvage:
       hour < 5 ? "graveyard shift in orbit" : hour < 12 ? "morning flight checks" : hour < 17 ? "salvage run active" : "docking at dusk",
-    regencyletter:
-      hour < 5 ? "late correspondence" : hour < 12 ? "morning calls" : hour < 17 ? "afternoon promenade" : "evening salon",
     gothicmanor:
       hour < 5 ? "the corridor creaks" : hour < 12 ? "foggy morning wings" : hour < 17 ? "long shadow hour" : "thunder at twilight",
     cybersamurai:
@@ -955,8 +883,6 @@ function setQuote(themeName) {
   const quoteEl = document.getElementById("quote");
   const authorEl = document.getElementById("quote-author");
   quoteEl.textContent = `"${q.text}"`;
-  quoteEl.classList.remove("quote--singleline", "quote--multiline");
-  quoteEl.classList.add(q.text.length > 95 ? "quote--multiline" : "quote--singleline");
   authorEl.textContent = q.author;
 
   // Lightweight refresh animation on quote/theme updates
@@ -1061,11 +987,12 @@ window.addEventListener("resize", () => {
 
 // ── THEME SWITCHER ───────────────────────────────────────────────────
 function switchTheme(theme) {
-  setBodyThemeClass(theme);
-  setQuote(theme);
+  const resolved = themes[theme] ? theme : "twilight";
+  setBodyThemeClass(resolved);
+  setQuote(resolved);
   updateClock();
-  if (theme === "twilight" || theme === "witchy" || theme === "openingcrawl") drawStars(theme);
-  chrome.storage.local.set({ vibeTheme: theme });
+  if (resolved === "twilight" || resolved === "witchy" || resolved === "openingcrawl") drawStars(resolved);
+  chrome.storage.local.set({ vibeTheme: resolved });
 }
 
 // ── SEARCH ───────────────────────────────────────────────────────────
