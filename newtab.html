@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibescape</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:ital@0;1&family=Cinzel:wght@400;600&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    /* ─── THEME: TWILIGHT CODED ─────────────────────────────────────── */
+    body.twilight {
+      background: #0d0a1a;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      cursor: crosshair;
+    }
+    body.twilight::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 80%, #1a0533 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 20%, #0a1a3a 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, #2d0845 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.twilight .stars {
+      display: block;
+      position: fixed; inset: 0; z-index: 1;
+    }
+    body.twilight .content { position: relative; z-index: 2; }
+    body.twilight .clock {
+      font-size: clamp(5rem, 14vw, 11rem);
+      font-weight: 300;
+      color: #e8d5ff;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      text-shadow: 0 0 80px #9b59ff66, 0 0 20px #c89dff44;
+    }
+    body.twilight .greeting {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      color: #b89adf88;
+      letter-spacing: 0.15em;
+      text-transform: lowercase;
+      margin-top: 0.5rem;
+    }
+    body.twilight .date-line {
+      color: #7a5fa0;
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-top: 2rem;
+    }
+    body.twilight .search-bar {
+      background: rgba(155, 89, 255, 0.07);
+      border: 1px solid rgba(155, 89, 255, 0.25);
+      color: #e8d5ff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+    }
+    body.twilight .search-bar::placeholder { color: #7a5fa055; }
+    body.twilight .search-bar:focus {
+      border-color: rgba(155, 89, 255, 0.6);
+      box-shadow: 0 0 30px rgba(155, 89, 255, 0.15);
+    }
+    body.twilight .quote {
+      color: #9b7dc8;
+      font-style: italic;
+    }
+    body.twilight .quote-author { color: #5a4070; }
+    body.twilight .theme-pill {
+      background: rgba(155, 89, 255, 0.1);
+      border: 1px solid rgba(155, 89, 255, 0.3);
+      color: #c89dff;
+    }
+
+    /* ─── THEME: CLEAN GIRL DEPRESSED ───────────────────────────────── */
+    body.cleangirl {
+      background: #f5f2ee;
+      font-family: 'Instrument Serif', Georgia, serif;
+      cursor: default;
+    }
+    body.cleangirl::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 100% 50% at 0% 100%, #e8e0d8 0%, transparent 50%),
+        radial-gradient(ellipse 60% 60% at 100% 0%, #ede8e2 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.cleangirl .stars { display: none; }
+    body.cleangirl .content { position: relative; z-index: 1; }
+    body.cleangirl .clock {
+      font-size: clamp(5rem, 14vw, 11rem);
+      font-weight: 400;
+      color: #2a2520;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    body.cleangirl .greeting {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: #8a7e74;
+      letter-spacing: 0.05em;
+      margin-top: 0.5rem;
+    }
+    body.cleangirl .date-line {
+      color: #b0a89e;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-top: 2rem;
+    }
+    body.cleangirl .search-bar {
+      background: rgba(42, 37, 32, 0.04);
+      border: 1px solid rgba(42, 37, 32, 0.12);
+      color: #2a2520;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.05rem;
+    }
+    body.cleangirl .search-bar::placeholder { color: #b0a89e; }
+    body.cleangirl .search-bar:focus {
+      border-color: rgba(42, 37, 32, 0.3);
+      box-shadow: 0 4px 20px rgba(42, 37, 32, 0.06);
+    }
+    body.cleangirl .quote {
+      color: #7a6e64;
+      font-style: italic;
+    }
+    body.cleangirl .quote-author { color: #b0a89e; }
+    body.cleangirl .theme-pill {
+      background: rgba(42, 37, 32, 0.06);
+      border: 1px solid rgba(42, 37, 32, 0.1);
+      color: #8a7e74;
+    }
+
+    /* ─── THEME: WITCHY FALL ─────────────────────────────────────────── */
+    body.witchy {
+      background: #150e08;
+      font-family: 'Cinzel', Georgia, serif;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E🌙%3C/text%3E%3C/svg%3E"), auto;
+    }
+    body.witchy::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 100%, #3d1a00 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 30%, #1a0d00 0%, transparent 50%),
+        radial-gradient(ellipse 60% 60% at 20% 20%, #0f1a05 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.witchy .stars { display: block; position: fixed; inset: 0; z-index: 1; }
+    body.witchy .content { position: relative; z-index: 2; }
+    body.witchy .clock {
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 600;
+      color: #d4850a;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      text-shadow: 0 0 60px #d4850a44, 0 0 120px #ff6b0022;
+    }
+    body.witchy .greeting {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.75rem, 1.5vw, 1rem);
+      color: #7a5a30;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+    body.witchy .date-line {
+      color: #5a3f1a;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-top: 2rem;
+    }
+    body.witchy .search-bar {
+      background: rgba(212, 133, 10, 0.05);
+      border: 1px solid rgba(212, 133, 10, 0.2);
+      color: #d4850a;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+    }
+    body.witchy .search-bar::placeholder { color: #5a3f1a; }
+    body.witchy .search-bar:focus {
+      border-color: rgba(212, 133, 10, 0.5);
+      box-shadow: 0 0 40px rgba(212, 133, 10, 0.1);
+    }
+    body.witchy .quote { color: #8a6030; font-style: italic; }
+    body.witchy .quote-author { color: #4a3010; }
+    body.witchy .theme-pill {
+      background: rgba(212, 133, 10, 0.08);
+      border: 1px solid rgba(212, 133, 10, 0.25);
+      color: #d4850a;
+    }
+
+    /* ─── THEME: FINANCE BRO IRONIC ─────────────────────────────────── */
+    body.financebro {
+      background: #fafafa;
+      font-family: 'Space Mono', monospace;
+      cursor: default;
+    }
+    body.financebro::before {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 59px, #e8e8e833 59px, #e8e8e833 60px
+      ), repeating-linear-gradient(
+        90deg, transparent, transparent 59px, #e8e8e833 59px, #e8e8e833 60px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.financebro .stars { display: none; }
+    body.financebro .content { position: relative; z-index: 1; }
+    body.financebro .clock {
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 400;
+      color: #0a0a0a;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    body.financebro .greeting {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+      color: #888;
+      letter-spacing: 0.02em;
+      margin-top: 0.5rem;
+    }
+    body.financebro .date-line {
+      color: #bbb;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      margin-top: 2rem;
+    }
+    body.financebro .search-bar {
+      background: white;
+      border: 1px solid #e0e0e0;
+      color: #0a0a0a;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+    }
+    body.financebro .search-bar::placeholder { color: #ccc; }
+    body.financebro .search-bar:focus {
+      border-color: #0a0a0a;
+      box-shadow: 4px 4px 0 #0a0a0a;
+    }
+    body.financebro .quote { color: #555; font-style: italic; font-size: 0.85rem; }
+    body.financebro .quote-author { color: #bbb; font-size: 0.75rem; }
+    body.financebro .theme-pill {
+      background: white;
+      border: 1px solid #e0e0e0;
+      color: #888;
+      font-size: 0.72rem;
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────────────────────── */
+    .page-wrapper {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .clock { transition: var(--transition); }
+    .greeting { transition: var(--transition); }
+    .date-line { transition: var(--transition); }
+
+    .search-wrapper {
+      margin-top: 3rem;
+      width: min(500px, 80vw);
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 0.9rem 1.4rem;
+      border-radius: 4px;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .quote-block {
+      margin-top: 3rem;
+      max-width: 420px;
+      text-align: center;
+      opacity: 0.9;
+    }
+    .quote { font-size: clamp(0.85rem, 1.5vw, 1rem); line-height: 1.6; transition: var(--transition); }
+    .quote-author { font-size: 0.75rem; margin-top: 0.5rem; letter-spacing: 0.1em; transition: var(--transition); }
+
+    /* ─── THEME SWITCHER ─────────────────────────────────────────────── */
+    .theme-dock {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 100;
+      align-items: center;
+    }
+
+    .theme-pill {
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      user-select: none;
+      backdrop-filter: blur(10px);
+    }
+    .theme-pill:hover { opacity: 0.7; transform: translateY(-2px); }
+    .theme-pill.active { opacity: 1 !important; transform: translateY(-3px) scale(1.05); }
+
+    /* ─── STARS CANVAS ───────────────────────────────────────────────── */
+    canvas.stars {
+      position: fixed; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    /* ─── FINANCE BRO TICKER ─────────────────────────────────────────── */
+    .ticker {
+      display: none;
+      position: fixed;
+      bottom: 5rem;
+      left: 0; right: 0;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: #bbb;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    body.financebro .ticker { display: block; }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 25s linear infinite;
+    }
+    @keyframes ticker {
+      from { transform: translateX(100vw); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* ─── WITCHY PARTICLES ───────────────────────────────────────────── */
+    .particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+      font-size: 1rem;
+      animation: float-up 6s ease-in forwards;
+      opacity: 0;
+    }
+    @keyframes float-up {
+      0% { opacity: 0.8; transform: translateY(0) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(-80vh) rotate(360deg); }
+    }
+
+    /* ─── CLEAN GIRL ACCENT LINE ─────────────────────────────────────── */
+    .accent-line {
+      display: none;
+      width: 1px;
+      height: 80px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(to bottom, transparent, #2a252066);
+    }
+    body.cleangirl .accent-line { display: block; }
+
+    /* fade in on load */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .content { animation: fadeIn 1s ease forwards; }
+  </style>
+</head>
+<body class="twilight">
+
+  <canvas class="stars" id="stars"></canvas>
+
+  <div class="page-wrapper">
+    <div class="content">
+      <div class="accent-line"></div>
+      <div class="clock" id="clock">00:00</div>
+      <div class="greeting" id="greeting">good evening</div>
+      <div class="date-line" id="dateline">monday, march 27</div>
+
+      <div class="search-wrapper">
+        <input
+          class="search-bar"
+          type="text"
+          placeholder="search the void..."
+          id="search"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="quote-block">
+        <div class="quote" id="quote"></div>
+        <div class="quote-author" id="quote-author"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker">
+    <span class="ticker-inner" id="ticker-text">
+      AAPL +2.3% &nbsp;&nbsp;|&nbsp;&nbsp; NVDA +0.8% &nbsp;&nbsp;|&nbsp;&nbsp; SPY +1.1% &nbsp;&nbsp;|&nbsp;&nbsp; TSLA -0.4% &nbsp;&nbsp;|&nbsp;&nbsp; BTC +3.2% &nbsp;&nbsp;|&nbsp;&nbsp; ETH +1.9% &nbsp;&nbsp;|&nbsp;&nbsp; MSFT +0.6% &nbsp;&nbsp;|&nbsp;&nbsp; AMZN +0.2% &nbsp;&nbsp;|&nbsp;&nbsp; META +4.1% &nbsp;&nbsp;|&nbsp;&nbsp; you are doing amazing sweetie &nbsp;&nbsp;|&nbsp;&nbsp; GOOG +0.9% &nbsp;&nbsp;|&nbsp;&nbsp; correlation ≠ causation &nbsp;&nbsp;|&nbsp;&nbsp; NFLX -1.2% &nbsp;&nbsp;|&nbsp;&nbsp; have you hydrated today &nbsp;&nbsp;|&nbsp;&nbsp;
+    </span>
+  </div>
+
+  <div class="theme-dock" id="theme-dock">
+    <div class="theme-pill active" data-theme="twilight">🌙 twilight coded</div>
+    <div class="theme-pill" data-theme="cleangirl">🫧 clean girl</div>
+    <div class="theme-pill" data-theme="witchy">🍂 witchy fall</div>
+    <div class="theme-pill" data-theme="financebro">📈 finance bro</div>
+  </div>
+
+<script>
+  // ── THEME DATA ───────────────────────────────────────────────────────
+  const themes = {
+    twilight: {
+      searchPlaceholder: 'search the void...',
+      quotes: [
+        { text: 'the stars are not wanted now; put out every one.', author: '— w.h. auden' },
+        { text: 'i have loved the stars too fondly to be fearful of the night.', author: '— sarah williams' },
+        { text: 'she was a girl who knew how to be happy even when she was sad.', author: '— marilyn monroe' },
+        { text: 'we are all just walking each other home.', author: '— ram dass' },
+      ]
+    },
+    cleangirl: {
+      searchPlaceholder: 'search something...',
+      quotes: [
+        { text: "i'm fine. (somewhere inside that sentence is a scream.)", author: '— r.h. sin' },
+        { text: 'she had a galaxy in her eyes, a universe in her mind.', author: '' },
+        { text: 'soft life is a radical act.', author: '' },
+        { text: 'healing is not linear. neither is blush application.', author: '' },
+      ]
+    },
+    witchy: {
+      searchPlaceholder: 'seek what calls to you...',
+      quotes: [
+        { text: 'she is a wildness, impossible to tame.', author: '— r.h. sin' },
+        { text: 'magic is just science we don\'t understand yet.', author: '— arthur c. clarke' },
+        { text: 'when autumn comes, it doesn\'t ask.', author: '' },
+        { text: 'the moon will guide those who are lost.', author: '' },
+      ]
+    },
+    financebro: {
+      searchPlaceholder: '// search query...',
+      quotes: [
+        { text: 'time in the market beats timing the market. also drink water.', author: '— warren buffett (paraphrased, kind of)' },
+        { text: 'the best investment you can make is in yourself. and index funds.', author: '— someone on twitter' },
+        { text: 'past performance is not indicative of future results. please be okay.', author: '— every prospectus ever' },
+        { text: 'buy the dip. also please call your mother.', author: '— anon' },
+      ]
+    }
+  };
+
+  // ── CLOCK ────────────────────────────────────────────────────────────
+  function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    document.getElementById('clock').textContent = `${h}:${m}`;
+
+    const hour = now.getHours();
+    const greetings = {
+      twilight: hour < 5 ? 'still awake, i see' : hour < 12 ? 'good morning, starlight' : hour < 17 ? 'drifting through the afternoon' : 'good evening, dreamer',
+      cleangirl: hour < 5 ? "couldn't sleep either" : hour < 12 ? 'good morning' : hour < 17 ? 'good afternoon' : 'good evening',
+      witchy: hour < 5 ? 'the witching hour' : hour < 12 ? 'blessed morning' : hour < 17 ? 'the day turns' : 'dusk descends',
+      financebro: hour < 5 ? 'markets open in ' + (9 - hour) + 'h' : hour < 12 ? 'pre-market grind' : hour < 17 ? 'market hours' : 'after-hours'
+    };
+
+    const currentTheme = document.body.className;
+    document.getElementById('greeting').textContent = greetings[currentTheme] || greetings.twilight;
+
+    const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+    const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+    const dateStr = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+    document.getElementById('dateline').textContent = currentTheme === 'financebro'
+      ? `// ${dateStr.toUpperCase()} — Q${Math.ceil((now.getMonth()+1)/3)}`
+      : dateStr;
+  }
+
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // ── QUOTE ────────────────────────────────────────────────────────────
+  function setQuote(themeName) {
+    const qs = themes[themeName].quotes;
+    const q = qs[Math.floor(Math.random() * qs.length)];
+    document.getElementById('quote').textContent = `"${q.text}"`;
+    document.getElementById('quote-author').textContent = q.author;
+    document.getElementById('search').placeholder = themes[themeName].searchPlaceholder;
+  }
+
+  // ── STARS ────────────────────────────────────────────────────────────
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function generateStars(count) {
+    stars = [];
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.2,
+        opacity: Math.random(),
+        speed: Math.random() * 0.003 + 0.001,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  function drawStars(theme) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (theme !== 'twilight' && theme !== 'witchy') return;
+    const color = theme === 'witchy' ? '212, 133, 10' : '232, 213, 255';
+    const t = Date.now() * 0.001;
+    stars.forEach(s => {
+      const o = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(t * s.speed * 200 + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${color}, ${o * 0.9})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(() => drawStars(document.body.className));
+  }
+
+  resizeCanvas();
+  generateStars(180);
+  drawStars('twilight');
+  window.addEventListener('resize', () => { resizeCanvas(); generateStars(180); });
+
+  // ── THEME SWITCHER ───────────────────────────────────────────────────
+  let currentTheme = 'twilight';
+
+  function switchTheme(theme) {
+    document.body.className = theme;
+    currentTheme = theme;
+    document.querySelectorAll('.theme-pill').forEach(p => {
+      p.classList.toggle('active', p.dataset.theme === theme);
+    });
+    setQuote(theme);
+    updateClock();
+    if (theme === 'twilight' || theme === 'witchy') {
+      drawStars(theme);
+    }
+    chrome?.storage?.local?.set({ vibeTheme: theme });
+  }
+
+  document.querySelectorAll('.theme-pill').forEach(pill => {
+    pill.addEventListener('click', () => switchTheme(pill.dataset.theme));
+  });
+
+  // ── SEARCH ───────────────────────────────────────────────────────────
+  document.getElementById('search').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.value.trim()) {
+      window.location.href = `https://www.google.com/search?q=${encodeURIComponent(e.target.value)}`;
+    }
+  });
+
+  // ── WITCHY PARTICLES ─────────────────────────────────────────────────
+  const witchyEmojis = ['🍂','🍁','✨','🌙','🕯️','🌿','⭐'];
+  setInterval(() => {
+    if (document.body.className !== 'witchy') return;
+    const el = document.createElement('div');
+    el.className = 'particle';
+    el.textContent = witchyEmojis[Math.floor(Math.random() * witchyEmojis.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.bottom = '0';
+    el.style.animationDuration = (4 + Math.random() * 4) + 's';
+    el.style.fontSize = (0.7 + Math.random() * 0.8) + 'rem';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 8000);
+  }, 1200);
+
+  // ── INIT ─────────────────────────────────────────────────────────────
+  try {
+    chrome?.storage?.local?.get('vibeTheme', (data) => {
+      if (data?.vibeTheme) switchTheme(data.vibeTheme);
+      else setQuote('twilight');
+    });
+  } catch {
+    setQuote('twilight');
+  }
+</script>
+</body>
+</html>

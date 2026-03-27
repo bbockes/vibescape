@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibescape</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 280px;
+      background: #0d0a1a;
+      color: #e8d5ff;
+      font-family: 'Syne', sans-serif;
+      padding: 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+    .logo span { color: #9b59ff; }
+
+    .tagline {
+      font-size: 0.7rem;
+      color: #7a5fa0;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #5a4070;
+      margin-bottom: 0.75rem;
+    }
+
+    .theme-list { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .theme-option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      background: rgba(255,255,255,0.03);
+    }
+    .theme-option:hover { background: rgba(155, 89, 255, 0.1); border-color: rgba(155,89,255,0.2); }
+    .theme-option.active { background: rgba(155, 89, 255, 0.15); border-color: rgba(155,89,255,0.4); }
+
+    .theme-emoji { font-size: 1.1rem; width: 1.5rem; text-align: center; }
+
+    .theme-info { flex: 1; }
+    .theme-name { font-size: 0.82rem; font-weight: 700; color: #e8d5ff; }
+    .theme-desc { font-size: 0.68rem; color: #5a4070; margin-top: 0.1rem; }
+
+    .theme-option.active .theme-name { color: #c89dff; }
+    .theme-option.active .theme-desc { color: #7a5fa0; }
+
+    .divider { height: 1px; background: rgba(155,89,255,0.1); margin: 1rem 0; }
+
+    .footer {
+      font-size: 0.65rem;
+      color: #3a2a50;
+      text-align: center;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">vibe<span>scape</span></div>
+  <div class="tagline">aesthetic for your browser</div>
+
+  <div class="label">choose your vibe</div>
+
+  <div class="theme-list">
+    <div class="theme-option active" data-theme="twilight">
+      <div class="theme-emoji">🌙</div>
+      <div class="theme-info">
+        <div class="theme-name">twilight coded</div>
+        <div class="theme-desc">moody, purple, celestial sadcore</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="cleangirl">
+      <div class="theme-emoji">🫧</div>
+      <div class="theme-info">
+        <div class="theme-name">clean girl</div>
+        <div class="theme-desc">linen + latté + quiet suffering</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="witchy">
+      <div class="theme-emoji">🍂</div>
+      <div class="theme-info">
+        <div class="theme-name">witchy fall</div>
+        <div class="theme-desc">amber, spells, chaotic foliage</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="financebro">
+      <div class="theme-emoji">📈</div>
+      <div class="theme-info">
+        <div class="theme-name">finance bro</div>
+        <div class="theme-desc">ironic minimalism, drink water</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="theme-option" id="toggle-enabled" style="justify-content: space-between;">
+    <div style="display:flex; align-items:center; gap:0.75rem;">
+      <div class="theme-emoji">✨</div>
+      <div class="theme-info">
+        <div class="theme-name">apply to websites</div>
+        <div class="theme-desc">keep pages usable (no overlays)</div>
+      </div>
+    </div>
+    <div id="enabled-pill" style="
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(155,89,255,0.35);
+      background: rgba(155,89,255,0.10);
+      color: #c89dff;
+      user-select: none;
+    ">on</div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="footer">open a new tab to see your vibe ✦</div>
+
+  <script>
+    const options = document.querySelectorAll('.theme-option');
+    const toggleEnabled = document.getElementById('toggle-enabled');
+    const enabledPill = document.getElementById('enabled-pill');
+
+    function setActive(theme) {
+      options.forEach(o => o.classList.toggle('active', o.dataset.theme === theme));
+    }
+
+    function setEnabledUI(enabled) {
+      enabledPill.textContent = enabled ? 'on' : 'off';
+      enabledPill.style.borderColor = enabled ? 'rgba(155,89,255,0.35)' : 'rgba(122,95,160,0.35)';
+      enabledPill.style.background = enabled ? 'rgba(155,89,255,0.10)' : 'rgba(122,95,160,0.08)';
+      enabledPill.style.color = enabled ? '#c89dff' : '#7a5fa0';
+    }
+
+    // Load saved theme
+    chrome.storage.local.get({ vibeTheme: 'twilight', vibeEnabled: true }, (data) => {
+      if (data.vibeTheme) setActive(data.vibeTheme);
+      setEnabledUI(!!data.vibeEnabled);
+    });
+
+    options.forEach(option => {
+      if (!option.dataset.theme) return;
+      option.addEventListener('click', () => {
+        const theme = option.dataset.theme;
+        chrome.storage.local.set({ vibeTheme: theme });
+        setActive(theme);
+      });
+    });
+
+    toggleEnabled.addEventListener('click', () => {
+      chrome.storage.local.get({ vibeEnabled: true }, (data) => {
+        const next = !data.vibeEnabled;
+        chrome.storage.local.set({ vibeEnabled: next });
+        setEnabledUI(next);
+      });
+    });
+  </script>
+</body>
+</html>
