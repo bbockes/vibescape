@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vibescape</title>
+  <title>New Tab</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@500;600;800&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=Elsie:wght@400;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Marcellus&family=News+Cycle:wght@400;700&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Rye&family=Space+Mono:ital@0;1&family=Syne:wght@400;700;800&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@500;600;800&family=Cinzel:wght@400;600&family=Cinzel+Decorative&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=Eagle+Lake&family=Elsie:wght@400;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Marcellus&family=News+Cycle:wght@400;700&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Rye&family=Space+Mono:ital@0;1&family=Syne:wght@400;700;800&family=VT323&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -63,6 +63,12 @@
       .content,
       .ticker-inner,
       .particle {
+        animation: none !important;
+      }
+      body.commonroom .content {
+        transform: translateY(5.5vh);
+      }
+      body.commonroom.motion-enabled::before {
         animation: none !important;
       }
       .particle {
@@ -447,6 +453,194 @@
     body.housecandles .clock { color: #f3dca8; text-shadow: 0 0 26px #d8aa5a44; } body.housecandles .greeting { color: #d2b58b; } body.housecandles .date-line { color: #aa8760; }
     body.housecandles .search-bar { background: rgba(243,220,168,0.06); border: 1px solid rgba(243,220,168,0.26); color: #f6e6c7; } body.housecandles .search-bar::placeholder { color: #ad8a5f; }
     body.housecandles .quote { color: #e8cfa5; font-size: clamp(1.1rem, 2vw, 1.35rem) !important; } body.housecandles .quote-author { color: #bd9a70; }
+
+    /* ─── COMMON ROOM SCROLL (full-bleed room photo + parchment scroll PNG) ─ */
+    body.commonroom {
+      background: #070504;
+      font-family: 'Libre Baskerville', 'Cormorant Garamond', Georgia, serif;
+    }
+    body.commonroom.motion-enabled::before {
+      animation: commonroomFlicker 9s ease-in-out infinite alternate;
+    }
+    @keyframes commonroomFlicker {
+      0% { filter: brightness(0.9) saturate(104%); }
+      100% { filter: brightness(1.06) saturate(118%); }
+    }
+    body.commonroom::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(ellipse 85% 75% at 50% 42%, rgba(0, 0, 0, 0.15) 0%, rgba(5, 3, 2, 0.72) 100%),
+        url('assets/commonroom-bg.png');
+      background-size: cover, cover;
+      background-position: center, center;
+      background-repeat: no-repeat, no-repeat;
+      background-attachment: fixed, fixed;
+    }
+    body.commonroom .stars { display: none; }
+    @keyframes commonroomRiseIn {
+      0% { opacity: 0; transform: translateY(40vh); }
+      14% { opacity: 1; }
+      /* Settle lower in the viewport so the clock stack sits nearer the scroll */
+      100% { opacity: 1; transform: translateY(5.5vh); }
+    }
+    body.commonroom .content {
+      position: relative;
+      z-index: 2;
+      animation: commonroomRiseIn 2s cubic-bezier(0.2, 0.85, 0.36, 1) forwards;
+    }
+    body.commonroom .clock {
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-weight: 400;
+      color: #f8ebd4;
+      margin-top: 0.4rem !important;
+      text-shadow:
+        0 0 22px rgba(255, 210, 120, 0.45),
+        0 0 48px rgba(255, 175, 80, 0.2),
+        0 2px 0 rgba(75, 45, 15, 0.35);
+      letter-spacing: 0.05em;
+    }
+    body.commonroom .greeting {
+      color: #ebd9c4;
+      text-shadow: 0 1px 14px rgba(0, 0, 0, 0.85);
+      margin-top: 0.35rem !important;
+    }
+    body.commonroom .date-line {
+      color: #d4b892;
+      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.82);
+      margin-top: 0.65rem !important;
+    }
+    body.commonroom .search-wrapper {
+      margin-top: clamp(0.65rem, 1.4vh, 1.1rem);
+      width: min(96vw, 680px);
+      max-width: 100%;
+    }
+    /*
+      gap alone won't match perceived distance: .search-shell's box is tall (aspect-ratio)
+      and drop-shadow extends below; pull buttons up with negative margin.
+    */
+    body.commonroom .search-row {
+      gap: 8px;
+    }
+    body.commonroom .search-actions {
+      margin-top: -1.25rem;
+      gap: 1rem;
+    }
+    /*
+      Scroll PNG uses transparency (alpha) for the old black matte.
+      Drop-shadow lives on .search-shell so it follows the parchment shape, not a filter-isolated wrapper.
+    */
+    body.commonroom .search-shell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      aspect-ratio: 1024 / 520;
+      max-height: min(38vh, 196px);
+      min-height: clamp(58px, 13vw, 124px);
+      box-sizing: border-box;
+      padding: clamp(0.52rem, 2.8vw, 1.15rem) 19% clamp(0.48rem, 2.4vw, 0.95rem);
+      overflow: visible;
+      filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+    }
+    body.commonroom .search-shell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: url('assets/commonroom-scroll.png') center / 100% 100% no-repeat;
+    }
+    body.commonroom .search-shell .search-bar {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      min-width: 0;
+      background: transparent !important;
+      border: none !important;
+      font-family: 'Eagle Lake', 'Libre Baskerville', serif;
+      font-size: clamp(1.02rem, 3.15vw, 1.2rem) !important;
+      font-style: italic;
+      font-weight: 400;
+      /* Iron-gall / soot ink: blue-black with soft feather bleed into parchment */
+      color: #141022;
+      letter-spacing: 0.04em;
+      caret-color: #0f0a18;
+      text-shadow:
+        0 0 1px rgba(25, 18, 48, 0.45),
+        0 1px 2px rgba(18, 10, 40, 0.2),
+        0.4px 0.8px 1px rgba(40, 25, 75, 0.12);
+      padding: 0.48rem 0.65rem 0.48rem 0.45rem !important;
+      box-shadow: none !important;
+    }
+    body.commonroom .search-bar::placeholder {
+      color: rgba(48, 34, 62, 0.45);
+      font-style: italic;
+      text-shadow: none;
+      letter-spacing: 0.03em;
+    }
+    body.commonroom .search-bar:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(255, 200, 90, 0.5);
+    }
+    /* Search: carved dark wood + fine grain */
+    body.commonroom .search-actions .search-btn:first-of-type {
+      min-width: 9.35rem;
+      height: 44px;
+      padding: 0 1.4rem;
+      border-radius: 5px;
+      border: 2px solid #2f180c;
+      border-top-color: #6a4330;
+      border-bottom-color: #120805;
+      background:
+        repeating-linear-gradient(92deg, transparent 0 3px, rgba(0, 0, 0, 0.04) 3px 4px),
+        repeating-linear-gradient(185deg, rgba(55, 32, 18, 0.12) 0 1px, transparent 1px 10px),
+        linear-gradient(180deg, #5c3822 0%, #3d2415 35%, #2c150c 70%, #1a0c06 100%);
+      color: #f0d896;
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.09em;
+      box-shadow:
+        inset 0 2px 4px rgba(255, 220, 170, 0.1),
+        inset 0 -5px 14px rgba(0, 0, 0, 0.55),
+        0 5px 14px rgba(0, 0, 0, 0.45);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
+    }
+    /* Random: bright gold ingot */
+    body.commonroom .search-actions .search-btn:last-of-type {
+      min-width: 9.35rem;
+      height: 44px;
+      padding: 0 1.4rem;
+      border-radius: 5px;
+      border: 2px solid #a67c0a;
+      border-top-color: #fff2b8;
+      border-bottom-color: #5a3f06;
+      background:
+        linear-gradient(168deg, #fff8e8 0%, #ffe898 14%, #f4c430 38%, #d4a012 62%, #9a7010 88%, #6b4808 100%);
+      color: #160b02;
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      box-shadow:
+        0 0 26px rgba(255, 210, 80, 0.55),
+        0 3px 8px rgba(0, 0, 0, 0.35),
+        inset 0 2px 0 rgba(255, 255, 255, 0.55),
+        inset 0 -4px 10px rgba(90, 55, 8, 0.45);
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+    body.commonroom .quote {
+      color: #ede4d4;
+      font-size: clamp(1.1rem, 2vw, 1.35rem) !important;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.9);
+    }
+    body.commonroom .quote-author {
+      color: #e0c896;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.88);
+    }
 
     /* ─── THEME: EMBER RUNES ─────────────────────────────────────────── */
     body.emberrunes { background: #120d08; font-family: 'Cinzel', serif; }
@@ -1002,12 +1196,16 @@
       perspective: 520px;
       perspective-origin: 50% 10%;
     }
+    /* Rises from below like the classic crawl; settles into final tilt. */
     @keyframes openingcrawlStackIn {
-      from {
+      0% {
         opacity: 0;
-        transform: translateY(calc(-5vh + 24px)) rotateX(62deg);
+        transform: translateY(56vh) rotateX(56deg);
       }
-      to {
+      14% {
+        opacity: 1;
+      }
+      100% {
         opacity: 1;
         transform: translateY(-5vh) rotateX(54deg);
       }
@@ -1018,7 +1216,7 @@
       transform-origin: 50% 88%;
       transform-style: preserve-3d;
       backface-visibility: hidden;
-      animation: openingcrawlStackIn 1.05s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      animation: openingcrawlStackIn 2.75s cubic-bezier(0.2, 0.85, 0.36, 1) forwards;
     }
     body.openingcrawl .clock {
       font-family: 'Barlow Condensed', sans-serif;
@@ -1240,6 +1438,7 @@
     body.rapturedrown { --vs-clock-scale: 0.92; }
     body.grandlinesea { --vs-clock-scale: 0.95; }
     body.openingcrawl { --vs-clock-scale: 1.06; }
+    body.commonroom { --vs-clock-scale: 0.98; }
 
     .search-wrapper {
       margin-top: 3rem;
@@ -1268,6 +1467,10 @@
     }
     body.brutalredacted .search-shell .search-bar,
     body.inkversepop .search-shell .search-bar {
+      border-radius: 0 !important;
+    }
+    /* Follow global pill rule — transparent field on bitmap scroll */
+    body.commonroom .search-shell .search-bar {
       border-radius: 0 !important;
     }
     .search-mag {
@@ -1324,6 +1527,9 @@
     }
     body.brutalredacted .search-mag {
       color: rgba(19, 19, 19, 0.5);
+    }
+    body.commonroom .search-mag {
+      display: none !important;
     }
     body.cleangirl .search-mag:hover,
     body.financebro .search-mag:hover,
@@ -1434,6 +1640,9 @@
     }
     body.brutalredacted .search-btn:focus-visible {
       box-shadow: 6px 6px 0 #13131344;
+    }
+    body.commonroom .search-btn:focus-visible {
+      box-shadow: 0 0 0 2px rgba(255, 200, 100, 0.55), 0 0 0 4px rgba(20, 12, 8, 0.65);
     }
 
     /* Search / Random: lighter raised hover per theme (bright fill + soft accent rim / glow) */
@@ -1736,6 +1945,30 @@
       background: rgba(255, 232, 31, 0.12);
       color: #fffce8;
       box-shadow: 0 0 28px rgba(255, 232, 31, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    }
+    body.commonroom .search-actions .search-btn:first-of-type:hover {
+      border-top-color: #7a5240;
+      border-bottom-color: #0d0603;
+      background:
+        repeating-linear-gradient(92deg, transparent 0 3px, rgba(0, 0, 0, 0.035) 3px 4px),
+        repeating-linear-gradient(185deg, rgba(70, 40, 22, 0.14) 0 1px, transparent 1px 10px),
+        linear-gradient(180deg, #6b4530 0%, #4a2a18 38%, #351a0e 72%, #221008 100%);
+      color: #fff4d4;
+      box-shadow:
+        inset 0 2px 5px rgba(255, 230, 190, 0.14),
+        inset 0 -5px 14px rgba(0, 0, 0, 0.5),
+        0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+    body.commonroom .search-actions .search-btn:last-of-type:hover {
+      border-color: #e8c040;
+      background:
+        linear-gradient(168deg, #fffef8 0%, #ffee98 16%, #ffd030 42%, #e8b018 66%, #a87810 92%, #7a5408 100%);
+      color: #0c0601;
+      box-shadow:
+        0 0 36px rgba(255, 220, 100, 0.65),
+        0 4px 10px rgba(0, 0, 0, 0.32),
+        inset 0 2px 0 rgba(255, 255, 255, 0.65),
+        inset 0 -4px 10px rgba(80, 50, 6, 0.4);
     }
     body.cleangirl .search-btn:hover {
       border-color: rgba(42, 37, 32, 0.12);

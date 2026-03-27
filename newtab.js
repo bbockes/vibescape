@@ -97,6 +97,15 @@ const themes = {
       { text: "study first, destiny second.", author: "" },
     ],
   },
+  commonroom: {
+    searchPlaceholder: "ink your inquiry upon the scroll…",
+    quotes: [
+      { text: "books! and cleverness! there are more important things.", author: "— hermione granger" },
+      { text: "happiness can be found, even in the darkest of times, if one only remembers to turn on the light.", author: "— albus dumbledore" },
+      { text: "it matters not what someone is born, but what they grow to be.", author: "— albus dumbledore" },
+      { text: "the corridors remember footfalls; the candles remember faces.", author: "" },
+    ],
+  },
   emberrunes: {
     searchPlaceholder: "seek old songs and hidden roads...",
     quotes: [
@@ -734,6 +743,14 @@ function updateClock() {
           : hour < 17
             ? "afternoon in the common room"
             : "candlelit revision",
+    commonroom:
+      hour < 5
+        ? "midnight oil and moving portraits"
+        : hour < 12
+          ? "ember-quiet before breakfast"
+          : hour < 17
+            ? "afternoon light through stone arches"
+            : "firelight symphonies and exam dread",
     emberrunes:
       hour < 5
         ? "campfire watch"
