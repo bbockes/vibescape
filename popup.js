@@ -157,6 +157,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function sortFavoritesFirst(favoritesOrdered) {
     if (!themeListEl) return;
+    const bodies = themeListEl.querySelectorAll(".theme-section__body");
+    if (bodies.length) {
+      bodies.forEach((body) => {
+        const rows = Array.from(body.querySelectorAll(".theme-option[data-theme]"));
+        const favSet = new Set(favoritesOrdered);
+        const favRows = favoritesOrdered.map((id) => rows.find((r) => r.dataset.theme === id)).filter(Boolean);
+        const rest = rows.filter((r) => !favSet.has(r.dataset.theme));
+        [...favRows, ...rest].forEach((r) => body.appendChild(r));
+      });
+      return;
+    }
     const rows = getThemeRows();
     const favSet = new Set(favoritesOrdered);
     const favRows = favoritesOrdered.map((id) => rows.find((r) => r.dataset.theme === id)).filter(Boolean);

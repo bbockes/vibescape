@@ -18,14 +18,15 @@
       min-width: 460px;
       max-width: 460px;
       height: auto;
-      max-height: min(100vh, 900px);
+      /* Tall enough to show theme list + pager + footer without scroll on most displays; width unchanged */
+      max-height: min(100dvh, 1200px);
     }
 
     body {
       width: 460px;
       min-width: 460px;
       max-width: 460px;
-      max-height: min(100vh, 900px);
+      max-height: min(100dvh, 1200px);
       height: auto;
       background: #0d0a1a;
       color: #e8d5ff;
@@ -157,6 +158,47 @@
       min-height: calc((var(--theme-row-h) * 5) + (var(--theme-row-gap) * 4));
     }
 
+    .theme-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--theme-row-gap);
+    }
+    .theme-section + .theme-section {
+      margin-top: 0.55rem;
+      padding-top: 0.45rem;
+      border-top: 1px solid rgba(155, 89, 255, 0.12);
+    }
+    .theme-section__header {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9b7fd4;
+      padding: 0.2rem 0.15rem 0.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .theme-section__badge {
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #f5cc5c;
+      background: rgba(245, 204, 92, 0.1);
+      border: 1px solid rgba(245, 204, 92, 0.28);
+      border-radius: 6px;
+      padding: 0.18rem 0.42rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .theme-section__body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--theme-row-gap);
+    }
+
     .theme-option {
       display: flex;
       align-items: center;
@@ -232,6 +274,12 @@
       text-transform: uppercase;
       padding: 0.35rem 0.55rem;
       cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .pager-btn:hover:not(:disabled) {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(200, 157, 255, 0.45);
+      color: #e8d5ff;
     }
     .pager-btn:disabled {
       opacity: 0.45;
@@ -247,10 +295,8 @@
       white-space: nowrap;
     }
 
-    .divider { height: 1px; background: rgba(155,89,255,0.1); margin: 0.8rem 0; }
-
     .chrome-footer-tip {
-      margin-top: 0.55rem;
+      margin-top: 1rem;
       padding: 0.55rem 0.35rem 0.2rem;
       border-top: 1px solid rgba(155, 89, 255, 0.14);
       text-align: center;
@@ -308,9 +354,19 @@
   </div>
 
   <div class="label">choose your vibe</div>
-  <p class="favorites-hint">Tap ★ to favorite — saved themes float to the top of this list.</p>
+  <p class="favorites-hint">Tap ★ to favorite — saved themes float to the top of their section.</p>
 
   <div class="theme-list">
+    <div class="theme-section">
+      <div class="theme-section__header">Original vibes</div>
+      <div class="theme-section__body">
+    <div class="theme-option" data-theme="financebro">
+      <div class="theme-emoji">📈</div>
+      <div class="theme-info">
+        <div class="theme-name">finance bro</div>
+        <div class="theme-desc">ironic minimalism, drink water</div>
+      </div>
+    </div>
     <div class="theme-option active" data-theme="twilight">
       <div class="theme-emoji">🌙</div>
       <div class="theme-info">
@@ -325,20 +381,6 @@
         <div class="theme-desc">linen + latté + quiet suffering</div>
       </div>
     </div>
-    <div class="theme-option" data-theme="witchy">
-      <div class="theme-emoji">🍂</div>
-      <div class="theme-info">
-        <div class="theme-name">witchy fall</div>
-        <div class="theme-desc">amber, spells, chaotic foliage</div>
-      </div>
-    </div>
-    <div class="theme-option" data-theme="financebro">
-      <div class="theme-emoji">📈</div>
-      <div class="theme-info">
-        <div class="theme-name">finance bro</div>
-        <div class="theme-desc">ironic minimalism, drink water</div>
-      </div>
-    </div>
     <div class="theme-option" data-theme="neonnocturne">
       <div class="theme-emoji">🪩</div>
       <div class="theme-info">
@@ -346,11 +388,11 @@
         <div class="theme-desc">night coders + synthwave glow</div>
       </div>
     </div>
-    <div class="theme-option" data-theme="librarydusk">
-      <div class="theme-emoji">📚</div>
+    <div class="theme-option" data-theme="witchy">
+      <div class="theme-emoji">🍂</div>
       <div class="theme-info">
-        <div class="theme-name">library dusk</div>
-        <div class="theme-desc">bookish, warm, quiet focus</div>
+        <div class="theme-name">witchy fall</div>
+        <div class="theme-desc">amber, spells, chaotic foliage</div>
       </div>
     </div>
     <div class="theme-option" data-theme="oceanglass">
@@ -367,18 +409,11 @@
         <div class="theme-desc">hard contrast, no fluff, ship it</div>
       </div>
     </div>
-    <div class="theme-option" data-theme="commonroom">
-      <div class="theme-emoji">📜</div>
+    <div class="theme-option" data-theme="solarpunkgarden">
+      <div class="theme-emoji">🌱</div>
       <div class="theme-info">
-        <div class="theme-name">common room scroll</div>
-        <div class="theme-desc">parchment search bar, hearth glow, magical serif time</div>
-      </div>
-    </div>
-    <div class="theme-option" data-theme="emberrunes">
-      <div class="theme-emoji">⚔️</div>
-      <div class="theme-info">
-        <div class="theme-name">ember runes</div>
-        <div class="theme-desc">mythic dusk, oathfire, long roads</div>
+        <div class="theme-name">solarpunk garden</div>
+        <div class="theme-desc">optimistic green city daylight</div>
       </div>
     </div>
     <div class="theme-option" data-theme="starcartographer">
@@ -386,13 +421,6 @@
       <div class="theme-info">
         <div class="theme-name">star cartographer</div>
         <div class="theme-desc">constellation maps + explorer calm</div>
-      </div>
-    </div>
-    <div class="theme-option" data-theme="solarpunkgarden">
-      <div class="theme-emoji">🌱</div>
-      <div class="theme-info">
-        <div class="theme-name">solarpunk garden</div>
-        <div class="theme-desc">optimistic green city daylight</div>
       </div>
     </div>
     <div class="theme-option" data-theme="zenink">
@@ -405,7 +433,7 @@
     <div class="theme-option" data-theme="retrofuturearcade">
       <div class="theme-emoji">🕹️</div>
       <div class="theme-info">
-        <div class="theme-name">retro future arcade</div>
+        <div class="theme-name">retro arcade</div>
         <div class="theme-desc">CRT glow and playful velocity</div>
       </div>
     </div>
@@ -416,53 +444,11 @@
         <div class="theme-desc">sunwashed neutrals and clean air</div>
       </div>
     </div>
-    <div class="theme-option" data-theme="alpinefjord">
-      <div class="theme-emoji">🏔️</div>
-      <div class="theme-info">
-        <div class="theme-name">alpine fjord</div>
-        <div class="theme-desc">cold clarity + northern depth</div>
-      </div>
-    </div>
     <div class="theme-option" data-theme="spacesalvage">
       <div class="theme-emoji">🚀</div>
       <div class="theme-info">
         <div class="theme-name">space salvage</div>
         <div class="theme-desc">scrapyard stars + frontier grit</div>
-      </div>
-    </div>
-    <div class="theme-option" data-theme="gothicmanor">
-      <div class="theme-emoji">🕰️</div>
-      <div class="theme-info">
-        <div class="theme-name">gothic manor</div>
-        <div class="theme-desc">storm windows and velvet dusk</div>
-      </div>
-    </div>
-    <div class="theme-option" data-theme="cybersamurai">
-      <div class="theme-emoji">🗡️</div>
-      <div class="theme-info">
-        <div class="theme-name">cyber samurai</div>
-        <div class="theme-desc">neon discipline + steel silence</div>
-      </div>
-    </div>
-    <div class="theme-option" data-theme="cottagealchemy">
-      <div class="theme-emoji">🧪</div>
-      <div class="theme-info">
-        <div class="theme-name">cottage alchemy</div>
-        <div class="theme-desc">herbal notes + sunlit potions</div>
-      </div>
-    </div>
-    <div class="theme-option" data-theme="cosmicwestern">
-      <div class="theme-emoji">🤠</div>
-      <div class="theme-info">
-        <div class="theme-name">cosmic western</div>
-        <div class="theme-desc">desert dust meets star lanes</div>
-      </div>
-    </div>
-    <div class="theme-option" data-theme="vhsparanormal">
-      <div class="theme-emoji">📼</div>
-      <div class="theme-info">
-        <div class="theme-name">vhs paranormal</div>
-        <div class="theme-desc">grain, static, midnight suburb</div>
       </div>
     </div>
     <div class="theme-option" data-theme="mechhangar">
@@ -477,6 +463,28 @@
       <div class="theme-info">
         <div class="theme-name">opaline court</div>
         <div class="theme-desc">pastel royalty + jeweled mist</div>
+      </div>
+    </div>
+      </div>
+    </div>
+    <div class="theme-section theme-section--stories">
+      <div class="theme-section__header">
+        Movies &amp; books
+        <span class="theme-section__badge" title="Planned for Pro / paid unlock">Pro</span>
+      </div>
+      <div class="theme-section__body">
+    <div class="theme-option" data-theme="commonroom">
+      <div class="theme-emoji">📜</div>
+      <div class="theme-info">
+        <div class="theme-name">common room scroll</div>
+        <div class="theme-desc">parchment search bar, hearth glow, magical serif time</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="emberrunes">
+      <div class="theme-emoji">⚔️</div>
+      <div class="theme-info">
+        <div class="theme-name">ember runes</div>
+        <div class="theme-desc">mythic dusk, oathfire, long roads</div>
       </div>
     </div>
     <div class="theme-option" data-theme="tyrellnoir">
@@ -759,14 +767,14 @@
         <div class="theme-desc">deep space, classic yellow crawl tilted in perspective</div>
       </div>
     </div>
+      </div>
+    </div>
   </div>
   <div class="pager">
     <button class="pager-btn" id="prev-batch" type="button">previous 5</button>
     <div class="pager-status" id="batch-status">batch 1 of 1</div>
     <button class="pager-btn" id="next-batch" type="button">next 5</button>
   </div>
-
-  <div class="divider"></div>
 
   <div class="chrome-footer-tip">
     <p class="chrome-footer-tip__text">
