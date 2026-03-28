@@ -304,15 +304,6 @@ const themes = {
       { text: "okay, let's do this one last time.", author: "— miles morales" },
     ],
   },
-  wastelyellow: {
-    searchPlaceholder: "outrun the dust of doubt...",
-    quotes: [
-      { text: "what a lovely day!", author: "— nux" },
-      { text: "witness me!", author: "— nux" },
-      { text: "we are not things.", author: "— the splendid angharad" },
-      { text: "who killed the world?", author: "— the dag" },
-    ],
-  },
   bridesvengeance: {
     searchPlaceholder: "name your list, begin...",
     quotes: [
@@ -338,15 +329,6 @@ const themes = {
       { text: "if you focus on what you left behind, you will never see what lies ahead.", author: "— chef gusteau" },
       { text: "the only thing predictable about life is its unpredictability.", author: "— chef gusteau" },
       { text: "change is nature.", author: "— chef gusteau" },
-    ],
-  },
-  goldentwist: {
-    searchPlaceholder: "unwrap one impossible answer...",
-    quotes: [
-      { text: "a little nonsense now and then is relished by the wisest men.", author: "— willy wonka (novel)" },
-      { text: "come with me, and you'll be in a world of pure imagination.", author: "— willy wonka" },
-      { text: "strike that. reverse it.", author: "— willy wonka" },
-      { text: "the suspense is terrible. i hope it'll last.", author: "— willy wonka" },
     ],
   },
   shirecomfort: {
@@ -403,15 +385,6 @@ const themes = {
       { text: "they're a rotten crowd… you're worth the whole damn bunch put together.", author: "— nick carraway" },
     ],
   },
-  mercersterile: {
-    searchPlaceholder: "pump primer: search...",
-    quotes: [
-      { text: "i have to return some videotapes.", author: "— patrick bateman" },
-      { text: "there is an idea of a patrick bateman, some kind of abstraction.", author: "— patrick bateman" },
-      { text: "i'm into, uh, well, murders and executions mostly.", author: "— patrick bateman" },
-      { text: "this is not an exit.", author: "— patrick bateman" },
-    ],
-  },
   buttonmothers: {
     searchPlaceholder: "look for the small locked door...",
     quotes: [
@@ -446,15 +419,6 @@ const themes = {
       { text: "better out than in, i always say.", author: "— shrek" },
       { text: "what are you doing in my swamp?!", author: "— shrek" },
       { text: "you know what else everybody likes? parfaits!", author: "— donkey" },
-    ],
-  },
-  icecutcrystal: {
-    searchPlaceholder: "let it query...",
-    quotes: [
-      { text: "love is putting someone else's needs before yours.", author: "— olaf" },
-      { text: "the cold never bothered me anyway.", author: "— elsa" },
-      { text: "some people are worth melting for.", author: "— olaf" },
-      { text: "conceal, don't feel, don't let them know.", author: "— elsa" },
     ],
   },
   owlerytwilight: {
@@ -796,8 +760,6 @@ function updateClock() {
       hour < 5 ? "snow on sculpted hedges" : hour < 12 ? "suburban gothic coffee" : hour < 17 ? "long shadow lawns" : "handmade dusk",
     inkversepop:
       hour < 5 ? "after-midnight panel" : hour < 12 ? "splash page morning" : hour < 17 ? "stutter-step afternoon" : "multiverse night shift",
-    wastelyellow:
-      hour < 5 ? "engine cool-down" : hour < 12 ? "war rig sunrise" : hour < 17 ? "dust devil noon" : "flame horizon night",
     bridesvengeance:
       hour < 5 ? "list item: dead hour" : hour < 12 ? "yellow morning clarity" : hour < 17 ? "blade-bright afternoon" : "vengeance weather",
     rabbitholedream:
@@ -810,8 +772,6 @@ function updateClock() {
           : hour < 17
             ? "service window glow"
             : "dinner hour at gusteau's",
-    goldentwist:
-      hour < 5 ? "small hours, uneasy sweet" : hour < 12 ? "factory whistle sweet" : hour < 17 ? "wrapper-glitter daylight" : "golden ticket dusk",
     shirecomfort:
       hour < 5 ? "seed-cake time" : hour < 12 ? "proper elevenses weather" : hour < 17 ? "hillside nap light" : "party field evening",
     lanternnarnia:
@@ -824,8 +784,6 @@ function updateClock() {
       hour < 5 ? "milk-plus hour" : hour < 12 ? "sharp-dressed harmattan" : hour < 17 ? "korova sunlight" : "ultra night out",
     gatsbygilded:
       hour < 5 ? "last boat ashore" : hour < 12 ? "west egg coffee" : hour < 17 ? "prohibition glow" : "green light hour",
-    mercersterile:
-      hour < 5 ? "pre-market facial routine" : hour < 12 ? "boardroom sterile dawn" : hour < 17 ? "reservation at dorsia?" : "paul allen hours",
     buttonmothers:
       hour < 5 ? "key on a string" : hour < 12 ? "other breakfast" : hour < 17 ? "tunnel light hour" : "supper with the other mother",
     spiralnight:
@@ -834,8 +792,6 @@ function updateClock() {
       hour < 5 ? "train at the flood" : hour < 12 ? "yuya morning steam" : hour < 17 ? "spirit shift change" : "moon on the bathhouse",
     swampfable:
       hour < 5 ? "onion-layer insomnia" : hour < 12 ? "donkey-bridge morning" : hour < 17 ? "storybook roast hour" : "far far away night",
-    icecutcrystal:
-      hour < 5 ? "polar twilight calm" : hour < 12 ? "frozen fractal morning" : hour < 17 ? "summit thaw light" : "twilight freeze, let it go",
     owlerytwilight:
       hour < 5 ? "night shift in the stacks" : hour < 12 ? "breakfast in the great hall" : hour < 17 ? "afternoon charms" : "astronomy tower hour",
     binarysunset:
