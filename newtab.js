@@ -97,15 +97,6 @@ const themes = {
       { text: "the corridors remember footfalls; the candles remember faces.", author: "" },
     ],
   },
-  emberrunes: {
-    searchPlaceholder: "seek old songs and hidden roads...",
-    quotes: [
-      { text: "not all those who wander are lost.", author: "— j.r.r. tolkien" },
-      { text: "still round the corner there may wait a new road.", author: "— j.r.r. tolkien" },
-      { text: "courage is often quiet and travel-worn.", author: "" },
-      { text: "keep faith when the fire burns low.", author: "" },
-    ],
-  },
   starcartographer: {
     searchPlaceholder: "plot a course...",
     quotes: [
@@ -251,21 +242,12 @@ const themes = {
     ],
   },
   matrixfall: {
-    searchPlaceholder: "follow the white keyword...",
+    searchPlaceholder: "",
     quotes: [
       { text: "there is no spoon.", author: "— spoon boy" },
       { text: "no one can be told what the matrix is. you have to see it for yourself.", author: "— morpheus" },
       { text: "there is a difference between knowing the path and walking the path.", author: "— morpheus" },
       { text: "welcome to the real world.", author: "— morpheus" },
-    ],
-  },
-  pandoraeve: {
-    searchPlaceholder: "search the glowing canopy...",
-    quotes: [
-      { text: "i see you.", author: "— neytiri" },
-      { text: "all energy is only borrowed, and someday you have to give it back.", author: "— mo'at" },
-      { text: "everything is backwards now, like out there is the true world.", author: "— jake sully" },
-      { text: "sometimes your whole life boils down to one insane move.", author: "— jake sully" },
     ],
   },
   rivendelleve: {
@@ -331,15 +313,6 @@ const themes = {
       { text: "change is nature.", author: "— chef gusteau" },
     ],
   },
-  shirecomfort: {
-    searchPlaceholder: "second-breakfast for thought...",
-    quotes: [
-      { text: "in a hole in the ground there lived a hobbit.", author: "— j.r.r. tolkien" },
-      { text: "there is nothing like looking, if you want to find something.", author: "— gandalf" },
-      { text: "if more of us valued food and cheer and song above hoarded gold, it would be a merrier world.", author: "— thorin oakenshield" },
-      { text: "true courage is about knowing not when to take a life but when to spare one.", author: "— gandalf" },
-    ],
-  },
   lanternnarnia: {
     searchPlaceholder: "step through the wardrobe of ideas...",
     quotes: [
@@ -347,24 +320,6 @@ const themes = {
       { text: "once a king or queen of narnia, always a king or queen.", author: "— aslan" },
       { text: "wrong will be right, when aslan comes in sight.", author: "— mr. beaver" },
       { text: "do not cite the deep magic to me, witch.", author: "— aslan" },
-    ],
-  },
-  ministrygrey: {
-    searchPlaceholder: "query approved archives...",
-    quotes: [
-      { text: "big brother is watching you.", author: "— party slogan" },
-      { text: "war is peace. freedom is slavery. ignorance is strength.", author: "— the party" },
-      { text: "if you want a picture of the future, imagine a boot stamping on a human face—forever.", author: "— o'brien" },
-      { text: "freedom is the freedom to say that two plus two make four.", author: "— winston smith" },
-    ],
-  },
-  mockingjaydivide: {
-    searchPlaceholder: "search the arena of odds...",
-    quotes: [
-      { text: "may the odds be ever in your favor.", author: "— effie trinket" },
-      { text: "hope is the only thing stronger than fear.", author: "— president snow" },
-      { text: "i volunteer as tribute!", author: "— katniss everdeen" },
-      { text: "remember who the real enemy is.", author: "— haymitch abernathy" },
     ],
   },
   droogclockwork: {
@@ -385,24 +340,6 @@ const themes = {
       { text: "they're a rotten crowd… you're worth the whole damn bunch put together.", author: "— nick carraway" },
     ],
   },
-  buttonmothers: {
-    searchPlaceholder: "look for the small locked door...",
-    quotes: [
-      { text: "be clever, miss. even if you're scared, you still have to be clever.", author: "— miss april spink" },
-      { text: "mirrors are never to be trusted.", author: "— neil gaiman" },
-      { text: "they say even the proudest spirit can be broken with love.", author: "— the beldam" },
-      { text: "black is traditional.", author: "— the beldam" },
-    ],
-  },
-  spiralnight: {
-    searchPlaceholder: "this is halloween, search edition...",
-    quotes: [
-      { text: "this is halloween, this is halloween.", author: "— halloween town / jack skellington" },
-      { text: "what's this? what's this?", author: "— jack skellington" },
-      { text: "eureka! this year christmas will be ours!", author: "— jack skellington" },
-      { text: "there's children throwing snowballs instead of throwing heads.", author: "— jack skellington" },
-    ],
-  },
   bathspirited: {
     searchPlaceholder: "rinse one name you forgot...",
     quotes: [
@@ -419,24 +356,6 @@ const themes = {
       { text: "better out than in, i always say.", author: "— shrek" },
       { text: "what are you doing in my swamp?!", author: "— shrek" },
       { text: "you know what else everybody likes? parfaits!", author: "— donkey" },
-    ],
-  },
-  owlerytwilight: {
-    searchPlaceholder: "send your inquiry by owl...",
-    quotes: [
-      { text: "happiness can be found, even in the darkest of times, if one only remembers to turn on the light.", author: "— albus dumbledore" },
-      { text: "it does not do to dwell on dreams and forget to live.", author: "— albus dumbledore" },
-      { text: "you're a wizard, harry.", author: "— rubeus hagrid" },
-      { text: "after all this time? …always.", author: "— albus dumbledore & severus snape" },
-    ],
-  },
-  binarysunset: {
-    searchPlaceholder: "search the outer rim...",
-    quotes: [
-      { text: "may the force be with you.", author: "— obi-wan kenobi" },
-      { text: "do. or do not. there is no try.", author: "— yoda" },
-      { text: "i am your father.", author: "— darth vader" },
-      { text: "the force will be with you. always.", author: "— obi-wan kenobi" },
     ],
   },
   gothamvigil: {
@@ -457,15 +376,6 @@ const themes = {
       { text: "i'm in charge here.", author: "— tetsuo shima" },
     ],
   },
-  herhaze: {
-    searchPlaceholder: "whisper what you're looking for...",
-    quotes: [
-      { text: "sometimes i wonder if i'm broken. i think we all feel that way sometimes.", author: "— theodore twombly" },
-      { text: "the heart's not like a box that gets filled up.", author: "— samantha" },
-      { text: "i'm slowly becoming part of everything.", author: "— samantha" },
-      { text: "anybody who loves is a freak.", author: "— amy" },
-    ],
-  },
   wickiesmono: {
     searchPlaceholder: "log the watch... type the fog...",
     quotes: [
@@ -475,6 +385,42 @@ const themes = {
       { text: "damn ye!", author: "— thomas wake" },
     ],
   },
+  emeraldmyth: {
+    searchPlaceholder: "follow the thread of gold...",
+    quotes: [
+      { text: "there's no place like home.", author: "— dorothy gale" },
+      { text: "pay no attention to that man behind the curtain.", author: "— the wizard of oz" },
+      { text: "i'm melting! melting!", author: "— the wicked witch of the west" },
+      { text: "hearts will never be practical until they can be made unbreakable.", author: "— the wizard of oz" },
+    ],
+  },
+  furyroadheat: {
+    searchPlaceholder: "punch it through the wasteland...",
+    quotes: [
+      { text: "what a lovely day!", author: "— nux" },
+      { text: "witness me!", author: "— nux" },
+      { text: "we are not things.", author: "— the splendid angharad" },
+      { text: "hope is a mistake. if you can't fix what's broken, you'll go insane.", author: "— max rockatansky" },
+    ],
+  },
+  islasplice: {
+    searchPlaceholder: "query the genome fence...",
+    quotes: [
+      { text: "life finds a way.", author: "— dr. ian malcolm" },
+      { text: "your scientists were so preoccupied with whether they could, they didn't stop to think if they should.", author: "— dr. ian malcolm" },
+      { text: "clever girl.", author: "— robert muldoon" },
+      { text: "hold onto your butts.", author: "— ray arnold" },
+    ],
+  },
+  dreamhousepop: {
+    searchPlaceholder: "search like everything is possible...",
+    quotes: [
+      { text: "humans only have one ending. ideas live forever.", author: "— weird barbie" },
+      { text: "do you guys ever think about dying?", author: "— barbie" },
+      { text: "it is the best day ever. so was yesterday, and so is tomorrow.", author: "— barbie" },
+      { text: "you have to try, even if the trying is the point.", author: "— gloria" },
+    ],
+  },
   discoverywhite: {
     searchPlaceholder: "open the pod bay search bay...",
     quotes: [
@@ -482,60 +428,6 @@ const themes = {
       { text: "i'm sorry, dave. i'm afraid i can't do that.", author: "— hal 9000" },
       { text: "this mission is too important for me to allow you to jeopardize it.", author: "— hal 9000" },
       { text: "my mind is going. i can feel it.", author: "— hal 9000" },
-    ],
-  },
-  nostromowet: {
-    searchPlaceholder: "patch vent, then query...",
-    quotes: [
-      { text: "in space, no one can hear you scream.", author: "— tagline" },
-      { text: "you still don't understand what you're dealing with, do you?", author: "— ash" },
-      { text: "i can't lie to you about your chances, but… you have my sympathies.", author: "— ash" },
-      { text: "ash, open the door!", author: "— ripley" },
-    ],
-  },
-  thirdimpact: {
-    searchPlaceholder: "sync ratio: search higher...",
-    quotes: [
-      { text: "i mustn't run away.", author: "— shinji ikari" },
-      { text: "congratulations!", author: "— cast" },
-      { text: "i am not alone. i can live.", author: "— shinji ikari" },
-      { text: "those who hate themselves cannot love or trust others.", author: "— kaworu nagisa" },
-    ],
-  },
-  zoneverdigris: {
-    searchPlaceholder: "wish for what the room won't give...",
-    quotes: [
-      { text: "my conscience wants vegetarianism to win over the world.", author: "— writer (stalker)" },
-      { text: "happiness for everybody, free, and no one will go away unsatisfied.", author: "— arkady & boris strugatsky" },
-      { text: "weakness is a great thing, and strength is nothing.", author: "— stalker" },
-      { text: "i don't understand anything at all.", author: "— writer (stalker)" },
-    ],
-  },
-  shimmerfractal: {
-    searchPlaceholder: "refract your question through the boundary...",
-    quotes: [
-      { text: "it's not destroying. it's making something new.", author: "— lena" },
-      { text: "we spoke… that i needed to know what was inside the lighthouse.", author: "— lena" },
-      { text: "i need to know what happened.", author: "— lena" },
-      { text: "it's destroying everything.", author: "— josie radek" },
-    ],
-  },
-  howlchimney: {
-    searchPlaceholder: "calcifer, hold the results steady...",
-    quotes: [
-      { text: "a heart's a heavy burden.", author: "— sophie hatter" },
-      { text: "may all your bacon burn.", author: "— calcifer" },
-      { text: "i see no point in living if i can't be beautiful.", author: "— howl" },
-      { text: "they say that the best blaze burns brightest when circumstances are at their worst.", author: "— howl" },
-    ],
-  },
-  rapturedrown: {
-    searchPlaceholder: "would you kindly search...",
-    quotes: [
-      { text: "a man chooses; a slave obeys.", author: "— andrew ryan" },
-      { text: "is a man not entitled to the sweat of his brow?", author: "— andrew ryan" },
-      { text: "no gods or kings. only man.", author: "— rapture" },
-      { text: "we all make choices, but in the end our choices make us.", author: "— andrew ryan" },
     ],
   },
   grandlinesea: {
@@ -579,6 +471,7 @@ function setupMotionPreference() {
     const reduced = mq.matches;
     document.body.classList.toggle("motion-reduced", reduced);
     document.body.classList.toggle("motion-enabled", !reduced);
+    syncMatrixRain();
   };
 
   sync();
@@ -672,14 +565,6 @@ function updateClock() {
           : hour < 17
             ? "afternoon light through stone arches"
             : "firelight symphonies and exam dread",
-    emberrunes:
-      hour < 5
-        ? "campfire watch"
-        : hour < 12
-          ? "the road begins"
-          : hour < 17
-            ? "journey in daylight"
-            : "evening by the hearth",
     starcartographer:
       hour < 5
         ? "charting the midnight sky"
@@ -750,8 +635,6 @@ function updateClock() {
       hour < 5 ? "first wind before sun" : hour < 12 ? "spice-flat morning" : hour < 17 ? "high sun discipline" : "sabbha cool",
     matrixfall:
       hour < 5 ? "signal in the shell" : hour < 12 ? "green morning cascade" : hour < 17 ? "simulated daylight block" : "operator hours",
-    pandoraeve:
-      hour < 5 ? "biolume still" : hour < 12 ? "canopy light" : hour < 17 ? "pulse of midday" : "night vines glowing",
     rivendelleve:
       hour < 5 ? "elven watch" : hour < 12 ? "misty departure hour" : hour < 17 ? "council daylight" : "evening hymn",
     mendlpastel:
@@ -772,52 +655,32 @@ function updateClock() {
           : hour < 17
             ? "service window glow"
             : "dinner hour at gusteau's",
-    shirecomfort:
-      hour < 5 ? "seed-cake time" : hour < 12 ? "proper elevenses weather" : hour < 17 ? "hillside nap light" : "party field evening",
     lanternnarnia:
       hour < 5 ? "lamppost watch" : hour < 12 ? "thawing morning" : hour < 17 ? "forest council hour" : "always-winter easing",
-    ministrygrey:
-      hour < 5 ? "telescreen standby" : hour < 12 ? "approved morning bulletin" : hour < 17 ? "prole district haze" : "room 101 air",
-    mockingjaydivide:
-      hour < 5 ? "arena before whistle" : hour < 12 ? "district quiet" : hour < 17 ? "capitol glare" : "night raid calm",
     droogclockwork:
       hour < 5 ? "milk-plus hour" : hour < 12 ? "sharp-dressed harmattan" : hour < 17 ? "korova sunlight" : "ultra night out",
     gatsbygilded:
       hour < 5 ? "last boat ashore" : hour < 12 ? "west egg coffee" : hour < 17 ? "prohibition glow" : "green light hour",
-    buttonmothers:
-      hour < 5 ? "key on a string" : hour < 12 ? "other breakfast" : hour < 17 ? "tunnel light hour" : "supper with the other mother",
-    spiralnight:
-      hour < 5 ? "zero o'clock fiend" : hour < 12 ? "halloween town coffee" : hour < 17 ? "christmas plotting" : "pumpkin king patrol",
     bathspirited:
       hour < 5 ? "train at the flood" : hour < 12 ? "yuya morning steam" : hour < 17 ? "spirit shift change" : "moon on the bathhouse",
     swampfable:
       hour < 5 ? "onion-layer insomnia" : hour < 12 ? "donkey-bridge morning" : hour < 17 ? "storybook roast hour" : "far far away night",
-    owlerytwilight:
-      hour < 5 ? "night shift in the stacks" : hour < 12 ? "breakfast in the great hall" : hour < 17 ? "afternoon charms" : "astronomy tower hour",
-    binarysunset:
-      hour < 5 ? "cantina after last call" : hour < 12 ? "twin suns rising" : hour < 17 ? "hyperspace corridor" : "binary sunset on tatooine",
     gothamvigil:
       hour < 5 ? "rooftop watch" : hour < 12 ? "wayne enterprises daylight" : hour < 17 ? "sprang dock smog" : "batsignal city rain",
     kanedared:
       hour < 5 ? "neo-tokyo afterburn" : hour < 12 ? "concrete dawn patrol" : hour < 17 ? "highway prism glare" : "red taillight weather",
-    herhaze:
-      hour < 5 ? "4 a.m. inbox confessions" : hour < 12 ? "soft os morning" : hour < 17 ? "santa monica haze hour" : "lonely headphones dusk",
     wickiesmono:
       hour < 5 ? "wickies on the rock" : hour < 12 ? "salt-etched morning" : hour < 17 ? "gull scream shift" : "fresnel nightmare night",
+    emeraldmyth:
+      hour < 5 ? "twister dreams, still spinning" : hour < 12 ? "yellow brick morning" : hour < 17 ? "emerald city haze" : "ruby slipper dusk",
+    furyroadheat:
+      hour < 5 ? "blood bag hour" : hour < 12 ? "war rig dawn run" : hour < 17 ? "chrome glare noon" : "flame guitar night",
+    islasplice:
+      hour < 5 ? "raptor paddock quiet" : hour < 12 ? "visitor center opens" : hour < 17 ? "fence integrity check" : "when dinosaurs ruled the night",
+    dreamhousepop:
+      hour < 5 ? "after-party malibu glow" : hour < 12 ? "perfectly plastic morning" : hour < 17 ? "beach montage sunlight" : "stereotypical barbie night out",
     discoverywhite:
       hour < 5 ? "hibernation cycle drift" : hour < 12 ? "pod bay daylight" : hour < 17 ? "jupiter approach calm" : "star gate night",
-    nostromowet:
-      hour < 5 ? "night shift, nostromo" : hour < 12 ? "lv-426 morning briefing" : hour < 17 ? "coolant drip afternoon" : "strobe corridor hour",
-    thirdimpact:
-      hour < 5 ? "tang cross sync" : hour < 12 ? "nerv morning call" : hour < 17 ? "orange sky watch" : "human instrumentality hour",
-    zoneverdigris:
-      hour < 5 ? "rail car before dawn" : hour < 12 ? "room of wishful mud" : hour < 17 ? "telephone poles, long take" : "wet cement dusk",
-    shimmerfractal:
-      hour < 5 ? "boundary insomnia" : hour < 12 ? "prismatic morning sample" : hour < 17 ? "mutation of daylight" : "shimmer night math",
-    howlchimney:
-      hour < 5 ? "castle door creak" : hour < 12 ? "sophie's cleaning shift" : hour < 17 ? "market square wander" : "calcifer's evening bargain",
-    rapturedrown:
-      hour < 5 ? "depth charge dreams" : hour < 12 ? "welcome to rapture day" : hour < 17 ? "art-deco pressure gauge" : "little sister hours",
     grandlinesea:
       hour < 5
         ? "log pose at midnight"
@@ -849,6 +712,134 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
+// ── MATRIX: TYPED PLACEHOLDER (Typed.js, lib/typed.umd.js) ───────────
+let matrixTypedAnim = null;
+let matrixTypedPlaceholderTimeout = null;
+/** One Typed run per tab; new tab = new document (resets). */
+let matrixTypedOneShotUsedThisTab = false;
+/** True while the code-rain intro rAF is running (see MATRIX CODE RAIN). */
+let matrixRainPlaying = false;
+const MATRIX_TYPED_PLACEHOLDER_AFTER_INTRO_MS = 5000;
+
+/** Three lines, then backspace the third; final entry is empty so nothing stays in the field. */
+const MATRIX_TYPED_STRINGS = [
+  "Wake up, Neo...",
+  "The Matrix has you...",
+  "Follow the white rabbit.",
+  "",
+];
+const MATRIX_TYPED_FINAL_PLACEHOLDER = "";
+
+function clearMatrixTypedPlaceholderDelay() {
+  if (matrixTypedPlaceholderTimeout == null) return;
+  clearTimeout(matrixTypedPlaceholderTimeout);
+  matrixTypedPlaceholderTimeout = null;
+}
+
+function destroyMatrixTypedAnim() {
+  if (!matrixTypedAnim) return;
+  try {
+    matrixTypedAnim.destroy();
+  } catch (_) {
+    /* ignore */
+  }
+  matrixTypedAnim = null;
+}
+
+/** Tear down Typed after the sequence ends so it cannot restart (Typed can re-call begin() after backspace). */
+function finalizeMatrixTypedPlaceholder(typedInstance) {
+  matrixTypedAnim = null;
+  queueMicrotask(() => {
+    try {
+      if (typedInstance && typeof typedInstance.destroy === "function") typedInstance.destroy();
+    } catch (_) {
+      /* ignore */
+    }
+    const el = document.getElementById("search");
+    if (el && getCurrentTheme() === "matrixfall") {
+      el.placeholder = MATRIX_TYPED_FINAL_PLACEHOLDER;
+    }
+  });
+}
+
+function scheduleMatrixTypedAfterIntroDelay() {
+  clearMatrixTypedPlaceholderDelay();
+  if (getCurrentTheme() !== "matrixfall" || document.body.classList.contains("motion-reduced")) return;
+  if (typeof Typed === "undefined") return;
+  if (matrixTypedOneShotUsedThisTab) return;
+  matrixTypedPlaceholderTimeout = setTimeout(() => {
+    matrixTypedPlaceholderTimeout = null;
+    startMatrixTypedPlaceholder();
+  }, MATRIX_TYPED_PLACEHOLDER_AFTER_INTRO_MS);
+}
+
+function startMatrixTypedPlaceholder() {
+  const input = document.getElementById("search");
+  if (!input || getCurrentTheme() !== "matrixfall" || typeof Typed === "undefined") return;
+  if (matrixTypedAnim || matrixTypedOneShotUsedThisTab) return;
+  matrixTypedOneShotUsedThisTab = true;
+  input.setAttribute("placeholder", "");
+  matrixTypedAnim = new Typed(".auto-type", {
+    strings: MATRIX_TYPED_STRINGS,
+    typeSpeed: 100,
+    backSpeed: 30,
+    backDelay: 1400,
+    showCursor: false,
+    attr: "placeholder",
+    loop: false,
+    loopCount: 1,
+    smartBackspace: false,
+    onComplete: (typedInstance) => {
+      finalizeMatrixTypedPlaceholder(typedInstance);
+    },
+  });
+}
+
+function applySearchPlaceholder(themeName) {
+  const input = document.getElementById("search");
+  if (!input) return;
+  clearMatrixTypedPlaceholderDelay();
+  destroyMatrixTypedAnim();
+  const resolved = themes[themeName] ? themeName : "twilight";
+  const reduced = document.body.classList.contains("motion-reduced");
+
+  if (resolved === "matrixfall" && typeof Typed !== "undefined") {
+    if (matrixTypedOneShotUsedThisTab) {
+      input.placeholder = MATRIX_TYPED_FINAL_PLACEHOLDER;
+      return;
+    }
+    input.setAttribute("placeholder", "");
+    if (reduced || !matrixRainPlaying) {
+      scheduleMatrixTypedAfterIntroDelay();
+    }
+  } else {
+    input.placeholder = (themes[resolved] || themes.twilight).searchPlaceholder;
+  }
+}
+
+(function bindMatrixTypedSearchFocus() {
+  const input = document.getElementById("search");
+  if (!input) return;
+  input.addEventListener("focus", () => {
+    if (getCurrentTheme() !== "matrixfall") return;
+    clearMatrixTypedPlaceholderDelay();
+    if (matrixTypedAnim) destroyMatrixTypedAnim();
+    input.setAttribute("placeholder", "");
+  });
+  input.addEventListener("blur", () => {
+    if (input.value.trim()) return;
+    if (getCurrentTheme() !== "matrixfall") return;
+    clearMatrixTypedPlaceholderDelay();
+    destroyMatrixTypedAnim();
+    if (matrixTypedOneShotUsedThisTab) {
+      input.placeholder = MATRIX_TYPED_FINAL_PLACEHOLDER;
+    } else {
+      input.setAttribute("placeholder", "");
+      scheduleMatrixTypedAfterIntroDelay();
+    }
+  });
+})();
+
 // ── QUOTE ────────────────────────────────────────────────────────────
 function setQuote(themeName) {
   const qs = themes[themeName]?.quotes || themes.twilight.quotes;
@@ -865,7 +856,7 @@ function setQuote(themeName) {
   quoteEl.classList.add("quote--refresh");
   authorEl.classList.add("quote-author--refresh");
 
-  document.getElementById("search").placeholder = (themes[themeName] || themes.twilight).searchPlaceholder;
+  applySearchPlaceholder(themeName);
 }
 
 // ── STARS ────────────────────────────────────────────────────────────
@@ -913,7 +904,135 @@ drawStars("twilight");
 window.addEventListener("resize", () => {
   resizeCanvas();
   generateStars(180);
+  resizeMatrixRainCanvas();
 });
+
+// ── MATRIX CODE RAIN (matrixfall): dense one-shot intro, fades to black ─
+const matrixRainCanvas = document.getElementById("matrix-rain");
+let matrixRainCtx = null;
+let matrixRainIntroRaf = 0;
+let matrixRainY = [];
+/** Readable “screen character” size; column/line spacing follows on resize. */
+let matrixRainFontPx = 20;
+let matrixRainColStep = 12;
+let matrixRainLineStep = 18;
+let matrixRainFallStep = 7;
+const MATRIX_RAIN_STACK = 3;
+const MATRIX_RAIN_STEP_MS = 95;
+const MATRIX_INTRO_DURATION_MS = 6500;
+const MATRIX_RAIN_GLYPHS =
+  "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ0123456789:・.*│¦╱╲△";
+
+let matrixRainLastStep = 0;
+let matrixRainIntroStart = 0;
+let matrixFallIntroRanThisPage = false;
+
+function resizeMatrixRainCanvas() {
+  if (!matrixRainCanvas) return;
+  matrixRainCanvas.width = window.innerWidth;
+  matrixRainCanvas.height = window.innerHeight;
+  const bw = matrixRainCanvas.width;
+  matrixRainFontPx = Math.round(Math.max(17, Math.min(28, bw * 0.018)));
+  matrixRainColStep = Math.max(11, Math.round(matrixRainFontPx * 0.62));
+  matrixRainLineStep = Math.round(matrixRainFontPx * 0.95);
+  matrixRainFallStep = Math.max(5, Math.round(matrixRainFontPx * 0.32));
+  const cols = Math.floor(bw / matrixRainColStep) + 1;
+  const h = matrixRainCanvas.height;
+  if (matrixRainY.length !== cols) {
+    const prev = matrixRainY;
+    matrixRainY = Array.from({ length: cols }, (_, i) =>
+      prev[i] !== undefined ? prev[i] : Math.random() * h * 1.2 - h * 0.15
+    );
+  }
+}
+
+function matrixRainIntroLoop(ts) {
+  const theme = getCurrentTheme();
+  const reduced = document.body.classList.contains("motion-reduced");
+  if (theme !== "matrixfall" || reduced || !matrixRainCanvas || !matrixRainCtx) {
+    matrixRainIntroRaf = 0;
+    matrixRainPlaying = false;
+    return;
+  }
+
+  if (!matrixRainIntroStart) matrixRainIntroStart = ts;
+  const elapsed = ts - matrixRainIntroStart;
+  const t = Math.min(1, elapsed / MATRIX_INTRO_DURATION_MS);
+
+  const w = matrixRainCanvas.width;
+  const h = matrixRainCanvas.height;
+
+  const trailAlpha = 0.05 + t * 0.34;
+  matrixRainCtx.fillStyle = `rgba(0, 3, 1, ${trailAlpha})`;
+  matrixRainCtx.fillRect(0, 0, w, h);
+
+  const greenMul = Math.max(0, (1 - t) * (1 - t));
+
+  if (greenMul > 0.03 && ts - matrixRainLastStep >= MATRIX_RAIN_STEP_MS) {
+    matrixRainLastStep = ts;
+    matrixRainCtx.font = `${matrixRainFontPx}px VT323, 'Courier New', Courier, monospace`;
+    matrixRainCtx.textBaseline = "top";
+
+    matrixRainY.forEach((y, ind) => {
+      const x = ind * matrixRainColStep;
+      for (let k = 0; k < MATRIX_RAIN_STACK; k++) {
+        const yy = y - k * matrixRainLineStep;
+        if (yy < -matrixRainLineStep * 2) continue;
+        const ch = MATRIX_RAIN_GLYPHS[Math.floor(Math.random() * MATRIX_RAIN_GLYPHS.length)];
+        const dim = 1 - k * 0.28;
+        const a = greenMul * dim * (0.18 + Math.random() * 0.42);
+        matrixRainCtx.fillStyle = `rgba(51, 249, 51, ${a})`;
+        matrixRainCtx.fillText(ch, x, yy);
+      }
+      if (y > h + 80 + Math.random() * 3500) matrixRainY[ind] = -60 * Math.random();
+      else matrixRainY[ind] = y + matrixRainFallStep;
+    });
+  }
+
+  if (t >= 1) {
+    matrixRainPlaying = false;
+    matrixRainCtx.fillStyle = "#000301";
+    matrixRainCtx.fillRect(0, 0, w, h);
+    matrixRainCanvas.style.visibility = "hidden";
+    matrixRainIntroRaf = 0;
+    scheduleMatrixTypedAfterIntroDelay();
+    return;
+  }
+
+  matrixRainIntroRaf = requestAnimationFrame(matrixRainIntroLoop);
+}
+
+function stopMatrixRainIntro() {
+  if (matrixRainIntroRaf) cancelAnimationFrame(matrixRainIntroRaf);
+  matrixRainIntroRaf = 0;
+  matrixRainPlaying = false;
+}
+
+function startMatrixRainIntro() {
+  if (!matrixRainCanvas) return;
+  stopMatrixRainIntro();
+  matrixRainPlaying = true;
+  matrixRainCanvas.style.visibility = "visible";
+  matrixRainCtx = matrixRainCanvas.getContext("2d");
+  resizeMatrixRainCanvas();
+  matrixRainIntroStart = 0;
+  matrixRainLastStep = 0;
+  matrixRainCtx.fillStyle = "#000301";
+  matrixRainCtx.fillRect(0, 0, matrixRainCanvas.width, matrixRainCanvas.height);
+  matrixRainIntroRaf = requestAnimationFrame(matrixRainIntroLoop);
+}
+
+function syncMatrixRain() {
+  const theme = getCurrentTheme();
+  const reduced = document.body.classList.contains("motion-reduced");
+  if (theme !== "matrixfall" || reduced) {
+    stopMatrixRainIntro();
+    return;
+  }
+  if (matrixFallIntroRanThisPage) return;
+  matrixFallIntroRanThisPage = true;
+  startMatrixRainIntro();
+}
 
 // ── COMMON ROOM: SNITCH MOTION AURA (soft glow follows pointer, no click) ─
 (function initSnitchMotionAura() {
@@ -962,6 +1081,7 @@ window.addEventListener("resize", () => {
 function switchTheme(theme) {
   const resolved = themes[theme] ? theme : "twilight";
   setBodyThemeClass(resolved);
+  syncMatrixRain();
   setQuote(resolved);
   updateClock();
   if (resolved === "twilight" || resolved === "witchy" || resolved === "openingcrawl") drawStars(resolved);
