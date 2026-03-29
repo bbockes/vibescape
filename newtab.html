@@ -112,6 +112,21 @@
         filter: none !important;
         transform: translateY(-1vh) !important;
       }
+      body.topiaryshadow::before,
+      body.topiaryshadow.motion-enabled::before {
+        animation: none !important;
+        clip-path: none !important;
+        filter: none !important;
+      }
+      body.topiaryshadow::after {
+        animation: none !important;
+        opacity: 0 !important;
+      }
+      body.topiaryshadow .content {
+        animation: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+      }
     }
 
     /* ─── THEME: TWILIGHT CODED ─────────────────────────────────────── */
@@ -1332,35 +1347,235 @@
         0 0 24px rgba(0, 0, 0, 0.55);
     }
 
-    /* ─── TOPIARY SHADOW (gothic suburb / dark fairytale) ─────────── */
-    body.topiaryshadow { background:#c8c4d2; font-family:'DM Serif Display', serif; }
+    /* ─── TOPIARY SHADOW (gothic suburb — late-90s Google on CRT) ─── */
+    body.topiaryshadow {
+      background:#c8c4d2;
+      font-family: 'Times New Roman', Times, Georgia, serif;
+    }
     body.topiaryshadow::before {
       content: '';
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      background-image:
-        linear-gradient(180deg, rgba(20, 18, 28, 0.55) 0%, rgba(40, 36, 48, 0.25) 45%, rgba(12, 10, 18, 0.72) 100%),
-        radial-gradient(ellipse 90% 55% at 50% 20%, rgba(0, 0, 0, 0.35) 0%, transparent 52%),
-        url('assets/topiaryshadow/bg.webp');
-      background-size: cover, cover, cover;
+      background-image: url('assets/topiaryshadow/bg.webp');
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
+      animation: topiaryshadowCrtBootBg 1.38s cubic-bezier(0.22, 1, 0.32, 1) forwards;
+      will-change: clip-path, filter;
     }
+    /* Beat global gradient drift; keep one-shot CRT power-on only. */
     body.topiaryshadow.motion-enabled::before {
-      animation: none !important;
-      will-change: auto;
+      animation: topiaryshadowCrtBootBg 1.38s cubic-bezier(0.22, 1, 0.32, 1) forwards !important;
+      will-change: clip-path, filter;
       transform: none;
-      filter: none;
     }
-    body.topiaryshadow .stars { display:none; } body.topiaryshadow .content { position:relative; z-index:2; }
-    body.topiaryshadow .clock { color:#f4f2ff; text-shadow:0 1px 3px rgba(0,0,0,0.85), 0 2px 14px rgba(0,0,0,0.4); }
-    body.topiaryshadow .greeting { color:#e0dcf0; font-style:italic; text-shadow:0 1px 2px rgba(0,0,0,0.82); } body.topiaryshadow .date-line { color:#c8c4d8; text-shadow:0 1px 2px rgba(0,0,0,0.78); }
-    body.topiaryshadow .search-bar { background:rgba(18,16,28,0.78); border:1px solid rgba(200,195,220,0.35); color:#f2f0fa; }
-    body.topiaryshadow .search-bar::placeholder { color:#a8a0b8; } body.topiaryshadow .search-bar:focus { box-shadow:0 4px 22px rgba(0,0,0,0.35); }
-    body.topiaryshadow .quote { color:#ece8f8; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; text-shadow:0 1px 3px rgba(0,0,0,0.88); } body.topiaryshadow .quote-author { color:#d0c8e8; text-shadow:0 1px 2px rgba(0,0,0,0.82); }
+    /* Single raster-style sweep (retrace) across the tube. */
+    body.topiaryshadow::after {
+      content: '';
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: -15vh;
+      height: 22vh;
+      pointer-events: none;
+      z-index: 1;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.07) 45%,
+        rgba(200, 230, 255, 0.09) 50%,
+        rgba(255, 255, 255, 0.06) 55%,
+        transparent 100%
+      );
+      opacity: 0;
+      animation: topiaryshadowCrtSweep 0.95s cubic-bezier(0.25, 0.9, 0.35, 1) 0.22s forwards;
+    }
+    @keyframes topiaryshadowCrtBootBg {
+      0% {
+        clip-path: inset(49.4% 0 49.4% 0);
+        filter: brightness(0) contrast(1.25);
+      }
+      10% {
+        clip-path: inset(38% 0 38% 0);
+        filter: brightness(2.1) contrast(1.2);
+      }
+      26% {
+        clip-path: inset(0 0 0 0);
+        filter: brightness(1.18) contrast(1.06);
+      }
+      42% {
+        filter: brightness(0.78) contrast(1);
+      }
+      58% {
+        filter: brightness(1.08) contrast(1);
+      }
+      74% {
+        filter: brightness(0.96) contrast(1);
+      }
+      100% {
+        clip-path: inset(0 0 0 0);
+        filter: brightness(1) contrast(1);
+      }
+    }
+    @keyframes topiaryshadowCrtSweep {
+      0% {
+        transform: translateY(0);
+        opacity: 0.85;
+      }
+      100% {
+        transform: translateY(130vh);
+        opacity: 0;
+      }
+    }
+    @keyframes topiaryshadowCrtBootUi {
+      0% {
+        opacity: 0;
+        filter: blur(5px);
+      }
+      32% {
+        opacity: 0;
+        filter: blur(4px);
+      }
+      58% {
+        opacity: 1;
+        filter: blur(0);
+      }
+      100% {
+        opacity: 1;
+        filter: none;
+      }
+    }
+    body.topiaryshadow .stars { display:none; }
+    body.topiaryshadow .page-wrapper {
+      position:relative;
+      z-index:2;
+    }
+    /* CRT bezel: ~clock digit span wide; phosphor area ends ~at search top — compact stack + lift. */
+    body.topiaryshadow .content {
+      position:relative;
+      z-index:2;
+      max-width:min(34vw, 318px);
+      width:100%;
+      margin-inline:auto;
+      transform:translateY(calc(-21vh + 122px)) scale(0.704);
+      transform-origin:50% 0;
+      animation:topiaryshadowCrtBootUi 1.32s cubic-bezier(0.33, 1, 0.68, 1) 0.2s both;
+    }
+    body.topiaryshadow .content::after {
+      content:'';
+      position:absolute;
+      inset:-6px -10px -4px;
+      pointer-events:none;
+      z-index:-1;
+      border-radius:2px;
+      opacity:0.12;
+      background:repeating-linear-gradient(180deg, transparent, transparent 2px, rgba(0, 0, 0, 0.04) 2px, rgba(0, 0, 0, 0.04) 3px);
+    }
+    body.topiaryshadow .clock {
+      font-family:inherit;
+      color:#1a1a1a;
+      letter-spacing:0.02em;
+      text-shadow:0 1px 0 rgba(255, 255, 255, 0.35);
+      transform:translateY(calc(var(--vs-clock-lift) * 0.55));
+    }
+    body.topiaryshadow .greeting {
+      color:#202020;
+      font-style:normal;
+      font-size:clamp(0.82rem, 1.55vw, 1.05rem) !important;
+      letter-spacing:0.05em !important;
+      margin-top:0.35rem !important;
+      text-shadow:none;
+    }
+    body.topiaryshadow .date-line {
+      color:#333;
+      letter-spacing:0.1em !important;
+      font-size:0.88rem !important;
+      margin-top:0.45rem !important;
+      line-height:1.25 !important;
+      text-shadow:none;
+    }
+    body.topiaryshadow .search-wrapper {
+      width:100%;
+      max-width:100%;
+      margin-top:0.55rem;
+    }
+    body.topiaryshadow .search-row {
+      gap:14px;
+    }
+    body.topiaryshadow .search-bar {
+      font-family:inherit;
+      font-size:0.92rem !important;
+      padding:0.52rem 0.75rem !important;
+      padding-right:2.5rem !important;
+      border-radius:2px;
+      background:#fff;
+      border:2px solid #959595;
+      color:#000;
+      box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+    body.topiaryshadow .search-bar::placeholder { color:#616161; }
+    body.topiaryshadow .search-bar:focus {
+      border-color:#4d90fe;
+      box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(77, 144, 254, 0.45);
+    }
+    body.topiaryshadow .search-mag {
+      color:#1a0dab;
+    }
+    body.topiaryshadow .search-mag:hover {
+      color:#0000cc;
+      background:rgba(26, 13, 171, 0.06);
+    }
+    body.topiaryshadow .search-actions {
+      gap:0.5rem;
+    }
+    body.topiaryshadow .search-btn {
+      font-family:inherit;
+      letter-spacing:0.02em;
+      text-transform:none;
+      font-size:0.78rem !important;
+      font-weight:400;
+      min-width:6.5rem;
+      height:30px;
+      border:1px solid #666;
+      border-radius:2px;
+      color:#222;
+      background:linear-gradient(180deg, #f5f5f5 0%, #e4e4e4 55%, #dcdcdc 100%);
+      box-shadow:
+        inset 0 1px 0 #fff,
+        0 1px 1px rgba(0, 0, 0, 0.08);
+    }
+    body.topiaryshadow .search-btn:focus-visible {
+      box-shadow:0 0 0 2px #4d90fe, 0 0 0 4px rgba(255, 255, 255, 0.9);
+    }
+    body.topiaryshadow .quote {
+      color:#2a2a2a;
+      font-style:normal;
+      font-size:clamp(0.78rem, 1.35vw, 0.95rem) !important;
+      letter-spacing:0.02em;
+      line-height:1.4 !important;
+      text-shadow:none;
+    }
+    body.topiaryshadow .quote-author {
+      color:#1a0dab;
+      font-family:inherit;
+      font-size:clamp(0.72rem, 1.2vw, 0.88rem) !important;
+      text-decoration:underline;
+      text-underline-offset:2px;
+      text-shadow:none;
+    }
+    body.topiaryshadow .quote-block {
+      margin-top:1.1rem;
+      max-width:100%;
+    }
+    @media (max-width:700px) {
+      body.topiaryshadow .content {
+        transform:translateY(calc(-16vh + 60px)) scale(0.792);
+        max-width:min(78vw, 300px);
+      }
+    }
 
     /* ─── INKVERSE POP (Into the Spider-Verse — still + comic chrome) ─ */
     /* Load: camera swings forward — UI rushes from deep / tipped back to rest. */
@@ -2561,7 +2776,7 @@
     body.matrixfall { --vs-clock-scale: 0.88; }
     body.rivendelleve { --vs-clock-scale: 0.95; }
     body.mendlpastel { --vs-clock-scale: 0.96; }
-    body.topiaryshadow { --vs-clock-scale: 0.95; }
+    body.topiaryshadow { --vs-clock-scale: 0.82; }
     body.inkversepop { --vs-clock-scale: 0.72; }
     body.bridesvengeance { --vs-clock-scale: 0.74; }
     body.rabbitholedream { --vs-clock-scale: 0.96; }
@@ -2618,6 +2833,9 @@
     /* Follow global pill rule — transparent field on bitmap scroll */
     body.commonroom .search-shell .search-bar {
       border-radius: 0 !important;
+    }
+    body.topiaryshadow .search-shell .search-bar {
+      border-radius: 2px !important;
     }
     .search-mag {
       position: absolute;
@@ -3169,10 +3387,12 @@
         inset 0 2px 0 rgba(255, 255, 255, 0.65);
     }
     body.topiaryshadow .search-btn:hover {
-      border-color: rgba(58, 53, 72, 0.16);
-      background: rgba(255, 255, 255, 0.94);
-      color: #2a2538;
-      box-shadow: 0 8px 26px rgba(58, 53, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      border-color: #555;
+      background: linear-gradient(180deg, #ebebeb 0%, #d8d8d8 55%, #cfcfcf 100%);
+      color: #111;
+      box-shadow:
+        inset 0 1px 0 #f8f8f8,
+        0 1px 2px rgba(0, 0, 0, 0.1);
     }
 
 
