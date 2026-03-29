@@ -181,6 +181,16 @@
       gap: 0.5rem;
       flex-wrap: wrap;
     }
+    .theme-section__pager-hint {
+      margin-left: 0.35em;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: rgba(245, 204, 92, 0.85);
+      text-transform: none;
+    }
+    .theme-section__pager-hint[hidden] {
+      display: none !important;
+    }
     .theme-section__badge {
       font-size: 0.58rem;
       letter-spacing: 0.1em;
@@ -468,8 +478,19 @@
       </div>
     </div>
     <div class="theme-section theme-section--stories">
-      <div class="theme-section__header">
-        Movies &amp; books
+      <div
+        class="theme-section__header"
+        id="stories-section-header"
+      >
+        <span class="theme-section__header-label">
+          Movies &amp; books
+          <span
+            class="theme-section__pager-hint"
+            id="stories-section-pager-hint"
+            hidden
+            aria-hidden="true"
+          >→</span>
+        </span>
         <span class="theme-section__badge" title="Planned for Pro / paid unlock">Pro</span>
       </div>
       <div class="theme-section__body">
@@ -491,7 +512,7 @@
       <div class="theme-emoji">🕸️</div>
       <div class="theme-info">
         <div class="theme-name">inkverse pop</div>
-        <div class="theme-desc">comic halftone, kinetic pop art</div>
+        <div class="theme-desc">Into the Spider-Verse still, rift halftone + comic chrome</div>
       </div>
     </div>
     <div class="theme-option" data-theme="lanternnarnia">
@@ -653,6 +674,27 @@
       <div class="theme-info">
         <div class="theme-name">droog clockwork</div>
         <div class="theme-desc">stylized youth, mod ultraviolence</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="frozenheart">
+      <div class="theme-emoji">❄️</div>
+      <div class="theme-info">
+        <div class="theme-name">frozen heart</div>
+        <div class="theme-desc">ice, sisterhood, aurora stills</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="lalaland">
+      <div class="theme-emoji">🎹</div>
+      <div class="theme-info">
+        <div class="theme-name">la la land</div>
+        <div class="theme-desc">jazz, dreams, lavender dusk</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="titanicvow">
+      <div class="theme-emoji">🚢</div>
+      <div class="theme-info">
+        <div class="theme-name">titanic vow</div>
+        <div class="theme-desc">ocean liner, brass, salt air</div>
       </div>
     </div>
       </div>

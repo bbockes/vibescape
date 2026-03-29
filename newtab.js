@@ -448,6 +448,33 @@ const themes = {
       { text: "never tell me the odds.", author: "— han solo" },
     ],
   },
+  frozenheart: {
+    searchPlaceholder: "search the eternal winter...",
+    quotes: [
+      { text: "some people are worth melting for.", author: "— olaf" },
+      { text: "the cold never bothered me anyway.", author: "— elsa" },
+      { text: "love is putting someone else's needs before yours.", author: "— olaf" },
+      { text: "let it go.", author: "— elsa" },
+    ],
+  },
+  lalaland: {
+    searchPlaceholder: "search for the city of stars...",
+    quotes: [
+      { text: "here's to the ones who dream.", author: "— sebastian" },
+      { text: "city of stars, are you shining just for me?", author: "— mia & sebastian" },
+      { text: "a bit of madness is key to give us new colors to see.", author: "— sebastian" },
+      { text: "people love what other people are passionate about.", author: "— mia" },
+    ],
+  },
+  titanicvow: {
+    searchPlaceholder: "search the horizon...",
+    quotes: [
+      { text: "i'm the king of the world!", author: "— jack dawson" },
+      { text: "i'll never let go.", author: "— rose dewitt bukater" },
+      { text: "make each day count.", author: "— jack dawson" },
+      { text: "draw me like one of your french girls.", author: "— jack dawson" },
+    ],
+  },
 };
 
 const THEME_NAMES = Object.keys(themes);
@@ -480,6 +507,9 @@ const PRO_THEME_IDS = new Set([
   "islasplice",
   "dreamhousepop",
   "droogclockwork",
+  "frozenheart",
+  "lalaland",
+  "titanicvow",
 ]);
 
 const RANDOM_THEME_POOL = THEME_NAMES.filter((id) => !PRO_THEME_IDS.has(id));
@@ -729,6 +759,12 @@ function updateClock() {
           : hour < 17
             ? "twin suns, high in the sky"
             : "cantina hours somewhere",
+    frozenheart:
+      hour < 5 ? "ice palace at blue hour" : hour < 12 ? "morning thaw and cocoa" : hour < 17 ? "snowlight on the fjord" : "northern lights, warm hearth",
+    lalaland:
+      hour < 5 ? "after the last set" : hour < 12 ? "griffith dawn, hazy pink" : hour < 17 ? "traffic jam, jazz in the car" : "planetarium night, stars close",
+    titanicvow:
+      hour < 5 ? "watch in the crow's nest" : hour < 12 ? "atlantic morning glitter" : hour < 17 ? "deck chairs, full steam" : "midnight ocean, heart full",
   };
 
   const currentTheme = getCurrentTheme();

@@ -87,6 +87,35 @@ document.addEventListener("DOMContentLoaded", () => {
     return Math.max(1, Math.ceil(n / PAGE_SIZE));
   }
 
+  function updateStoriesSectionPagerHint() {
+    const hint = document.getElementById("stories-section-pager-hint");
+    const header = document.getElementById("stories-section-header");
+    if (!hint) return;
+    if (!hasPager) {
+      hint.hidden = true;
+      if (header) header.removeAttribute("title");
+      return;
+    }
+    const themeRows = getThemeRows();
+    if (!themeRows.length) {
+      hint.hidden = true;
+      if (header) header.removeAttribute("title");
+      return;
+    }
+    const firstStories = themeRows.findIndex((row) => row.closest(".theme-section--stories"));
+    const fs = firstStories >= 0 ? firstStories : themeRows.length;
+    const end = currentPage * PAGE_SIZE + PAGE_SIZE;
+    const showHint = fs < themeRows.length && end <= fs;
+    hint.hidden = !showHint;
+    if (header) {
+      if (showHint) {
+        header.title = 'Use "next 5" below to open movie & book themes';
+      } else {
+        header.removeAttribute("title");
+      }
+    }
+  }
+
   function renderPage() {
     if (!hasPager) return;
     const themeRows = getThemeRows();
@@ -99,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (batchStatus) batchStatus.textContent = `batch ${currentPage + 1} of ${totalPages()}`;
     if (prevBatchBtn) prevBatchBtn.disabled = currentPage <= 0;
     if (nextBatchBtn) nextBatchBtn.disabled = currentPage >= totalPages() - 1;
+    updateStoriesSectionPagerHint();
   }
 
   function pageForTheme(theme) {
