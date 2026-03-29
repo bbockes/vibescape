@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hint.hidden = !showHint;
     if (header) {
       if (showHint) {
-        header.title = 'Use "next 5" below to open movie & book themes';
+        header.title = 'Use "next 5" below to open more inspired vibes';
       } else {
         header.removeAttribute("title");
       }
@@ -147,6 +147,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return new Set(getThemeRows().map((r) => r.dataset.theme));
   }
 
+  function themeRowLabel(row) {
+    const nameEl = row.querySelector(".theme-name");
+    const label = nameEl?.textContent?.trim();
+    return label || row.dataset.theme || "theme";
+  }
+
   function normalizeFavorites(raw) {
     if (!Array.isArray(raw)) return [];
     const ok = validThemesSet();
@@ -162,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.className = "theme-fav-btn";
       btn.dataset.theme = theme;
       btn.textContent = "☆";
-      btn.setAttribute("aria-label", `Add ${theme} to favorites`);
+      btn.setAttribute("aria-label", `Add ${themeRowLabel(row)} to favorites`);
       btn.setAttribute("aria-pressed", "false");
       row.insertBefore(btn, row.firstChild);
     });
@@ -172,12 +178,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const favSet = new Set(favoritesOrdered);
     document.querySelectorAll(".theme-fav-btn").forEach((btn) => {
       const on = favSet.has(btn.dataset.theme);
+      const row = btn.closest(".theme-option");
+      const label = row ? themeRowLabel(row) : btn.dataset.theme;
       btn.classList.toggle("theme-fav-btn--on", on);
       btn.setAttribute("aria-pressed", on ? "true" : "false");
       btn.textContent = on ? "★" : "☆";
       btn.setAttribute(
         "aria-label",
-        on ? `Remove ${btn.dataset.theme} from favorites` : `Add ${btn.dataset.theme} to favorites`
+        on ? `Remove ${label} from favorites` : `Add ${label} to favorites`
       );
     });
     getThemeRows().forEach((row) => {

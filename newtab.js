@@ -481,7 +481,7 @@ const THEME_NAMES = Object.keys(themes);
 
 const VIBE_DOCUMENT_TITLE = "Vibescape | New Tab";
 
-/** Matches popup.html → "Movies & books" (Pro). Random skips these. */
+/** Matches popup.html → "Inspired vibes" (Pro). Random skips these. */
 const PRO_THEME_IDS = new Set([
   "ratatouille",
   "commonroom",
