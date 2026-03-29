@@ -845,7 +845,19 @@
     body.opalinecourt .quote { color:#795f94; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.opalinecourt .quote-author { color:#9a81b4; }
 
     /* ─── TYRELL NOIR (neon-noir / rain dystopia) ───────────────────── */
-    body.tyrellnoir { background:#0a0e14; font-family:'Orbitron', 'Syne', sans-serif; }
+    body.tyrellnoir {
+      background:#0a0e14;
+      font-family:'Orbitron', 'Syne', sans-serif;
+      cursor: url('assets/blade-runner/unicorn.png') 2 2, auto;
+    }
+    body.tyrellnoir input.search-bar,
+    body.tyrellnoir textarea {
+      cursor: text;
+    }
+    body.tyrellnoir .search-btn,
+    body.tyrellnoir .search-mag {
+      cursor: pointer;
+    }
     body.tyrellnoir::before {
       content: '';
       position: fixed;
@@ -955,7 +967,19 @@
     }
 
     /* ─── ARRAKIS STONE (desert brutalism / epic scale) ─────────────── */
-    body.arrakisstone { background:#1c1814; font-family:'Marcellus', 'Cinzel', serif; }
+    body.arrakisstone {
+      background:#1c1814;
+      font-family:'Marcellus', 'Cinzel', serif;
+      cursor: url('assets/dune/crysknife.png') 23 2, auto;
+    }
+    body.arrakisstone input.search-bar,
+    body.arrakisstone textarea {
+      cursor: text;
+    }
+    body.arrakisstone .search-btn,
+    body.arrakisstone .search-mag {
+      cursor: pointer;
+    }
     body.arrakisstone::before {
       content: '';
       position: fixed;
@@ -986,7 +1010,19 @@
     body.arrakisstone .quote { color:#c9b896; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.arrakisstone .quote-author { color:#9a8668; }
 
     /* ─── MATRIX FALL (green digital reality) ─────────────────────── */
-    body.matrixfall { background:#000301; font-family:'VT323', 'Space Mono', monospace; }
+    body.matrixfall {
+      background:#000301;
+      font-family:'VT323', 'Space Mono', monospace;
+      cursor: url('assets/matrix/classic-mouse-half.png') 1 1, auto;
+    }
+    body.matrixfall input.search-bar,
+    body.matrixfall textarea {
+      cursor: text;
+    }
+    body.matrixfall .search-btn,
+    body.matrixfall .search-mag {
+      cursor: pointer;
+    }
     body.matrixfall::before { content:''; position:fixed; inset:0; background: repeating-linear-gradient(180deg, transparent 0 2px, rgba(0,255,65,0.03) 2px 3px), radial-gradient(ellipse 80% 50% at 50% 50%, rgba(0,80,30,0.35) 0%, transparent 70%); pointer-events:none; z-index:0; }
     /* Scanlines + vignette from first paint; disable global gradient drift so nothing “arrives” after the rain. */
     body.matrixfall.motion-enabled::before {
@@ -1082,7 +1118,19 @@
         filter: blur(0);
       }
     }
-    body.rivendelleve { background:#1a2218; font-family:'Libre Baskerville', Georgia, serif; }
+    body.rivendelleve {
+      background:#1a2218;
+      font-family:'Libre Baskerville', Georgia, serif;
+      cursor: url('assets/lord-of-the-rings/leaf.png') 47 4, auto;
+    }
+    body.rivendelleve input.search-bar,
+    body.rivendelleve textarea {
+      cursor: text;
+    }
+    body.rivendelleve .search-btn,
+    body.rivendelleve .search-mag {
+      cursor: pointer;
+    }
     body.rivendelleve::before {
       content: '';
       position: fixed;
@@ -1477,7 +1525,19 @@
     body.gatsbygilded .quote { color:#e8dcc8; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.gatsbygilded .quote-author { color:#d4af37; }
 
     /* ─── BATH SPIRITED (dreamlike spirit world / soft vermillion) ─── */
-    body.bathspirited { background:#2a2228; font-family:'Cormorant Garamond', serif; }
+    body.bathspirited {
+      background:#2a2228;
+      font-family:'Cormorant Garamond', serif;
+      cursor: url('assets/spirited-away/susuwatari.png') 20 20, auto;
+    }
+    body.bathspirited input.search-bar,
+    body.bathspirited textarea {
+      cursor: text;
+    }
+    body.bathspirited .search-btn,
+    body.bathspirited .search-mag {
+      cursor: pointer;
+    }
     body.bathspirited::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(180,90,80,0.15) 0%, transparent 50%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(200,180,190,0.08) 0%, transparent 45%), linear-gradient(180deg, #3a3038 0%, #221c22 100%); pointer-events:none; z-index:0; }
     body.bathspirited .stars { display:none; } body.bathspirited .content { position:relative; z-index:2; }
     body.bathspirited .clock { color:#f5e8ea; text-shadow:0 0 20px rgba(196,92,76,0.2); }
