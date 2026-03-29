@@ -13,27 +13,30 @@
       Extension popups: avoid 100vw / device-width — Chrome can resolve them to ~0
       or the full browser width and collapse the panel into a unusable narrow strip.
     */
+    /*
+      Don’t use max-height: 100dvh here — in extension popups it can resolve like a small
+      viewport and force body scroll. Fixed min-height sets panel size; content can grow past it.
+    */
     html {
       width: 460px;
       min-width: 460px;
       max-width: 460px;
+      min-height: 650px;
       height: auto;
-      /* Tall enough to show theme list + pager + footer without scroll on most displays; width unchanged */
-      max-height: min(100dvh, 1200px);
     }
 
     body {
       width: 460px;
       min-width: 460px;
       max-width: 460px;
-      max-height: min(100dvh, 1200px);
+      min-height: 650px;
       height: auto;
       background: #0d0a1a;
       color: #e8d5ff;
       font-family: 'Syne', sans-serif;
       padding: 1.35rem 1.4rem 1.25rem;
-      overflow-y: auto;
       overflow-x: hidden;
+      overflow-y: visible;
     }
 
     :root {
@@ -185,8 +188,12 @@
       margin-left: 0.35em;
       font-weight: 500;
       letter-spacing: 0;
-      color: rgba(245, 204, 92, 0.85);
+      color: inherit;
       text-transform: none;
+    }
+    .theme-section__pager-hint--leading {
+      margin-left: 0;
+      margin-right: 0.35em;
     }
     .theme-section__pager-hint[hidden] {
       display: none !important;
@@ -207,6 +214,29 @@
       display: flex;
       flex-direction: column;
       gap: var(--theme-row-gap);
+    }
+    .theme-section__stories-foot {
+      margin-top: 0.45rem;
+      padding: 0.35rem 0.15rem 0.1rem;
+      text-align: center;
+    }
+    .theme-section__stories-foot__link {
+      font-size: 0.72rem;
+      line-height: 1.45;
+      color: #a892d4;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(168, 146, 212, 0.42);
+      padding-bottom: 1px;
+      letter-spacing: 0.02em;
+    }
+    .theme-section__stories-foot__link:hover {
+      color: #dcc8ff;
+      border-bottom-color: rgba(220, 200, 255, 0.55);
+    }
+    .theme-section__stories-foot__link--pending {
+      opacity: 0.55;
+      cursor: default;
+      border-bottom-style: dashed;
     }
 
     .theme-option {
@@ -368,7 +398,20 @@
 
   <div class="theme-list">
     <div class="theme-section">
-      <div class="theme-section__header">Original vibes</div>
+      <div
+        class="theme-section__header"
+        id="original-section-header"
+      >
+        <span class="theme-section__header-label">
+          <span
+            class="theme-section__pager-hint theme-section__pager-hint--leading"
+            id="original-section-pager-hint"
+            hidden
+            aria-hidden="true"
+          >←</span>
+          Original vibes
+        </span>
+      </div>
       <div class="theme-section__body">
     <div class="theme-option" data-theme="financebro">
       <div class="theme-emoji">📈</div>
@@ -483,7 +526,7 @@
         id="stories-section-header"
       >
         <span class="theme-section__header-label">
-          Inspired vibes
+          Inspired vibes — batch&nbsp;01
           <span
             class="theme-section__pager-hint"
             id="stories-section-pager-hint"
@@ -697,6 +740,14 @@
         <div class="theme-desc">grand staircase mood, brass, salt air</div>
       </div>
     </div>
+      </div>
+      <div class="theme-section__stories-foot" id="inspired-vibes-vote-foot" hidden>
+        <a
+          class="theme-section__stories-foot__link"
+          id="inspired-vibes-vote-link"
+          href="#"
+          rel="noopener noreferrer"
+        >Vote for the next round of themes →</a>
       </div>
     </div>
   </div>

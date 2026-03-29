@@ -1,6 +1,9 @@
 /** Paste your walkthrough URL here once the video is up (Chrome footer toggle). */
 const CHROME_FOOTER_HELP_VIDEO_URL = "";
 
+/** URL for voting on the next inspired batch (popup link; opens in a new tab). */
+const INSPIRED_VIBES_VOTE_URL = "";
+
 /** If the user is already on Chrome's new-tab surface, load Vibescape without opening another tab. */
 function activateNewTabSurfaceInActiveTab() {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -69,6 +72,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  const inspiredVoteLink = document.getElementById("inspired-vibes-vote-link");
+  if (inspiredVoteLink) {
+    const voteUrl = INSPIRED_VIBES_VOTE_URL.trim();
+    if (voteUrl) {
+      inspiredVoteLink.href = voteUrl;
+      inspiredVoteLink.target = "_blank";
+    } else {
+      inspiredVoteLink.classList.add("theme-section__stories-foot__link--pending");
+      inspiredVoteLink.title = "Add your URL to INSPIRED_VIBES_VOTE_URL in popup.js";
+      inspiredVoteLink.addEventListener("click", (e) => e.preventDefault());
+    }
+  }
+
   const themeListEl = document.querySelector(".theme-list");
   const prevBatchBtn = document.getElementById("prev-batch");
   const nextBatchBtn = document.getElementById("next-batch");
@@ -109,11 +125,57 @@ document.addEventListener("DOMContentLoaded", () => {
     hint.hidden = !showHint;
     if (header) {
       if (showHint) {
-        header.title = 'Use "next 5" below to open more inspired vibes';
+        header.title = 'Use "next 5" below to open more from inspired vibes — batch 01';
       } else {
         header.removeAttribute("title");
       }
     }
+  }
+
+  function updateOriginalSectionPagerHint() {
+    const hint = document.getElementById("original-section-pager-hint");
+    const header = document.getElementById("original-section-header");
+    if (!hint) return;
+    if (!hasPager) {
+      hint.hidden = true;
+      if (header) header.removeAttribute("title");
+      return;
+    }
+    const themeRows = getThemeRows();
+    if (!themeRows.length) {
+      hint.hidden = true;
+      if (header) header.removeAttribute("title");
+      return;
+    }
+    const start = currentPage * PAGE_SIZE;
+    const end = start + PAGE_SIZE;
+    const anyStoriesVisible = themeRows.some(
+      (row, index) =>
+        index >= start && index < end && row.closest(".theme-section--stories")
+    );
+    const show = anyStoriesVisible && currentPage > 0;
+    hint.hidden = !show;
+    if (header) {
+      if (show) {
+        header.title = 'Use "previous 5" below to open more from original vibes';
+      } else {
+        header.removeAttribute("title");
+      }
+    }
+  }
+
+  function updateInspiredVoteFootVisibility() {
+    const foot = document.getElementById("inspired-vibes-vote-foot");
+    if (!foot) return;
+    const themeRows = getThemeRows();
+    const start = hasPager ? currentPage * PAGE_SIZE : 0;
+    const end = hasPager ? start + PAGE_SIZE : themeRows.length;
+    const anyStoriesVisible = themeRows.some((row, index) => {
+      if (!row.closest(".theme-section--stories")) return false;
+      if (!hasPager) return true;
+      return index >= start && index < end;
+    });
+    foot.hidden = !anyStoriesVisible;
   }
 
   function renderPage() {
@@ -129,6 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (prevBatchBtn) prevBatchBtn.disabled = currentPage <= 0;
     if (nextBatchBtn) nextBatchBtn.disabled = currentPage >= totalPages() - 1;
     updateStoriesSectionPagerHint();
+    updateOriginalSectionPagerHint();
+    updateInspiredVoteFootVisibility();
   }
 
   function pageForTheme(theme) {
@@ -243,6 +307,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (hasPager) {
         currentPage = pageForTheme(data?.vibeTheme || "twilight");
         renderPage();
+      } else {
+        updateInspiredVoteFootVisibility();
       }
     }
   );
