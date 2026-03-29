@@ -479,6 +479,8 @@ const themes = {
 
 const THEME_NAMES = Object.keys(themes);
 
+const VIBE_DOCUMENT_TITLE = "Vibescape | New Tab";
+
 /** Matches popup.html → "Movies & books" (Pro). Random skips these. */
 const PRO_THEME_IDS = new Set([
   "ratatouille",
@@ -513,6 +515,34 @@ const PRO_THEME_IDS = new Set([
 ]);
 
 const RANDOM_THEME_POOL = THEME_NAMES.filter((id) => !PRO_THEME_IDS.has(id));
+const PRO_THEME_POOL = THEME_NAMES.filter((id) => PRO_THEME_IDS.has(id));
+
+/** Shuffled ring per pool (Pro vs regular); Random advances so no consecutive repeat until full loop. */
+const randomThemeCycle = {
+  pro: { poolKey: "", order: [] },
+  regular: { poolKey: "", order: [] },
+};
+
+function shuffleThemeCycleOrder(ids) {
+  const a = ids.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i];
+    a[i] = a[j];
+    a[j] = t;
+  }
+  return a;
+}
+
+function getShuffledCycleOrder(poolKind, pool) {
+  const st = randomThemeCycle[poolKind];
+  const poolKey = pool.join("\0");
+  if (st.poolKey !== poolKey || st.order.length !== pool.length) {
+    st.poolKey = poolKey;
+    st.order = shuffleThemeCycleOrder(pool);
+  }
+  return st.order;
+}
 
 function getCurrentTheme() {
   const t = document.body.dataset.theme;
@@ -524,6 +554,12 @@ function setBodyThemeClass(theme) {
   THEME_NAMES.forEach((name) => document.body.classList.remove(name));
   document.body.classList.add(resolved);
   document.body.dataset.theme = resolved;
+  document.title = VIBE_DOCUMENT_TITLE;
+  try {
+    localStorage.setItem("vibeTheme", resolved);
+  } catch (e) {
+    /* ignore */
+  }
 }
 
 function setupMotionPreference() {
@@ -1145,6 +1181,48 @@ function syncMatrixRain() {
   requestAnimationFrame(tick);
 })();
 
+// ── GATSBY GILDED: GREEN LIGHT AURA (same pattern as Common Room snitch; bigger, #0b815a) ─
+(function initGatsbyGreenLightAura() {
+  const root = document.getElementById("green-light-motion");
+  const core = root?.querySelector?.(".green-light-motion__core");
+  if (!root || !core) return;
+
+  let mx = window.innerWidth * 0.5;
+  let my = window.innerHeight * 0.5;
+
+  /* Match body.gatsbygilded cursor: url('...green-light-cursor.png') 36 36 */
+  const GATSBY_CURSOR = { w: 72, h: 72, hx: 36, hy: 36 };
+
+  window.addEventListener(
+    "mousemove",
+    (e) => {
+      if (getCurrentTheme() !== "gatsbygilded") return;
+      mx = e.clientX;
+      my = e.clientY;
+    },
+    { passive: true }
+  );
+
+  function tick() {
+    const theme = getCurrentTheme();
+    const reduced = document.body.classList.contains("motion-reduced");
+    if (theme !== "gatsbygilded" || reduced) {
+      root.hidden = true;
+      requestAnimationFrame(tick);
+      return;
+    }
+    root.hidden = false;
+
+    const cx = mx - GATSBY_CURSOR.hx + GATSBY_CURSOR.w * 0.5;
+    const cy = my - GATSBY_CURSOR.hy + GATSBY_CURSOR.h * 0.5;
+    core.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+})();
+
 // ── THEME SWITCHER ───────────────────────────────────────────────────
 function switchTheme(theme) {
   const resolved = themes[theme] ? theme : "twilight";
@@ -1178,18 +1256,21 @@ document.getElementById("search-go")?.addEventListener("click", () => runGoogleS
 document.getElementById("search-mag")?.addEventListener("click", () => runGoogleSearch());
 
 function randomTheme() {
-  const pool = RANDOM_THEME_POOL;
-  if (pool.length < 1) return;
   const current = getCurrentTheme();
+  const isPro = PRO_THEME_IDS.has(current);
+  const pool = isPro ? PRO_THEME_POOL : RANDOM_THEME_POOL;
+  if (pool.length < 1) return;
   if (pool.length === 1) {
     if (pool[0] !== current) switchTheme(pool[0]);
     return;
   }
-  let next;
-  do {
-    next = pool[Math.floor(Math.random() * pool.length)];
-  } while (next === current);
-  switchTheme(next);
+  const order = getShuffledCycleOrder(isPro ? "pro" : "regular", pool);
+  const idx = order.indexOf(current);
+  if (idx === -1) {
+    switchTheme(order[0]);
+    return;
+  }
+  switchTheme(order[(idx + 1) % order.length]);
 }
 
 document.getElementById("random-vibe")?.addEventListener("click", () => randomTheme());
