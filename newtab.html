@@ -951,7 +951,7 @@
     body.opalinecourt .search-bar { background:rgba(95,70,116,0.05); border:1px solid rgba(95,70,116,0.2); color:#5f4674; } body.opalinecourt .search-bar::placeholder { color:#a48bbd; }
     body.opalinecourt .quote { color:#795f94; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.opalinecourt .quote-author { color:#9a81b4; }
 
-    /* ─── TYRELL NOIR (neon-noir / rain dystopia) ───────────────────── */
+    /* ─── SPIRE NOIR (neon rain / tower dystopia) ───────────────────── */
     body.tyrellnoir {
       background:#0a0e14;
       font-family:'Orbitron', 'Syne', sans-serif;
@@ -1062,7 +1062,7 @@
         0 0 28px rgba(0, 220, 255, 0.22),
         0 1px 10px rgba(0, 0, 0, 0.85);
     }
-    /* ─── ARRAKIS STONE (desert brutalism / epic scale) ─────────────── */
+    /* ─── SANDSTONE BRUTAL (desert brutalism / epic scale) ──────────── */
     body.arrakisstone {
       background:#1c1814;
       font-family:'Marcellus', 'Cinzel', serif;
@@ -1131,7 +1131,7 @@
       text-shadow:0 1px 4px rgba(0,0,0,0.82), 0 0 16px rgba(0,0,0,0.35);
     }
 
-    /* ─── MATRIX FALL (green digital reality) ─────────────────────── */
+    /* ─── CIPHER FALL (green digital rain / terminal mood) ────────── */
     body.matrixfall {
       background:#000301;
       font-family:'VT323', 'Space Mono', monospace;
@@ -1228,7 +1228,7 @@
       min-height: 40px;
     }
 
-    /* ─── RIVENDELL EVE (grounded medieval epic) ──────────────────── */
+    /* ─── FOREST EVE (grounded medieval-epic mood) ─────────────────── */
     @keyframes rivendelleveDawnIn {
       0% {
         opacity: 0;
@@ -1655,7 +1655,7 @@
       }
     }
 
-    /* ─── INKVERSE POP (Into the Spider-Verse — still + comic chrome) ─ */
+    /* ─── HALFTONE POP (comic still + ink chrome) ──────────────────── */
     /* Load: camera swings forward — UI rushes from deep / tipped back to rest. */
     @keyframes inkversepopSwingIn {
       0% {
@@ -1808,7 +1808,11 @@
     body.rabbitholedream .content {
       position:relative;
       z-index:2;
-      animation: proInRabbitholedream 1.35s cubic-bezier(0.28, 1, 0.42, 1) both;
+      transform-origin: 50% 45%;
+      /* Spin on its own linear timeline so easing doesn’t “park” rotation mid-turn */
+      animation:
+        proInRabbitholedreamSlide 0.75s cubic-bezier(0.22, 1, 0.32, 1) both,
+        proInRabbitholedreamSpin 0.75s linear both;
     }
     body.rabbitholedream .clock { color:#fff; text-shadow:2px 2px 0 #d472ff, 4px 4px 0 #ff90b0, 0 2px 10px rgba(0,0,0,0.65); }
     body.rabbitholedream .greeting {
@@ -1855,7 +1859,7 @@
         0 0 22px rgba(236, 100, 170, 0.3);
     }
 
-    /* ─── RATATOUILLE (Pixar — film still + saturated Paris warmth) ─ */
+    /* ─── BISTRO NIGHT (film still + saturated Paris warmth) ──────── */
     body.ratatouille {
       background: #2a1812;
       font-family: 'Fredoka', 'Nunito', system-ui, sans-serif;
@@ -2002,7 +2006,7 @@
         inset 0 2px 0 rgba(255, 255, 255, 0.55);
     }
 
-    /* ─── LANTERN NARNIA (mythic winter / lamp magic) ─────────────── */
+    /* ─── WINTER LANTERN (mythic frost / lamp magic) ──────────────── */
     body.lanternnarnia {
       background: #161412;
       font-family: 'Cinzel', serif;
@@ -2177,7 +2181,7 @@
     body.droogclockwork .search-bar::placeholder { color:#a8a4a0; } body.droogclockwork .search-bar:focus { box-shadow:4px 4px 0 #ff6b35; }
     body.droogclockwork .quote { color:#2e2c28; font-style:normal; font-size:clamp(1.1rem,2vw,1.35rem)!important; text-shadow:0 1px 2px rgba(255,255,255,0.6); } body.droogclockwork .quote-author { color:#d45820; text-shadow:0 1px 2px rgba(255,255,255,0.5); }
 
-    /* ─── GATSBY GILDED (art deco / jazz-age excess) ───────────────── */
+    /* ─── GILDED JAZZ (art deco / jazz-age excess) ─────────────────── */
     body.gatsbygilded {
       background:#1c2840;
       font-family:'Playfair Display', Georgia, serif;
@@ -2224,7 +2228,7 @@
     body.gatsbygilded .search-bar::placeholder { color:#9aa8b8; } body.gatsbygilded .search-bar:focus { box-shadow:0 0 22px rgba(212,175,55,0.35); }
     body.gatsbygilded .quote { color:#f0e4d4; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; text-shadow:0 1px 3px rgba(0,0,0,0.85); } body.gatsbygilded .quote-author { color:#e0c060; text-shadow:0 1px 2px rgba(0,0,0,0.8); }
 
-    /* ─── BATH SPIRITED (dreamlike spirit world / soft vermillion) ─── */
+    /* ─── ONSEN DUSK (dreamlike bath world / soft vermillion) ─────── */
     body.bathspirited {
       background:#261c24;
       font-family:'Cormorant Garamond', serif;
@@ -2551,7 +2555,7 @@
     }
     body.wickiesmono .quote { color:#c8c0b0; font-style:normal; font-size:clamp(1.05rem,1.7vw,1.2rem)!important; text-shadow:0 1px 3px rgba(0,0,0,0.88); } body.wickiesmono .quote-author { color:#d8b040; text-shadow:0 1px 2px rgba(0,0,0,0.82); }
 
-    /* ─── EMERALD MYTH (yellow-brick chroma / Oz horizon) ───────────── */
+    /* ─── RAINBOW VERGE (chroma path / mythic green horizon) ──────── */
     body.emeraldmyth { background:#0f1812; font-family:'Marcellus', 'Syne', sans-serif; }
     body.emeraldmyth::before {
       content: '';
@@ -2649,7 +2653,7 @@
     body.furyroadheat .search-bar::placeholder { color:#a07050; } body.furyroadheat .search-bar:focus { box-shadow:0 0 22px rgba(255,100,40,0.4); }
     body.furyroadheat .quote { color:#ffd8c0; font-size:clamp(1.1rem,2vw,1.35rem)!important; text-shadow:0 1px 3px rgba(0,0,0,0.88); } body.furyroadheat .quote-author { color:#ff9058; text-shadow:0 1px 2px rgba(0,0,0,0.82); }
 
-    /* ─── ISLA SPLICE (jungle life / system grid) ───────────────────── */
+    /* ─── AMBER GRID (jungle life / system grid) ───────────────────── */
     body.islasplice { background:#0c120e; font-family:'Syne', sans-serif; }
     body.islasplice::before {
       content: '';
@@ -2686,7 +2690,7 @@
     body.islasplice .search-bar::placeholder { color:#6a9878; } body.islasplice .search-bar:focus { box-shadow:0 0 20px rgba(80,200,120,0.28); border-color:rgba(255,200,100,0.5); }
     body.islasplice .quote { color:#d0f0d8; font-size:clamp(1.1rem,2vw,1.35rem)!important; text-shadow:0 1px 3px rgba(0,0,0,0.85); } body.islasplice .quote-author { color:#f0c860; text-shadow:0 1px 2px rgba(0,0,0,0.78); }
 
-    /* ─── DREAMHOUSE POP (Barbie maximalism / plastic sunset) ───────── */
+    /* ─── PLASTIC PALACE (pop maximalism / glossy sunset) ─────────── */
     body.dreamhousepop { background:#1a0a18; font-family:'Nunito', sans-serif; }
     body.dreamhousepop::before {
       content: '';
@@ -2861,7 +2865,7 @@
         0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
-    /* ─── FROZEN HEART (ice / sisterhood still) ──────────────────────── */
+    /* ─── AURORA ICE (frost still / winter sparkle) ─────────────────── */
     body.frozenheart { background:#0a1424; font-family:'Cinzel', 'Cormorant Garamond', serif; }
     body.frozenheart::before {
       content: '';
@@ -2936,7 +2940,7 @@
     body.lalaland .search-bar::placeholder { color:#b080b8; } body.lalaland .search-bar:focus { box-shadow:0 0 24px rgba(255,120,180,0.35); }
     body.lalaland .quote { color:#fce8f8; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; text-shadow:0 1px 3px rgba(0,0,0,0.9); } body.lalaland .quote-author { color:#f0a8d8; text-shadow:0 1px 2px rgba(0,0,0,0.85); }
 
-    /* ─── TITANIC VOW (ocean liner / brass night) ────────────────────── */
+    /* ─── LINER VOW (ocean liner mood / brass night) ─────────────────── */
     body.titanicvow { background:#061018; font-family:'Playfair Display', Georgia, serif; }
     body.titanicvow::before {
       content: '';
@@ -2971,7 +2975,7 @@
     body.titanicvow .search-bar::placeholder { color:#8090a8; } body.titanicvow .search-bar:focus { box-shadow:0 0 22px rgba(160,190,220,0.25); }
     body.titanicvow .quote { color:#e0e8f4; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; text-shadow:0 1px 3px rgba(0,0,0,0.88); } body.titanicvow .quote-author { color:#b8c8e0; text-shadow:0 1px 2px rgba(0,0,0,0.82); }
 
-    /* ─── OPENING CRAWL (deep space / classic tilted yellow crawl) ───── */
+    /* ─── STARLIT CRAWL (deep space / tilted amber text crawl) ─────── */
     body.openingcrawl {
       background: #000;
       font-family: 'News Cycle', 'Barlow Condensed', sans-serif;
@@ -3450,7 +3454,7 @@
     }
 
     /*
-     * Pro / “Movies & books” — shared type scale for legibility + consistency.
+     * Pro / “Inspired vibes” — shared type scale for legibility + consistency.
      * Omitted: commonroom (parchment metrics), openingcrawl (3D crawl), matrixfall (terminal scale).
      * UI design notes (future polish, non-blocking):
      * — Search/Random label floor ~15px + min-height 38px: see block “Pro … minimum label + hit area”.
@@ -3582,7 +3586,7 @@
     }
 
     /*
-     * Pro / “Movies & books” themes: Search (primary) vs Random — solid, palette-driven fills
+     * Pro / “Inspired vibes” themes: Search (primary) vs Random — solid, palette-driven fills
      * matched to each still (not the shared frosted defaults).
      */
     body.tyrellnoir .search-actions .search-btn:first-of-type {
@@ -4080,7 +4084,7 @@
       box-shadow: 0 0 32px rgba(240, 120, 200, 0.35);
     }
 
-    /* Pro “Movies & books”: minimum label + hit area (excl. commonroom, openingcrawl, matrixfall). */
+    /* Pro “Inspired vibes”: minimum label + hit area (excl. commonroom, openingcrawl, matrixfall). */
     body.tyrellnoir .search-actions .search-btn,
     body.inkversepop .search-actions .search-btn,
     body.arrakisstone .search-actions .search-btn,
@@ -4480,6 +4484,7 @@
     .search-bar:hover { transform: translateY(-1px); }
 
     .quote-block {
+      display: none;
       margin-top: 3rem;
       max-width: min(88vw, 900px);
       text-align: center;
@@ -4568,7 +4573,7 @@
     .content { animation: fadeIn 1s ease forwards; }
 
     /*
-     * Pro “Movies & books” themes (PRO_THEME_IDS): first-paint entrances tied to each film/book vibe.
+     * Pro “Inspired vibes” themes (PRO_THEME_IDS): first-paint entrances tied to each story vibe.
      * Themes with their own full bespoke intros (commonroom, inkversepop, lanternnarnia, openingcrawl,
      * rivendelleve, topiaryshadow, wickiesmono) keep those — not overridden here.
      */
@@ -4604,10 +4609,23 @@
       14% { opacity: 1; filter: contrast(1.22); }
       100% { opacity: 1; transform: translateY(calc(-5vh + 40px)) scale(1); filter: none; }
     }
-    @keyframes proInRabbitholedream {
-      0% { opacity: 0; transform: translateY(calc(-5vh + 58px)) rotate(-6deg); }
-      66% { opacity: 1; transform: translateY(calc(-5vh + 36px)) rotate(1.4deg); }
-      100% { opacity: 1; transform: translateY(calc(-5vh + 40px)) rotate(0); }
+    @keyframes proInRabbitholedreamSlide {
+      0% {
+        opacity: 0;
+        transform: translateY(calc(-5vh + 58px));
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(calc(-5vh + 40px));
+      }
+    }
+    @keyframes proInRabbitholedreamSpin {
+      0% {
+        rotate: 0deg;
+      }
+      100% {
+        rotate: 360deg;
+      }
     }
     @keyframes proInEmeraldmyth {
       0% { opacity: 0; filter: saturate(0.35) hue-rotate(-18deg); transform: translateY(calc(-5vh + 52px)) rotate(-4deg); }
@@ -4673,7 +4691,7 @@
       100% { opacity: 1; transform: translateY(calc(-5vh + 40px)) rotate(0); }
     }
 
-    /* Lantern Narnia: armoire doors — hinges on OUTER frame (not center “book” spine) */
+    /* Winter lantern: armoire doors — hinges on OUTER frame (not center “book” spine) */
     @keyframes lanternnarniaDoorLeft {
       0% {
         transform: rotateY(0deg);
