@@ -1712,13 +1712,13 @@
       pointer-events: none;
       z-index: 0;
       background-image:
+        linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
         radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.35) 0%, transparent 28%),
         linear-gradient(180deg, rgba(135, 206, 235, 0.5) 0%, rgba(80, 140, 180, 0.35) 45%, rgba(20, 40, 60, 0.55) 100%),
-        repeating-conic-gradient(from 0deg at 50% 100%, rgba(255, 255, 255, 0.08) 0 15deg, transparent 15deg 30deg),
         url('assets/rabbitholedream/bg.webp');
-      background-size: cover, cover, auto, cover;
+      background-size: cover, cover, cover, cover;
       background-position: center;
-      background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
       background-attachment: fixed;
     }
     body.rabbitholedream.motion-enabled::before {
@@ -1727,12 +1727,52 @@
       transform: none;
       filter: none;
     }
-    body.rabbitholedream .stars { display:none; } body.rabbitholedream .content { position:relative; z-index:2; }
+    body.rabbitholedream .stars { display:none; }
+    body.rabbitholedream .content { position:relative; z-index:2; }
     body.rabbitholedream .clock { color:#fff; text-shadow:2px 2px 0 #d472ff, 4px 4px 0 #ff90b0, 0 2px 10px rgba(0,0,0,0.65); }
-    body.rabbitholedream .greeting { color:#fff; text-shadow:1px 1px 3px rgba(0,0,0,0.75), 0 0 12px rgba(74,144,164,0.5); } body.rabbitholedream .date-line { color:#e8f8ff; text-shadow:0 1px 2px rgba(0,0,0,0.65); }
+    body.rabbitholedream .greeting {
+      color:#fffdfa;
+      font-weight:500;
+      font-size:clamp(1.1rem, 2.05vw, 1.45rem) !important;
+      text-shadow:
+        0 0 1px rgba(0, 0, 0, 0.95),
+        0 1px 3px rgba(0, 0, 0, 0.88),
+        0 2px 14px rgba(0, 0, 0, 0.55),
+        0 0 20px rgba(40, 45, 70, 0.35);
+    }
+    body.rabbitholedream .date-line {
+      color:#fff3f9;
+      font-weight:600;
+      font-size:clamp(1.04rem, 1.92vw, 1.22rem) !important;
+      text-shadow:
+        0 0 2px rgba(0, 0, 0, 0.95),
+        0 1px 3px rgba(0, 0, 0, 0.92),
+        0 2px 14px rgba(0, 0, 0, 0.75),
+        0 0 24px rgba(255, 130, 190, 0.35);
+    }
     body.rabbitholedream .search-bar { background:rgba(255,255,255,0.88); border:2px dashed rgba(255,255,255,0.95); color:#2a5a78; box-shadow:0 2px 14px rgba(0,0,0,0.15); }
     body.rabbitholedream .search-bar::placeholder { color:#5a98b8; } body.rabbitholedream .search-bar:focus { box-shadow:0 0 24px rgba(255,255,255,0.55); }
-    body.rabbitholedream .quote { color:#fff; text-shadow:1px 1px 4px rgba(0,0,0,0.85); font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; } body.rabbitholedream .quote-author { color:#f0ffff; text-shadow:0 1px 3px rgba(0,0,0,0.8); }
+    body.rabbitholedream .quote {
+      color:#fffefa;
+      font-style:italic;
+      font-weight:500;
+      font-size:clamp(1.26rem, 2.35vw, 1.55rem) !important;
+      line-height:1.4 !important;
+      text-shadow:
+        0 0 1px rgba(0, 0, 0, 0.95),
+        0 1px 4px rgba(0, 0, 0, 0.9),
+        0 2px 16px rgba(0, 0, 0, 0.55);
+    }
+    body.rabbitholedream .quote-author {
+      color:#ffd4ea;
+      font-weight:600;
+      font-size:clamp(1.02rem, 1.88vw, 1.22rem) !important;
+      text-shadow:
+        0 0 2px rgba(0, 0, 0, 0.95),
+        0 1px 3px rgba(0, 0, 0, 0.9),
+        0 2px 14px rgba(0, 0, 0, 0.72),
+        0 0 22px rgba(236, 100, 170, 0.3);
+    }
 
     /* ─── RATATOUILLE (Pixar — film still + saturated Paris warmth) ─ */
     body.ratatouille {
@@ -2958,8 +2998,7 @@
     body.cottagealchemy .search-btn,
     body.droogclockwork .search-btn,
     body.opalinecourt .search-btn,
-    body.discoverywhite .search-btn,
-    body.rabbitholedream .search-btn {
+    body.discoverywhite .search-btn {
       border-color: rgba(40, 35, 32, 0.22);
       background: rgba(40, 35, 32, 0.06);
       color: rgba(35, 32, 28, 0.9);
@@ -2972,9 +3011,32 @@
     body.cottagealchemy .search-btn:focus-visible,
     body.droogclockwork .search-btn:focus-visible,
     body.opalinecourt .search-btn:focus-visible,
-    body.discoverywhite .search-btn:focus-visible,
-    body.rabbitholedream .search-btn:focus-visible {
+    body.discoverywhite .search-btn:focus-visible {
       box-shadow: 0 0 0 2px rgba(40, 35, 32, 0.25), 0 0 0 4px rgba(255, 255, 255, 0.5);
+    }
+    body.rabbitholedream .search-actions .search-btn:first-of-type {
+      border: 1px solid #1e4d68;
+      background: #2f6f92;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem !important;
+      text-shadow: 0 1px 2px rgba(0, 25, 45, 0.45);
+      box-shadow: 0 2px 12px rgba(20, 55, 80, 0.38);
+    }
+    body.rabbitholedream .search-actions .search-btn:last-of-type {
+      border: 1px solid #7a2854;
+      background: #b84d82;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem !important;
+      text-shadow: 0 1px 2px rgba(50, 10, 35, 0.4);
+      box-shadow: 0 2px 12px rgba(90, 30, 65, 0.32);
+    }
+    body.rabbitholedream .search-actions .search-btn:first-of-type:focus-visible {
+      box-shadow: 0 0 0 2px #fff8fc, 0 0 0 4px rgba(47, 111, 146, 0.75);
+    }
+    body.rabbitholedream .search-actions .search-btn:last-of-type:focus-visible {
+      box-shadow: 0 0 0 2px #fff8fc, 0 0 0 4px rgba(184, 77, 130, 0.7);
     }
     /* Méndl Pastel: solid rosy-red Search + light pink Random */
     body.mendlpastel .search-actions .search-btn:first-of-type {
@@ -3357,11 +3419,21 @@
       color: #c41212;
       box-shadow: 0 8px 24px rgba(196, 18, 18, 0.08);
     }
-    body.rabbitholedream .search-btn:hover {
-      border-color: rgba(90, 170, 205, 0.45);
-      background: #ffffff;
-      color: #2a6a90;
-      box-shadow: 0 8px 28px rgba(122, 176, 200, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    body.rabbitholedream .search-actions .search-btn:hover {
+      transform: none;
+      filter: none;
+    }
+    body.rabbitholedream .search-actions .search-btn:first-of-type:hover {
+      border-color: #6aa8c9;
+      background: #5c9ec4;
+      color: #fff;
+      box-shadow: 0 2px 12px rgba(20, 55, 80, 0.38);
+    }
+    body.rabbitholedream .search-actions .search-btn:last-of-type:hover {
+      border-color: #d090b0;
+      background: #cf85ae;
+      color: #fff;
+      box-shadow: 0 2px 12px rgba(90, 30, 65, 0.32);
     }
     body.ratatouille .search-actions .search-btn:hover {
       transform: none;
