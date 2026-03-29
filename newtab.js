@@ -452,6 +452,38 @@ const themes = {
 
 const THEME_NAMES = Object.keys(themes);
 
+/** Matches popup.html → "Movies & books" (Pro). Random skips these. */
+const PRO_THEME_IDS = new Set([
+  "ratatouille",
+  "commonroom",
+  "inkversepop",
+  "lanternnarnia",
+  "openingcrawl",
+  "rivendelleve",
+  "tyrellnoir",
+  "arrakisstone",
+  "matrixfall",
+  "bathspirited",
+  "mendlpastel",
+  "topiaryshadow",
+  "bridesvengeance",
+  "rabbitholedream",
+  "wickiesmono",
+  "emeraldmyth",
+  "kanedared",
+  "gatsbygilded",
+  "swampfable",
+  "grandlinesea",
+  "gothamvigil",
+  "discoverywhite",
+  "furyroadheat",
+  "islasplice",
+  "dreamhousepop",
+  "droogclockwork",
+]);
+
+const RANDOM_THEME_POOL = THEME_NAMES.filter((id) => !PRO_THEME_IDS.has(id));
+
 function getCurrentTheme() {
   const t = document.body.dataset.theme;
   return t && themes[t] ? t : "twilight";
@@ -1110,11 +1142,16 @@ document.getElementById("search-go")?.addEventListener("click", () => runGoogleS
 document.getElementById("search-mag")?.addEventListener("click", () => runGoogleSearch());
 
 function randomTheme() {
-  if (THEME_NAMES.length < 2) return;
-  let next;
+  const pool = RANDOM_THEME_POOL;
+  if (pool.length < 1) return;
   const current = getCurrentTheme();
+  if (pool.length === 1) {
+    if (pool[0] !== current) switchTheme(pool[0]);
+    return;
+  }
+  let next;
   do {
-    next = THEME_NAMES[Math.floor(Math.random() * THEME_NAMES.length)];
+    next = pool[Math.floor(Math.random() * pool.length)];
   } while (next === current);
   switchTheme(next);
 }
