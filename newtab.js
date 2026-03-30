@@ -966,17 +966,116 @@ function applyCustomCursorPreference(customCursorsEnabled) {
     "vibe-no-custom-cursors",
     customCursorsEnabled === false
   );
+  if (customCursorsEnabled === false) {
+    document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
+  }
 }
+
+// ── TOPIARY (Edward Scissorhands): Matrix cursor when pointer is over main content hub ─
+/** Padding around union of clock, greeting, date, search + buttons (viewport px). */
+const TOPIARY_MATRIX_ZONE_PAD = 100;
+let topiaryMatrixZoneLastX = -1;
+let topiaryMatrixZoneLastY = -1;
+let topiaryMatrixZoneRaf = 0;
+
+function getTopiaryMatrixContentZoneRect() {
+  const rects = [];
+  for (const id of ["clock", "greeting", "dateline"]) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    const r = el.getBoundingClientRect();
+    if (r.width > 0 && r.height > 0) rects.push(r);
+  }
+  const searchWrap = document.querySelector(".content .search-wrapper");
+  if (searchWrap) {
+    const r = searchWrap.getBoundingClientRect();
+    if (r.width > 0 && r.height > 0) rects.push(r);
+  }
+  if (!rects.length) return null;
+
+  let left = Infinity;
+  let top = Infinity;
+  let right = -Infinity;
+  let bottom = -Infinity;
+  for (const r of rects) {
+    left = Math.min(left, r.left);
+    top = Math.min(top, r.top);
+    right = Math.max(right, r.right);
+    bottom = Math.max(bottom, r.bottom);
+  }
+  const p = TOPIARY_MATRIX_ZONE_PAD;
+  return {
+    left: left - p,
+    top: top - p,
+    right: right + p,
+    bottom: bottom + p,
+  };
+}
+
+function syncTopiaryMatrixCursorZone(clientX, clientY) {
+  if (getCurrentTheme() !== "topiaryshadow") {
+    document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
+    return;
+  }
+  if (document.documentElement.classList.contains("vibe-no-custom-cursors")) {
+    document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
+    return;
+  }
+  const zone = getTopiaryMatrixContentZoneRect();
+  if (!zone) {
+    document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
+    return;
+  }
+  const inside =
+    clientX >= zone.left &&
+    clientX <= zone.right &&
+    clientY >= zone.top &&
+    clientY <= zone.bottom;
+  document.body.classList.toggle("topiaryshadow--matrix-cursor-zone", inside);
+}
+
+function scheduleTopiaryMatrixCursorZoneCheck(clientX, clientY) {
+  topiaryMatrixZoneLastX = clientX;
+  topiaryMatrixZoneLastY = clientY;
+  if (topiaryMatrixZoneRaf) return;
+  topiaryMatrixZoneRaf = requestAnimationFrame(() => {
+    topiaryMatrixZoneRaf = 0;
+    if (topiaryMatrixZoneLastX < 0) return;
+    syncTopiaryMatrixCursorZone(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY);
+  });
+}
+
+window.addEventListener(
+  "mousemove",
+  (e) => {
+    if (getCurrentTheme() !== "topiaryshadow") return;
+    scheduleTopiaryMatrixCursorZoneCheck(e.clientX, e.clientY);
+  },
+  { passive: true }
+);
+
+window.addEventListener("resize", () => {
+  if (getCurrentTheme() !== "topiaryshadow" || topiaryMatrixZoneLastX < 0) return;
+  scheduleTopiaryMatrixCursorZoneCheck(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY);
+});
 
 // ── THEME SWITCHER ───────────────────────────────────────────────────
 function switchTheme(theme) {
   const resolved = themes[theme] ? theme : "twilight";
+  if (resolved !== "topiaryshadow") {
+    document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
+  }
   setBodyThemeClass(resolved);
   syncMatrixRain();
   setQuote(resolved);
   updateClock();
   if (resolved === "twilight" || resolved === "witchy" || resolved === "openingcrawl") drawStars(resolved);
   chrome.storage.local.set({ vibeTheme: resolved });
+  if (resolved === "topiaryshadow" && topiaryMatrixZoneLastX >= 0) {
+    requestAnimationFrame(() =>
+      syncTopiaryMatrixCursorZone(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY)
+    );
+  }
 }
 
 // ── SEARCH ───────────────────────────────────────────────────────────

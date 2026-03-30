@@ -1463,6 +1463,10 @@
     body.topiaryshadow .search-mag {
       cursor: pointer;
     }
+    /* Over main hub (clock, greeting, date, search + buttons union + pad): Matrix half cursor — custom cursors only */
+    html:not(.vibe-no-custom-cursors) body.topiaryshadow.topiaryshadow--matrix-cursor-zone {
+      cursor: url('assets/cursors/processed/matrix-cursor-half.png') 4 7, auto;
+    }
     body.topiaryshadow::before {
       content: '';
       position: fixed;
