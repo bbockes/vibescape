@@ -651,7 +651,7 @@
     body.commonroom .search-shell {
       position: relative;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       width: 100%;
       aspect-ratio: 1024 / 520;
       max-height: min(38vh, 196px);
@@ -674,6 +674,8 @@
       z-index: 1;
       flex: 1;
       min-width: 0;
+      align-self: stretch;
+      min-height: 0;
       background: transparent !important;
       border: none !important;
       font-family: 'Eagle Lake', 'Libre Baskerville', serif;
@@ -1601,7 +1603,7 @@
       font-style:normal;
       font-size:clamp(0.82rem, 1.55vw, 1.05rem) !important;
       letter-spacing:0.05em !important;
-      margin-top:0.35rem !important;
+      margin-top:calc(0.35rem - 10px) !important;
       text-shadow:none;
     }
     body.topiaryshadow .date-line {

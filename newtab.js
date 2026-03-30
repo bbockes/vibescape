@@ -885,6 +885,27 @@ function syncMatrixRain() {
 
   let mx = window.innerWidth * 0.5;
   let my = window.innerHeight * 0.5;
+  let suppressWhileOverSearchUi = false;
+
+  // Hide the aura while the pointer is over the search UI (input + buttons),
+  // so the parchment field stays clean and readable.
+  const searchWrapper = document.querySelector(".search-wrapper");
+  if (searchWrapper) {
+    searchWrapper.addEventListener(
+      "pointerenter",
+      () => {
+        suppressWhileOverSearchUi = true;
+      },
+      { passive: true }
+    );
+    searchWrapper.addEventListener(
+      "pointerleave",
+      () => {
+        suppressWhileOverSearchUi = false;
+      },
+      { passive: true }
+    );
+  }
 
   /* Match newtab.html body.commonroom cursor: url(...) <hx> <hy> (128×128 processed wand). */
   const COMMONROOM_CURSOR_HOTSPOT = { hx: 64, hy: 64 };
@@ -905,7 +926,7 @@ function syncMatrixRain() {
     const theme = getCurrentTheme();
     const reduced = document.body.classList.contains("motion-reduced");
     const noCustomCursor = document.documentElement.classList.contains("vibe-no-custom-cursors");
-    if (theme !== "commonroom" || reduced || noCustomCursor) {
+    if (theme !== "commonroom" || reduced || noCustomCursor || suppressWhileOverSearchUi) {
       root.hidden = true;
       requestAnimationFrame(tick);
       return;
