@@ -1,0 +1,5 @@
+# Optional venv for scripts/process-cursor-imports.py (background removal + 128×128 PNG)
+# python3 -m venv scripts/.venv && scripts/.venv/bin/pip install -r scripts/requirements-cursors.txt
+
+pillow>=10.0
+rembg[cpu]>=2.0

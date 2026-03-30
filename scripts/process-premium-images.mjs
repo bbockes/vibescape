@@ -8,7 +8,7 @@
  *
  * Options:
  *   --input <dir>     default: "new theme images"
- *   --out <dir>       default: "assets/premium-import-staging" (copy into assets/<theme>/bg.webp after)
+ *   --out <dir>       default: "assets/premium-import-staging" (copy into assets/backgrounds/<theme>/bg.webp after)
  *   --width 3840 --height 2160
  *   --max-kb 800
  *   --min-quality 35  minimum WebP quality if budget can't be met (warns)
