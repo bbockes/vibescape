@@ -134,7 +134,7 @@ const themes = {
     searchPlaceholder: "scan the skyline..."
   },
   kanedared: {
-    searchPlaceholder: "trace one signal through the concrete..."
+    searchPlaceholder: "trace one signal through the concrete"
   },
   wickiesmono: {
     searchPlaceholder: "log the watch... type the fog..."
@@ -521,9 +521,9 @@ const MATRIX_TYPED_PLACEHOLDER_AFTER_INTRO_MS = 5000;
 
 /** Three lines, then backspace the third; final entry is empty so nothing stays in the field. */
 const MATRIX_TYPED_STRINGS = [
-  "Wake up, user…",
-  "The stack has you…",
-  "Trace the ghost thread.",
+  "Wake up, Neo...",
+  "The Matrix has you...",
+  "Follow the white rabbit.",
   "",
 ];
 const MATRIX_TYPED_FINAL_PLACEHOLDER = "";
@@ -700,16 +700,38 @@ const matrixRainCanvas = document.getElementById("matrix-rain");
 let matrixRainCtx = null;
 let matrixRainIntroRaf = 0;
 let matrixRainY = [];
+/** Per-column: if true, glyphs skew toward digits (not all columns). */
+let matrixRainColDigitHeavy = [];
 /** Readable “screen character” size; column/line spacing follows on resize. */
 let matrixRainFontPx = 20;
 let matrixRainColStep = 12;
 let matrixRainLineStep = 18;
 let matrixRainFallStep = 7;
-const MATRIX_RAIN_STACK = 3;
+/** Glyphs drawn up the column each tick; set in resize from viewport height (~full-screen trail). */
+let matrixRainStackDepth = 12;
 const MATRIX_RAIN_STEP_MS = 95;
 const MATRIX_INTRO_DURATION_MS = 6500;
+/**
+ * Glyphs from reference stills: katakana seen on screen + Latin capitals, digits, symbols.
+ */
 const MATRIX_RAIN_GLYPHS =
-  "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ0123456789:・.*│¦╱╲△";
+  "ハホチトニユヲミヌレメサシヱフルナキケコテレヨモツワン" +
+  "MVUTERCXHIYBDWLAO" +
+  "0123456789" +
+  "*:><=+|\"";
+/** Alternating “electric” greens — varies per column + row for CRT-style flicker. */
+const MATRIX_RAIN_GLOW_GREENS = [
+  [48, 255, 72],
+  [0, 255, 110],
+  [72, 255, 58],
+  [32, 255, 140],
+  [88, 255, 92],
+  [16, 255, 98],
+];
+const MATRIX_RAIN_DIGITS = "0123456789";
+/** ~1 in 3 columns leans digit-heavy (like the “mostly numbers” reference); others stay mixed. */
+const MATRIX_RAIN_DIGIT_HEAVY_COL_CHANCE = 0.36;
+const MATRIX_RAIN_DIGIT_PICK_IN_HEAVY_COL = 0.72;
 
 let matrixRainLastStep = 0;
 let matrixRainIntroStart = 0;
@@ -720,18 +742,34 @@ function resizeMatrixRainCanvas() {
   matrixRainCanvas.width = window.innerWidth;
   matrixRainCanvas.height = window.innerHeight;
   const bw = matrixRainCanvas.width;
-  matrixRainFontPx = Math.round(Math.max(17, Math.min(28, bw * 0.018)));
-  matrixRainColStep = Math.max(11, Math.round(matrixRainFontPx * 0.62));
-  matrixRainLineStep = Math.round(matrixRainFontPx * 0.95);
-  matrixRainFallStep = Math.max(5, Math.round(matrixRainFontPx * 0.32));
+  /* Smaller cells + fewer columns vs search-bar sizing — lighter rain on the page. */
+  matrixRainFontPx = Math.round(Math.max(13, Math.min(20, bw * 0.013)));
+  matrixRainColStep = Math.max(7, Math.round(matrixRainFontPx * 0.52));
+  matrixRainLineStep = Math.max(10, Math.round(matrixRainFontPx * 0.78));
+  matrixRainFallStep = Math.max(4, Math.round(matrixRainFontPx * 0.28));
   const cols = Math.floor(bw / matrixRainColStep) + 1;
   const h = matrixRainCanvas.height;
-  if (matrixRainY.length !== cols) {
+  matrixRainStackDepth = Math.min(40, Math.max(10, Math.ceil(h / matrixRainLineStep) + 5));
+  if (matrixRainY.length !== cols || matrixRainColDigitHeavy.length !== cols) {
     const prev = matrixRainY;
+    const prevHeavy = matrixRainColDigitHeavy;
     matrixRainY = Array.from({ length: cols }, (_, i) =>
-      prev[i] !== undefined ? prev[i] : Math.random() * h * 1.2 - h * 0.15
+      prev[i] !== undefined ? prev[i] : Math.random() * h * 1.5 - h * 0.45
+    );
+    matrixRainColDigitHeavy = Array.from({ length: cols }, (_, i) =>
+      prevHeavy[i] !== undefined ? prevHeavy[i] : Math.random() < MATRIX_RAIN_DIGIT_HEAVY_COL_CHANCE
     );
   }
+}
+
+function pickMatrixRainGlyph(colIndex) {
+  if (
+    matrixRainColDigitHeavy[colIndex] &&
+    Math.random() < MATRIX_RAIN_DIGIT_PICK_IN_HEAVY_COL
+  ) {
+    return MATRIX_RAIN_DIGITS[Math.floor(Math.random() * MATRIX_RAIN_DIGITS.length)];
+  }
+  return MATRIX_RAIN_GLYPHS[Math.floor(Math.random() * MATRIX_RAIN_GLYPHS.length)];
 }
 
 function matrixRainIntroLoop(ts) {
@@ -758,23 +796,40 @@ function matrixRainIntroLoop(ts) {
 
   if (greenMul > 0.03 && ts - matrixRainLastStep >= MATRIX_RAIN_STEP_MS) {
     matrixRainLastStep = ts;
-    matrixRainCtx.font = `${matrixRainFontPx}px VT323, 'Courier New', Courier, monospace`;
+    matrixRainCtx.font = `${matrixRainFontPx}px 'Courier New', Courier, 'MS Gothic', 'Hiragino Kaku Gothic ProN', monospace`;
     matrixRainCtx.textBaseline = "top";
 
     matrixRainY.forEach((y, ind) => {
       const x = ind * matrixRainColStep;
-      for (let k = 0; k < MATRIX_RAIN_STACK; k++) {
+      for (let k = 0; k < matrixRainStackDepth; k++) {
         const yy = y - k * matrixRainLineStep;
         if (yy < -matrixRainLineStep * 2) continue;
-        const ch = MATRIX_RAIN_GLYPHS[Math.floor(Math.random() * MATRIX_RAIN_GLYPHS.length)];
-        const dim = 1 - k * 0.28;
-        const a = greenMul * dim * (0.18 + Math.random() * 0.42);
-        matrixRainCtx.fillStyle = `rgba(51, 249, 51, ${a})`;
+        const ch = pickMatrixRainGlyph(ind);
+        const dim = Math.max(0.06, 1 - (k / Math.max(1, matrixRainStackDepth - 1)) * 0.88);
+        const a = greenMul * dim * (0.38 + Math.random() * 0.48);
+        const head = k === 0;
+        if (head) {
+          const ha = greenMul * (0.62 + Math.random() * 0.34);
+          matrixRainCtx.shadowColor = `rgba(255, 255, 255, ${Math.min(0.98, ha * 0.95)})`;
+          matrixRainCtx.shadowBlur = 6 + Math.random() * 9;
+          matrixRainCtx.shadowOffsetX = 0;
+          matrixRainCtx.shadowOffsetY = 0;
+          matrixRainCtx.fillStyle = `rgba(248, 255, 252, ${ha})`;
+        } else {
+          const [gr, gg, gb] = MATRIX_RAIN_GLOW_GREENS[(k + ind) % MATRIX_RAIN_GLOW_GREENS.length];
+          matrixRainCtx.shadowColor = `rgba(${gr},${gg},${gb},${Math.min(0.98, a * 1.2 + 0.22)})`;
+          matrixRainCtx.shadowBlur = 2.5 + dim * 18;
+          matrixRainCtx.shadowOffsetX = 0;
+          matrixRainCtx.shadowOffsetY = 0;
+          matrixRainCtx.fillStyle = `rgba(${gr},${gg},${gb},${a})`;
+        }
         matrixRainCtx.fillText(ch, x, yy);
       }
       if (y > h + 80 + Math.random() * 3500) matrixRainY[ind] = -60 * Math.random();
       else matrixRainY[ind] = y + matrixRainFallStep;
     });
+    matrixRainCtx.shadowBlur = 0;
+    matrixRainCtx.shadowColor = "transparent";
   }
 
   if (t >= 1) {
