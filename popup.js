@@ -33,6 +33,8 @@ function activateNewTabSurfaceInActiveTab() {
 document.addEventListener("DOMContentLoaded", () => {
   const powerToggle = document.getElementById("vibe-power-toggle");
   const powerLabel = document.getElementById("vibe-power-label");
+  const cursorToggle = document.getElementById("vibe-cursor-toggle");
+  const cursorLabel = document.getElementById("vibe-cursor-label");
 
   function setPowerUi(enabled) {
     const on = enabled !== false;
@@ -42,6 +44,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (powerLabel) powerLabel.textContent = on ? "on" : "off";
   }
+
+  function setCursorUi(customOn) {
+    const on = customOn !== false;
+    if (cursorToggle) {
+      cursorToggle.classList.toggle("power-toggle--off", !on);
+      cursorToggle.setAttribute("aria-checked", on ? "true" : "false");
+    }
+    if (cursorLabel) cursorLabel.textContent = "cursor";
+  }
+
+  cursorToggle?.addEventListener("click", () => {
+    chrome.storage.local.get({ vibeCustomCursors: true }, (d) => {
+      const cur = d.vibeCustomCursors !== false;
+      const next = !cur;
+      chrome.storage.local.set({ vibeCustomCursors: next }, () => setCursorUi(next));
+    });
+  });
 
   powerToggle?.addEventListener("click", () => {
     chrome.storage.local.get({ vibeEnabled: true }, (d) => {
@@ -55,8 +74,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   chrome.storage.onChanged.addListener((changes, area) => {
-    if (area !== "local" || changes.vibeEnabled === undefined) return;
-    setPowerUi(changes.vibeEnabled.newValue !== false);
+    if (area !== "local") return;
+    if (changes.vibeEnabled !== undefined) {
+      setPowerUi(changes.vibeEnabled.newValue !== false);
+    }
+    if (changes.vibeCustomCursors !== undefined) {
+      setCursorUi(changes.vibeCustomCursors.newValue !== false);
+    }
   });
 
   const footerVideoLink = document.getElementById("chrome-footer-video-link");
@@ -291,7 +315,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   chrome.storage.local.get(
-    { vibeTheme: "twilight", vibeEnabled: true, vibeFavoriteThemes: [] },
+    {
+      vibeTheme: "twilight",
+      vibeEnabled: true,
+      vibeCustomCursors: true,
+      vibeFavoriteThemes: [],
+    },
     (data) => {
       injectFavoriteButtons();
       const raw = Array.isArray(data.vibeFavoriteThemes) ? data.vibeFavoriteThemes : [];
@@ -303,6 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sortFavoritesFirst(favs);
       applyFavoriteUi(favs);
       setPowerUi(data?.vibeEnabled !== false);
+      setCursorUi(data?.vibeCustomCursors !== false);
       if (data?.vibeTheme) setActive(data.vibeTheme);
       if (hasPager) {
         currentPage = pageForTheme(data?.vibeTheme || "twilight");

@@ -886,8 +886,10 @@ function syncMatrixRain() {
   let mx = window.innerWidth * 0.5;
   let my = window.innerHeight * 0.5;
 
-  /* Match body.commonroom cursor: url(...) <hotspotX> <hotspotY>; PNG 40×32 */
-  const SNITCH_CURSOR = { w: 40, h: 32, hx: 4, hy: 4 };
+  /* Match newtab.html body.commonroom cursor: url(...) <hx> <hy> (128×128 processed wand). */
+  const COMMONROOM_CURSOR_HOTSPOT = { hx: 64, hy: 64 };
+  /* Wand tip sits near top-left of the PNG; nudge in px from image top-left if art isn’t flush. */
+  const WAND_TIP_FROM_IMAGE_TL = { x: 6, y: 8 };
 
   window.addEventListener(
     "mousemove",
@@ -902,16 +904,17 @@ function syncMatrixRain() {
   function tick() {
     const theme = getCurrentTheme();
     const reduced = document.body.classList.contains("motion-reduced");
-    if (theme !== "commonroom" || reduced) {
+    const noCustomCursor = document.documentElement.classList.contains("vibe-no-custom-cursors");
+    if (theme !== "commonroom" || reduced || noCustomCursor) {
       root.hidden = true;
       requestAnimationFrame(tick);
       return;
     }
     root.hidden = false;
 
-    /* Center glow on Snitch art (pointer = hotspot, not image center) */
-    const cx = mx - SNITCH_CURSOR.hx + SNITCH_CURSOR.w * 0.5;
-    const cy = my - SNITCH_CURSOR.hy + SNITCH_CURSOR.h * 0.5;
+    /* Glow center = wand tip: screen pos of image TL + offset (hotspot aligns mx,my with hx,hy in image). */
+    const cx = mx - COMMONROOM_CURSOR_HOTSPOT.hx + WAND_TIP_FROM_IMAGE_TL.x;
+    const cy = my - COMMONROOM_CURSOR_HOTSPOT.hy + WAND_TIP_FROM_IMAGE_TL.y;
     core.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
 
     requestAnimationFrame(tick);
@@ -945,7 +948,8 @@ function syncMatrixRain() {
   function tick() {
     const theme = getCurrentTheme();
     const reduced = document.body.classList.contains("motion-reduced");
-    if (theme !== "gatsbygilded" || reduced) {
+    const noCustomCursor = document.documentElement.classList.contains("vibe-no-custom-cursors");
+    if (theme !== "gatsbygilded" || reduced || noCustomCursor) {
       root.hidden = true;
       requestAnimationFrame(tick);
       return;
@@ -961,6 +965,13 @@ function syncMatrixRain() {
 
   requestAnimationFrame(tick);
 })();
+
+function applyCustomCursorPreference(customCursorsEnabled) {
+  document.documentElement.classList.toggle(
+    "vibe-no-custom-cursors",
+    customCursorsEnabled === false
+  );
+}
 
 // ── THEME SWITCHER ───────────────────────────────────────────────────
 function switchTheme(theme) {
@@ -1030,12 +1041,16 @@ setInterval(() => {
 }, 1200);
 
 // ── INIT ─────────────────────────────────────────────────────────────
-chrome.storage.local.get({ vibeTheme: "twilight", vibeEnabled: true }, (data) => {
-  if (data?.vibeEnabled === false) return;
-  const theme = data?.vibeTheme || "twilight";
-  setupMotionPreference();
-  switchTheme(theme);
-});
+chrome.storage.local.get(
+  { vibeTheme: "twilight", vibeEnabled: true, vibeCustomCursors: true },
+  (data) => {
+    if (data?.vibeEnabled === false) return;
+    applyCustomCursorPreference(data?.vibeCustomCursors !== false);
+    const theme = data?.vibeTheme || "twilight";
+    setupMotionPreference();
+    switchTheme(theme);
+  }
+);
 
 // React instantly to popup changes (no refresh required)
 chrome.storage.onChanged.addListener((changes, area) => {
@@ -1046,6 +1061,9 @@ chrome.storage.onChanged.addListener((changes, area) => {
       if (t?.id != null) chrome.tabs.update(t.id, { url: "chrome://new-tab-page" });
     });
     return;
+  }
+  if (changes.vibeCustomCursors !== undefined) {
+    applyCustomCursorPreference(changes.vibeCustomCursors.newValue !== false);
   }
   if (changes.vibeTheme?.newValue) {
     switchTheme(changes.vibeTheme.newValue);

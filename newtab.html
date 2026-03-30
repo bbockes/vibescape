@@ -667,7 +667,7 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      background: url('assets/harry-potter/commonroom-scroll.png') center / 100% 100% no-repeat;
+      background: url('assets/backgrounds/harry-potter/commonroom-scroll.png') center / 100% 100% no-repeat;
     }
     body.commonroom .search-shell .search-bar {
       position: relative;
@@ -5018,6 +5018,14 @@
       position: relative;
       z-index: 5;
       animation: lanternnarniaStepThrough 2.65s cubic-bezier(0.2, 0.78, 0.28, 1) 0.08s both;
+    }
+
+    /* Extension popup: “theme” vs “auto” cursor — fall back to normal system cursors. */
+    html.vibe-no-custom-cursors body {
+      cursor: auto !important;
+    }
+    html.vibe-no-custom-cursors body * {
+      cursor: revert !important;
     }
   </style>
 </head>

@@ -34,7 +34,7 @@
       background: #0d0a1a;
       color: #e8d5ff;
       font-family: 'Syne', sans-serif;
-      padding: 1.35rem 1.4rem 1.25rem;
+      padding: 1.5rem 1.4rem 1.25rem;
       overflow-x: hidden;
       overflow-y: visible;
     }
@@ -46,14 +46,22 @@
 
     .header-row {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 0.85rem;
+      padding-top: 0.45rem;
       margin-bottom: 0.5rem;
     }
     .header-brand {
       min-width: 0;
       flex: 1;
+    }
+
+    .header-controls {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.42rem;
     }
 
     .logo {
@@ -66,12 +74,14 @@
     .logo span { color: #9b59ff; }
 
     .tagline {
-      font-size: 0.7rem;
+      font-size: 0.64rem;
       color: #7a5fa0;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 0;
+      margin-top: 0.22rem;
       line-height: 1.35;
+      white-space: nowrap;
     }
 
     .power-toggle {
@@ -135,6 +145,11 @@
     }
     .power-toggle:not(.power-toggle--off) .power-toggle__label {
       color: #c89dff;
+    }
+    #vibe-cursor-label {
+      min-width: 2.45rem;
+      text-align: center;
+      letter-spacing: 0.1em;
     }
 
     .label {
@@ -296,8 +311,8 @@
     .theme-option.active .theme-desc { color: #b69de3; }
 
     .pager {
-      margin-top: 1rem;
-      padding-top: 0.55rem;
+      margin-top: calc(1rem - 9px);
+      padding-top: calc(0.55rem - 4px);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -380,17 +395,30 @@
       <div class="logo">vibe<span>scape</span></div>
       <div class="tagline">aesthetic for your browser</div>
     </div>
-    <button
-      type="button"
-      class="power-toggle"
-      id="vibe-power-toggle"
-      role="switch"
-      aria-checked="true"
-      title="Turn Vibescape on or off for new tabs"
-    >
-      <span class="power-toggle__track" aria-hidden="true"><span class="power-toggle__thumb"></span></span>
-      <span class="power-toggle__label" id="vibe-power-label">on</span>
-    </button>
+    <div class="header-controls">
+      <button
+        type="button"
+        class="power-toggle"
+        id="vibe-cursor-toggle"
+        role="switch"
+        aria-checked="true"
+        title="Custom theme cursors — off uses your normal system pointer"
+      >
+        <span class="power-toggle__track" aria-hidden="true"><span class="power-toggle__thumb"></span></span>
+        <span class="power-toggle__label" id="vibe-cursor-label">cursor</span>
+      </button>
+      <button
+        type="button"
+        class="power-toggle"
+        id="vibe-power-toggle"
+        role="switch"
+        aria-checked="true"
+        title="Turn Vibescape on or off for new tabs"
+      >
+        <span class="power-toggle__track" aria-hidden="true"><span class="power-toggle__thumb"></span></span>
+        <span class="power-toggle__label" id="vibe-power-label">on</span>
+      </button>
+    </div>
   </div>
 
   <div class="label">choose your vibe</div>
