@@ -932,9 +932,6 @@ function syncMatrixRain() {
   let mx = window.innerWidth * 0.5;
   let my = window.innerHeight * 0.5;
 
-  /* Match gilded theme cursor PNG hotspot 36×36 */
-  const GILDED_CURSOR_HOTSPOT = { w: 72, h: 72, hx: 36, hy: 36 };
-
   window.addEventListener(
     "mousemove",
     (e) => {
@@ -956,9 +953,7 @@ function syncMatrixRain() {
     }
     root.hidden = false;
 
-    const cx = mx - GILDED_CURSOR_HOTSPOT.hx + GILDED_CURSOR_HOTSPOT.w * 0.5;
-    const cy = my - GILDED_CURSOR_HOTSPOT.hy + GILDED_CURSOR_HOTSPOT.h * 0.5;
-    core.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+    core.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
 
     requestAnimationFrame(tick);
   }

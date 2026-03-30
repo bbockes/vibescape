@@ -801,19 +801,20 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 160px;
-      height: 160px;
-      margin: -80px 0 0 -80px;
+      width: 220px;
+      height: 220px;
+      margin: -110px 0 0 -110px;
       border-radius: 50%;
       background: radial-gradient(
         circle,
-        rgba(220, 255, 240, 0.55) 0%,
-        rgba(11, 129, 90, 0.42) 35%,
-        rgba(11, 129, 90, 0.15) 55%,
-        transparent 72%
+        rgba(210, 255, 235, 0.82) 0%,
+        rgba(20, 200, 145, 0.62) 28%,
+        rgba(11, 129, 90, 0.55) 42%,
+        rgba(11, 129, 90, 0.28) 58%,
+        transparent 78%
       );
-      filter: blur(22px);
-      opacity: 0.94;
+      filter: blur(24px);
+      opacity: 1;
       will-change: transform;
       mix-blend-mode: screen;
     }
@@ -1181,7 +1182,12 @@
       color:#009928;
       font-size:1.35rem !important;
     }
-    /* Terminal field: Courier phosphor + glow (matrix typewriter vibe) */
+    /* Wider field to the right only — text start (left edge + padding) unchanged */
+    body.matrixfall .search-shell {
+      width: calc(100% + 1.75rem);
+    }
+
+    /* Terminal field: phosphor bloom (classic typewriter-style shadow) */
     body.matrixfall .search-shell .search-bar {
       border-radius: 0 !important;
       padding: 0.65rem 2.85rem 0.7rem 0 !important;
@@ -1192,18 +1198,20 @@
       background: transparent !important;
       border: none !important;
       box-shadow: none !important;
-      color: #33f933 !important;
+      color: #33ff66 !important;
       text-shadow: 1px 1px 9px rgb(51, 249, 51);
-      caret-color: #33f933;
+      caret-color: #33ff66;
       caret-shape: block;
     }
     body.matrixfall .search-bar::placeholder {
-      color: rgba(51, 249, 51, 0.45);
-      text-shadow: 1px 1px 9px rgba(51, 249, 51, 0.35);
+      color: #33ff66;
+      opacity: 1;
+      text-shadow: 1px 1px 9px rgb(51, 249, 51);
     }
     body.matrixfall .search-bar:focus {
       outline: none !important;
       box-shadow: none !important;
+      text-shadow: 1px 1px 9px rgb(51, 249, 51);
     }
     body.matrixfall .search-mag {
       color: rgba(51, 249, 51, 0.55);
@@ -2256,18 +2264,18 @@
     body.droogclockwork .quote { color:#2e2c28; font-style:normal; font-size:clamp(1.1rem,2vw,1.35rem)!important; text-shadow:0 1px 2px rgba(255,255,255,0.6); } body.droogclockwork .quote-author { color:#d45820; text-shadow:0 1px 2px rgba(255,255,255,0.5); }
 
     /* ─── GILDED JAZZ (art deco / jazz-age excess) ─────────────────── */
+    /* No visible cursor — only the green-light aura follows the pointer (see .green-light-motion). */
     body.gatsbygilded {
       background:#1c2840;
       font-family:'Playfair Display', Georgia, serif;
-      cursor: url('assets/gatsbygilded/green-light-cursor.png') 36 36, crosshair;
+      cursor: none;
     }
     body.gatsbygilded input.search-bar,
-    body.gatsbygilded textarea {
-      cursor:text;
-    }
-    body.gatsbygilded .search-btn,
-    body.gatsbygilded .search-mag {
-      cursor:pointer;
+    body.gatsbygilded textarea,
+    body.gatsbygilded button,
+    body.gatsbygilded .search-mag,
+    body.gatsbygilded .search-btn {
+      cursor: none;
     }
     body.gatsbygilded::before {
       content: '';
@@ -3926,14 +3934,7 @@
       box-shadow: 0 6px 24px rgba(120, 55, 35, 0.4), inset 0 1px 0 rgba(255, 190, 150, 0.12);
     }
 
-    body.matrixfall .search-actions .search-btn:first-of-type {
-      font-family: 'VT323', 'Space Mono', monospace;
-      border: 1px solid #00ff41;
-      background: rgba(0, 28, 10, 0.92);
-      color: #33ff66;
-      text-shadow: 0 0 10px rgba(51, 255, 70, 0.85);
-      box-shadow: 0 0 18px rgba(0, 255, 65, 0.22), inset 0 0 12px rgba(0, 255, 65, 0.06);
-    }
+    body.matrixfall .search-actions .search-btn:first-of-type,
     body.matrixfall .search-actions .search-btn:last-of-type {
       font-family: 'VT323', 'Space Mono', monospace;
       border: 1px solid rgba(0, 120, 45, 0.75);
@@ -3942,19 +3943,17 @@
       text-shadow: 0 0 8px rgba(26, 184, 58, 0.45);
       box-shadow: inset 0 0 16px rgba(0, 60, 25, 0.35);
     }
-    body.matrixfall .search-actions .search-btn:first-of-type:hover {
-      border-color: #8fff9a;
-      background: rgba(0, 42, 14, 0.96);
-      color: #d0ffd8;
-      text-shadow: 0 0 16px rgba(100, 255, 120, 0.95), 0 0 28px rgba(0, 255, 80, 0.45);
-      box-shadow: 0 0 32px rgba(0, 255, 90, 0.45), inset 0 0 16px rgba(0, 255, 80, 0.12);
-    }
+    body.matrixfall .search-actions .search-btn:first-of-type:hover,
     body.matrixfall .search-actions .search-btn:last-of-type:hover {
       border-color: #22e858;
       background: rgba(0, 18, 8, 0.96);
       color: #5ef07a;
-      text-shadow: 0 0 14px rgba(60, 240, 100, 0.65);
-      box-shadow: inset 0 0 20px rgba(0, 100, 40, 0.5), 0 0 18px rgba(0, 200, 70, 0.25);
+      text-shadow:
+        0 0 14px rgba(60, 240, 100, 0.75),
+        0 0 26px rgba(0, 255, 80, 0.4);
+      box-shadow:
+        0 0 22px rgba(0, 200, 70, 0.35),
+        inset 0 0 20px rgba(0, 100, 40, 0.5);
     }
 
     body.rivendelleve .search-actions .search-btn:first-of-type {
