@@ -1,542 +1,773 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="landing-prank">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Giggle</title>
-  <meta name="description" content="Giggle — a playful, themed search prank landing page by Vibescape. Not affiliated with Google." />
+  <meta name="description" content="Giggle — a playful, themed search prank landing page by Vibescape." />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;800&family=Cinzel+Decorative&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Eagle+Lake&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=News+Cycle:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="landing-prank-themes.css" />
 
   <style>
-    :root{
-      --bg:#fff;
-      --fg:#202124;
-      --muted:#5f6368;
-      --pill:#fff;
-      --pillBorder:#dfe1e5;
-      --pillShadow: 0 1px 6px rgba(32,33,36,.28);
-      --btnBg:#f8f9fa;
-      --btnBorder:#dadce0;
-      --btnFg:#3c4043;
-      --link:#1a73e8;
-
-      --accentA:#6a5cff;
-      --accentB:#00c2ff;
-      --accentC:#ff4fd8;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
     }
 
-    /* “Vibes” (simple palettes) */
-    body.vibe-twilight{ --bg:#0b0a12; --fg:#ece7ff; --muted:#b9b3d8; --pill:#121021; --pillBorder:#2b2750; --btnBg:#1a1830; --btnBorder:#2b2750; --btnFg:#ece7ff; --link:#b9a7ff; }
-    body.vibe-neon{ --bg:#07080c; --fg:#f3f6ff; --muted:#a8b2d8; --pill:#0e1020; --pillBorder:#2a2f5c; --btnBg:#131636; --btnBorder:#2a2f5c; --btnFg:#f3f6ff; --link:#7de3ff; }
-    body.vibe-clean{ --bg:#ffffff; --fg:#202124; --muted:#5f6368; --pill:#fff; --pillBorder:#dfe1e5; --btnBg:#f8f9fa; --btnBorder:#dadce0; --btnFg:#3c4043; --link:#1a73e8; }
-    body.vibe-retro{ --bg:#fff7e6; --fg:#2b1b10; --muted:#6b4b3a; --pill:#fff3da; --pillBorder:#e6c9a8; --btnBg:#ffe8bf; --btnBorder:#e6c9a8; --btnFg:#2b1b10; --link:#b02a6f; }
-
-    html,body{height:100%;}
-    body{
-      margin:0;
-      /* Google homepage uses an Arial-like system stack for UI chrome. */
-      font-family: Arial, Helvetica, sans-serif;
-      color:var(--fg);
-      background:var(--bg);
-      overflow-x:hidden;
+    :root {
+      --vs-chrome-strip-h: clamp(44px, 6vh, 64px);
+      --vs-bottom-safe: calc(var(--vs-chrome-strip-h) + clamp(56px, 9vh, 110px));
+      --vs-drift-duration: 34s;
+      --vs-drift-hue: 3deg;
+      --vs-clock-lift: -20px;
+      --vs-clock-scale: 1;
+      --transition: none;
     }
 
-    /* Page frame: header / center / footer */
-    .wrap{
-      min-height:100%;
-      display:flex;
-      flex-direction:column;
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
     }
 
-    header.hdr{
-      height:64px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 18px;
-      font-size:13px;
-      color:var(--muted);
-      user-select:none;
-    }
-    .hdr a{ color:var(--muted); text-decoration:none; }
-    .hdr a:hover{ text-decoration:underline; }
-    .hdr .left, .hdr .right{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      min-width: 220px;
-    }
-    .hdr .right{
-      justify-content:flex-end;
-    }
-    .apps-btn{
-      width:40px;height:40px;
-      display:grid;
-      place-items:center;
-      border-radius:50%;
-      border:0;
-      background:transparent;
-      color:var(--muted);
-      cursor:pointer;
-    }
-    .apps-btn:hover{
-      background: color-mix(in srgb, var(--muted) 12%, transparent);
-    }
-    .signin{
-      height:36px;
-      padding:0 18px;
-      border-radius:18px;
-      border:0;
-      background:#1a73e8;
-      color:#fff;
-      font-weight:600;
-      font-size:13px;
-      cursor:pointer;
-    }
-    .signin:hover{ filter: brightness(0.97); }
-
-    main.main{
-      flex:1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 12px 16px 24px;
+    body {
+      overflow-x: hidden;
+      cursor: auto;
     }
 
-    .stack{
-      width:min(640px, 92vw);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap: 22px;
-      transform: translateY(-6vh);
+    /* Google-style chrome — homepage only (hidden on Random themes) */
+    .landing-chrome {
+      display: none;
     }
-
-    /* Giggle wordmark (Google-like spacing + colors) */
-    .wordmark{
-      /* Approximate Product Sans / Google Sans if available locally. */
-      font-family: "Product Sans", "Google Sans", Arial, Helvetica, sans-serif;
-      font-weight: 500;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      user-select:none;
-      width: 272px;
-      height: 92px;
-      display:grid;
-      place-items:center;
-      padding-top: 12px;
-      /* Extra breathing room before the search bar (gap also applies). */
-      margin-bottom: 20px;
+    body.landing-clean {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    .wordmark-inner{
-      display:flex;
-      gap: 0;
-      align-items:flex-end;
-      justify-content:center;
-      transform-origin: 50% 80%;
-      will-change: transform;
-      /* Start large, then JS scales to fit the 272×92 box. */
-      font-size: 92px;
-      /* Apply tracking on the glyph row (not the 272×92 box). */
-      letter-spacing: -0.042em;
+    body.landing-clean .landing-chrome {
+      display: flex;
     }
-    .wordmark span{ display:inline-block; }
-    /* Tiny kerning nudges to better match the Google wordmark rhythm */
-    .wordmark-inner span:nth-child(2){ margin-left: -0.002em; } /* i */
-    .wordmark-inner span:nth-child(3){ margin-left: -0.002em; } /* g */
-    .wordmark-inner span:nth-child(4){ margin-left: -0.003em; } /* g */
-    .wordmark-inner span:nth-child(5){ margin-left: -0.002em; } /* l */
-    .wordmark-inner span:nth-child(6){ margin-left: -0.002em; } /* e */
-    .c-blue{ color:#4285f4; }
-    .c-red{ color:#ea4335; }
-    .c-yellow{ color:#fbbc05; }
-    .c-green{ color:#34a853; }
-    /* removed “not affiliated” label per request */
-
-    .pill{
-      width:min(584px, 92vw);
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      background:var(--pill);
-      border:1px solid var(--pillBorder);
-      border-radius:9999px;
-      padding: 10px 10px 10px 12px;
-      box-shadow:none;
-      transition: box-shadow .18s ease, border-color .18s ease, transform .18s ease;
+    header.landing-chrome.hdr {
+      flex-shrink: 0;
+      height: 64px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      font-size: 13px;
+      color: #5f6368;
+      user-select: none;
     }
-    .pill:focus-within{
-      box-shadow: var(--pillShadow);
-      border-color: transparent;
-      transform: translateY(-1px);
+    .hdr a {
+      color: #5f6368;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-weight: 400;
     }
-    .pill .left-icon{
-      width:28px;height:28px;
-      display:grid;
-      place-items:center;
-      color: var(--muted);
-      border-radius: 14px;
-      cursor: default;
-      flex: 0 0 28px;
+    .hdr a:hover {
+      text-decoration: underline;
     }
-    .pill .left-icon.plus{
-      /* No visible circle around plus (match screenshot). */
+    .hdr .left,
+    .hdr .right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 200px;
+    }
+    .hdr .right {
+      justify-content: flex-end;
+    }
+    .apps-btn {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
       border: 0;
       background: transparent;
-      border-radius: 0;
-      width: 28px;
-      height: 28px;
+      color: #5f6368;
+      cursor: pointer;
     }
-    input[type="text"]{
-      flex:1;
-      border:0;
-      outline:0;
-      background:transparent;
-      color:var(--fg);
-      font-size:16px;
-      line-height:22px;
-      padding: 4px 0;
+    .apps-btn:hover {
+      background: rgba(95, 99, 104, 0.12);
     }
-    input::placeholder{ color: color-mix(in srgb, var(--muted) 85%, transparent); }
-
-    .pill .right{
-      display:flex;
-      align-items:center;
-      gap: 6px;
-      flex: 0 0 auto;
+    .signin {
+      height: 36px;
+      padding: 0 18px;
+      border-radius: 18px;
+      border: 0;
+      background: #1a73e8;
+      color: #fff;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
     }
-    .pill .icon-btn{
-      width:32px;height:32px;
-      display:grid;
-      place-items:center;
-      border-radius:50%;
-      border:0;
-      background:transparent;
-      color: var(--muted);
-      cursor:pointer;
+    .signin:hover {
+      filter: brightness(0.97);
     }
-    .pill .icon-btn:hover{
-      background: color-mix(in srgb, var(--muted) 12%, transparent);
-    }
-    .pill .ai-pill{
-      height:32px;
-      padding:0 10px 0 8px;
-      border-radius: 999px;
-      border: 1px solid var(--pillBorder);
-      background: transparent;
-      color: var(--fg);
-      display:flex;
-      align-items:center;
-      gap:6px;
-      font-size: 12.5px;
-      cursor:pointer;
-    }
-    .pill .ai-pill:hover{
-      background: color-mix(in srgb, var(--muted) 7%, transparent);
-    }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:center;
-      margin-top: 6px;
-    }
-    .btn{
-      height:36px;
-      padding:0 16px;
-      border-radius:4px;
-      border:1px solid transparent;
-      background:var(--btnBg);
-      color:var(--btnFg);
-      font-size:14px;
-      font-weight: 700;
-      cursor:pointer;
-      user-select:none;
-      transition: transform .06s ease, border-color .14s ease, box-shadow .14s ease;
-    }
-    .btn:hover{
-      border-color:var(--btnBorder);
-      box-shadow: 0 1px 1px rgba(0,0,0,.08);
-    }
-    .btn:active{ transform: translateY(1px); }
-
-    /* Hide explicit theme chips: Random is the main interaction for now. */
-    .vibes{ display:none; }
-
-    .fineprint{ display:none; }
-
-    footer.ftr{
+    footer.landing-chrome.ftr {
+      flex-shrink: 0;
       min-height: 48px;
-      background: color-mix(in srgb, var(--muted) 8%, transparent);
-      border-top: 1px solid color-mix(in srgb, var(--muted) 14%, transparent);
-      color: var(--muted);
+      background: #f2f2f2;
+      border-top: 1px solid #dadce0;
+      color: #70757a;
       font-size: 12.5px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+      align-items: center;
+      justify-content: space-between;
       padding: 0 18px;
       gap: 16px;
       flex-wrap: wrap;
     }
-    .ftr .col{
-      display:flex;
+    .ftr .col {
+      display: flex;
       gap: 18px;
-      align-items:center;
-      min-width: 220px;
+      align-items: center;
+      min-width: 200px;
     }
-    .ftr .col.center{
-      justify-content:center;
+    .ftr .col.center {
+      justify-content: center;
       flex: 1 1 auto;
-      min-width: 280px;
+      min-width: 260px;
       gap: 10px;
     }
-    .ftr a{ color:inherit; text-decoration:none; }
-    .ftr a:hover{ text-decoration:underline; }
-    .leaf{
-      width:14px;height:14px;
-      display:inline-block;
+    .ftr a {
+      color: inherit;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-weight: 400;
+    }
+    .ftr a:hover {
+      text-decoration: underline;
+    }
+    .leaf {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
       transform: translateY(2px);
     }
 
-    /* Reveal overlay */
-    .reveal{
-      position:fixed;
-      inset:0;
-      display:grid;
-      place-items:center;
-      /* Keep the page light when modal opens (no dark scrim). */
-      background:
-        radial-gradient(900px 480px at 50% 35%, rgba(0,0,0,.04), transparent 62%),
-        rgba(255,255,255,.72);
-      opacity:0;
-      pointer-events:none;
-      transition: opacity .18s ease;
-      padding:22px;
-      z-index:50;
+    /* ─── LAYOUT (matches newtab.html) ─── */
+    body.landing-clean .page-wrapper {
+      flex: 1;
+      min-height: 0;
     }
-    .reveal.on{
-      opacity:1;
-      pointer-events:auto;
-    }
-    .card{
-      width:min(560px, 92vw);
-      border-radius:16px;
-      background: rgba(15,16,22,.92);
-      color:#f4f6ff;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: 0 18px 70px rgba(0,0,0,.55);
-      padding:18px 18px 16px;
-      backdrop-filter: blur(10px);
-    }
-    .card h2{
-      margin:0;
-      font-size:18px;
-      letter-spacing:-.01em;
-    }
-    .card p{
-      margin:8px 0 12px;
-      color: rgba(244,246,255,.8);
-      line-height:1.45;
-      font-size:14px;
-    }
-    .card .row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .card .cta{
-      height:38px;
-      padding:0 14px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,.14);
-      background: #1a73e8;
-      color:#ffffff;
-      font-weight:800;
-      cursor:pointer;
-    }
-    .card .secondary{
-      height:38px;
-      padding:0 14px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color:#f4f6ff;
-      cursor:pointer;
+    .page-wrapper {
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding-bottom: var(--vs-bottom-safe);
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .pill, .btn { transition: none !important; }
-      .pill:focus-within { transform: none !important; }
+    .content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      transform: translateY(calc(-5vh + 40px));
+    }
+
+    .accent-line {
+      display: none;
+    }
+
+    .clock {
+      font-size: calc(clamp(5.25rem, 11vw, 9rem) * var(--vs-clock-scale, 1)) !important;
+      line-height: 1 !important;
+      min-height: 1em;
+      transform: translateY(var(--vs-clock-lift));
+    }
+
+    .greeting {
+      margin-top: 0.5rem !important;
+      letter-spacing: 0.15em !important;
+      text-transform: lowercase !important;
+      font-size: clamp(0.95rem, 1.8vw, 1.25rem) !important;
+      line-height: 1.2 !important;
+      min-height: 1.2em;
+    }
+
+    .date-line {
+      margin-top: 1.25rem !important;
+      letter-spacing: 0.3em !important;
+      text-transform: uppercase !important;
+      font-size: 1rem !important;
+      line-height: 1.2 !important;
+      min-height: 1.2em;
+    }
+
+    body.commonroom {
+      --vs-clock-scale: 0.98;
+    }
+    body.openingcrawl {
+      --vs-clock-scale: 1.06;
+    }
+    body.matrixfall {
+      --vs-clock-scale: 0.88;
+    }
+    body.mendlpastel {
+      --vs-clock-scale: 0.96;
+    }
+
+    /* Giggle wordmark — landing-clean only */
+    .landing-brand {
+      width: 360px;
+      height: 122px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 0.625rem;
+    }
+    .landing-brand .wordmark-inner {
+      display: flex;
+      gap: 0;
+      align-items: flex-end;
+      justify-content: center;
+      transform-origin: 50% 80%;
+      font-family: "Dancing Script", cursive;
+      font-weight: 500;
+      letter-spacing: -0.042em;
+      line-height: 1;
+      font-size: 110px;
+    }
+    .landing-brand span {
+      display: inline-block;
+    }
+    .landing-brand .wordmark-inner span:nth-child(2) { margin-left: -0.002em; }
+    .landing-brand .wordmark-inner span:nth-child(3) { margin-left: -0.002em; }
+    .landing-brand .wordmark-inner span:nth-child(4) { margin-left: -0.003em; }
+    .landing-brand .wordmark-inner span:nth-child(5) { margin-left: -0.002em; }
+    .landing-brand .wordmark-inner span:nth-child(6) { margin-left: -0.002em; }
+    .c-blue { color: #4285f4; }
+    .c-red { color: #ea4335; }
+    .c-yellow { color: #fbbc05; }
+    .c-green { color: #34a853; }
+
+    body.landing-clean .clock,
+    body.landing-clean .greeting,
+    body.landing-clean .date-line {
+      display: none;
+    }
+    body.landing-clean .landing-brand {
+      display: grid;
+    }
+
+    body.commonroom .landing-brand,
+    body.openingcrawl .landing-brand,
+    body.matrixfall .landing-brand,
+    body.mendlpastel .landing-brand {
+      display: none;
+    }
+
+    .search-wrapper {
+      margin-top: 3rem;
+      width: min(500px, 80vw);
+    }
+    body.landing-clean .search-wrapper {
+      margin-top: 1.5rem;
+      width: min(688px, 92vw);
+    }
+
+    .search-row {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 30px;
+      width: 100%;
+    }
+
+    .search-row > .search-shell .search-bar {
+      width: 100% !important;
+    }
+
+    .search-shell {
+      position: relative;
+      width: 100%;
+    }
+
+    /* On the clean homepage, the in-bar controls must live INSIDE the pill.
+       We build the pill on .search-shell (not on the input) so the buttons don't fall outside. */
+    body.landing-clean .search-shell{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      height: 50px;
+      padding: 0 12px;
+      border: 1px solid #dfe1e5;
+      border-radius: 9999px;
+      background: #fff;
+      box-shadow: 0 1px 6px rgba(32,33,36,.18);
+    }
+
+    /* Landing-only in-bar controls (hidden on Random themes) */
+    .landing-only-left,
+    .landing-only-controls {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+    }
+    body.landing-clean .landing-only-left,
+    body.landing-clean .landing-only-controls {
+      display: flex;
+    }
+    .landing-only-btn{
+      width:32px;
+      height:32px;
+      display:grid;
+      place-items:center;
+      border:0;
+      background:transparent;
+      border-radius: 50%;
+      color:#5f6368;
+      cursor:pointer;
+    }
+    .landing-only-btn:hover{
+      background: rgba(95, 99, 104, 0.12);
+    }
+    .ai-pill{
+      height:32px;
+      padding:0 10px 0 8px;
+      border-radius:999px;
+      border:1px solid #dadce0;
+      background: transparent;
+      color:#3c4043;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:12.5px;
+      cursor:pointer;
+    }
+    .ai-pill:hover{
+      background: rgba(95, 99, 104, 0.08);
+    }
+
+    .search-shell .search-bar {
+      border-radius: 9999px !important;
+      padding-right: 3rem !important;
+    }
+
+    body.commonroom .search-shell .search-bar {
+      border-radius: 0 !important;
+    }
+
+    .search-bar {
+      border: 1px solid var(--pillBorder, #dfe1e5);
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      outline: none;
+    }
+    body.landing-clean .search-bar{
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      height: 100%;
+      padding: 0 6px;
+      font-size: 16px;
+      line-height: 50px;
+    }
+
+    .search-mag {
+      position: absolute;
+      right: 0.55rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.35rem;
+      height: 2.35rem;
+      padding: 0;
+      margin: 0;
+      border: none;
+      border-radius: 50%;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.55);
+      cursor: pointer;
+    }
+
+    .search-mag svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    body.commonroom .search-mag {
+      display: none !important;
+    }
+
+    body.landing-clean .search-mag{
+      display:none;
+    }
+
+    .search-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .search-btn {
+      flex-shrink: 0;
+      box-sizing: border-box;
+      min-width: 7.75rem;
+      height: 36px;
+      padding: 0 1.1rem;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.09);
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    body.landing-clean .search-btn {
+      height: 36px;
+      min-width: 140px;
+      padding: 0 24px;
+      border-radius: 14px;
+      border: 1px solid #f8f9fa;
+      background: #f8f9fa;
+      color: #3c4043;
+      /* Revert button typography to original (Google-like). */
+      font-family: "Google Sans", Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    body.landing-clean .search-btn:hover{
+      border-color: #dadce0;
+      box-shadow: 0 1px 1px rgba(0,0,0,.10);
+    }
+    body.landing-clean .search-btn:active{
+      box-shadow: 0 1px 1px rgba(0,0,0,.10);
+    }
+
+    body.landing-clean .search-mag {
+      color: rgba(35, 32, 28, 0.45);
+    }
+
+    body.landing-clean .search-bar {
+      background: #fff;
+      color: #202124;
+      border-color: #dfe1e5;
+    }
+
+    /* Reveal */
+    .reveal {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(900px 480px at 50% 35%, rgba(0, 0, 0, 0.04), transparent 62%),
+        rgba(255, 255, 255, 0.72);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+      padding: 22px;
+      z-index: 50;
+    }
+    .reveal.on {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .card {
+      width: min(640px, 92vw);
+      border-radius: 18px;
+      background: rgba(15, 16, 22, 0.92);
+      color: #f4f6ff;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 18px 70px rgba(0, 0, 0, 0.55);
+      padding: 28px 28px 24px;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+    .card .close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: #f4f6ff;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+    .card h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .card p {
+      margin: 10px 0 16px;
+      color: rgba(244, 246, 255, 0.8);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .card .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .card .cta {
+      height: 42px;
+      padding: 0 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #1a73e8;
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .card .secondary {
+      height: 42px;
+      padding: 0 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: #f4f6ff;
+      cursor: pointer;
     }
   </style>
 </head>
 
-<body class="vibe-clean">
-  <div class="wrap">
-    <header class="hdr" aria-label="Header">
-      <nav class="left" aria-label="Left links">
-        <a href="#" id="aboutLink">About</a>
-        <a href="#" id="storeLink">Store</a>
-      </nav>
-
-      <nav class="right" aria-label="Right links">
-        <a href="#" id="gmailLink">Mail</a>
-        <a href="#" id="imagesLink">Images</a>
-        <button class="apps-btn" id="appsBtn" type="button" aria-label="Apps">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M5 3h4v4H5V3zm5 0h4v4h-4V3zm5 0h4v4h-4V3zM5 8h4v4H5V8zm5 0h4v4h-4V8zm5 0h4v4h-4V8zM5 13h4v4H5v-4zm5 0h4v4h-4v-4zm5 0h4v4h-4v-4z"/>
-          </svg>
-        </button>
-        <button class="signin" id="signInBtn" type="button">Sign in</button>
-      </nav>
-    </header>
-
-    <main class="main">
-      <div class="stack">
-        <div class="wordmark" id="wordmark" aria-label="Giggle">
-          <div class="wordmark-inner" id="wordmarkInner" aria-hidden="true">
-            <span class="c-blue">G</span><span class="c-red">i</span><span class="c-yellow">g</span><span class="c-blue">g</span><span class="c-green">l</span><span class="c-red">e</span>
-          </div>
-        </div>
-
-        <form id="searchForm" class="pill" role="search" aria-label="Search">
-          <button class="left-icon plus" id="plusBtn" type="button" aria-label="New">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M12 6v12M6 12h12" stroke-linecap="round"/>
-            </svg>
-          </button>
-          <input id="q" name="q" type="text" autocomplete="off" spellcheck="false"
-            placeholder="" />
-          <div class="right" aria-label="Search controls">
-            <button class="icon-btn" id="micBtn" type="button" aria-label="Voice search">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v4a3 3 0 0 0 3 3Z"/>
-                <path d="M19 11a7 7 0 0 1-14 0" stroke-linecap="round"/>
-                <path d="M12 18v3" stroke-linecap="round"/>
-              </svg>
-            </button>
-            <button class="icon-btn" id="lensBtn" type="button" aria-label="Search by image">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z"/>
-                <path d="M9 11a2 2 0 1 0 0.01 0Z" />
-                <path d="M21 15l-5-5-6 7-2-2-4 4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            <button class="ai-pill" id="aiModeBtn" type="button" aria-label="AI Mode">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2l1.2 4.1L17 7.3l-3.8 1.2L12 12l-1.2-3.5L7 7.3l3.8-1.2L12 2Zm7 9-1.1 3.2L15 15.3l2.9 1.1L19 19l1.1-2.6L23 15.3l-2.9-1.1L19 11ZM5 13l.9 2.4L8 16.2l-2.1.8L5 19l-.9-2-2.1-.8 2.1-.8L5 13Z"/>
-              </svg>
-              <span>AI Mode</span>
-            </button>
-          </div>
-        </form>
-
-        <div class="actions" aria-label="Actions">
-          <button class="btn" id="searchBtn" type="button">Giggle Search</button>
-          <button class="btn" id="randomBtn" type="button">Random</button>
-        </div>
-
-      </div>
-    </main>
-
-    <footer class="ftr" aria-label="Footer">
-      <div class="col left" aria-label="Footer left">
-        <a href="#" id="advertisingLink">Advertising</a>
-        <a href="#" id="businessLink">Business</a>
-        <a href="#" id="howSearchWorksLink">How Search works</a>
-      </div>
-      <div class="col center" aria-label="Footer center">
-        <svg class="leaf" viewBox="0 0 24 24" fill="#1e8e3e" aria-hidden="true">
-          <path d="M20.6 3.4C15.6 3.5 11.9 5.1 9.4 7.6 6.6 10.4 5.2 14.3 5.4 20.6c6.3.2 10.2-1.2 13-4 2.5-2.5 4.1-6.2 4.2-11.2 0-.8-.6-1.4-1.4-1.4ZM7.8 18.2c.2-4.6 1.3-7.6 3.5-9.8 1.8-1.8 4.5-3 8.4-3.3-.3 3.9-1.5 6.6-3.3 8.4-2.2 2.2-5.2 3.3-9.8 3.5Z"/>
+<body class="landing-clean">
+  <header class="landing-chrome hdr" aria-label="Header">
+    <nav class="left" aria-label="Left links">
+      <a href="#" id="aboutLink">About</a>
+      <a href="#" id="storeLink">Store</a>
+    </nav>
+    <nav class="right" aria-label="Right links">
+      <a href="#" id="gmailLink">Mail</a>
+      <a href="#" id="imagesLink">Images</a>
+      <button class="apps-btn" id="appsBtn" type="button" aria-label="Apps">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M5 3h4v4H5V3zm5 0h4v4h-4V3zm5 0h4v4h-4V3zM5 8h4v4H5V8zm5 0h4v4h-4V8zm5 0h4v4h-4V8zM5 13h4v4H5v-4zm5 0h4v4h-4v-4zm5 0h4v4h-4v-4z"/>
         </svg>
-        <span>Applying AI towards science and the environment</span>
+      </button>
+      <button class="signin" id="signInBtn" type="button">Sign in</button>
+    </nav>
+  </header>
+
+  <div class="page-wrapper">
+    <div class="content">
+      <div class="accent-line" aria-hidden="true"></div>
+
+      <div class="landing-brand" id="landingBrand" aria-label="Giggle">
+        <div class="wordmark-inner" id="wordmarkInner">
+          <span class="c-blue">G</span><span class="c-red">i</span><span class="c-yellow">g</span><span class="c-blue">g</span><span class="c-green">l</span><span class="c-red">e</span>
+        </div>
       </div>
-      <div class="col right" aria-label="Footer right">
-        <a href="#" id="privacyLink">Privacy</a>
-        <a href="#" id="termsLink">Terms</a>
-        <a href="#" id="settingsLink">Settings</a>
+
+      <div class="clock" id="clock">00:00</div>
+      <div class="greeting" id="greeting">good evening</div>
+      <div class="date-line" id="dateline">tuesday, march 31</div>
+
+      <div class="search-wrapper">
+        <div class="search-row">
+          <div class="search-shell">
+            <div class="landing-only-left" aria-hidden="false">
+              <button class="landing-only-btn" id="plusBtn" type="button" aria-label="New">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M12 6v12M6 12h12" stroke-linecap="round"></path>
+                </svg>
+              </button>
+            </div>
+            <input
+              class="search-bar"
+              type="text"
+              id="search"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder=""
+            />
+            <div class="landing-only-controls" aria-label="Search controls">
+              <button class="landing-only-btn" id="micBtn" type="button" aria-label="Voice search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v4a3 3 0 0 0 3 3Z"></path>
+                  <path d="M19 11a7 7 0 0 1-14 0" stroke-linecap="round"></path>
+                  <path d="M12 18v3" stroke-linecap="round"></path>
+                </svg>
+              </button>
+              <button class="landing-only-btn" id="lensBtn" type="button" aria-label="Search by image">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z"></path>
+                  <path d="M9 11a2 2 0 1 0 0.01 0Z"></path>
+                  <path d="M21 15l-5-5-6 7-2-2-4 4" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
+              <button class="ai-pill" id="aiModeBtn" type="button" aria-label="AI Mode">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2l1.2 4.1L17 7.3l-3.8 1.2L12 12l-1.2-3.5L7 7.3l3.8-1.2L12 2Zm7 9-1.1 3.2L15 15.3l2.9 1.1L19 19l1.1-2.6L23 15.3l-2.9-1.1L19 11ZM5 13l.9 2.4L8 16.2l-2.1.8L5 19l-.9-2-2.1-.8 2.1-.8L5 13Z"></path>
+                </svg>
+                <span>AI Mode</span>
+              </button>
+            </div>
+            <button type="button" class="search-mag" id="search-mag" aria-label="Search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+            </button>
+          </div>
+          <div class="search-actions">
+            <button type="button" class="search-btn" id="search-go">Search</button>
+            <button type="button" class="search-btn" id="random-vibe">Random</button>
+          </div>
+        </div>
       </div>
-    </footer>
+    </div>
   </div>
 
-  <div class="reveal" id="reveal" role="dialog" aria-modal="true" aria-label="April Fools reveal">
+  <footer class="landing-chrome ftr" aria-label="Footer">
+    <div class="col left">
+      <a href="#" id="advertisingLink">Advertising</a>
+      <a href="#" id="businessLink">Business</a>
+      <a href="#" id="howSearchWorksLink">How Search works</a>
+    </div>
+    <div class="col center">
+      <span>Click the random button</span>
+    </div>
+    <div class="col right">
+      <a href="#" id="privacyLink">Privacy</a>
+      <a href="#" id="termsLink">Terms</a>
+      <a href="#" id="settingsLink">Settings</a>
+    </div>
+  </footer>
+
+  <div class="reveal" id="reveal" role="dialog" aria-modal="true" aria-label="Prank reveal">
     <div class="card">
-      <h2>April Fools.</h2>
+      <button class="close" id="closeBtn" type="button" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M6 6l12 12" stroke-linecap="round" />
+          <path d="M18 6l-12 12" stroke-linecap="round" />
+        </svg>
+      </button>
+      <h2>Gotcha.</h2>
       <p>
         This isn’t Google. It’s a prank landing page for <strong>Vibescape</strong> — themes that transform your new tab into a vibe.
+      </p>
+      <p>
+        Like what you see? There are dozens more where these came from. Check out the extension to explore them all.
       </p>
       <div class="row">
         <button class="cta" id="installBtn" type="button">Get the Vibescape Extension</button>
         <button class="secondary" id="continueBtn" type="button">Take me to google.com</button>
       </div>
-      <p style="margin:10px 0 0; font-size:12px; opacity:.8;">
-        We don’t collect your query here — the real search happens on Google after the reveal.
-      </p>
     </div>
   </div>
 
   <script>
-    // ====== CONFIG ======
-    // Replace with your Chrome Web Store listing (or any install/waitlist URL).
     const EXTENSION_URL = "EXTENSION_URL_HERE";
-
-    // If you want auto-redirect after reveal, set e.g. 1500. Default 0 = no auto-redirect.
     const AUTO_REDIRECT_AFTER_MS = 0;
 
-    // ====== THEME / VIBE ======
-    const themeIds = ["vibe-clean","vibe-twilight","vibe-neon","vibe-retro"];
-    function setTheme(t){
-      if (!themeIds.includes(t)) t = "vibe-clean";
-      document.body.classList.remove(...themeIds);
-      document.body.classList.add(t);
+    const baseTheme = "landing-clean";
+    const themeIds = ["commonroom", "openingcrawl", "matrixfall", "mendlpastel"];
+    const themePlaceholders = {
+      "landing-clean": "",
+      commonroom: "ink your inquiry upon the scroll\u2026",
+      openingcrawl: "search the deep-sky archives\u2026",
+      matrixfall: "",
+      mendlpastel: "compose with confection precision\u2026",
+    };
+
+    function setTheme(t) {
+      const next = themeIds.includes(t) ? t : baseTheme;
+      document.body.classList.remove(baseTheme, ...themeIds);
+      document.body.classList.add(next);
+      const input = document.getElementById("search");
+      if (input) input.placeholder = themePlaceholders[next] || "";
     }
-    function randomTheme(){
-      const current = themeIds.find((id) => document.body.classList.contains(id)) || "vibe-clean";
-      const choices = themeIds.filter((t) => t !== current);
-      const next = choices[Math.floor(Math.random() * choices.length)] || "vibe-clean";
+
+    // Cycle deterministically so we show all 4 themes before gating.
+    let themeCycleIdx = 0;
+    function cycleTheme() {
+      const next = themeIds[themeCycleIdx % themeIds.length];
+      themeCycleIdx += 1;
       setTheme(next);
       return next;
     }
 
-    // ====== PRANK REVEAL + SEARCH ======
     let revealedOnce = false;
     let pendingQuery = "";
 
     const reveal = document.getElementById("reveal");
-    const q = document.getElementById("q");
-    const wordmark = document.getElementById("wordmark");
+    const searchInput = document.getElementById("search");
     const wordmarkInner = document.getElementById("wordmarkInner");
 
-    function fitWordmarkToBox() {
-      if (!wordmark || !wordmarkInner) return;
-      // Reset scale to measure natural size.
-      wordmarkInner.style.transform = "scale(1)";
-      const box = wordmark.getBoundingClientRect();
-      const inner = wordmarkInner.getBoundingClientRect();
-      if (!box.width || !box.height || !inner.width || !inner.height) return;
+    const clockEl = document.getElementById("clock");
+    const greetingEl = document.getElementById("greeting");
+    const datelineEl = document.getElementById("dateline");
 
-      // Fit width and height, keep a tiny safety margin so it never overflows.
-      const sx = (box.width / inner.width) * 0.985;
-      const sy = (box.height / inner.height) * 0.985;
-      const s = Math.min(sx, sy, 1);
-      wordmarkInner.style.transform = `scale(${s})`;
+    function fitWordmarkToBox() {
+      const box = document.getElementById("landingBrand");
+      if (!box || !wordmarkInner) return;
+      wordmarkInner.style.transform = "scale(1)";
+      const b = box.getBoundingClientRect();
+      const inner = wordmarkInner.getBoundingClientRect();
+      if (!b.width || !b.height || !inner.width || !inner.height) return;
+      const sx = (b.width / inner.width) * 0.985;
+      const sy = (b.height / inner.height) * 0.985;
+      wordmarkInner.style.transform = `scale(${Math.min(sx, sy, 1)})`;
+    }
+
+    function pad2(n) {
+      return String(n).padStart(2, "0");
+    }
+
+    function formatDateline(d) {
+      const days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+      const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+      return `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`;
+    }
+
+    function formatGreeting(h) {
+      if (h < 5) return "good night";
+      if (h < 12) return "good morning";
+      if (h < 18) return "good afternoon";
+      return "good evening";
+    }
+
+    function updateHeroTime() {
+      if (!clockEl || !greetingEl || !datelineEl) return;
+      const now = new Date();
+      const h24 = now.getHours();
+      const h12 = h24 % 12 || 12;
+      clockEl.textContent = `${h12}:${pad2(now.getMinutes())}`;
+      greetingEl.textContent = formatGreeting(now.getHours());
+      datelineEl.textContent = formatDateline(now);
     }
 
     function withJokes(query) {
       const q = (query || "").trim();
       if (!q) return "";
-      return `jokes about ${q}`;
+      return `dad jokes about ${q}`;
     }
 
-    function googleUrl(query){
-      const q = withJokes(query);
-      return "https://www.google.com/search?q=" + encodeURIComponent(q);
+    function googleUrl(query) {
+      return "https://www.google.com/search?q=" + encodeURIComponent(withJokes(query));
     }
 
-    function openReveal(query){
+    function openReveal(query) {
       pendingQuery = query;
       reveal.classList.add("on");
       if (AUTO_REDIRECT_AFTER_MS > 0) {
@@ -547,48 +778,36 @@
       }
     }
 
-    function runSearch(){
-      const query = (q.value || "").trim();
-      if (!query) { q.focus(); return; }
-      // Enter/Search should behave like real Google: go straight to results.
-      // (Prank reveal is triggered via Random / header icon interactions.)
+    function runSearch() {
+      const query = (searchInput.value || "").trim();
+      if (!query) {
+        searchInput.focus();
+        return;
+      }
       revealedOnce = true;
       window.location.href = googleUrl(query);
     }
 
-    document.getElementById("searchBtn").addEventListener("click", runSearch);
-    document.getElementById("searchForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      runSearch();
-    });
-    q.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") { e.preventDefault(); runSearch(); }
-    });
-
-    // Random = one of four default themes
-    document.getElementById("randomBtn").addEventListener("click", () => {
-      randomTheme();
-      if (!revealedOnce) {
-        revealedOnce = true;
-        openReveal((q.value || "").trim() || "giggle");
+    document.getElementById("search-go").addEventListener("click", runSearch);
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        runSearch();
       }
     });
 
-    // Header / pill controls: keep them harmless and playful.
-    function noopToast(msg){
-      // Lightweight “interaction” without building modals.
-      const qv = (q.value || "").trim();
-      if (!revealedOnce && qv) return; // don't steal first-search prank moment
-      console.log(msg);
-    }
-    document.getElementById("appsBtn").addEventListener("click", () => noopToast("apps"));
-    document.getElementById("signInBtn").addEventListener("click", () => openReveal((q.value || "").trim() || "sign in"));
-    document.getElementById("micBtn").addEventListener("click", () => openReveal((q.value || "").trim() || "voice search"));
-    document.getElementById("plusBtn").addEventListener("click", () => openReveal((q.value || "").trim() || "new"));
-    document.getElementById("lensBtn").addEventListener("click", () => openReveal((q.value || "").trim() || "search by image"));
-    document.getElementById("aiModeBtn").addEventListener("click", () => openReveal((q.value || "").trim() || "ai mode"));
+    let randomClicks = 0;
+    document.getElementById("random-vibe").addEventListener("click", () => {
+      randomClicks += 1;
+      // After cycling through all 4 themes, gate on the next click.
+      if (randomClicks >= 5) {
+        revealedOnce = true;
+        openReveal((searchInput.value || "").trim() || "giggle");
+        return;
+      }
+      cycleTheme();
+    });
 
-    // Reveal actions
     document.getElementById("installBtn").addEventListener("click", () => {
       if (!EXTENSION_URL || EXTENSION_URL === "EXTENSION_URL_HERE") {
         alert("Set EXTENSION_URL in landing-prank.html to your extension listing.");
@@ -596,39 +815,59 @@
       }
       window.open(EXTENSION_URL, "_blank", "noopener,noreferrer");
     });
+
     document.getElementById("continueBtn").addEventListener("click", () => {
       reveal.classList.remove("on");
       window.location.href = "https://www.google.com/";
     });
 
-    // Small link behaviors (optional)
-    function smallReveal(e){
-      e.preventDefault();
-      if (!revealedOnce) revealedOnce = true;
-      openReveal((q.value || "").trim() || "vibescape");
-    }
-    document.getElementById("aboutLink").addEventListener("click", smallReveal);
-    document.getElementById("storeLink")?.addEventListener("click", (e) => { e.preventDefault(); if (!revealedOnce) { revealedOnce = true; openReveal("store"); } });
-    document.getElementById("gmailLink")?.addEventListener("click", (e) => { e.preventDefault(); if (!revealedOnce) { revealedOnce = true; openReveal("gmail"); } });
-    document.getElementById("imagesLink")?.addEventListener("click", (e) => { e.preventDefault(); if (!revealedOnce) { revealedOnce = true; openReveal("images"); } });
-
-    // Footer links: keep them inert but clickable for realism.
-    ["advertisingLink","businessLink","howSearchWorksLink","privacyLink","termsLink","settingsLink"].forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.addEventListener("click", (e) => { e.preventDefault(); if (!revealedOnce) { revealedOnce = true; openReveal(id.replace("Link","")); } });
+    document.getElementById("closeBtn").addEventListener("click", () => {
+      reveal.classList.remove("on");
+      pendingQuery = "";
+      randomClicks = 0;
+      setTheme(baseTheme);
+      searchInput.focus();
     });
 
-    // Always start clean/white on load (don’t persist landing themes).
-    setTheme("vibe-clean");
-    q.focus();
+    // Make top/bottom chrome + in-bar buttons inert (no modal, no navigation).
+    [
+      "aboutLink",
+      "storeLink",
+      "gmailLink",
+      "imagesLink",
+      "appsBtn",
+      "signInBtn",
+      "advertisingLink",
+      "businessLink",
+      "howSearchWorksLink",
+      "privacyLink",
+      "termsLink",
+      "settingsLink",
+      "plusBtn",
+      "micBtn",
+      "lensBtn",
+      "aiModeBtn",
+      "search-mag",
+    ].forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("click", (e) => e.preventDefault());
+    });
+
+    setTheme(baseTheme);
+    searchInput.focus();
+
+    updateHeroTime();
+    window.setInterval(updateHeroTime, 1000);
 
     fitWordmarkToBox();
-    window.addEventListener("resize", () => {
-      // Keep deterministic sizing if viewport changes.
-      fitWordmarkToBox();
-    }, { passive: true });
+    window.addEventListener(
+      "resize",
+      () => {
+        fitWordmarkToBox();
+      },
+      { passive: true }
+    );
   </script>
 </body>
 </html>
-
