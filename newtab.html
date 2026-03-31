@@ -3621,6 +3621,14 @@
       background: rgba(255, 255, 255, 0.09);
       color: rgba(255, 255, 255, 0.92);
     }
+    /* Button hover cursor: always use the normal pointer cursor (like google.com),
+       even when custom cursors are enabled for the page background. */
+    .search-btn:hover,
+    .search-mag:hover,
+    button:hover,
+    [role="button"]:hover {
+      cursor: pointer !important;
+    }
     .search-btn:hover { transform: translateY(-1px); filter: none; }
     .search-btn:active { transform: translateY(0); }
     .search-btn:focus-visible {
