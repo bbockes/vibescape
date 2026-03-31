@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Giggle</title>
+  <meta name="description" content="Giggle — a playful, themed search prank landing page by Vibescape. Not affiliated with Google." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" href="favicon.png" />
+
+  <style>
+    :root{
+      --bg:#fff;
+      --fg:#202124;
+      --muted:#5f6368;
+      --pill:#fff;
+      --pillBorder:#dfe1e5;
+      --pillShadow: 0 1px 6px rgba(32,33,36,.28);
+      --btnBg:#f8f9fa;
+      --btnBorder:#dadce0;
+      --btnFg:#3c4043;
+      --link:#1a73e8;
+
+      --accentA:#6a5cff;
+      --accentB:#00c2ff;
+      --accentC:#ff4fd8;
+    }
+
+    /* “Vibes” (simple palettes) */
+    body.vibe-twilight{ --bg:#0b0a12; --fg:#ece7ff; --muted:#b9b3d8; --pill:#121021; --pillBorder:#2b2750; --btnBg:#1a1830; --btnBorder:#2b2750; --btnFg:#ece7ff; --link:#b9a7ff; }
+    body.vibe-neon{ --bg:#07080c; --fg:#f3f6ff; --muted:#a8b2d8; --pill:#0e1020; --pillBorder:#2a2f5c; --btnBg:#131636; --btnBorder:#2a2f5c; --btnFg:#f3f6ff; --link:#7de3ff; }
+    body.vibe-clean{ --bg:#ffffff; --fg:#202124; --muted:#5f6368; --pill:#fff; --pillBorder:#dfe1e5; --btnBg:#f8f9fa; --btnBorder:#dadce0; --btnFg:#3c4043; --link:#1a73e8; }
+    body.vibe-retro{ --bg:#fff7e6; --fg:#2b1b10; --muted:#6b4b3a; --pill:#fff3da; --pillBorder:#e6c9a8; --btnBg:#ffe8bf; --btnBorder:#e6c9a8; --btnFg:#2b1b10; --link:#b02a6f; }
+
+    html,body{height:100%;}
+    body{
+      margin:0;
+      /* Google homepage uses an Arial-like system stack for UI chrome. */
+      font-family: Arial, Helvetica, sans-serif;
+      color:var(--fg);
+      background:var(--bg);
+      overflow-x:hidden;
+    }
+
+    /* Page frame: header / center / footer */
+    .wrap{
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header.hdr{
+      height:64px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 18px;
+      font-size:13px;
+      color:var(--muted);
+      user-select:none;
+    }
+    .hdr a{ color:var(--muted); text-decoration:none; }
+    .hdr a:hover{ text-decoration:underline; }
+    .hdr .left, .hdr .right{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      min-width: 220px;
+    }
+    .hdr .right{
+      justify-content:flex-end;
+    }
+    .apps-btn{
+      width:40px;height:40px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      border:0;
+      background:transparent;
+      color:var(--muted);
+      cursor:pointer;
+    }
+    .apps-btn:hover{
+      background: color-mix(in srgb, var(--muted) 12%, transparent);
+    }
+    .signin{
+      height:36px;
+      padding:0 18px;
+      border-radius:18px;
+      border:0;
+      background:#1a73e8;
+      color:#fff;
+      font-weight:600;
+      font-size:13px;
+      cursor:pointer;
+    }
+    .signin:hover{ filter: brightness(0.97); }
+
+    main.main{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 16px 24px;
+    }
+
+    .stack{
+      width:min(640px, 92vw);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 22px;
+      transform: translateY(-6vh);
+    }
+
+    /* Giggle wordmark (Google-like spacing + colors) */
+    .wordmark{
+      /* Approximate Product Sans / Google Sans if available locally. */
+      font-family: "Product Sans", "Google Sans", Arial, Helvetica, sans-serif;
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      user-select:none;
+      width: 272px;
+      height: 92px;
+      display:grid;
+      place-items:center;
+      padding-top: 12px;
+      /* Extra breathing room before the search bar (gap also applies). */
+      margin-bottom: 20px;
+    }
+    .wordmark-inner{
+      display:flex;
+      gap: 0;
+      align-items:flex-end;
+      justify-content:center;
+      transform-origin: 50% 80%;
+      will-change: transform;
+      /* Start large, then JS scales to fit the 272×92 box. */
+      font-size: 92px;
+      /* Apply tracking on the glyph row (not the 272×92 box). */
+      letter-spacing: -0.042em;
+    }
+    .wordmark span{ display:inline-block; }
+    /* Tiny kerning nudges to better match the Google wordmark rhythm */
+    .wordmark-inner span:nth-child(2){ margin-left: -0.002em; } /* i */
+    .wordmark-inner span:nth-child(3){ margin-left: -0.002em; } /* g */
+    .wordmark-inner span:nth-child(4){ margin-left: -0.003em; } /* g */
+    .wordmark-inner span:nth-child(5){ margin-left: -0.002em; } /* l */
+    .wordmark-inner span:nth-child(6){ margin-left: -0.002em; } /* e */
+    .c-blue{ color:#4285f4; }
+    .c-red{ color:#ea4335; }
+    .c-yellow{ color:#fbbc05; }
+    .c-green{ color:#34a853; }
+    /* removed “not affiliated” label per request */
+
+    .pill{
+      width:min(584px, 92vw);
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      background:var(--pill);
+      border:1px solid var(--pillBorder);
+      border-radius:9999px;
+      padding: 10px 10px 10px 12px;
+      box-shadow:none;
+      transition: box-shadow .18s ease, border-color .18s ease, transform .18s ease;
+    }
+    .pill:focus-within{
+      box-shadow: var(--pillShadow);
+      border-color: transparent;
+      transform: translateY(-1px);
+    }
+    .pill .left-icon{
+      width:28px;height:28px;
+      display:grid;
+      place-items:center;
+      color: var(--muted);
+      border-radius: 14px;
+      cursor: default;
+      flex: 0 0 28px;
+    }
+    .pill .left-icon.plus{
+      /* No visible circle around plus (match screenshot). */
+      border: 0;
+      background: transparent;
+      border-radius: 0;
+      width: 28px;
+      height: 28px;
+    }
+    input[type="text"]{
+      flex:1;
+      border:0;
+      outline:0;
+      background:transparent;
+      color:var(--fg);
+      font-size:16px;
+      line-height:22px;
+      padding: 4px 0;
+    }
+    input::placeholder{ color: color-mix(in srgb, var(--muted) 85%, transparent); }
+
+    .pill .right{
+      display:flex;
+      align-items:center;
+      gap: 6px;
+      flex: 0 0 auto;
+    }
+    .pill .icon-btn{
+      width:32px;height:32px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      border:0;
+      background:transparent;
+      color: var(--muted);
+      cursor:pointer;
+    }
+    .pill .icon-btn:hover{
+      background: color-mix(in srgb, var(--muted) 12%, transparent);
+    }
+    .pill .ai-pill{
+      height:32px;
+      padding:0 10px 0 8px;
+      border-radius: 999px;
+      border: 1px solid var(--pillBorder);
+      background: transparent;
+      color: var(--fg);
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size: 12.5px;
+      cursor:pointer;
+    }
+    .pill .ai-pill:hover{
+      background: color-mix(in srgb, var(--muted) 7%, transparent);
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top: 6px;
+    }
+    .btn{
+      height:36px;
+      padding:0 16px;
+      border-radius:4px;
+      border:1px solid transparent;
+      background:var(--btnBg);
+      color:var(--btnFg);
+      font-size:14px;
+      font-weight: 700;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .06s ease, border-color .14s ease, box-shadow .14s ease;
+    }
+    .btn:hover{
+      border-color:var(--btnBorder);
+      box-shadow: 0 1px 1px rgba(0,0,0,.08);
+    }
+    .btn:active{ transform: translateY(1px); }
+
+    /* Hide explicit theme chips: Random is the main interaction for now. */
+    .vibes{ display:none; }
+
+    .fineprint{ display:none; }
+
+    footer.ftr{
+      min-height: 48px;
+      background: color-mix(in srgb, var(--muted) 8%, transparent);
+      border-top: 1px solid color-mix(in srgb, var(--muted) 14%, transparent);
+      color: var(--muted);
+      font-size: 12.5px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 0 18px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .ftr .col{
+      display:flex;
+      gap: 18px;
+      align-items:center;
+      min-width: 220px;
+    }
+    .ftr .col.center{
+      justify-content:center;
+      flex: 1 1 auto;
+      min-width: 280px;
+      gap: 10px;
+    }
+    .ftr a{ color:inherit; text-decoration:none; }
+    .ftr a:hover{ text-decoration:underline; }
+    .leaf{
+      width:14px;height:14px;
+      display:inline-block;
+      transform: translateY(2px);
+    }
+
+    /* Reveal overlay */
+    .reveal{
+      position:fixed;
+      inset:0;
+      display:grid;
+      place-items:center;
+      /* Keep the page light when modal opens (no dark scrim). */
+      background:
+        radial-gradient(900px 480px at 50% 35%, rgba(0,0,0,.04), transparent 62%),
+        rgba(255,255,255,.72);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .18s ease;
+      padding:22px;
+      z-index:50;
+    }
+    .reveal.on{
+      opacity:1;
+      pointer-events:auto;
+    }
+    .card{
+      width:min(560px, 92vw);
+      border-radius:16px;
+      background: rgba(15,16,22,.92);
+      color:#f4f6ff;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 18px 70px rgba(0,0,0,.55);
+      padding:18px 18px 16px;
+      backdrop-filter: blur(10px);
+    }
+    .card h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.01em;
+    }
+    .card p{
+      margin:8px 0 12px;
+      color: rgba(244,246,255,.8);
+      line-height:1.45;
+      font-size:14px;
+    }
+    .card .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .card .cta{
+      height:38px;
+      padding:0 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.14);
+      background: #1a73e8;
+      color:#ffffff;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .card .secondary{
+      height:38px;
+      padding:0 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:#f4f6ff;
+      cursor:pointer;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pill, .btn { transition: none !important; }
+      .pill:focus-within { transform: none !important; }
+    }
+  </style>
+</head>
+
+<body class="vibe-clean">
+  <div class="wrap">
+    <header class="hdr" aria-label="Header">
+      <nav class="left" aria-label="Left links">
+        <a href="#" id="aboutLink">About</a>
+        <a href="#" id="storeLink">Store</a>
+      </nav>
+
+      <nav class="right" aria-label="Right links">
+        <a href="#" id="gmailLink">Mail</a>
+        <a href="#" id="imagesLink">Images</a>
+        <button class="apps-btn" id="appsBtn" type="button" aria-label="Apps">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M5 3h4v4H5V3zm5 0h4v4h-4V3zm5 0h4v4h-4V3zM5 8h4v4H5V8zm5 0h4v4h-4V8zm5 0h4v4h-4V8zM5 13h4v4H5v-4zm5 0h4v4h-4v-4zm5 0h4v4h-4v-4z"/>
+          </svg>
+        </button>
+        <button class="signin" id="signInBtn" type="button">Sign in</button>
+      </nav>
+    </header>
+
+    <main class="main">
+      <div class="stack">
+        <div class="wordmark" id="wordmark" aria-label="Giggle">
+          <div class="wordmark-inner" id="wordmarkInner" aria-hidden="true">
+            <span class="c-blue">G</span><span class="c-red">i</span><span class="c-yellow">g</span><span class="c-blue">g</span><span class="c-green">l</span><span class="c-red">e</span>
+          </div>
+        </div>
+
+        <form id="searchForm" class="pill" role="search" aria-label="Search">
+          <button class="left-icon plus" id="plusBtn" type="button" aria-label="New">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 6v12M6 12h12" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <input id="q" name="q" type="text" autocomplete="off" spellcheck="false"
+            placeholder="" />
+          <div class="right" aria-label="Search controls">
+            <button class="icon-btn" id="micBtn" type="button" aria-label="Voice search">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v4a3 3 0 0 0 3 3Z"/>
+                <path d="M19 11a7 7 0 0 1-14 0" stroke-linecap="round"/>
+                <path d="M12 18v3" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <button class="icon-btn" id="lensBtn" type="button" aria-label="Search by image">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z"/>
+                <path d="M9 11a2 2 0 1 0 0.01 0Z" />
+                <path d="M21 15l-5-5-6 7-2-2-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="ai-pill" id="aiModeBtn" type="button" aria-label="AI Mode">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2l1.2 4.1L17 7.3l-3.8 1.2L12 12l-1.2-3.5L7 7.3l3.8-1.2L12 2Zm7 9-1.1 3.2L15 15.3l2.9 1.1L19 19l1.1-2.6L23 15.3l-2.9-1.1L19 11ZM5 13l.9 2.4L8 16.2l-2.1.8L5 19l-.9-2-2.1-.8 2.1-.8L5 13Z"/>
+              </svg>
+              <span>AI Mode</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="actions" aria-label="Actions">
+          <button class="btn" id="searchBtn" type="button">Giggle Search</button>
+          <button class="btn" id="randomBtn" type="button">Random</button>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="ftr" aria-label="Footer">
+      <div class="col left" aria-label="Footer left">
+        <a href="#" id="advertisingLink">Advertising</a>
+        <a href="#" id="businessLink">Business</a>
+        <a href="#" id="howSearchWorksLink">How Search works</a>
+      </div>
+      <div class="col center" aria-label="Footer center">
+        <svg class="leaf" viewBox="0 0 24 24" fill="#1e8e3e" aria-hidden="true">
+          <path d="M20.6 3.4C15.6 3.5 11.9 5.1 9.4 7.6 6.6 10.4 5.2 14.3 5.4 20.6c6.3.2 10.2-1.2 13-4 2.5-2.5 4.1-6.2 4.2-11.2 0-.8-.6-1.4-1.4-1.4ZM7.8 18.2c.2-4.6 1.3-7.6 3.5-9.8 1.8-1.8 4.5-3 8.4-3.3-.3 3.9-1.5 6.6-3.3 8.4-2.2 2.2-5.2 3.3-9.8 3.5Z"/>
+        </svg>
+        <span>Applying AI towards science and the environment</span>
+      </div>
+      <div class="col right" aria-label="Footer right">
+        <a href="#" id="privacyLink">Privacy</a>
+        <a href="#" id="termsLink">Terms</a>
+        <a href="#" id="settingsLink">Settings</a>
+      </div>
+    </footer>
+  </div>
+
+  <div class="reveal" id="reveal" role="dialog" aria-modal="true" aria-label="April Fools reveal">
+    <div class="card">
+      <h2>April Fools.</h2>
+      <p>
+        This isn’t Google. It’s a prank landing page for <strong>Vibescape</strong> — themes that transform your new tab into a vibe.
+      </p>
+      <div class="row">
+        <button class="cta" id="installBtn" type="button">Get the Vibescape Extension</button>
+        <button class="secondary" id="continueBtn" type="button">Take me to google.com</button>
+      </div>
+      <p style="margin:10px 0 0; font-size:12px; opacity:.8;">
+        We don’t collect your query here — the real search happens on Google after the reveal.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // ====== CONFIG ======
+    // Replace with your Chrome Web Store listing (or any install/waitlist URL).
+    const EXTENSION_URL = "EXTENSION_URL_HERE";
+
+    // If you want auto-redirect after reveal, set e.g. 1500. Default 0 = no auto-redirect.
+    const AUTO_REDIRECT_AFTER_MS = 0;
+
+    // ====== THEME / VIBE ======
+    const themeIds = ["vibe-clean","vibe-twilight","vibe-neon","vibe-retro"];
+    function setTheme(t){
+      if (!themeIds.includes(t)) t = "vibe-clean";
+      document.body.classList.remove(...themeIds);
+      document.body.classList.add(t);
+    }
+    function randomTheme(){
+      const current = themeIds.find((id) => document.body.classList.contains(id)) || "vibe-clean";
+      const choices = themeIds.filter((t) => t !== current);
+      const next = choices[Math.floor(Math.random() * choices.length)] || "vibe-clean";
+      setTheme(next);
+      return next;
+    }
+
+    // ====== PRANK REVEAL + SEARCH ======
+    let revealedOnce = false;
+    let pendingQuery = "";
+
+    const reveal = document.getElementById("reveal");
+    const q = document.getElementById("q");
+    const wordmark = document.getElementById("wordmark");
+    const wordmarkInner = document.getElementById("wordmarkInner");
+
+    function fitWordmarkToBox() {
+      if (!wordmark || !wordmarkInner) return;
+      // Reset scale to measure natural size.
+      wordmarkInner.style.transform = "scale(1)";
+      const box = wordmark.getBoundingClientRect();
+      const inner = wordmarkInner.getBoundingClientRect();
+      if (!box.width || !box.height || !inner.width || !inner.height) return;
+
+      // Fit width and height, keep a tiny safety margin so it never overflows.
+      const sx = (box.width / inner.width) * 0.985;
+      const sy = (box.height / inner.height) * 0.985;
+      const s = Math.min(sx, sy, 1);
+      wordmarkInner.style.transform = `scale(${s})`;
+    }
+
+    function withJokes(query) {
+      const q = (query || "").trim();
+      if (!q) return "";
+      return `jokes about ${q}`;
+    }
+
+    function googleUrl(query){
+      const q = withJokes(query);
+      return "https://www.google.com/search?q=" + encodeURIComponent(q);
+    }
+
+    function openReveal(query){
+      pendingQuery = query;
+      reveal.classList.add("on");
+      if (AUTO_REDIRECT_AFTER_MS > 0) {
+        window.setTimeout(() => {
+          if (!reveal.classList.contains("on")) return;
+          window.location.href = googleUrl(pendingQuery);
+        }, AUTO_REDIRECT_AFTER_MS);
+      }
+    }
+
+    function runSearch(){
+      const query = (q.value || "").trim();
+      if (!query) { q.focus(); return; }
+      // Enter/Search should behave like real Google: go straight to results.
+      // (Prank reveal is triggered via Random / header icon interactions.)
+      revealedOnce = true;
+      window.location.href = googleUrl(query);
+    }
+
+    document.getElementById("searchBtn").addEventListener("click", runSearch);
+    document.getElementById("searchForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      runSearch();
+    });
+    q.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") { e.preventDefault(); runSearch(); }
+    });
+
+    // Random = one of four default themes
+    document.getElementById("randomBtn").addEventListener("click", () => {
+      randomTheme();
+      if (!revealedOnce) {
+        revealedOnce = true;
+        openReveal((q.value || "").trim() || "giggle");
+      }
+    });
+
+    // Header / pill controls: keep them harmless and playful.
+    function noopToast(msg){
+      // Lightweight “interaction” without building modals.
+      const qv = (q.value || "").trim();
+      if (!revealedOnce && qv) return; // don't steal first-search prank moment
+      console.log(msg);
+    }
+    document.getElementById("appsBtn").addEventListener("click", () => noopToast("apps"));
+    document.getElementById("signInBtn").addEventListener("click", () => openReveal((q.value || "").trim() || "sign in"));
+    document.getElementById("micBtn").addEventListener("click", () => openReveal((q.value || "").trim() || "voice search"));
+    document.getElementById("plusBtn").addEventListener("click", () => openReveal((q.value || "").trim() || "new"));
+    document.getElementById("lensBtn").addEventListener("click", () => openReveal((q.value || "").trim() || "search by image"));
+    document.getElementById("aiModeBtn").addEventListener("click", () => openReveal((q.value || "").trim() || "ai mode"));
+
+    // Reveal actions
+    document.getElementById("installBtn").addEventListener("click", () => {
+      if (!EXTENSION_URL || EXTENSION_URL === "EXTENSION_URL_HERE") {
+        alert("Set EXTENSION_URL in landing-prank.html to your extension listing.");
+        return;
+      }
+      window.open(EXTENSION_URL, "_blank", "noopener,noreferrer");
+    });
+    document.getElementById("continueBtn").addEventListener("click", () => {
+      reveal.classList.remove("on");
+      window.location.href = "https://www.google.com/";
+    });
+
+    // Small link behaviors (optional)
+    function smallReveal(e){
+      e.preventDefault();
+      if (!revealedOnce) revealedOnce = true;
+      openReveal((q.value || "").trim() || "vibescape");
+    }
+    document.getElementById("aboutLink").addEventListener("click", smallReveal);
+    document.getElementById("storeLink")?.addEventListener("click", (e) => { e.preventDefault(); if (!revealedOnce) { revealedOnce = true; openReveal("store"); } });
+    document.getElementById("gmailLink")?.addEventListener("click", (e) => { e.preventDefault(); if (!revealedOnce) { revealedOnce = true; openReveal("gmail"); } });
+    document.getElementById("imagesLink")?.addEventListener("click", (e) => { e.preventDefault(); if (!revealedOnce) { revealedOnce = true; openReveal("images"); } });
+
+    // Footer links: keep them inert but clickable for realism.
+    ["advertisingLink","businessLink","howSearchWorksLink","privacyLink","termsLink","settingsLink"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("click", (e) => { e.preventDefault(); if (!revealedOnce) { revealedOnce = true; openReveal(id.replace("Link","")); } });
+    });
+
+    // Always start clean/white on load (don’t persist landing themes).
+    setTheme("vibe-clean");
+    q.focus();
+
+    fitWordmarkToBox();
+    window.addEventListener("resize", () => {
+      // Keep deterministic sizing if viewport changes.
+      fitWordmarkToBox();
+    }, { passive: true });
+  </script>
+</body>
+</html>
+
