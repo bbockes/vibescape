@@ -38,6 +38,11 @@ POST_FIT_LINEAR_SCALE: dict[str, float] = {
     "shrek-cursor.png": 0.6,
 }
 
+# Uniform zoom then crop back to the current square (Chrome 128px cap). Tuple: (zoom, vertical: "center"|"top"|"bottom").
+ZOOM_SQUARE_CROP: dict[str, tuple[float, str]] = {
+    "scissorhands-cursor.png": (1.2, "bottom"),
+}
+
 
 def slug_output_name(path: Path) -> str:
     base = path.stem.lower()
@@ -59,6 +64,26 @@ def fit_square_rgba(im: Image.Image, size: int) -> Image.Image:
     oy = (size - nh) // 2
     canvas.paste(im, (ox, oy), im)
     return canvas
+
+
+def zoom_square_crop(im: Image.Image, zoom: float, vertical: str = "center") -> Image.Image:
+    """Scale a square RGBA by `zoom`, then crop to the original side length (horizontal center)."""
+    im = im.convert("RGBA")
+    w, h = im.size
+    if w != h or w <= 0:
+        return im
+    out_side = w
+    w2 = max(1, round(w * zoom))
+    h2 = max(1, round(h * zoom))
+    scaled = im.resize((w2, h2), Image.Resampling.LANCZOS)
+    left = (w2 - out_side) // 2
+    if vertical == "bottom":
+        top = max(0, h2 - out_side)
+    elif vertical == "top":
+        top = 0
+    else:
+        top = (h2 - out_side) // 2
+    return scaled.crop((left, top, left + out_side, top + out_side))
 
 
 def main() -> None:
@@ -93,6 +118,10 @@ def main() -> None:
         if scale is not None:
             n = max(1, round(args.size * scale))
             im = im.resize((n, n), Image.Resampling.LANCZOS)
+        zt = ZOOM_SQUARE_CROP.get(dest.name)
+        if zt is not None:
+            zf, v_anchor = zt
+            im = zoom_square_crop(im, zf, v_anchor)
         im.save(dest, "PNG", optimize=True)
         print("wrote", dest.relative_to(root))
 
