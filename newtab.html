@@ -173,6 +173,114 @@
       }
     }
 
+    /* ─── USER TOGGLE: PAGE ANIMATIONS OFF ─────────────────────────── */
+    body.animations-off::before,
+    body.animations-off .content,
+    body.animations-off .ticker-inner,
+    body.animations-off .particle {
+      animation: none !important;
+    }
+    body.animations-off .particle {
+      display: none !important;
+    }
+    body.animations-off canvas.matrix-rain {
+      display: none !important;
+    }
+    body.animations-off.commonroom .content {
+      transform: translateY(calc(-5vh + 40px));
+    }
+    body.animations-off.lanternnarnia .page-wrapper::before,
+    body.animations-off.lanternnarnia .page-wrapper::after {
+      animation: none !important;
+      opacity: 0 !important;
+      transform: none !important;
+    }
+    body.animations-off.lanternnarnia .content {
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transform: translateY(0) !important;
+    }
+    body.animations-off.rivendelleve .content {
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transform: translateY(-1.75vh) !important;
+    }
+    body.animations-off.inkversepop .page-wrapper {
+      perspective: none;
+    }
+    body.animations-off.inkversepop .content {
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transform: translateY(-1vh) !important;
+    }
+    body.animations-off.topiaryshadow::before {
+      animation: none !important;
+      clip-path: none !important;
+      filter: none !important;
+    }
+    body.animations-off.topiaryshadow::after {
+      animation: none !important;
+      opacity: 0 !important;
+    }
+    body.animations-off.topiaryshadow .content {
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+    body.animations-off.wickiesmono::before {
+      animation: none !important;
+      filter: none !important;
+    }
+    body.animations-off.wickiesmono .content {
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+    body.animations-off.ratatouille .content,
+    body.animations-off.tyrellnoir .content,
+    body.animations-off.arrakisstone .content,
+    body.animations-off.matrixfall .content,
+    body.animations-off.bathspirited .content,
+    body.animations-off.mendlpastel .content,
+    body.animations-off.bridesvengeance .content,
+    body.animations-off.rabbitholedream .content,
+    body.animations-off.emeraldmyth .content,
+    body.animations-off.kanedared .content,
+    body.animations-off.gatsbygilded .content,
+    body.animations-off.swampfable .content,
+    body.animations-off.grandlinesea .content,
+    body.animations-off.gothamvigil .content,
+    body.animations-off.discoverywhite .content,
+    body.animations-off.furyroadheat .content,
+    body.animations-off.islasplice .content,
+    body.animations-off.dreamhousepop .content,
+    body.animations-off.droogclockwork .content,
+    body.animations-off.frozenheart .content,
+    body.animations-off.lalaland .content,
+    body.animations-off.titanicvow .content,
+    body.animations-off.strangerthings .content {
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transform: translateY(calc(-5vh + 40px)) !important;
+    }
+    body.animations-off.strangerthings .page-wrapper::before {
+      animation: none !important;
+      opacity: 0 !important;
+    }
+    body.animations-off.openingcrawl .page-wrapper {
+      perspective: none;
+    }
+    body.animations-off.openingcrawl .content {
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transform: translateY(-5vh) !important;
+    }
+
     /* ─── THEME: TWILIGHT CODED ─────────────────────────────────────── */
     body.twilight {
       background: #0d0a1a;
@@ -3387,13 +3495,14 @@
       border: 1px solid rgba(255, 21, 21, 0.45);
       color: #e8eef8;
       font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
-      font-size: 1.02rem !important;
+      font-size: 1.12rem !important;
       letter-spacing: 0.03em;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     body.strangerthings .search-bar::placeholder {
       color: #5c6a78;
       letter-spacing: 0.03em;
+      font-size: 1.12rem !important;
     }
     body.strangerthings .search-bar:focus {
       border-color: #FF1515;

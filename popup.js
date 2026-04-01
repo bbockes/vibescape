@@ -34,7 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const powerToggle = document.getElementById("vibe-power-toggle");
   const powerLabel = document.getElementById("vibe-power-label");
   const cursorToggle = document.getElementById("vibe-cursor-toggle");
-  const cursorLabel = document.getElementById("vibe-cursor-label");
+  const animationsToggle = document.getElementById("vibe-animations-toggle");
+  const gearBtn = document.getElementById("gear-btn");
+  const gearDropdown = document.getElementById("gear-dropdown");
 
   function setPowerUi(enabled) {
     const on = enabled !== false;
@@ -51,7 +53,29 @@ document.addEventListener("DOMContentLoaded", () => {
       cursorToggle.classList.toggle("power-toggle--off", !on);
       cursorToggle.setAttribute("aria-checked", on ? "true" : "false");
     }
-    if (cursorLabel) cursorLabel.textContent = "cursor";
+  }
+
+  function setAnimationsUi(animOn) {
+    const on = animOn !== false;
+    if (animationsToggle) {
+      animationsToggle.classList.toggle("power-toggle--off", !on);
+      animationsToggle.setAttribute("aria-checked", on ? "true" : "false");
+    }
+  }
+
+  if (gearBtn && gearDropdown) {
+    gearBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const open = gearDropdown.hidden;
+      gearDropdown.hidden = !open;
+      gearBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    document.addEventListener("click", (e) => {
+      if (!gearDropdown.hidden && !gearDropdown.contains(e.target) && e.target !== gearBtn) {
+        gearDropdown.hidden = true;
+        gearBtn.setAttribute("aria-expanded", "false");
+      }
+    });
   }
 
   cursorToggle?.addEventListener("click", () => {
@@ -59,6 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const cur = d.vibeCustomCursors !== false;
       const next = !cur;
       chrome.storage.local.set({ vibeCustomCursors: next }, () => setCursorUi(next));
+    });
+  });
+
+  animationsToggle?.addEventListener("click", () => {
+    chrome.storage.local.get({ vibePageAnimations: true }, (d) => {
+      const cur = d.vibePageAnimations !== false;
+      const next = !cur;
+      chrome.storage.local.set({ vibePageAnimations: next }, () => setAnimationsUi(next));
     });
   });
 
@@ -80,6 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (changes.vibeCustomCursors !== undefined) {
       setCursorUi(changes.vibeCustomCursors.newValue !== false);
+    }
+    if (changes.vibePageAnimations !== undefined) {
+      setAnimationsUi(changes.vibePageAnimations.newValue !== false);
     }
   });
 
@@ -354,6 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
       vibeTheme: "twilight",
       vibeEnabled: true,
       vibeCustomCursors: true,
+      vibePageAnimations: true,
       vibeFavoriteThemes: [],
     },
     (data) => {
@@ -368,6 +404,7 @@ document.addEventListener("DOMContentLoaded", () => {
       applyFavoriteUi(favs);
       setPowerUi(data?.vibeEnabled !== false);
       setCursorUi(data?.vibeCustomCursors !== false);
+      setAnimationsUi(data?.vibePageAnimations !== false);
       if (data?.vibeTheme) setActive(data.vibeTheme);
       if (hasPager) {
         currentPage = pageForTheme(data?.vibeTheme || "twilight");

@@ -170,7 +170,7 @@ const themes = {
     searchPlaceholder: "search the horizon..."
   },
   strangerthings: {
-    searchPlaceholder: "search the upside down..."
+    searchPlaceholder: "search the flickering dark..."
   },
 };
 
@@ -1187,11 +1187,16 @@ setInterval(() => {
 }, 1200);
 
 // ── INIT ─────────────────────────────────────────────────────────────
+function applyPageAnimationsPreference(enabled) {
+  document.body.classList.toggle("animations-off", !enabled);
+}
+
 chrome.storage.local.get(
-  { vibeTheme: "twilight", vibeEnabled: true, vibeCustomCursors: true },
+  { vibeTheme: "twilight", vibeEnabled: true, vibeCustomCursors: true, vibePageAnimations: true },
   (data) => {
     if (data?.vibeEnabled === false) return;
     applyCustomCursorPreference(data?.vibeCustomCursors !== false);
+    applyPageAnimationsPreference(data?.vibePageAnimations !== false);
     let lsTheme = null;
     try {
       lsTheme = localStorage.getItem("vibeTheme");
@@ -1217,6 +1222,9 @@ chrome.storage.onChanged.addListener((changes, area) => {
   }
   if (changes.vibeCustomCursors !== undefined) {
     applyCustomCursorPreference(changes.vibeCustomCursors.newValue !== false);
+  }
+  if (changes.vibePageAnimations !== undefined) {
+    applyPageAnimationsPreference(changes.vibePageAnimations.newValue !== false);
   }
   if (changes.vibeTheme?.newValue !== undefined && changes.vibeTheme.newValue !== null) {
     switchTheme(changes.vibeTheme.newValue, false);
