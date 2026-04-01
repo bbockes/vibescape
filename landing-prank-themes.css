@@ -28,9 +28,9 @@ html.landing-prank body:not(.landing-clean) .search-mag {
 
 /* ─── landing-clean (handled in landing-prank.html base styles) ─── */
 html.landing-prank body.landing-clean {
-  background: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #202124;
+  background: #f4f2fa;
+  font-family: "Syne", system-ui, sans-serif;
+  color: #2d2640;
 }
 
 html.landing-prank body.landing-clean::before {

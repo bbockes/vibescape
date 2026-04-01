@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Giggle</title>
-  <meta name="description" content="Giggle — a playful, themed search prank landing page by Vibescape." />
-  <meta name="theme-color" content="#ffffff" />
+  <title>Giggle — a playful Vibescape demo</title>
+  <meta
+    name="description"
+    content="Giggle — a playful Vibescape demo with themed new tab previews and memes. Not a search engine."
+  />
+  <meta name="theme-color" content="#f4f2fa" />
   <link rel="icon" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;800&family=Cinzel+Decorative&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Eagle+Lake&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=News+Cycle:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;800&family=Cinzel+Decorative&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Eagle+Lake&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&family=News+Cycle:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Sora:wght@600;700&family=Space+Mono&family=Syne:wght@400;600;700;800&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="landing-prank-themes.css" />
 
   <style>
@@ -44,7 +45,7 @@
       cursor: auto;
     }
 
-    /* Google-style chrome — homepage only (hidden on Random themes) */
+    /* Top brand + footer — homepage only (hidden on Random themes). */
     .landing-chrome {
       display: none;
     }
@@ -54,104 +55,40 @@
       min-height: 100vh;
     }
     body.landing-clean .landing-chrome {
-      display: flex;
+      display: block;
     }
-    header.landing-chrome.hdr {
+    header.landing-chrome.landing-topbar {
       flex-shrink: 0;
-      height: 64px;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 18px;
-      font-size: 13px;
-      color: #5f6368;
-      user-select: none;
+      padding: 14px 20px;
+      font-family: "Syne", system-ui, sans-serif;
     }
-    .hdr a {
-      color: #5f6368;
+    header.landing-chrome.landing-topbar a {
+      color: #6b5ce8;
       text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-weight: 400;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.04em;
     }
-    .hdr a:hover {
+    header.landing-chrome.landing-topbar a:hover {
       text-decoration: underline;
-    }
-    .hdr .left,
-    .hdr .right {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      min-width: 200px;
-    }
-    .hdr .right {
-      justify-content: flex-end;
-    }
-    .apps-btn {
-      width: 40px;
-      height: 40px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      border: 0;
-      background: transparent;
-      color: #5f6368;
-      cursor: pointer;
-    }
-    .apps-btn:hover {
-      background: rgba(95, 99, 104, 0.12);
-    }
-    .signin {
-      height: 36px;
-      padding: 0 18px;
-      border-radius: 18px;
-      border: 0;
-      background: #1a73e8;
-      color: #fff;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-    }
-    .signin:hover {
-      filter: brightness(0.97);
+      color: #5548d9;
     }
     footer.landing-chrome.ftr {
       flex-shrink: 0;
-      min-height: 48px;
-      background: #f2f2f2;
-      border-top: 1px solid #dadce0;
-      color: #70757a;
+      background: rgba(235, 230, 248, 0.65);
+      border-top: 1px solid rgba(120, 100, 180, 0.18);
+      color: #625a78;
       font-size: 12.5px;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 18px;
-      gap: 16px;
-      flex-wrap: wrap;
+      padding: 14px 20px;
+      text-align: center;
+      font-family: "Syne", system-ui, sans-serif;
+      line-height: 1.5;
     }
-    .ftr .col {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      min-width: 200px;
-    }
-    .ftr .col.center {
-      justify-content: center;
-      flex: 1 1 auto;
-      min-width: 260px;
-      gap: 10px;
-    }
-    .ftr a {
-      color: inherit;
-      text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-weight: 400;
-    }
-    .ftr a:hover {
-      text-decoration: underline;
-    }
-    .leaf {
-      width: 14px;
-      height: 14px;
-      display: inline-block;
-      transform: translateY(2px);
+    .ftr-note {
+      margin: 0;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* ─── LAYOUT (matches newtab.html) ─── */
@@ -221,38 +158,31 @@
       --vs-clock-scale: 0.96;
     }
 
-    /* Giggle wordmark — landing-clean only */
+    /* Giggle wordmark — landing-clean only (original typography; no multicolor letter pattern) */
     .landing-brand {
-      width: 360px;
-      height: 122px;
+      width: min(400px, 92vw);
+      min-height: 100px;
       display: grid;
       place-items: center;
-      margin-bottom: 0.625rem;
+      margin-bottom: 0.75rem;
     }
     .landing-brand .wordmark-inner {
       display: flex;
-      gap: 0;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
-      transform-origin: 50% 80%;
-      font-family: "Dancing Script", cursive;
-      font-weight: 500;
-      letter-spacing: -0.042em;
+      transform-origin: 50% 50%;
       line-height: 1;
-      font-size: 110px;
     }
-    .landing-brand span {
-      display: inline-block;
+    .wordmark-text {
+      font-family: "Syne", system-ui, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: clamp(3.25rem, 11vw, 5.75rem);
+      background: linear-gradient(125deg, #6b5ce8 0%, #9b59ff 42%, #e056c8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
-    .landing-brand .wordmark-inner span:nth-child(2) { margin-left: -0.002em; }
-    .landing-brand .wordmark-inner span:nth-child(3) { margin-left: -0.002em; }
-    .landing-brand .wordmark-inner span:nth-child(4) { margin-left: -0.003em; }
-    .landing-brand .wordmark-inner span:nth-child(5) { margin-left: -0.002em; }
-    .landing-brand .wordmark-inner span:nth-child(6) { margin-left: -0.002em; }
-    .c-blue { color: #4285f4; }
-    .c-red { color: #ea4335; }
-    .c-yellow { color: #fbbc05; }
-    .c-green { color: #34a853; }
 
     body.landing-clean .clock,
     body.landing-clean .greeting,
@@ -275,8 +205,8 @@
       width: min(500px, 80vw);
     }
     body.landing-clean .search-wrapper {
-      margin-top: 1.5rem;
-      width: min(688px, 92vw);
+      margin-top: 1.75rem;
+      width: min(560px, 92vw);
     }
 
     .search-row {
@@ -296,65 +226,47 @@
       width: 100%;
     }
 
-    /* On the clean homepage, the in-bar controls must live INSIDE the pill.
-       We build the pill on .search-shell (not on the input) so the buttons don't fall outside. */
+    /* Rounded rectangle field (not a pill clone); controls stay inside the shell. */
     body.landing-clean .search-shell{
       display:flex;
       align-items:center;
-      gap: 8px;
-      height: 50px;
-      padding: 0 12px;
-      border: 1px solid #dfe1e5;
-      border-radius: 9999px;
-      background: #fff;
-      box-shadow: 0 1px 6px rgba(32,33,36,.18);
+      gap: 10px;
+      height: 52px;
+      padding: 0 14px;
+      border: 1.5px solid rgba(120, 95, 180, 0.28);
+      border-radius: 14px;
+      background: #fefdff;
+      box-shadow: 0 8px 28px rgba(95, 70, 160, 0.12), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
     }
 
-    /* Landing-only in-bar controls (hidden on Random themes) */
-    .landing-only-left,
-    .landing-only-controls {
+    /* Landing-only plus (hidden on Random themes) */
+    .landing-only-left {
       display: none;
       align-items: center;
       gap: 6px;
       flex: 0 0 auto;
     }
-    body.landing-clean .landing-only-left,
-    body.landing-clean .landing-only-controls {
+    body.landing-clean .landing-only-left {
       display: flex;
     }
     .landing-only-btn{
-      width:32px;
-      height:32px;
+      width:34px;
+      height:34px;
       display:grid;
       place-items:center;
       border:0;
       background:transparent;
-      border-radius: 50%;
-      color:#5f6368;
+      border-radius: 10px;
+      color:#7c6bab;
       cursor:pointer;
     }
     .landing-only-btn:hover{
-      background: rgba(95, 99, 104, 0.12);
-    }
-    .ai-pill{
-      height:32px;
-      padding:0 10px 0 8px;
-      border-radius:999px;
-      border:1px solid #dadce0;
-      background: transparent;
-      color:#3c4043;
-      display:flex;
-      align-items:center;
-      gap:6px;
-      font-size:12.5px;
-      cursor:pointer;
-    }
-    .ai-pill:hover{
-      background: rgba(95, 99, 104, 0.08);
+      background: rgba(155, 89, 255, 0.12);
+      color: #6b5ce8;
     }
 
     .search-shell .search-bar {
-      border-radius: 9999px !important;
+      border-radius: 10px !important;
       padding-right: 3rem !important;
     }
 
@@ -373,9 +285,10 @@
       min-width: 0;
       border: 0;
       height: 100%;
-      padding: 0 6px;
+      padding: 0 8px;
       font-size: 16px;
-      line-height: 50px;
+      line-height: 52px;
+      font-family: "Syne", system-ui, sans-serif;
     }
 
     .search-mag {
@@ -411,12 +324,45 @@
       display:none;
     }
 
+    .search-actions-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.65rem;
+      width: 100%;
+    }
+
     .search-actions {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
       gap: 0.75rem;
+    }
+
+    .search-shuffle-hint {
+      margin: 0;
+      max-width: 28rem;
+      padding: 0.75rem 0.75rem 0;
+      text-align: center;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      font-weight: 500;
+      color: inherit;
+      opacity: 0.88;
+    }
+
+    body.landing-clean .search-shuffle-hint {
+      font-family: "Syne", system-ui, sans-serif;
+    }
+
+    .search-shuffle-hint__lede {
+      display: block;
+    }
+
+    .search-shuffle-hint__cta {
+      display: block;
+      margin-top: 0.45rem;
     }
 
     .search-btn {
@@ -438,35 +384,47 @@
     }
 
     body.landing-clean .search-btn {
-      height: 36px;
-      min-width: 140px;
-      padding: 0 24px;
-      border-radius: 14px;
-      border: 1px solid #f8f9fa;
-      background: #f8f9fa;
-      color: #3c4043;
-      /* Revert button typography to original (Google-like). */
-      font-family: "Google Sans", Arial, Helvetica, sans-serif;
+      height: 40px;
+      min-width: 132px;
+      padding: 0 22px;
+      border-radius: 12px;
+      font-family: "Syne", system-ui, sans-serif;
       font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.02em;
+      font-weight: 700;
+      letter-spacing: 0.03em;
     }
-    body.landing-clean .search-btn:hover{
-      border-color: #dadce0;
-      box-shadow: 0 1px 1px rgba(0,0,0,.10);
+    body.landing-clean .search-actions .search-btn:first-of-type {
+      border: 1.5px solid rgba(107, 92, 232, 0.55);
+      background: linear-gradient(160deg, #7c6bff 0%, #9b59ff 100%);
+      color: #fefcff;
+      box-shadow: 0 6px 20px rgba(107, 92, 232, 0.35);
+    }
+    body.landing-clean .search-actions .search-btn:first-of-type:hover {
+      filter: brightness(1.05);
+      box-shadow: 0 8px 26px rgba(107, 92, 232, 0.42);
+    }
+    body.landing-clean .search-actions .search-btn:last-of-type {
+      border: 1.5px solid rgba(120, 100, 180, 0.35);
+      background: rgba(255, 255, 255, 0.85);
+      color: #524868;
+    }
+    body.landing-clean .search-actions .search-btn:last-of-type:hover {
+      border-color: rgba(155, 89, 255, 0.45);
+      background: #fff;
+      color: #6b5ce8;
     }
     body.landing-clean .search-btn:active{
-      box-shadow: 0 1px 1px rgba(0,0,0,.10);
+      transform: translateY(1px);
     }
 
     body.landing-clean .search-mag {
-      color: rgba(35, 32, 28, 0.45);
+      color: rgba(95, 75, 140, 0.55);
     }
 
     body.landing-clean .search-bar {
-      background: #fff;
-      color: #202124;
-      border-color: #dfe1e5;
+      background: transparent;
+      color: #2d2640;
+      border-color: transparent;
     }
 
     /* Reveal */
@@ -481,100 +439,133 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.18s ease;
-      padding: 22px;
-      z-index: 50;
+      padding: 28px;
+      z-index: 100000;
+      isolation: isolate;
+      /* Override themed body cursors (e.g. PNG pointers) while modal is open. */
+      cursor: auto;
     }
     .reveal.on {
       opacity: 1;
       pointer-events: auto;
+      cursor: auto;
+    }
+    .reveal.on .card {
+      cursor: auto;
+    }
+    .reveal.on .card .cta,
+    .reveal.on .card .close {
+      cursor: pointer;
+    }
+    .reveal .card {
+      font-family: "Manrope", system-ui, sans-serif;
     }
     .card {
-      width: min(640px, 92vw);
-      border-radius: 18px;
+      width: min(720px, 94vw);
+      max-width: 100%;
+      border-radius: 20px;
       background: rgba(15, 16, 22, 0.92);
       color: #f4f6ff;
       border: 1px solid rgba(255, 255, 255, 0.12);
       box-shadow: 0 18px 70px rgba(0, 0, 0, 0.55);
-      padding: 28px 28px 24px;
+      padding: 40px 40px 36px;
       backdrop-filter: blur(10px);
       position: relative;
+      z-index: 0;
     }
     .card .close {
       position: absolute;
-      right: 10px;
-      top: 10px;
-      width: 34px;
-      height: 34px;
+      right: 14px;
+      top: 14px;
+      z-index: 20;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
       color: #f4f6ff;
       display: grid;
       place-items: center;
       cursor: pointer;
+      pointer-events: auto;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+    }
+    .card .close:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+    .card .close:active {
+      transform: scale(0.96);
+    }
+    .card .close svg {
+      pointer-events: none;
+    }
+    .card .close:focus-visible {
+      outline: 2px solid rgba(200, 170, 255, 0.9);
+      outline-offset: 2px;
+    }
+    .reveal .card h2 {
+      font-family: "Sora", "Manrope", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
     .card h2 {
-      margin: 0;
-      font-size: 22px;
+      margin: 0 36px 8px 0;
+      font-size: 24px;
+      line-height: 1.25;
+      padding-right: 0;
     }
     .card p {
-      margin: 10px 0 16px;
+      margin: 12px 0 18px;
       color: rgba(244, 246, 255, 0.8);
-      font-size: 15px;
-      line-height: 1.55;
+      font-size: 16px;
+      line-height: 1.6;
     }
     .card .row {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
+      margin-top: 8px;
     }
     .card .cta {
-      height: 42px;
-      padding: 0 18px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: #1a73e8;
+      height: 44px;
+      padding: 0 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(200, 170, 255, 0.45);
+      background: linear-gradient(160deg, #7c6bff 0%, #9b59ff 100%);
       color: #fff;
-      font-weight: 800;
+      font-family: inherit;
+      font-weight: 700;
       cursor: pointer;
+      transition: transform 0.12s ease, filter 0.15s ease, box-shadow 0.15s ease;
     }
-    .card .secondary {
-      height: 42px;
-      padding: 0 18px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(255, 255, 255, 0.06);
-      color: #f4f6ff;
-      cursor: pointer;
+    .card .cta:hover {
+      filter: brightness(1.06);
+      box-shadow: 0 8px 28px rgba(123, 107, 255, 0.45);
+      transform: translateY(-1px);
+    }
+    .card .cta:active {
+      transform: translateY(0);
+    }
+    .card .cta:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.85);
+      outline-offset: 2px;
     }
   </style>
 </head>
 
 <body class="landing-clean">
-  <header class="landing-chrome hdr" aria-label="Header">
-    <nav class="left" aria-label="Left links">
-      <a href="#" id="aboutLink">About</a>
-      <a href="#" id="storeLink">Store</a>
-    </nav>
-    <nav class="right" aria-label="Right links">
-      <a href="#" id="gmailLink">Mail</a>
-      <a href="#" id="imagesLink">Images</a>
-      <button class="apps-btn" id="appsBtn" type="button" aria-label="Apps">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M5 3h4v4H5V3zm5 0h4v4h-4V3zm5 0h4v4h-4V3zM5 8h4v4H5V8zm5 0h4v4h-4V8zm5 0h4v4h-4V8zM5 13h4v4H5v-4zm5 0h4v4h-4v-4zm5 0h4v4h-4v-4z"/>
-        </svg>
-      </button>
-      <button class="signin" id="signInBtn" type="button">Sign in</button>
-    </nav>
+  <header class="landing-chrome landing-topbar" aria-label="Vibescape">
+    <a href="#" id="vibescapeTopLink">Vibescape</a>
   </header>
 
   <div class="page-wrapper">
     <div class="content">
       <div class="accent-line" aria-hidden="true"></div>
 
-      <div class="landing-brand" id="landingBrand" aria-label="Giggle">
+      <div class="landing-brand" id="landingBrand" aria-label="Giggle demo">
         <div class="wordmark-inner" id="wordmarkInner">
-          <span class="c-blue">G</span><span class="c-red">i</span><span class="c-yellow">g</span><span class="c-blue">g</span><span class="c-green">l</span><span class="c-red">e</span>
+          <span class="wordmark-text">Giggle</span>
         </div>
       </div>
 
@@ -600,28 +591,6 @@
               spellcheck="false"
               placeholder=""
             />
-            <div class="landing-only-controls" aria-label="Search controls">
-              <button class="landing-only-btn" id="micBtn" type="button" aria-label="Voice search">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v4a3 3 0 0 0 3 3Z"></path>
-                  <path d="M19 11a7 7 0 0 1-14 0" stroke-linecap="round"></path>
-                  <path d="M12 18v3" stroke-linecap="round"></path>
-                </svg>
-              </button>
-              <button class="landing-only-btn" id="lensBtn" type="button" aria-label="Search by image">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z"></path>
-                  <path d="M9 11a2 2 0 1 0 0.01 0Z"></path>
-                  <path d="M21 15l-5-5-6 7-2-2-4 4" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-              </button>
-              <button class="ai-pill" id="aiModeBtn" type="button" aria-label="AI Mode">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 2l1.2 4.1L17 7.3l-3.8 1.2L12 12l-1.2-3.5L7 7.3l3.8-1.2L12 2Zm7 9-1.1 3.2L15 15.3l2.9 1.1L19 19l1.1-2.6L23 15.3l-2.9-1.1L19 11ZM5 13l.9 2.4L8 16.2l-2.1.8L5 19l-.9-2-2.1-.8 2.1-.8L5 13Z"></path>
-                </svg>
-                <span>AI Mode</span>
-              </button>
-            </div>
             <button type="button" class="search-mag" id="search-mag" aria-label="Search">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="11" cy="11" r="8" />
@@ -629,29 +598,26 @@
               </svg>
             </button>
           </div>
-          <div class="search-actions">
-            <button type="button" class="search-btn" id="search-go">Search</button>
-            <button type="button" class="search-btn" id="random-vibe">Random</button>
+          <div class="search-actions-stack">
+            <div class="search-actions">
+              <button type="button" class="search-btn" id="search-go">Search</button>
+              <button type="button" class="search-btn" id="random-vibe">Shuffle</button>
+            </div>
+            <p class="search-shuffle-hint" id="searchShuffleHint" hidden aria-live="polite">
+              <span class="search-shuffle-hint__lede">Hope you enjoyed the memes.</span>
+              <span class="search-shuffle-hint__cta">Try <strong>Shuffle</strong> next — you won’t be sorry.</span>
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="landing-chrome ftr" aria-label="Footer">
-    <div class="col left">
-      <a href="#" id="advertisingLink">Advertising</a>
-      <a href="#" id="businessLink">Business</a>
-      <a href="#" id="howSearchWorksLink">How Search works</a>
-    </div>
-    <div class="col center">
-      <span>Click the random button</span>
-    </div>
-    <div class="col right">
-      <a href="#" id="privacyLink">Privacy</a>
-      <a href="#" id="termsLink">Terms</a>
-      <a href="#" id="settingsLink">Settings</a>
-    </div>
+  <footer class="landing-chrome ftr" aria-label="About this demo">
+    <p class="ftr-note">
+      Playful demo page — not a search engine.<br />
+      Click <strong>Shuffle</strong> to cycle sample themes from <strong>Vibescape</strong>.
+    </p>
   </footer>
 
   <div class="reveal" id="reveal" role="dialog" aria-modal="true" aria-label="Prank reveal">
@@ -662,16 +628,16 @@
           <path d="M18 6l-12 12" stroke-linecap="round" />
         </svg>
       </button>
-      <h2>Gotcha.</h2>
+      <h2>Gotcha!</h2>
       <p>
-        This isn’t Google. It’s a prank landing page for <strong>Vibescape</strong> — themes that transform your new tab into a vibe.
+        Memes aside, this isn’t a real search engine — it’s a playful preview for Vibescape, a browser
+        extension that turns your new tabs into themed vibes.
       </p>
       <p>
-        Like what you see? There are dozens more where these came from. Check out the extension to explore them all.
+        Like the vibes? There are lots more themes in the extension.
       </p>
       <div class="row">
-        <button class="cta" id="installBtn" type="button">Get the Vibescape Extension</button>
-        <button class="secondary" id="continueBtn" type="button">Take me to google.com</button>
+        <button class="cta" id="installBtn" type="button">Get Vibescape</button>
       </div>
     </div>
   </div>
@@ -696,6 +662,7 @@
       document.body.classList.add(next);
       const input = document.getElementById("search");
       if (input) input.placeholder = themePlaceholders[next] || "";
+      if (next !== baseTheme) hideSearchShuffleHint();
     }
 
     // Cycle deterministically so we show all 4 themes before gating.
@@ -757,14 +724,20 @@
       datelineEl.textContent = formatDateline(now);
     }
 
-    function withJokes(query) {
+    /** Builds the image-search query (Google Images via tbm=isch). */
+    function withMemesQuery(query) {
       const q = (query || "").trim();
       if (!q) return "";
-      return `dad jokes about ${q}`;
+      return `memes about ${q}`;
     }
 
     function googleUrl(query) {
-      return "https://www.google.com/search?q=" + encodeURIComponent(withJokes(query));
+      const q = withMemesQuery(query);
+      return (
+        "https://www.google.com/search?q=" +
+        encodeURIComponent(q) +
+        "&tbm=isch"
+      );
     }
 
     function openReveal(query) {
@@ -778,6 +751,18 @@
       }
     }
 
+    const searchShuffleHint = document.getElementById("searchShuffleHint");
+
+    function hideSearchShuffleHint() {
+      if (!searchShuffleHint) return;
+      searchShuffleHint.hidden = true;
+    }
+
+    function showSearchShuffleHint() {
+      if (!searchShuffleHint) return;
+      searchShuffleHint.hidden = false;
+    }
+
     function runSearch() {
       const query = (searchInput.value || "").trim();
       if (!query) {
@@ -785,7 +770,8 @@
         return;
       }
       revealedOnce = true;
-      window.location.href = googleUrl(query);
+      window.open(googleUrl(query), "_blank", "noopener,noreferrer");
+      showSearchShuffleHint();
     }
 
     document.getElementById("search-go").addEventListener("click", runSearch);
@@ -816,39 +802,25 @@
       window.open(EXTENSION_URL, "_blank", "noopener,noreferrer");
     });
 
-    document.getElementById("continueBtn").addEventListener("click", () => {
-      reveal.classList.remove("on");
-      window.location.href = "https://www.google.com/";
-    });
-
-    document.getElementById("closeBtn").addEventListener("click", () => {
+    function closeRevealModal() {
       reveal.classList.remove("on");
       pendingQuery = "";
       randomClicks = 0;
       setTheme(baseTheme);
       searchInput.focus();
-    });
+    }
+    document.getElementById("closeBtn")?.addEventListener(
+      "click",
+      (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeRevealModal();
+      },
+      true
+    );
 
-    // Make top/bottom chrome + in-bar buttons inert (no modal, no navigation).
-    [
-      "aboutLink",
-      "storeLink",
-      "gmailLink",
-      "imagesLink",
-      "appsBtn",
-      "signInBtn",
-      "advertisingLink",
-      "businessLink",
-      "howSearchWorksLink",
-      "privacyLink",
-      "termsLink",
-      "settingsLink",
-      "plusBtn",
-      "micBtn",
-      "lensBtn",
-      "aiModeBtn",
-      "search-mag",
-    ].forEach((id) => {
+    // Demo chrome + in-bar icons inert (no navigation away).
+    ["vibescapeTopLink", "plusBtn", "search-mag"].forEach((id) => {
       const el = document.getElementById(id);
       if (!el) return;
       el.addEventListener("click", (e) => e.preventDefault());
