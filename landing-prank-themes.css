@@ -37,6 +37,51 @@ html.landing-prank body.landing-clean::before {
   content: none;
 }
 
+/*
+ * Giggle home search: WebKit/Blink clip descenders on inner rounded inputs; shell carries radius.
+ * Higher specificity beats .search-shell .search-bar (padding-right / border-radius !important).
+ */
+html.landing-prank body.landing-clean .search-shell .search-bar {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0 !important;
+  height: 56px;
+  line-height: 56px;
+  padding: 0 12px !important;
+  box-sizing: border-box;
+}
+
+/* Post–Search shuffle nudge: larger type on preview themes (hint only appears after Search on that theme; setTheme clears it when Shuffling). */
+html.landing-prank body.commonroom .search-shuffle-hint,
+html.landing-prank body.openingcrawl .search-shuffle-hint,
+html.landing-prank body.matrixfall .search-shuffle-hint,
+html.landing-prank body.mendlpastel .search-shuffle-hint {
+  font-size: clamp(1.0625rem, 2.15vw, 1.3rem);
+  line-height: 1.5;
+  max-width: 32rem;
+  padding-top: 0.85rem;
+  opacity: 0.94;
+}
+
+html.landing-prank body.commonroom .search-shuffle-hint__cta strong,
+html.landing-prank body.openingcrawl .search-shuffle-hint__cta strong,
+html.landing-prank body.matrixfall .search-shuffle-hint__cta strong,
+html.landing-prank body.mendlpastel .search-shuffle-hint__cta strong {
+  font-weight: inherit;
+}
+
+html.landing-prank body.mendlpastel .search-shuffle-hint {
+  color: #fffefd;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.78),
+    0 0 20px rgba(0, 0, 0, 0.4);
+  opacity: 1;
+}
+
+html.landing-prank body.matrixfall .search-shuffle-hint {
+  padding-top: 1.25rem;
+}
+
 /* ─── Common Room ─── */
 html.landing-prank body.commonroom {
   background: #070504;
@@ -439,6 +484,7 @@ html.landing-prank body.matrixfall .search-shell .search-bar {
   color: #33ff66 !important;
   text-shadow: 1px 1px 9px rgb(51, 249, 51);
   caret-color: #33ff66;
+  caret-shape: block;
 }
 
 html.landing-prank body.matrixfall .search-bar::placeholder {
@@ -447,9 +493,17 @@ html.landing-prank body.matrixfall .search-bar::placeholder {
   text-shadow: 1px 1px 9px rgb(51, 249, 51);
 }
 
+/* Same as newtab: block caret reads as terminal cursor; hide placeholder while focused so it shows. */
+html.landing-prank body.matrixfall .search-bar:focus::placeholder {
+  opacity: 0 !important;
+  color: transparent !important;
+  text-shadow: none !important;
+}
+
 html.landing-prank body.matrixfall .search-bar:focus {
   outline: none !important;
   box-shadow: none !important;
+  text-shadow: 1px 1px 9px rgb(51, 249, 51);
 }
 
 html.landing-prank body.matrixfall .search-mag {
@@ -480,7 +534,6 @@ html.landing-prank body.mendlpastel {
   background: #f4e8ec;
   font-family: "Playfair Display", Georgia, serif;
   color: #3a2430;
-  cursor: url('assets/cursors/processed/grand-budapest-cursor.png') 64 8, auto;
 }
 
 html.landing-prank body.mendlpastel::before {
@@ -530,6 +583,15 @@ html.landing-prank body.mendlpastel .date-line {
     0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
+/* Search field — align with newtab Méndl Pastel (Playfair + pro scale + pill). */
+html.landing-prank body.mendlpastel .search-shell .search-bar {
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-size: clamp(1.16rem, 2.15vw, 1.34rem) !important;
+  line-height: 1.35 !important;
+  border-radius: 9999px !important;
+  caret-color: #3a2430;
+}
+
 html.landing-prank body.mendlpastel .search-bar {
   background: rgba(255, 252, 254, 0.78);
   border: 2px solid rgba(184, 152, 168, 0.55);
@@ -556,21 +618,65 @@ html.landing-prank body.mendlpastel .search-mag {
   color: rgba(48, 26, 38, 0.72);
 }
 
-html.landing-prank body.mendlpastel .search-actions .search-btn {
-  border: 2px solid rgba(176, 140, 158, 0.55);
-  background: rgba(255, 252, 254, 0.82);
-  color: #2a141c;
-  font-family: "Playfair Display", Georgia, serif;
-  font-weight: 600;
+html.landing-prank body.mendlpastel .search-mag:hover {
+  color: rgba(28, 14, 22, 0.95);
+  background: rgba(0, 0, 0, 0.06);
 }
 
-html.landing-prank body.mendlpastel .search-actions .search-btn{
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease, filter 0.18s ease;
+/* Search / Shuffle — same fills as newtab (rosy primary + pastel secondary). */
+html.landing-prank body.mendlpastel .search-actions .search-btn {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 0.9375rem !important;
+  min-height: 38px;
+  height: auto;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  line-height: 1.25;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    filter 0.18s ease;
 }
-html.landing-prank body.mendlpastel .search-actions .search-btn:hover{
+
+html.landing-prank body.mendlpastel .search-actions .search-btn:first-of-type {
+  border: 1px solid #a8485c;
+  background: #d4657c;
+  color: #fffafd;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(52, 8, 20, 0.35);
+  box-shadow: 0 2px 10px rgba(100, 28, 44, 0.22);
+}
+
+html.landing-prank body.mendlpastel .search-actions .search-btn:last-of-type {
+  border: 1px solid #f0a4bc;
+  background: #ffd4e4;
+  color: #4a2034;
+  font-weight: 500;
+  text-shadow: none;
+  box-shadow: 0 2px 10px rgba(120, 48, 72, 0.12);
+}
+
+html.landing-prank body.mendlpastel .search-actions .search-btn:focus-visible {
+  box-shadow: 0 0 0 2px rgba(255, 220, 232, 0.95), 0 0 0 4px rgba(74, 32, 48, 0.4);
+}
+
+html.landing-prank body.mendlpastel .search-actions .search-btn:first-of-type:hover {
   transform: translateY(-1px);
-  border-color: rgba(176, 140, 158, 0.78);
-  background: rgba(255, 252, 254, 0.92);
-  box-shadow: 0 0 0 3px rgba(200, 140, 165, 0.22), 0 2px 18px rgba(0, 0, 0, 0.12);
+  border-color: #c0506c;
+  background: linear-gradient(180deg, #f07890 0%, #e06078 48%, #c84860 100%);
+  color: #fffafd;
+  text-shadow: 0 1px 2px rgba(52, 8, 20, 0.35);
+  box-shadow: 0 8px 26px rgba(160, 48, 72, 0.35), inset 0 1px 0 rgba(255, 220, 230, 0.45);
+  filter: brightness(1.02);
+}
+
+html.landing-prank body.mendlpastel .search-actions .search-btn:last-of-type:hover {
+  transform: translateY(-1px);
+  border-color: #e8a0bc;
+  background: linear-gradient(180deg, #fff2f8 0%, #ffe0ef 45%, #ffd0e5 100%);
+  color: #3a1828;
+  box-shadow: 0 8px 24px rgba(200, 100, 130, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.95);
   filter: brightness(1.02);
 }

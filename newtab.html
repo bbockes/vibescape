@@ -71,7 +71,7 @@
         animation: none !important;
       }
       body.commonroom .content {
-        transform: translateY(5.5vh);
+        transform: translateY(calc(-5vh + 40px));
       }
       body.commonroom.motion-enabled::before {
         animation: none !important;
@@ -562,14 +562,14 @@
     @keyframes commonroomEnter {
       0% {
         opacity: 0;
-        transform: translateY(calc(5.5vh + 1.45rem)) scale(0.985);
+        transform: translateY(calc(-5vh + 40px + 1.45rem)) scale(0.985);
       }
       30% {
         opacity: 1;
       }
       100% {
         opacity: 1;
-        transform: translateY(5.5vh) scale(1);
+        transform: translateY(calc(-5vh + 40px)) scale(1);
       }
     }
     body.commonroom::before {

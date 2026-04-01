@@ -189,8 +189,16 @@
     body.landing-clean .date-line {
       display: none;
     }
+
     body.landing-clean .landing-brand {
       display: grid;
+      width: max-content;
+      max-width: min(400px, calc(100vw - 24px));
+      margin-inline: auto;
+      margin-bottom: 0.65rem;
+    }
+    body.landing-clean .wordmark-text {
+      font-size: 5.75rem;
     }
 
     body.commonroom .landing-brand,
@@ -205,7 +213,7 @@
       width: min(500px, 80vw);
     }
     body.landing-clean .search-wrapper {
-      margin-top: 1.75rem;
+      margin-top: 1.25rem;
       width: min(560px, 92vw);
     }
 
@@ -229,10 +237,12 @@
     /* Rounded rectangle field (not a pill clone); controls stay inside the shell. */
     body.landing-clean .search-shell{
       display:flex;
-      align-items:center;
+      align-items: center;
       gap: 10px;
-      height: 52px;
+      min-height: 64px;
+      height: auto;
       padding: 0 14px;
+      overflow: visible;
       border: 1.5px solid rgba(120, 95, 180, 0.28);
       border-radius: 14px;
       background: #fefdff;
@@ -283,12 +293,28 @@
     body.landing-clean .search-bar{
       flex: 1;
       min-width: 0;
+      align-self: center;
       border: 0;
-      height: 100%;
-      padding: 0 8px;
-      font-size: 16px;
-      line-height: 52px;
+      font-size: 17px;
       font-family: "Syne", system-ui, sans-serif;
+      background: transparent;
+      color: #2d2640;
+      border-color: transparent;
+    }
+
+    /*
+     * Inner input: no border-radius (WebKit/Blink often clip descenders on rounded inputs).
+     * Magnifier is display:none here — drop 3rem padding-right from .search-shell .search-bar.
+     * Fixed line-height = height gives a tall line box so Syne g/p/q descenders render fully.
+     */
+    body.landing-clean .search-shell .search-bar {
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0 !important;
+      height: 56px;
+      line-height: 56px;
+      padding: 0 12px !important;
+      box-sizing: border-box;
     }
 
     .search-mag {
@@ -421,12 +447,6 @@
       color: rgba(95, 75, 140, 0.55);
     }
 
-    body.landing-clean .search-bar {
-      background: transparent;
-      color: #2d2640;
-      border-color: transparent;
-    }
-
     /* Reveal */
     .reveal {
       position: fixed;
@@ -551,6 +571,39 @@
       outline: 2px solid rgba(255, 255, 255, 0.85);
       outline-offset: 2px;
     }
+
+    /* Common room: soft glow at wand tip — same layer stack as newtab (below .page-wrapper z-index 2). */
+    .snitch-motion {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+      contain: strict;
+    }
+    .snitch-motion[hidden] {
+      display: none !important;
+    }
+    .snitch-motion__core {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100px;
+      height: 100px;
+      margin: -50px 0 0 -50px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(255, 248, 220, 0.55) 0%,
+        rgba(255, 215, 120, 0.28) 38%,
+        rgba(255, 190, 70, 0.08) 62%,
+        transparent 72%
+      );
+      filter: blur(16px);
+      opacity: 0.92;
+      will-change: transform;
+      mix-blend-mode: screen;
+    }
   </style>
 </head>
 
@@ -558,6 +611,10 @@
   <header class="landing-chrome landing-topbar" aria-label="Vibescape">
     <a href="#" id="vibescapeTopLink">Vibescape</a>
   </header>
+
+  <div id="snitch-motion" class="snitch-motion" aria-hidden="true" hidden>
+    <div class="snitch-motion__core"></div>
+  </div>
 
   <div class="page-wrapper">
     <div class="content">
@@ -589,7 +646,7 @@
               id="search"
               autocomplete="off"
               spellcheck="false"
-              placeholder=""
+              placeholder="search with giggle"
             />
             <button type="button" class="search-mag" id="search-mag" aria-label="Search">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -649,7 +706,7 @@
     const baseTheme = "landing-clean";
     const themeIds = ["commonroom", "openingcrawl", "matrixfall", "mendlpastel"];
     const themePlaceholders = {
-      "landing-clean": "",
+      "landing-clean": "search with giggle",
       commonroom: "ink your inquiry upon the scroll\u2026",
       openingcrawl: "search the deep-sky archives\u2026",
       matrixfall: "",
@@ -663,6 +720,7 @@
       const input = document.getElementById("search");
       if (input) input.placeholder = themePlaceholders[next] || "";
       if (next !== baseTheme) hideSearchShuffleHint();
+      updateHeroTime();
     }
 
     // Cycle deterministically so we show all 4 themes before gating.
@@ -689,6 +747,7 @@
       const box = document.getElementById("landingBrand");
       if (!box || !wordmarkInner) return;
       wordmarkInner.style.transform = "scale(1)";
+      if (document.body.classList.contains("landing-clean")) return;
       const b = box.getBoundingClientRect();
       const inner = wordmarkInner.getBoundingClientRect();
       if (!b.width || !b.height || !inner.width || !inner.height) return;
@@ -714,13 +773,55 @@
       return "good evening";
     }
 
+    /** Line under the clock — same time buckets as `newtab.js` → `updateClock` → `greetings`. */
+    function greetingForPrankTheme(hour24) {
+      const h = hour24;
+      if (document.body.classList.contains("commonroom")) {
+        return h < 5
+          ? "midnight oil and candlelit portraits"
+          : h < 12
+            ? "ember-quiet before breakfast"
+            : h < 17
+              ? "afternoon light through stone arches"
+              : "firelight symphonies and exam dread";
+      }
+      if (document.body.classList.contains("openingcrawl")) {
+        return h < 5
+          ? "jump drift, lights dimmed"
+          : h < 12
+            ? "a new day past the rim"
+            : h < 17
+              ? "twin dawn, high in the sky"
+              : "back-room hours somewhere";
+      }
+      if (document.body.classList.contains("matrixfall")) {
+        return h < 5
+          ? "signal in the noise"
+          : h < 12
+            ? "green morning cascade"
+            : h < 17
+              ? "simulated daylight block"
+              : "operator hours";
+      }
+      if (document.body.classList.contains("mendlpastel")) {
+        return h < 5
+          ? "lobby insomnia"
+          : h < 12
+            ? "pastel breakfast service"
+            : h < 17
+              ? "symmetrical afternoon"
+              : "evening turn-down, lobby quiet";
+      }
+      return formatGreeting(hour24);
+    }
+
     function updateHeroTime() {
       if (!clockEl || !greetingEl || !datelineEl) return;
       const now = new Date();
       const h24 = now.getHours();
       const h12 = h24 % 12 || 12;
-      clockEl.textContent = `${h12}:${pad2(now.getMinutes())}`;
-      greetingEl.textContent = formatGreeting(now.getHours());
+      clockEl.textContent = `${String(h12).padStart(2, "0")}:${pad2(now.getMinutes())}`;
+      greetingEl.textContent = greetingForPrankTheme(h24);
       datelineEl.textContent = formatDateline(now);
     }
 
@@ -784,6 +885,7 @@
 
     let randomClicks = 0;
     document.getElementById("random-vibe").addEventListener("click", () => {
+      const wasHome = document.body.classList.contains(baseTheme);
       randomClicks += 1;
       // After cycling through all 4 themes, gate on the next click.
       if (randomClicks >= 5) {
@@ -792,6 +894,9 @@
         return;
       }
       cycleTheme();
+      if (wasHome && searchInput) {
+        searchInput.value = "";
+      }
     });
 
     document.getElementById("installBtn").addEventListener("click", () => {
@@ -840,6 +945,65 @@
       },
       { passive: true }
     );
+
+    // Common room: wand-tip glow — same math as newtab.js initSnitchMotionAura (harry-potter cursor hotspot).
+    (function initSnitchMotionAura() {
+      const root = document.getElementById("snitch-motion");
+      const core = root?.querySelector?.(".snitch-motion__core");
+      if (!root || !core) return;
+
+      let mx = window.innerWidth * 0.5;
+      let my = window.innerHeight * 0.5;
+      let suppressWhileOverSearchUi = false;
+
+      const searchWrapper = document.querySelector(".search-wrapper");
+      if (searchWrapper) {
+        searchWrapper.addEventListener(
+          "pointerenter",
+          () => {
+            suppressWhileOverSearchUi = true;
+          },
+          { passive: true }
+        );
+        searchWrapper.addEventListener(
+          "pointerleave",
+          () => {
+            suppressWhileOverSearchUi = false;
+          },
+          { passive: true }
+        );
+      }
+
+      const COMMONROOM_CURSOR_HOTSPOT = { hx: 64, hy: 8 };
+      const WAND_TIP_FROM_IMAGE_TL = { x: 6, y: 8 };
+      const motionReducedMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      window.addEventListener(
+        "mousemove",
+        (e) => {
+          if (!document.body.classList.contains("commonroom")) return;
+          mx = e.clientX;
+          my = e.clientY;
+        },
+        { passive: true }
+      );
+
+      function tick() {
+        const isCommonroom = document.body.classList.contains("commonroom");
+        if (!isCommonroom || motionReducedMq.matches || suppressWhileOverSearchUi) {
+          root.hidden = true;
+          requestAnimationFrame(tick);
+          return;
+        }
+        root.hidden = false;
+        const cx = mx - COMMONROOM_CURSOR_HOTSPOT.hx + WAND_TIP_FROM_IMAGE_TL.x;
+        const cy = my - COMMONROOM_CURSOR_HOTSPOT.hy + WAND_TIP_FROM_IMAGE_TL.y;
+        core.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+        requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    })();
   </script>
 </body>
 </html>

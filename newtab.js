@@ -521,9 +521,9 @@ const MATRIX_TYPED_PLACEHOLDER_AFTER_INTRO_MS = 5000;
 
 /** Three lines, then backspace the third; final entry is empty so nothing stays in the field. */
 const MATRIX_TYPED_STRINGS = [
-  "Wake up, Neo...",
-  "The Matrix has you...",
-  "Follow the white rabbit.",
+  "Still chasing that rabbit?",
+  "Try this instead.",
+  "Type\u2026 and click search.",
   "",
 ];
 const MATRIX_TYPED_FINAL_PLACEHOLDER = "";
