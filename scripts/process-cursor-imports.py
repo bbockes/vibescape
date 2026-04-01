@@ -28,6 +28,16 @@ except ImportError:
     print('Install rembg in this repo venv: scripts/.venv/bin/pip install "rembg[cpu]" pillow', file=sys.stderr)
     sys.exit(1)
 
+# After normalizing to --size×--size, optional extra linear scale (square output; matches newtab cursor hotspots).
+POST_FIT_LINEAR_SCALE: dict[str, float] = {
+    "spirited-away-cursor.png": 0.5,
+    "alice-in-wonderland-cursor.png": 0.7,
+    "blade-runner-cursor.png": 0.75,
+    "frozen-cursor.png": 0.5625,
+    "lord-of-the-rings-cursor.png": 0.7,
+    "shrek-cursor.png": 0.6,
+}
+
 
 def slug_output_name(path: Path) -> str:
     base = path.stem.lower()
@@ -79,6 +89,10 @@ def main() -> None:
         cut = remove(raw)
         im = Image.open(io.BytesIO(cut))
         im = fit_square_rgba(im, args.size)
+        scale = POST_FIT_LINEAR_SCALE.get(dest.name)
+        if scale is not None:
+            n = max(1, round(args.size * scale))
+            im = im.resize((n, n), Image.Resampling.LANCZOS)
         im.save(dest, "PNG", optimize=True)
         print("wrote", dest.relative_to(root))
 

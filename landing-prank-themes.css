@@ -42,7 +42,7 @@ html.landing-prank body.commonroom {
   background: #070504;
   font-family: "Libre Baskerville", "Cormorant Garamond", Georgia, serif;
   color: #fff8e8;
-  cursor: url('assets/cursors/processed/harry-potter-cursor.png') 64 64, auto;
+  cursor: url('assets/cursors/processed/harry-potter-cursor.png') 64 8, auto;
 }
 
 html.landing-prank body.commonroom::before {
@@ -235,7 +235,7 @@ html.landing-prank body.openingcrawl {
   background: #000;
   font-family: "News Cycle", "Barlow Condensed", sans-serif;
   color: #ffe81f;
-  cursor: url('assets/cursors/processed/star-wars-cursor.png') 64 64, auto;
+  cursor: url('assets/cursors/processed/star-wars-cursor.png') 64 8, auto;
 }
 
 html.landing-prank body.openingcrawl::before {
@@ -391,7 +391,7 @@ html.landing-prank body.matrixfall {
   background: #000301;
   font-family: "VT323", "Space Mono", monospace;
   color: #33ff66;
-  cursor: url('assets/cursors/processed/matrix-cursor.png') 64 64, auto;
+  cursor: url('assets/cursors/processed/matrix-cursor.png') 64 8, auto;
 }
 
 html.landing-prank body.matrixfall::before {
@@ -480,7 +480,7 @@ html.landing-prank body.mendlpastel {
   background: #f4e8ec;
   font-family: "Playfair Display", Georgia, serif;
   color: #3a2430;
-  cursor: url('assets/cursors/processed/grand-budapest-cursor.png') 64 64, auto;
+  cursor: url('assets/cursors/processed/grand-budapest-cursor.png') 64 8, auto;
 }
 
 html.landing-prank body.mendlpastel::before {

@@ -907,8 +907,8 @@ function syncMatrixRain() {
     );
   }
 
-  /* Match newtab.html body.commonroom cursor: url(...) <hx> <hy> (128×128 processed wand). */
-  const COMMONROOM_CURSOR_HOTSPOT = { hx: 64, hy: 64 };
+  /* Match newtab.html body.commonroom cursor: url(...) <hx> <hy> (128×128; top-mid hotspot like all theme cursors). */
+  const COMMONROOM_CURSOR_HOTSPOT = { hx: 64, hy: 8 };
   /* Wand tip sits near top-left of the PNG; nudge in px from image top-left if art isn’t flush. */
   const WAND_TIP_FROM_IMAGE_TL = { x: 6, y: 8 };
 
