@@ -6,7 +6,7 @@
   <title>Vibescape | New Tab</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@500;600;800&family=Cinzel:wght@400;600&family=Cinzel+Decorative&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=Eagle+Lake&family=Elsie:wght@400;700&family=Fredoka:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Marcellus&family=News+Cycle:wght@400;700&family=Nunito:wght@600;700;800&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Rye&family=Shrikhand&family=Space+Mono:ital@0;1&family=Syne:wght@400;700;800&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@500;600;800&family=Cinzel:wght@400;600&family=Cinzel+Decorative&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=Eagle+Lake&family=Elsie:wght@400;700&family=Fredoka:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Marcellus&family=News+Cycle:wght@400;700&family=Nunito:wght@600;700;800&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Rye&family=Shrikhand&family=Space+Mono:ital@0;1&family=Syne:wght@400;700;800&family=VT323&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -160,11 +160,16 @@
       body.droogclockwork .content,
       body.frozenheart .content,
       body.lalaland .content,
-      body.titanicvow .content {
+      body.titanicvow .content,
+      body.strangerthings .content {
         animation: none !important;
         opacity: 1 !important;
         filter: none !important;
         transform: translateY(calc(-5vh + 40px)) !important;
+      }
+      body.strangerthings .page-wrapper::before {
+        animation: none !important;
+        opacity: 0 !important;
       }
     }
 
@@ -1353,7 +1358,7 @@
     body.mendlpastel {
       background:#f4e8ec;
       font-family:'Playfair Display', Georgia, serif;
-      cursor: url('assets/cursors/processed/grand-budapest-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/grand-budapest-cursor.png') 51 6, auto;
     }
     body.mendlpastel input.search-bar,
     body.mendlpastel textarea {
@@ -2653,9 +2658,9 @@
       pointer-events: none;
       z-index: 0;
       background-image:
-        radial-gradient(ellipse 40% 48% at 50% 30%, rgba(248, 246, 240, 0.19) 0%, transparent 70%),
-        linear-gradient(180deg, rgba(2, 2, 4, 0.88) 0%, rgba(8, 8, 10, 0.45) 42%, rgba(0, 0, 0, 0.92) 100%),
-        radial-gradient(ellipse 95% 55% at 50% 18%, rgba(0, 0, 0, 0.48) 0%, transparent 52%),
+        radial-gradient(ellipse 40% 48% at 50% 30%, rgba(248, 246, 240, 0.08) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(2, 2, 4, 0.52) 0%, rgba(8, 8, 10, 0.32) 42%, rgba(0, 0, 0, 0.88) 100%),
+        radial-gradient(ellipse 95% 55% at 50% 18%, rgba(0, 0, 0, 0.26) 0%, transparent 52%),
         url('assets/backgrounds/wickiesmono/bg.webp');
       background-size: cover, cover, cover, cover;
       background-position: center;
@@ -2677,7 +2682,7 @@
       animation: wickiesmonoUiIn 0.95s cubic-bezier(0.33, 1, 0.68, 1) 0.2s both;
     }
     body.wickiesmono .clock { color:#f4f2ed; text-shadow:0 0 1px #000, 0 0 26px rgba(212,168,60,0.22), 0 2px 10px rgba(0,0,0,0.75); font-weight:400; }
-    body.wickiesmono .greeting { color:#c8b8a8; text-transform:uppercase; letter-spacing:0.28em; text-shadow:0 1px 3px rgba(0,0,0,0.85); } body.wickiesmono .date-line { color:#9a9084; text-shadow:0 1px 2px rgba(0,0,0,0.8); }
+    body.wickiesmono .greeting { color:#c8b8a8; text-transform:uppercase; letter-spacing:0.28em; text-shadow:0 1px 3px rgba(0,0,0,0.85); } body.wickiesmono .date-line { color:#fff; text-shadow:0 1px 2px rgba(0,0,0,0.8); }
     body.wickiesmono .search-bar { background:#121210; border:1px solid #2a2824; color:#e8e6e1; }
     body.wickiesmono .search-bar::placeholder { color:#5a544c; }
     body.wickiesmono .search-bar:hover:not(:focus) {
@@ -2686,6 +2691,23 @@
     body.wickiesmono .search-bar:focus {
       border-color:#d8b040;
       box-shadow:0 0 0 1px rgba(216, 176, 64, 0.42);
+    }
+    body.wickiesmono .search-actions .search-btn {
+      font-family: 'Space Mono', monospace;
+      border: 1px solid #2a2824;
+      background: #121210;
+      color: #e8e6e1;
+    }
+    body.wickiesmono .search-actions .search-btn:hover {
+      border-color: #d8b040;
+      box-shadow: 0 0 0 1px rgba(216, 176, 64, 0.42);
+      color: #f4f2ed;
+    }
+    body.wickiesmono .search-actions .search-btn:focus-visible {
+      border-color: #d8b040;
+      box-shadow:
+        0 0 0 1px rgba(216, 176, 64, 0.5),
+        0 0 0 3px rgba(8, 8, 10, 0.95);
     }
     body.wickiesmono .quote { color:#c8c0b0; font-style:normal; font-size:clamp(1.05rem,1.7vw,1.2rem)!important; text-shadow:0 1px 3px rgba(0,0,0,0.88); } body.wickiesmono .quote-author { color:#d8b040; text-shadow:0 1px 2px rgba(0,0,0,0.82); }
 
@@ -2878,7 +2900,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      pointer-events: none;
+      pointer-events: none !important;
       z-index: 0;
       background-image:
         radial-gradient(ellipse 85% 55% at 22% 22%, rgba(255, 105, 180, 0.25) 0%, transparent 46%),
@@ -2897,15 +2919,33 @@
       filter: none;
     }
     body.dreamhousepop .stars { display:none; }
+    body.dreamhousepop .page-wrapper {
+      position: relative;
+      z-index: 1;
+    }
     body.dreamhousepop .content {
       position:relative;
       z-index:2;
       animation: proInDreamhousepop 1.05s cubic-bezier(0.34, 1.4, 0.55, 1) both;
     }
+    body.dreamhousepop .search-wrapper {
+      position: relative;
+      z-index: 2;
+    }
+    body.dreamhousepop .search-shell {
+      position: relative;
+      z-index: 1;
+    }
+    body.dreamhousepop .search-mag {
+      z-index: 2;
+    }
     body.dreamhousepop .clock { font-family:'Shrikhand', cursive; color:#fff8ff; text-shadow:0 0 32px rgba(255,105,180,0.55), 0 0 60px rgba(180,100,255,0.3), 0 2px 10px rgba(0,0,0,0.65); font-weight:400; letter-spacing:0.02em; }
     body.dreamhousepop .greeting { color:#ffc8e8; font-weight:700; text-shadow:0 1px 3px rgba(0,0,0,0.78); } body.dreamhousepop .date-line { color:#d8b8f0; text-shadow:0 1px 2px rgba(0,0,0,0.72); }
-    body.dreamhousepop .search-bar { background:rgba(12,6,16,0.82); border:2px solid rgba(255,105,180,0.6); border-radius:9999px; color:#fff8fc; font-weight:600; }
-    body.dreamhousepop .search-bar::placeholder { color:#d090c0; } body.dreamhousepop .search-bar:focus { box-shadow:0 0 28px rgba(255,105,180,0.5); border-color:#ff69b4; }
+    body.dreamhousepop .search-bar { background:rgba(12,6,16,0.82); border:2px solid rgba(255,105,180,0.6); border-radius:9999px; color:#fff8fc; font-weight:400; }
+    body.dreamhousepop .search-bar::placeholder {
+      color:#d090c0;
+    }
+    body.dreamhousepop .search-bar:focus { box-shadow:0 0 28px rgba(255,105,180,0.5); border-color:#ff69b4; }
     body.dreamhousepop .quote { color:#ffe0f4; font-weight:600; font-size:clamp(1.1rem,2vw,1.35rem)!important; text-shadow:0 1px 3px rgba(0,0,0,0.85); }
     body.dreamhousepop .quote-author {
       color:#e8d0ff;
@@ -3212,7 +3252,12 @@
       animation: proInTitanicvow 1.52s cubic-bezier(0.28, 1, 0.44, 1) both;
     }
     body.titanicvow .clock { color:#f0f4f8; text-shadow:0 0 24px rgba(180,200,230,0.35), 0 2px 10px rgba(0,0,0,0.75); font-weight:400; }
-    body.titanicvow .greeting { color:#c8d4e8; font-style:italic; text-shadow:0 1px 3px rgba(0,0,0,0.82); } body.titanicvow .date-line { color:#c8d8f0; text-shadow:0 0 18px rgba(200, 220, 248, 0.38), 0 1px 3px rgba(0,0,0,0.72); }
+    body.titanicvow .greeting {
+      color:#e0eafc;
+      font-style:italic;
+      text-shadow:0 1px 3px rgba(0,0,0,0.78), 0 0 18px rgba(200, 220, 255, 0.35);
+    }
+    body.titanicvow .date-line { color:#fff; text-shadow:0 0 22px rgba(200, 220, 255, 0.42), 0 1px 4px rgba(0,0,0,0.82); }
     body.titanicvow .search-bar { background:rgba(6,12,20,0.88); border:1px solid rgba(200,210,230,0.38); color:#fafcff; }
     body.titanicvow .search-bar::placeholder { color:#8090a8; } body.titanicvow .search-bar:focus { box-shadow:0 0 22px rgba(160,190,220,0.25); }
     body.titanicvow .search-mag {
@@ -3233,6 +3278,156 @@
       color: #fafcff;
     }
     body.titanicvow .quote { color:#e0e8f4; font-style:italic; font-size:clamp(1.1rem,2vw,1.35rem)!important; text-shadow:0 1px 3px rgba(0,0,0,0.88); } body.titanicvow .quote-author { color:#b8c8e0; text-shadow:0 1px 2px rgba(0,0,0,0.82); }
+
+    /* ─── UPSIDE ECHO (80s small-town dread / fairy lights, woods) ──── */
+    body.strangerthings {
+      background: #0a060c;
+      /* Jost ≈ geometric sans era of Futura — everywhere in 80s print, signage, and packaging */
+      font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+      cursor: url('assets/cursors/processed/stranger-things-cursor.png') 38 5, auto;
+    }
+    body.strangerthings input.search-bar,
+    body.strangerthings textarea {
+      cursor: text;
+    }
+    body.strangerthings .search-btn,
+    body.strangerthings .search-mag {
+      cursor: pointer;
+    }
+    body.strangerthings::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(ellipse 70% 50% at 50% 100%, rgba(180, 32, 48, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 45% at 12% 18%, rgba(60, 110, 200, 0.14) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(6, 4, 12, 0.88) 0%, rgba(14, 8, 22, 0.45) 42%, rgba(4, 2, 8, 0.92) 100%),
+        url('assets/backgrounds/stranger-things/bg.webp');
+      background-size: cover, cover, cover, cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    body.strangerthings.motion-enabled::before {
+      animation: none !important;
+      will-change: auto;
+      transform: none;
+      filter: none;
+    }
+    /*
+     * bg2 flicker lives on .page-wrapper::before (not body::after): a full-viewport .page-wrapper
+     * sat above body::after in the stack, so the swap never showed through. Fixed + z-index under .content.
+     */
+    body.strangerthings .page-wrapper {
+      position: relative;
+      z-index: 2;
+      isolation: isolate;
+    }
+    body.strangerthings .page-wrapper::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      background-image:
+        radial-gradient(ellipse 70% 50% at 50% 100%, rgba(180, 32, 48, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 45% at 12% 18%, rgba(60, 110, 200, 0.14) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(6, 4, 12, 0.88) 0%, rgba(14, 8, 22, 0.45) 42%, rgba(4, 2, 8, 0.92) 100%),
+        url('assets/backgrounds/stranger-things/bg2.webp');
+      background-size: cover, cover, cover, cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      animation: stBgImageFlicker 12s linear forwards;
+    }
+    body.strangerthings .stars { display:none; }
+    body.strangerthings .content {
+      position:relative;
+      z-index:2;
+      animation: proInStrangerthings 1.35s cubic-bezier(0.26, 1, 0.42, 1) both;
+    }
+    body.strangerthings .clock {
+      font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 300;
+      color: #e8f2ff;
+      letter-spacing: 0.05em;
+      font-variant-numeric: tabular-nums;
+      text-shadow:
+        1px 0 0 rgba(255, 60, 80, 0.1),
+        -1px 0 0 rgba(80, 160, 255, 0.1),
+        0 0 20px rgba(220, 45, 62, 0.45),
+        0 0 48px rgba(70, 130, 220, 0.32),
+        0 2px 12px rgba(0, 0, 0, 0.9);
+    }
+    body.strangerthings .greeting {
+      font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+      color: #f0b8c0;
+      text-transform: lowercase !important;
+      letter-spacing: 0.12em !important;
+      font-size: clamp(1rem, 2.2vw, 1.42rem) !important;
+      line-height: 1.2 !important;
+      font-weight: 500;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 20px rgba(220, 80, 95, 0.35);
+    }
+    body.strangerthings .date-line {
+      font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+      color: #9eb6d4;
+      text-transform: lowercase !important;
+      letter-spacing: 0.07em !important;
+      font-size: clamp(1.05rem, 1.65vw, 1.22rem) !important;
+      font-weight: 400;
+      text-shadow: 0 0 10px rgba(100, 160, 220, 0.22), 0 1px 2px rgba(0, 0, 0, 0.85);
+    }
+    body.strangerthings .search-bar {
+      background: rgba(6, 4, 12, 0.92);
+      border: 1px solid rgba(200, 55, 68, 0.55);
+      color: #e8eef8;
+      font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+      font-size: 1.02rem !important;
+      letter-spacing: 0.03em;
+    }
+    body.strangerthings .search-bar::placeholder {
+      color: #5c6a78;
+      letter-spacing: 0.03em;
+    }
+    body.strangerthings .search-bar:focus {
+      border-color: rgba(230, 70, 88, 0.85);
+      box-shadow: 0 0 26px rgba(200, 50, 65, 0.35), 0 0 40px rgba(60, 100, 180, 0.15);
+    }
+    body.strangerthings .search-mag {
+      color: rgba(200, 220, 248, 0.9);
+    }
+    body.strangerthings .search-mag:hover {
+      color: #f4f8ff;
+      background: rgba(200, 60, 75, 0.18);
+    }
+    body.strangerthings .search-btn {
+      font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      font-size: 0.78rem !important;
+      font-weight: 600;
+      border: 1px solid rgba(200, 55, 68, 0.5);
+      background: rgba(120, 28, 38, 0.35);
+      color: rgba(255, 244, 246, 0.96);
+    }
+    body.strangerthings .search-btn:hover {
+      border-color: rgba(235, 80, 95, 0.75);
+      background: rgba(160, 36, 48, 0.45);
+      color: #fff8fa;
+    }
+    body.strangerthings .quote {
+      color: #dce4f0;
+      font-size: clamp(1.1rem, 2vw, 1.35rem) !important;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    }
+    body.strangerthings .quote-author {
+      color: #b8c8e8;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+    }
 
     /* ─── STARLIT CRAWL (deep space / tilted amber text crawl) ─────── */
     body.openingcrawl {
@@ -3502,6 +3697,7 @@
     body.frozenheart { --vs-clock-scale: 0.96; }
     body.lalaland { --vs-clock-scale: 0.95; }
     body.titanicvow { --vs-clock-scale: 0.96; }
+    body.strangerthings { --vs-clock-scale: 0.88; }
     body.openingcrawl { --vs-clock-scale: 1.06; }
     body.commonroom { --vs-clock-scale: 0.98; }
 
@@ -4965,6 +5161,82 @@
     @keyframes proInTitanicvow {
       0% { opacity: 0; transform: translateY(calc(-5vh + 46px)) rotate(1.8deg); }
       100% { opacity: 1; transform: translateY(calc(-5vh + 40px)) rotate(0); }
+    }
+    @keyframes proInStrangerthings {
+      0% { opacity: 0; filter: blur(3px); transform: translateY(calc(-5vh + 50px)) scale(0.97); }
+      55% { opacity: 0.92; filter: blur(0.5px); transform: translateY(calc(-5vh + 38px)) scale(1.01); }
+      100% { opacity: 1; filter: none; transform: translateY(calc(-5vh + 40px)) scale(1); }
+    }
+    /*
+     * bg swap: fast light-flicker strobe → ~4s hold on bg2 → mirrored strobe out → bg1 rest.
+     * 0 = bg.webp only, 1 = bg2 stack visible. 12s linear.
+     * Opening burst ~360ms (3%), closing burst mirrors it. Irregular gaps sell the "lights" feel.
+     */
+    @keyframes stBgImageFlicker {
+      0%, 0.10% { opacity: 0; }
+      0.14% { opacity: 1; }
+      0.20% { opacity: 0; }
+      0.24% { opacity: 0.6; }
+      0.28% { opacity: 0; }
+      0.35% { opacity: 1; }
+      0.39% { opacity: 0; }
+      0.42% { opacity: 0.8; }
+      0.47% { opacity: 0; }
+      0.56% { opacity: 1; }
+      0.60% { opacity: 0; }
+      0.63% { opacity: 1; }
+      0.68% { opacity: 0.3; }
+      0.73% { opacity: 1; }
+      0.78% { opacity: 0; }
+      0.85% { opacity: 0.7; }
+      0.90% { opacity: 1; }
+      0.94% { opacity: 0; }
+      1.02% { opacity: 1; }
+      1.08% { opacity: 0; }
+      1.15% { opacity: 0.5; }
+      1.20% { opacity: 1; }
+      1.28% { opacity: 0; }
+      1.38% { opacity: 1; }
+      1.45% { opacity: 0; }
+      1.55% { opacity: 1; }
+      1.64% { opacity: 0; }
+      1.78% { opacity: 1; }
+      1.88% { opacity: 0; }
+      2.05% { opacity: 1; }
+      2.18% { opacity: 0; }
+      2.42% { opacity: 1; }
+      2.60% { opacity: 0; }
+      2.90% { opacity: 1; }
+      3.00%, 34.00% { opacity: 1; }
+      34.10% { opacity: 0; }
+      34.18% { opacity: 1; }
+      34.22% { opacity: 0; }
+      34.30% { opacity: 0.6; }
+      34.35% { opacity: 1; }
+      34.40% { opacity: 0; }
+      34.48% { opacity: 0.8; }
+      34.53% { opacity: 1; }
+      34.58% { opacity: 0; }
+      34.63% { opacity: 1; }
+      34.67% { opacity: 0.3; }
+      34.72% { opacity: 0; }
+      34.78% { opacity: 1; }
+      34.84% { opacity: 0; }
+      34.89% { opacity: 0.7; }
+      34.93% { opacity: 1; }
+      34.98% { opacity: 0; }
+      35.06% { opacity: 0.5; }
+      35.12% { opacity: 1; }
+      35.18% { opacity: 0; }
+      35.28% { opacity: 1; }
+      35.38% { opacity: 0; }
+      35.50% { opacity: 1; }
+      35.62% { opacity: 0; }
+      35.78% { opacity: 1; }
+      35.92% { opacity: 0; }
+      36.10% { opacity: 0.4; }
+      36.28% { opacity: 0; }
+      36.28%, 100% { opacity: 0; }
     }
 
     /* Winter lantern: armoire doors — hinges on OUTER frame (not center “book” spine) */

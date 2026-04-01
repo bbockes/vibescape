@@ -380,18 +380,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  document.querySelectorAll(".theme-option[data-theme]").forEach((option) => {
-    option.addEventListener("click", (e) => {
-      const favBtn = e.target.closest(".theme-fav-btn");
-      if (favBtn?.dataset.theme) {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleFavorite(favBtn.dataset.theme);
-        return;
-      }
-      const theme = option.dataset.theme;
-      chrome.storage.local.set({ vibeTheme: theme });
-      setActive(theme);
+  /** Theme picks: sync localStorage for theme-boot.js; defer close until storage commits (instant close can drop the write). */
+  themeListEl?.addEventListener("click", (e) => {
+    const favBtn = e.target.closest(".theme-fav-btn");
+    if (favBtn?.dataset.theme) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleFavorite(favBtn.dataset.theme);
+      return;
+    }
+    const row = e.target.closest(".theme-option[data-theme]");
+    if (!row || !themeListEl.contains(row)) return;
+    const theme = row.dataset.theme;
+    if (!theme || typeof theme !== "string" || !/^[a-z][a-z0-9]{0,47}$/.test(theme)) return;
+
+    setActive(theme);
+    try {
+      localStorage.setItem("vibeTheme", theme);
+    } catch (err) {
+      /* ignore quota / private mode */
+    }
+    chrome.storage.local.set({ vibeTheme: theme }, () => {
       window.close();
     });
   });

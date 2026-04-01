@@ -169,6 +169,9 @@ const themes = {
   titanicvow: {
     searchPlaceholder: "search the horizon..."
   },
+  strangerthings: {
+    searchPlaceholder: "type what you almost caught between the channels..."
+  },
 };
 
 const THEME_NAMES = Object.keys(themes);
@@ -206,6 +209,7 @@ const PRO_THEME_IDS = new Set([
   "frozenheart",
   "lalaland",
   "titanicvow",
+  "strangerthings",
 ]);
 
 const RANDOM_THEME_POOL = THEME_NAMES.filter((id) => !PRO_THEME_IDS.has(id));
@@ -241,6 +245,21 @@ function getShuffledCycleOrder(poolKind, pool) {
 function getCurrentTheme() {
   const t = document.body.dataset.theme;
   return t && themes[t] ? t : "twilight";
+}
+
+/** When chrome.storage and localStorage disagree, pick one valid theme (popup may sync LS before storage commits). */
+function pickInitialThemeFromStores(storedRaw, lsRaw) {
+  const stored = typeof storedRaw === "string" ? storedRaw : "twilight";
+  const ls = typeof lsRaw === "string" ? lsRaw : null;
+  const sOk = !!themes[stored];
+  const lOk = !!(ls && themes[ls]);
+  if (!sOk && !lOk) return "twilight";
+  if (sOk && !lOk) return stored;
+  if (!sOk && lOk) return ls;
+  if (stored === ls) return stored;
+  if (stored === "twilight" && ls !== "twilight") return ls;
+  if (ls === "twilight" && stored !== "twilight") return stored;
+  return stored;
 }
 
 function setBodyThemeClass(theme) {
@@ -495,6 +514,14 @@ function updateClock() {
       hour < 5 ? "after the last set" : hour < 12 ? "ridge-line dawn, hazy pink" : hour < 17 ? "traffic jam, jazz in the car" : "planetarium night, stars close",
     titanicvow:
       hour < 5 ? "watch in the crow's nest" : hour < 12 ? "atlantic morning glitter" : hour < 17 ? "deck chairs, full steam" : "midnight ocean, heart full",
+    strangerthings:
+      hour < 5
+        ? "the crickets quit when you cut through the dark"
+        : hour < 12
+          ? "cereal, bus stop, thin static on the dial"
+          : hour < 17
+            ? "bikes dropped where the woods swallow the road"
+            : "porch light buzzing; the night leans in close",
   };
 
   const currentTheme = getCurrentTheme();
@@ -1081,8 +1108,10 @@ window.addEventListener("resize", () => {
 });
 
 // ── THEME SWITCHER ───────────────────────────────────────────────────
-function switchTheme(theme) {
-  const resolved = themes[theme] ? theme : "twilight";
+/** @param {boolean} persistStorage When false (e.g. applying chrome.storage.onChanged), do not write storage again — avoids echo loops and races with the initial storage.get. */
+function switchTheme(theme, persistStorage = true) {
+  const resolved = typeof theme === "string" && themes[theme] ? theme : "twilight";
+  if (!persistStorage && getCurrentTheme() === resolved) return;
   if (resolved !== "topiaryshadow") {
     document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
   }
@@ -1091,7 +1120,9 @@ function switchTheme(theme) {
   setQuote(resolved);
   updateClock();
   if (resolved === "twilight" || resolved === "witchy" || resolved === "openingcrawl") drawStars(resolved);
-  chrome.storage.local.set({ vibeTheme: resolved });
+  if (persistStorage) {
+    chrome.storage.local.set({ vibeTheme: resolved });
+  }
   if (resolved === "topiaryshadow" && topiaryMatrixZoneLastX >= 0) {
     requestAnimationFrame(() =>
       syncTopiaryMatrixCursorZone(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY)
@@ -1161,9 +1192,16 @@ chrome.storage.local.get(
   (data) => {
     if (data?.vibeEnabled === false) return;
     applyCustomCursorPreference(data?.vibeCustomCursors !== false);
-    const theme = data?.vibeTheme || "twilight";
+    let lsTheme = null;
+    try {
+      lsTheme = localStorage.getItem("vibeTheme");
+    } catch (e) {
+      /* ignore */
+    }
+    const stored = data?.vibeTheme ?? "twilight";
+    const initial = pickInitialThemeFromStores(stored, lsTheme);
     setupMotionPreference();
-    switchTheme(theme);
+    switchTheme(initial, true);
   }
 );
 
@@ -1180,8 +1218,8 @@ chrome.storage.onChanged.addListener((changes, area) => {
   if (changes.vibeCustomCursors !== undefined) {
     applyCustomCursorPreference(changes.vibeCustomCursors.newValue !== false);
   }
-  if (changes.vibeTheme?.newValue) {
-    switchTheme(changes.vibeTheme.newValue);
+  if (changes.vibeTheme?.newValue !== undefined && changes.vibeTheme.newValue !== null) {
+    switchTheme(changes.vibeTheme.newValue, false);
   }
 });
 
