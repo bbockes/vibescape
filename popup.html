@@ -14,14 +14,14 @@
       or the full browser width and collapse the panel into a unusable narrow strip.
     */
     /*
-      Don’t use max-height: 100dvh here — in extension popups it can resolve like a small
-      viewport and force body scroll. Fixed min-height sets panel size; content can grow past it.
+      Chrome action popups are capped at 800×600px. The scroll area (.popup-scroll) uses
+      max-height = measured “above fold” (header → pager) so the Chrome footer tip stays
+      below the fold until the user scrolls.
     */
     html {
       width: 460px;
       min-width: 460px;
       max-width: 460px;
-      min-height: 650px;
       height: auto;
     }
 
@@ -29,19 +29,28 @@
       width: 460px;
       min-width: 460px;
       max-width: 460px;
-      min-height: 650px;
       height: auto;
       background: #0d0a1a;
       color: #e8d5ff;
       font-family: 'Syne', sans-serif;
-      padding: 1.5rem 1.4rem 1.25rem;
+      padding: 1.25rem 1.4rem 1rem;
       overflow-x: hidden;
-      overflow-y: visible;
+      overflow-y: hidden;
+      margin: 0;
     }
 
     :root {
-      --theme-row-h: 56px;
-      --theme-row-gap: 0.28rem;
+      /* Slightly compact rows so header + 5 rows + pager fit under Chrome’s 600px popup cap. */
+      --theme-row-h: 50px;
+      --theme-row-gap: 0.22rem;
+      /* Overridden by popup.js to match #popup-above-fold height. */
+      --popup-fold-px: 520px;
+    }
+
+    .popup-scroll {
+      max-height: var(--popup-fold-px);
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     .header-row {
@@ -157,15 +166,15 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #c9a8ff;
-      margin-bottom: 0.5rem;
-      margin-top: 1rem;
+      margin-bottom: 0.4rem;
+      margin-top: 0.75rem;
     }
     .favorites-hint {
       font-size: 0.8rem;
       font-weight: 300;
       color: #a89bb8;
       letter-spacing: 0.04em;
-      margin: -0.25rem 0 0.55rem;
+      margin: -0.25rem 0 0.45rem;
       line-height: 1.35;
     }
 
@@ -182,8 +191,8 @@
       gap: var(--theme-row-gap);
     }
     .theme-section + .theme-section {
-      margin-top: 0.55rem;
-      padding-top: 0.45rem;
+      margin-top: 0.45rem;
+      padding-top: 0.35rem;
       border-top: 1px solid rgba(155, 89, 255, 0.12);
     }
     .theme-section__header {
@@ -192,7 +201,7 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: #9b7fd4;
-      padding: 0.2rem 0.15rem 0.35rem;
+      padding: 0.12rem 0.15rem 0.28rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -311,7 +320,7 @@
     .theme-option.active .theme-desc { color: #b69de3; }
 
     .pager {
-      margin-top: calc(1rem - 9px);
+      margin-top: calc(0.75rem - 9px);
       padding-top: calc(0.55rem - 4px);
       display: flex;
       align-items: center;
@@ -319,6 +328,10 @@
       gap: 0.5rem;
     }
     .pager-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35em;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(155,89,255,0.22);
       color: #c5a8ea;
@@ -330,6 +343,16 @@
       padding: 0.35rem 0.55rem;
       cursor: pointer;
       transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .pager-btn__icon {
+      flex-shrink: 0;
+      width: 0.72em;
+      height: 0.72em;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
     .pager-btn:hover:not(:disabled) {
       background: rgba(255,255,255,0.1);
@@ -351,7 +374,7 @@
     }
 
     .chrome-footer-tip {
-      margin-top: 1rem;
+      margin-top: 0.75rem;
       padding: 0.55rem 0.35rem 0.2rem;
       border-top: 1px solid rgba(155, 89, 255, 0.14);
       text-align: center;
@@ -387,9 +410,12 @@
       cursor: default;
       border-bottom-style: dashed;
     }
+
   </style>
 </head>
 <body>
+  <div class="popup-scroll">
+  <div class="popup-above-fold" id="popup-above-fold">
   <div class="header-row">
     <div class="header-brand">
       <div class="logo">vibe<span>scape</span></div>
@@ -775,19 +801,26 @@
           id="inspired-vibes-vote-link"
           href="#"
           rel="noopener noreferrer"
-        >Vote for the next round of themes →</a>
+        >Vote for the next batch of vibes →</a>
       </div>
     </div>
   </div>
   <div class="pager">
-    <button class="pager-btn" id="prev-batch" type="button">previous 5</button>
+    <button class="pager-btn" id="prev-batch" type="button">
+      <svg class="pager-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      previous
+    </button>
     <div class="pager-status" id="batch-status">batch 1 of 1</div>
-    <button class="pager-btn" id="next-batch" type="button">next 5</button>
+    <button class="pager-btn" id="next-batch" type="button">
+      next
+      <svg class="pager-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
   </div>
 
   <div class="chrome-footer-tip">
     <p class="chrome-footer-tip__text">
-      The bar at the bottom of the new tab isn’t Vibescape—it’s Chrome.<br />
+      The bar at the bottom isn’t Vibescape—it’s Chrome.<br />
       Open <strong>Customize Chrome</strong> → <strong>Footer</strong> → turn off
       <strong>Show footer on New Tab page</strong>.
     </p>
@@ -797,6 +830,7 @@
       href="#"
       rel="noopener noreferrer"
     >YouTube: how to hide it →</a>
+  </div>
   </div>
 
   <script src="popup.js"></script>

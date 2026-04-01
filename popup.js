@@ -117,6 +117,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPage = 0;
   const hasPager = !!prevBatchBtn && !!nextBatchBtn && !!batchStatus;
 
+  /** Keep the Chrome footer tip below the fold: viewport height matches #popup-above-fold. */
+  function schedulePopupFoldViewport() {
+    const scrollEl = document.querySelector(".popup-scroll");
+    const fold = document.getElementById("popup-above-fold");
+    if (!fold) return;
+    requestAnimationFrame(() => {
+      const h = Math.ceil(fold.getBoundingClientRect().height);
+      if (h > 0) {
+        document.documentElement.style.setProperty("--popup-fold-px", `${h}px`);
+      }
+      if (scrollEl) scrollEl.scrollTop = 0;
+    });
+  }
+
   function getThemeRows() {
     if (!themeListEl) return [];
     return Array.from(themeListEl.querySelectorAll(".theme-option[data-theme]"));
@@ -149,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hint.hidden = !showHint;
     if (header) {
       if (showHint) {
-        header.title = 'Use "next 5" below to open more from inspired vibes — batch 01';
+        header.title = 'Use "next" below to open more from inspired vibes — batch 01';
       } else {
         header.removeAttribute("title");
       }
@@ -181,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hint.hidden = !show;
     if (header) {
       if (show) {
-        header.title = 'Use "previous 5" below to open more from original vibes';
+        header.title = 'Use "previous" below to open more from original vibes';
       } else {
         header.removeAttribute("title");
       }
@@ -202,6 +216,25 @@ document.addEventListener("DOMContentLoaded", () => {
     foot.hidden = !anyStoriesVisible;
   }
 
+  /** Hide entire theme sections with no visible rows so the popup stays within Chrome’s 600px cap. */
+  function updateThemeSectionVisibility() {
+    if (!hasPager) {
+      document.querySelectorAll(".theme-section").forEach((section) => {
+        section.hidden = false;
+      });
+      return;
+    }
+    document.querySelectorAll(".theme-section").forEach((section) => {
+      const rows = section.querySelectorAll(".theme-option[data-theme]");
+      if (!rows.length) {
+        section.hidden = false;
+        return;
+      }
+      const anyVisible = Array.from(rows).some((row) => row.style.display !== "none");
+      section.hidden = !anyVisible;
+    });
+  }
+
   function renderPage() {
     if (!hasPager) return;
     const themeRows = getThemeRows();
@@ -214,9 +247,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (batchStatus) batchStatus.textContent = `batch ${currentPage + 1} of ${totalPages()}`;
     if (prevBatchBtn) prevBatchBtn.disabled = currentPage <= 0;
     if (nextBatchBtn) nextBatchBtn.disabled = currentPage >= totalPages() - 1;
+    updateThemeSectionVisibility();
     updateStoriesSectionPagerHint();
     updateOriginalSectionPagerHint();
     updateInspiredVoteFootVisibility();
+    schedulePopupFoldViewport();
   }
 
   function pageForTheme(theme) {
@@ -338,7 +373,9 @@ document.addEventListener("DOMContentLoaded", () => {
         currentPage = pageForTheme(data?.vibeTheme || "twilight");
         renderPage();
       } else {
+        updateThemeSectionVisibility();
         updateInspiredVoteFootVisibility();
+        schedulePopupFoldViewport();
       }
     }
   );
@@ -369,6 +406,12 @@ document.addEventListener("DOMContentLoaded", () => {
       currentPage = Math.min(totalPages() - 1, currentPage + 1);
       renderPage();
     });
+  }
+
+  const foldForResize = document.getElementById("popup-above-fold");
+  if (foldForResize && typeof ResizeObserver !== "undefined") {
+    const ro = new ResizeObserver(() => schedulePopupFoldViewport());
+    ro.observe(foldForResize);
   }
 });
 
