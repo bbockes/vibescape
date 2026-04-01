@@ -1402,7 +1402,7 @@
     }
     body.mendlpastel .greeting {
       color:#2a141c;
-      font-weight:500;
+      font-weight:700;
       text-shadow:
         0 0 10px rgba(255, 252, 254, 0.98),
         0 0 26px rgba(255, 246, 250, 0.75),
@@ -3301,11 +3301,12 @@
       pointer-events: none;
       z-index: 0;
       background-image:
+        radial-gradient(ellipse 18% 22% at 50% 38%, rgba(255, 210, 140, 0.09) 0%, transparent 70%),
         radial-gradient(ellipse 70% 50% at 50% 100%, rgba(180, 32, 48, 0.18) 0%, transparent 55%),
         radial-gradient(ellipse 55% 45% at 12% 18%, rgba(60, 110, 200, 0.14) 0%, transparent 50%),
-        linear-gradient(180deg, rgba(6, 4, 12, 0.88) 0%, rgba(14, 8, 22, 0.45) 42%, rgba(4, 2, 8, 0.92) 100%),
+        linear-gradient(180deg, rgba(6, 4, 12, 0.72) 0%, rgba(14, 8, 22, 0.30) 42%, rgba(4, 2, 8, 0.78) 100%),
         url('assets/backgrounds/stranger-things/bg.webp');
-      background-size: cover, cover, cover, cover;
+      background-size: cover, cover, cover, cover, cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -3335,7 +3336,7 @@
       background-image:
         radial-gradient(ellipse 70% 50% at 50% 100%, rgba(180, 32, 48, 0.18) 0%, transparent 55%),
         radial-gradient(ellipse 55% 45% at 12% 18%, rgba(60, 110, 200, 0.14) 0%, transparent 50%),
-        linear-gradient(180deg, rgba(6, 4, 12, 0.88) 0%, rgba(14, 8, 22, 0.45) 42%, rgba(4, 2, 8, 0.92) 100%),
+        linear-gradient(180deg, rgba(6, 4, 12, 0.72) 0%, rgba(14, 8, 22, 0.30) 42%, rgba(4, 2, 8, 0.78) 100%),
         url('assets/backgrounds/stranger-things/bg2.webp');
       background-size: cover, cover, cover, cover;
       background-position: center;
@@ -3374,7 +3375,7 @@
     }
     body.strangerthings .date-line {
       font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
-      color: #9eb6d4;
+      color: #ffffff;
       text-transform: lowercase !important;
       letter-spacing: 0.07em !important;
       font-size: clamp(1.05rem, 1.65vw, 1.22rem) !important;
@@ -3383,26 +3384,29 @@
     }
     body.strangerthings .search-bar {
       background: rgba(6, 4, 12, 0.92);
-      border: 1px solid rgba(200, 55, 68, 0.55);
+      border: 1px solid rgba(255, 21, 21, 0.45);
       color: #e8eef8;
       font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
       font-size: 1.02rem !important;
       letter-spacing: 0.03em;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
     body.strangerthings .search-bar::placeholder {
       color: #5c6a78;
       letter-spacing: 0.03em;
     }
     body.strangerthings .search-bar:focus {
-      border-color: rgba(230, 70, 88, 0.85);
-      box-shadow: 0 0 26px rgba(200, 50, 65, 0.35), 0 0 40px rgba(60, 100, 180, 0.15);
+      border-color: #FF1515;
+      box-shadow: 0 0 8px rgba(255, 0, 0, 0.5), 0 0 22px rgba(255, 0, 0, 0.25), 0 0 40px rgba(255, 0, 0, 0.1);
     }
     body.strangerthings .search-mag {
       color: rgba(200, 220, 248, 0.9);
+      transition: color 0.2s, background 0.2s, box-shadow 0.2s;
     }
     body.strangerthings .search-mag:hover {
-      color: #f4f8ff;
-      background: rgba(200, 60, 75, 0.18);
+      color: #FF1515;
+      background: rgba(255, 0, 0, 0.1);
+      box-shadow: 0 0 8px rgba(255, 0, 0, 0.45), 0 0 20px rgba(255, 0, 0, 0.2);
     }
     body.strangerthings .search-btn {
       font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
@@ -3410,14 +3414,16 @@
       letter-spacing: 0.1em;
       font-size: 0.78rem !important;
       font-weight: 600;
-      border: 1px solid rgba(200, 55, 68, 0.5);
-      background: rgba(120, 28, 38, 0.35);
+      border: 1px solid rgba(255, 21, 21, 0.5);
+      background: rgba(255, 21, 21, 0.2);
       color: rgba(255, 244, 246, 0.96);
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, color 0.2s;
     }
     body.strangerthings .search-btn:hover {
-      border-color: rgba(235, 80, 95, 0.75);
-      background: rgba(160, 36, 48, 0.45);
-      color: #fff8fa;
+      border-color: #FF1515;
+      background: rgba(255, 21, 21, 0.35);
+      color: #ffffff;
+      box-shadow: 0 0 8px rgba(255, 0, 0, 0.5), 0 0 22px rgba(255, 0, 0, 0.25), 0 0 40px rgba(255, 0, 0, 0.1);
     }
     body.strangerthings .quote {
       color: #dce4f0;

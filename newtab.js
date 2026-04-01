@@ -170,7 +170,7 @@ const themes = {
     searchPlaceholder: "search the horizon..."
   },
   strangerthings: {
-    searchPlaceholder: "type what you almost caught between the channels..."
+    searchPlaceholder: "search the upside down..."
   },
 };
 
