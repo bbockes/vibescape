@@ -2,8 +2,8 @@
 const CHROME_FOOTER_HELP_URL =
   "https://support.google.com/chrome/answer/11032183?hl=en&co=GENIE.Platform%3DDesktop#zippy=%2Cturn-new-tab-page-footer-on-or-off:~:text=on%20or%20off.-,Hide%20footer%20on%20New%20Tab%20page,-On%20your%20computer";
 
-/** URL for voting on the next inspired batch (popup link; opens in a new tab). */
-const INSPIRED_VIBES_VOTE_URL = "";
+/** URL for the next-batch ideas form (popup link; opens in a new tab). */
+const INSPIRED_VIBES_VOTE_URL = "https://tally.so/r/obd0VP";
 
 /** If the user is already on Chrome's new-tab surface, load Vibescape without opening another tab. */
 function activateNewTabSurfaceInActiveTab() {
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
       inspiredVoteLink.target = "_blank";
     } else {
       inspiredVoteLink.classList.add("theme-section__stories-foot__link--pending");
-      inspiredVoteLink.title = "Add your URL to INSPIRED_VIBES_VOTE_URL in popup.js";
+      inspiredVoteLink.title = "Add your form URL to INSPIRED_VIBES_VOTE_URL in popup.js";
       inspiredVoteLink.addEventListener("click", (e) => e.preventDefault());
     }
   }
