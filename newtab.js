@@ -86,7 +86,7 @@ const themes = {
     searchPlaceholder: "seek silver-thread answers..."
   },
   tyrellnoir: {
-    searchPlaceholder: "trace one more lead through the rain..."
+    searchPlaceholder: "trace the signal..."
   },
   arrakisstone: {
     searchPlaceholder: "cross the open dune of thought..."

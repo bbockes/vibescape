@@ -23,6 +23,7 @@
       min-width: 460px;
       max-width: 460px;
       height: auto;
+      overflow: hidden;
     }
 
     body {
@@ -30,13 +31,14 @@
       min-width: 460px;
       max-width: 460px;
       height: auto;
+      margin: 0;
       background: #0d0a1a;
       color: #e8d5ff;
       font-family: 'Syne', sans-serif;
       padding: 1.25rem 1.4rem 1rem;
       overflow-x: hidden;
       overflow-y: hidden;
-      margin: 0;
+      box-sizing: border-box;
     }
 
     :root {
@@ -51,6 +53,15 @@
       max-height: var(--popup-fold-px);
       overflow-x: hidden;
       overflow-y: auto;
+      overscroll-behavior: contain;
+      /* Hide in-page scrollbar so it never sits on top of theme rows; scroll still works via wheel / trackpad */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .popup-scroll::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
     }
 
     .header-row {
@@ -915,16 +926,14 @@
 
   <div class="chrome-footer-tip">
     <p class="chrome-footer-tip__text">
-      The bar at the bottom isn’t Vibescape—it’s Chrome.<br />
-      Open <strong>Customize Chrome</strong> → <strong>Footer</strong> → turn off
-      <strong>Show footer on New Tab page</strong>.
+      The grey bar at the bottom isn’t Vibescape—it’s Chrome.
     </p>
     <a
       class="chrome-footer-tip__link"
-      id="chrome-footer-video-link"
+      id="chrome-footer-help-link"
       href="#"
       rel="noopener noreferrer"
-    >YouTube: how to hide it →</a>
+    >here's how to hide it →</a>
   </div>
   </div>
 

@@ -1,5 +1,6 @@
-/** Paste your walkthrough URL here once the video is up (Chrome footer toggle). */
-const CHROME_FOOTER_HELP_VIDEO_URL = "";
+/** Chrome Help: hide New Tab footer (opens in a new tab so the current page is unchanged). */
+const CHROME_FOOTER_HELP_URL =
+  "https://support.google.com/chrome/answer/11032183?hl=en&co=GENIE.Platform%3DDesktop#zippy=%2Cturn-new-tab-page-footer-on-or-off:~:text=on%20or%20off.-,Hide%20footer%20on%20New%20Tab%20page,-On%20your%20computer";
 
 /** URL for voting on the next inspired batch (popup link; opens in a new tab). */
 const INSPIRED_VIBES_VOTE_URL = "";
@@ -118,17 +119,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const footerVideoLink = document.getElementById("chrome-footer-video-link");
-  if (footerVideoLink) {
-    const url = CHROME_FOOTER_HELP_VIDEO_URL.trim();
-    if (url) {
-      footerVideoLink.href = url;
-      footerVideoLink.target = "_blank";
-    } else {
-      footerVideoLink.classList.add("chrome-footer-tip__link--pending");
-      footerVideoLink.title = "Add your YouTube URL to CHROME_FOOTER_HELP_VIDEO_URL in popup.js";
-      footerVideoLink.addEventListener("click", (e) => e.preventDefault());
-    }
+  const footerHelpLink = document.getElementById("chrome-footer-help-link");
+  if (footerHelpLink) {
+    const url = CHROME_FOOTER_HELP_URL.trim();
+    footerHelpLink.href = url;
+    footerHelpLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      chrome.tabs.create({ url });
+      window.close();
+    });
   }
 
   const inspiredVoteLink = document.getElementById("inspired-vibes-vote-link");

@@ -36,6 +36,7 @@ POST_FIT_LINEAR_SCALE: dict[str, float] = {
     "frozen-cursor.png": 0.5625,
     "lord-of-the-rings-cursor.png": 0.7,
     "shrek-cursor.png": 0.6,
+    "stranger-things-cursor.png": 0.65,
 }
 
 # Uniform zoom then crop back to the current square (Chrome 128px cap). Tuple: (zoom, vertical: "center"|"top"|"bottom").
