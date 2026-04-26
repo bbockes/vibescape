@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@fal-ai/client": "^1.3.0",
     "sharp": "^0.33.5"
   }
 }

@@ -1,0 +1,9 @@
+Image edit, critical: **Remove the dark scissor-hand silhouettes and any hand or scissor shapes that are layered ON TOP of the white organ keyboard and its keys** — the keys must be completely clear and fully visible, with no overlapping figures, no shadows of hands, and no scissor-like shapes in front of the keyboard.
+
+**Also remove** any remaining title, logo, or text above the keyboard.
+
+Inpaint those removed elements: extend the same ivory/off-white of the key tops and the same wood below so the keyboard reads as a clean uninterrupted instrument, matching the existing perspective and lighting. If any gap must be filled, use a seamless continuation of the keybed, fallboard, and nearby ground — **do not** add new objects.
+
+**Keep unchanged** everything else: topiary, suburban house, sky, path, and all parts of the image that are not the overlapping hands or title. Same color grade, same film look, same composition.
+
+Output 16:9, same framing as the source.

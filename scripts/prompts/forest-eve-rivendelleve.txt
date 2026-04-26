@@ -1,0 +1,5 @@
+Image edit, priority on STRUCTURE: Completely replace the foreground and midground buildings, bridges, tiers, and balconies. Do not preserve their shapes, arch styles, or stone layout — invent an original fantasy settlement: heavy weathered timber and dark shingle, steep asymmetrical rooflines, rough-cut stair landings, rope-and-post walkways, and small copper or amber lanterns (not the current delicate elven spires and thin white bridges).
+
+Keep only the **environmental shell**: the same dusky twilight in sky and water, the same cool silver-green mist in the far trees, similar calm water and reflections, similar overall color grade and lighting direction.
+
+The built environment must read as a different culture and design language from the current image — as if a new set was built in the same valley. Cinematic photoreal, wide shot, 16:9. No recreations of any known film or book location.

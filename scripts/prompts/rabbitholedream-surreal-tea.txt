@@ -1,0 +1,9 @@
+Image edit: Keep the same overall look and mood — pastel surreal “mad tea” picnic on grass, soft fantasy lighting, plush croquet, stacked books, teacups, cake-stand, same color palette, composition, and film softness.
+
+(1) **Remove all legible or semi-legible text on every book** — no words like “wonderland,” “adventures,” or any English titles on spines or covers. Replace with **plain or ornately blank** covers, marbled paper, simple gold tooling, or decorative patterns only.
+
+(2) **Replace props that read as a specific well-known story or film** with **generic equivalents** the same size and position: a different teapot color or silhouette, a different cake and stand if needed, a different pocket-watch style, different rabbit silhouette or **remove** a trademark rabbit/character; swap any “drink me”/labeled bottle for an unmarked glass bottle. Keep the teacup stack / croquet / grass setting — only de-brand and de-reference.
+
+(3) Do **not** change aspect ratio, brightness balance, or the dreamy aesthetic — only the text and the too-specific objects.
+
+Cinematic, photoreal where applicable, 16:9, match the source dimensions.

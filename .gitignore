@@ -1,1 +1,4 @@
 scripts/.venv/
+
+# Local Fal API key (see scripts/fal-nano-banana-edit.mjs)
+.env.fal
