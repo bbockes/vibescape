@@ -85,6 +85,21 @@ const themes = {
   opalinecourt: {
     searchPlaceholder: "seek silver-thread answers..."
   },
+  graphiteglass: {
+    searchPlaceholder: "search in quiet contrast..."
+  },
+  cobaltprint: {
+    searchPlaceholder: "find the sharp edge of the idea..."
+  },
+  prismspectrum: {
+    searchPlaceholder: "search with a little color theory..."
+  },
+  electrictropics: {
+    searchPlaceholder: "search the neon shoreline..."
+  },
+  glacierui: {
+    searchPlaceholder: "search the clean horizon..."
+  },
   tyrellnoir: {
     searchPlaceholder: "trace the signal..."
   },
@@ -213,7 +228,10 @@ const PRO_THEME_IDS = new Set([
 ]);
 
 const RANDOM_THEME_POOL = THEME_NAMES.filter((id) => !PRO_THEME_IDS.has(id));
-const PRO_THEME_POOL = THEME_NAMES.filter((id) => PRO_THEME_IDS.has(id));
+
+function isAllowedThemeId(id) {
+  return typeof id === "string" && !!themes[id] && !PRO_THEME_IDS.has(id);
+}
 
 /** Shuffled ring per pool (Pro vs regular); Random advances so no consecutive repeat until full loop. */
 const randomThemeCycle = {
@@ -244,15 +262,15 @@ function getShuffledCycleOrder(poolKind, pool) {
 
 function getCurrentTheme() {
   const t = document.body.dataset.theme;
-  return t && themes[t] ? t : "twilight";
+  return isAllowedThemeId(t) ? t : "twilight";
 }
 
 /** When chrome.storage and localStorage disagree, pick one valid theme (popup may sync LS before storage commits). */
 function pickInitialThemeFromStores(storedRaw, lsRaw) {
   const stored = typeof storedRaw === "string" ? storedRaw : "twilight";
   const ls = typeof lsRaw === "string" ? lsRaw : null;
-  const sOk = !!themes[stored];
-  const lOk = !!(ls && themes[ls]);
+  const sOk = isAllowedThemeId(stored);
+  const lOk = isAllowedThemeId(ls);
   if (!sOk && !lOk) return "twilight";
   if (sOk && !lOk) return stored;
   if (!sOk && lOk) return ls;
@@ -263,7 +281,7 @@ function pickInitialThemeFromStores(storedRaw, lsRaw) {
 }
 
 function setBodyThemeClass(theme) {
-  const resolved = themes[theme] ? theme : "twilight";
+  const resolved = isAllowedThemeId(theme) ? theme : "twilight";
   THEME_NAMES.forEach((name) => document.body.classList.remove(name));
   document.body.classList.add(resolved);
   document.body.dataset.theme = resolved;
@@ -440,6 +458,16 @@ function updateClock() {
       hour < 5 ? "maintenance night shift" : hour < 12 ? "systems green" : hour < 17 ? "hangar operations" : "shutdown sequence",
     opalinecourt:
       hour < 5 ? "moonlit court" : hour < 12 ? "morning audience" : hour < 17 ? "afternoon gala prep" : "evening procession",
+    graphiteglass:
+      hour < 5 ? "after-hours UI calm" : hour < 12 ? "clean morning typography" : hour < 17 ? "midday monochrome focus" : "graphite twilight",
+    cobaltprint:
+      hour < 5 ? "deadline blue hour" : hour < 12 ? "editorial daylight" : hour < 17 ? "gridline afternoon" : "inkwell night",
+    prismspectrum:
+      hour < 5 ? "neon dreams, soft edges" : hour < 12 ? "rainbow haze, clear mind" : hour < 17 ? "prismatic afternoon" : "spectrum quiet",
+    electrictropics:
+      hour < 5 ? "beach club closing time" : hour < 12 ? "palm shadows, bright air" : hour < 17 ? "heatwave magenta" : "midnight reef glow",
+    glacierui:
+      hour < 5 ? "cold screen, warm coffee" : hour < 12 ? "arctic morning clarity" : hour < 17 ? "ice-blue momentum" : "polar night focus",
     tyrellnoir:
       hour < 5 ? "rain at four a.m." : hour < 12 ? "chrome dawn" : hour < 17 ? "hazy afternoon heat" : "neon runoff night",
     arrakisstone:
@@ -1187,7 +1215,7 @@ window.addEventListener(
 // ── THEME SWITCHER ───────────────────────────────────────────────────
 /** @param {boolean} persistStorage When false (e.g. applying chrome.storage.onChanged), do not write storage again — avoids echo loops and races with the initial storage.get. */
 function switchTheme(theme, persistStorage = true) {
-  const resolved = typeof theme === "string" && themes[theme] ? theme : "twilight";
+  const resolved = isAllowedThemeId(theme) ? theme : "twilight";
   if (!persistStorage && getCurrentTheme() === resolved) return;
   if (resolved !== "topiaryshadow") {
     document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
@@ -1235,14 +1263,13 @@ document.getElementById("search-mag")?.addEventListener("click", () => runGoogle
 
 function randomTheme() {
   const current = getCurrentTheme();
-  const isPro = PRO_THEME_IDS.has(current);
-  const pool = isPro ? PRO_THEME_POOL : RANDOM_THEME_POOL;
+  const pool = RANDOM_THEME_POOL;
   if (pool.length < 1) return;
   if (pool.length === 1) {
     if (pool[0] !== current) switchTheme(pool[0]);
     return;
   }
-  const order = getShuffledCycleOrder(isPro ? "pro" : "regular", pool);
+  const order = getShuffledCycleOrder("regular", pool);
   const idx = order.indexOf(current);
   if (idx === -1) {
     switchTheme(order[0]);
