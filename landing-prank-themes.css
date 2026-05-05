@@ -280,7 +280,7 @@ html.landing-prank body.openingcrawl {
   background: #000;
   font-family: "News Cycle", "Barlow Condensed", sans-serif;
   color: #ffe81f;
-  cursor: url('assets/cursors/processed/star-wars-cursor.png') 37 6, auto;
+  cursor: url('assets/cursors/processed/star-wars-cursor.png') 28 5, auto;
 }
 
 html.landing-prank body.openingcrawl::before {

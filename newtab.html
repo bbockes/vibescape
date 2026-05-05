@@ -1063,7 +1063,7 @@
     body.tyrellnoir {
       background:#0a0e14;
       font-family:'Orbitron', 'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/blade-runner-cursor.png') 32 5, auto;
+      cursor: url('assets/cursors/processed/blade-runner-cursor.png') 28 4, auto;
     }
     body.tyrellnoir input.search-bar,
     body.tyrellnoir textarea {
@@ -1174,7 +1174,7 @@
     body.arrakisstone {
       background:#1c1814;
       font-family:'Marcellus', 'Cinzel', serif;
-      cursor: url('assets/cursors/processed/dune-cursor.png') 36 5, auto;
+      cursor: url('assets/cursors/processed/dune-cursor.png') 24 4, auto;
     }
     body.arrakisstone input.search-bar,
     body.arrakisstone textarea {
@@ -1362,7 +1362,7 @@
     body.rivendelleve {
       background:#1a2218;
       font-family:'Libre Baskerville', Georgia, serif;
-      cursor: url('assets/cursors/processed/lord-of-the-rings-cursor.png') 37 6, auto;
+      cursor: url('assets/cursors/processed/lord-of-the-rings-cursor.png') 34 6, auto;
     }
     body.rivendelleve input.search-bar,
     body.rivendelleve textarea {
@@ -1458,7 +1458,7 @@
     body.mendlpastel {
       background:#f4e8ec;
       font-family:'Playfair Display', Georgia, serif;
-      cursor: url('assets/cursors/processed/grand-budapest-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/grand-budapest-cursor.png') 66 9, auto;
     }
     body.mendlpastel input.search-bar,
     body.mendlpastel textarea {
@@ -1569,8 +1569,8 @@
       position: fixed;
       left: 0;
       top: 0;
-      width: 156px;
-      height: 156px;
+      width: 106px;
+      height: 106px;
       pointer-events: none;
       user-select: none;
       z-index: 2147483647;
@@ -1852,7 +1852,7 @@
       background-attachment: fixed;
       font-family: 'Syne', sans-serif;
       transition: none;
-      cursor: url('assets/cursors/processed/spiderman-cursor.png') 37 6, auto;
+      cursor: url('assets/cursors/processed/spiderman-cursor.png') 28 5, auto;
     }
     body.inkversepop input.search-bar,
     body.inkversepop textarea {
@@ -1964,7 +1964,7 @@
     body.rabbitholedream {
       background:#87ceeb;
       font-family:'Cormorant Garamond', serif;
-      cursor: url('assets/cursors/processed/alice-in-wonderland-cursor.png') 36 5, auto;
+      cursor: url('assets/cursors/processed/alice-in-wonderland-cursor.png') 30 5, auto;
     }
     body.rabbitholedream input.search-bar,
     body.rabbitholedream textarea {
@@ -2331,7 +2331,7 @@
     body.droogclockwork {
       background:#f5f0e8;
       font-family:'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/clockwork-cursor.png') 36 5, auto;
+      cursor: url('assets/cursors/processed/clockwork-cursor.png') 27 3, auto;
     }
     body.droogclockwork input.search-bar,
     body.droogclockwork textarea {
@@ -2539,7 +2539,7 @@
     body.swampfable {
       background:#3d4a30;
       font-family:'Instrument Serif', Georgia, serif;
-      cursor: url('assets/cursors/processed/shrek-cursor.png') 31 4, auto;
+      cursor: url('assets/cursors/processed/shrek-cursor.png') 26 3, auto;
     }
     body.swampfable input.search-bar,
     body.swampfable textarea {
@@ -2646,7 +2646,7 @@
     body.kanedared {
       background:#141618;
       font-family:'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/akira-cursor.png') 80 10, auto;
+      cursor: url('assets/cursors/processed/akira-cursor.png') 70 8, auto;
     }
     body.kanedared input.search-bar,
     body.kanedared textarea {
@@ -2757,7 +2757,7 @@
     body.wickiesmono {
       background: #080808;
       font-family: 'Space Mono', monospace;
-      cursor: url('assets/cursors/processed/lighthouse-cursor.png') 36 5, auto;
+      cursor: url('assets/cursors/processed/lighthouse-cursor.png') 25 3, auto;
     }
     body.wickiesmono input.search-bar,
     body.wickiesmono textarea {
@@ -2831,7 +2831,7 @@
     body.emeraldmyth {
       background:#0f1812;
       font-family:'Marcellus', 'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/oz-cursor.png') 41 6, auto;
+      cursor: url('assets/cursors/processed/oz-cursor.png') 31 5, auto;
     }
     body.emeraldmyth input.search-bar,
     body.emeraldmyth textarea {
@@ -2905,7 +2905,10 @@
     body.furyroadheat {
       background:#120805;
       font-family:'Barlow Condensed', 'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/maxmax-cursor.png') 32 5, auto;
+      cursor: auto;
+    }
+    html:not(.vibe-no-custom-cursors) body.furyroadheat.furyroadheat--show-skull-overlay {
+      cursor: none;
     }
     body.furyroadheat input.search-bar,
     body.furyroadheat textarea {
@@ -2914,6 +2917,19 @@
     body.furyroadheat .search-btn,
     body.furyroadheat .search-mag {
       cursor: pointer;
+    }
+    .furyroadheat-skull-cursor {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 68px;
+      height: 68px;
+      pointer-events: none;
+      user-select: none;
+      z-index: 2147483647;
+      opacity: 0;
+      transform: translate(-9999px, -9999px);
+      transform-origin: top left;
     }
     body.furyroadheat::before {
       content: '';
@@ -2953,7 +2969,7 @@
     body.islasplice {
       background:#0c120e;
       font-family:'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/jurassic-park-cursor.png') 37 6, auto;
+      cursor: url('assets/cursors/processed/jurassic-park-cursor.png') 28 5, auto;
     }
     body.islasplice input.search-bar,
     body.islasplice textarea {
@@ -3002,7 +3018,7 @@
     body.dreamhousepop {
       background:#1a0a18;
       font-family:'Nunito', sans-serif;
-      cursor: url('assets/cursors/processed/barbie-cursor.png') 36 5, auto;
+      cursor: url('assets/cursors/processed/barbie-cursor.png') 23 3, auto;
     }
     body.dreamhousepop input.search-bar,
     body.dreamhousepop textarea {
@@ -3072,7 +3088,7 @@
     body.discoverywhite {
       background:#ebe8e2;
       font-family:'Instrument Serif', Georgia, serif;
-      cursor: url('assets/cursors/processed/2001-space-odessey-cursor.png') 36 5, auto;
+      cursor: url('assets/cursors/processed/2001-space-odessey-cursor.png') 23 3, auto;
     }
     body.discoverywhite input.search-bar,
     body.discoverywhite textarea {
@@ -3135,7 +3151,7 @@
     body.grandlinesea {
       background:#0b1e35;
       font-family:'Cormorant Garamond', Georgia, serif;
-      cursor: url('assets/cursors/processed/one-peice-cursor.png') 36 5, auto;
+      cursor: url('assets/cursors/processed/one-peice-cursor.png') 27 3, auto;
     }
     body.grandlinesea input.search-bar,
     body.grandlinesea textarea {
@@ -3282,7 +3298,7 @@
     body.lalaland {
       background:#120818;
       font-family:'Cormorant Garamond', Georgia, serif;
-      cursor: url('assets/cursors/processed/lalaland-cursor.png') 39 6, auto;
+      cursor: url('assets/cursors/processed/lalaland-cursor.png') 31 4, auto;
     }
     body.lalaland input.search-bar,
     body.lalaland textarea {
@@ -3330,7 +3346,7 @@
     body.titanicvow {
       background:#061018;
       font-family:'Playfair Display', Georgia, serif;
-      cursor: url('assets/cursors/processed/titanic-cursor.png') 27 4, auto;
+      cursor: url('assets/cursors/processed/titanic-cursor.png') 10 2, auto;
     }
     body.titanicvow input.search-bar,
     body.titanicvow textarea {
@@ -3400,7 +3416,7 @@
       background: #0a060c;
       /* Jost ≈ geometric sans era of Futura — everywhere in 80s print, signage, and packaging */
       font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
-      cursor: url('assets/cursors/processed/stranger-things-cursor.png') 32 5, auto;
+      cursor: url('assets/cursors/processed/stranger-things-cursor.png') 26 3, auto;
     }
     body.strangerthings input.search-bar,
     body.strangerthings textarea {
@@ -3534,7 +3550,7 @@
     body.openingcrawl {
       background: #000;
       font-family: 'News Cycle', 'Barlow Condensed', sans-serif;
-      cursor: url('assets/cursors/processed/star-wars-cursor.png') 37 6, auto;
+      cursor: url('assets/cursors/processed/star-wars-cursor.png') 28 5, auto;
     }
     body.openingcrawl input.search-bar,
     body.openingcrawl textarea {

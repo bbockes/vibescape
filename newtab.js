@@ -1022,9 +1022,9 @@ function applyCustomCursorPreference(customCursorsEnabled) {
 // ── TOPIARY (Edward Scissorhands): Matrix cursor when pointer is over main content hub ─
 /** Padding around union of clock, greeting, date, search + buttons (viewport px). */
 const TOPIARY_MATRIX_ZONE_PAD = 100;
-const TOPIARY_SCISSOR_OVERLAY_SIZE = 156;
-const TOPIARY_SCISSOR_OVERLAY_HOTSPOT_X = 111;
-const TOPIARY_SCISSOR_OVERLAY_HOTSPOT_Y = 18;
+const TOPIARY_SCISSOR_OVERLAY_SIZE = 106;
+const TOPIARY_SCISSOR_OVERLAY_HOTSPOT_X = 75;
+const TOPIARY_SCISSOR_OVERLAY_HOTSPOT_Y = 13;
 let topiaryMatrixZoneLastX = -1;
 let topiaryMatrixZoneLastY = -1;
 let topiaryMatrixZoneRaf = 0;
@@ -1042,7 +1042,8 @@ function isTopiaryInteractiveCursorTarget(target) {
 }
 
 function syncTopiaryScissorOverlay(clientX, clientY, show) {
-  topiaryScissorOverlay.style.transform = `translate(${Math.round(clientX - TOPIARY_SCISSOR_OVERLAY_HOTSPOT_X)}px, ${Math.round(clientY - TOPIARY_SCISSOR_OVERLAY_HOTSPOT_Y)}px)`;
+  topiaryScissorOverlay.style.transformOrigin = `${TOPIARY_SCISSOR_OVERLAY_HOTSPOT_X}px ${TOPIARY_SCISSOR_OVERLAY_HOTSPOT_Y}px`;
+  topiaryScissorOverlay.style.transform = `translate(${Math.round(clientX - TOPIARY_SCISSOR_OVERLAY_HOTSPOT_X)}px, ${Math.round(clientY - TOPIARY_SCISSOR_OVERLAY_HOTSPOT_Y)}px) rotate(20deg)`;
   topiaryScissorOverlay.style.opacity = show ? "1" : "0";
   document.body.classList.toggle("topiaryshadow--show-scissor-overlay", show);
 }
@@ -1141,6 +1142,48 @@ window.addEventListener("blur", () => {
   syncTopiaryScissorOverlay(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY, false);
 });
 
+// ── FURY ROAD HEAT (Mad Max): skull cursor overlay ─
+const furyroadSkullOverlay = document.createElement("img");
+furyroadSkullOverlay.className = "furyroadheat-skull-cursor";
+furyroadSkullOverlay.src = "assets/cursors/processed/skull.webp";
+furyroadSkullOverlay.alt = "";
+furyroadSkullOverlay.setAttribute("aria-hidden", "true");
+document.body.appendChild(furyroadSkullOverlay);
+
+const FURYROAD_SKULL_OVERLAY_HOTSPOT_X = 14;
+const FURYROAD_SKULL_OVERLAY_HOTSPOT_Y = 13;
+
+function syncFuryroadSkullOverlay(clientX, clientY) {
+  if (getCurrentTheme() !== "furyroadheat") {
+    document.body.classList.remove("furyroadheat--show-skull-overlay");
+    furyroadSkullOverlay.style.opacity = "0";
+    return;
+  }
+  if (document.documentElement.classList.contains("vibe-no-custom-cursors")) {
+    document.body.classList.remove("furyroadheat--show-skull-overlay");
+    furyroadSkullOverlay.style.opacity = "0";
+    return;
+  }
+  const target = document.elementFromPoint(clientX, clientY);
+  const interactive = !!target?.closest(
+    "input, textarea, button, a, select, option, .search-btn, .search-mag, [role='button'], [contenteditable='true']"
+  );
+  const show = !interactive;
+  document.body.classList.toggle("furyroadheat--show-skull-overlay", show);
+  furyroadSkullOverlay.style.transformOrigin = `${FURYROAD_SKULL_OVERLAY_HOTSPOT_X}px ${FURYROAD_SKULL_OVERLAY_HOTSPOT_Y}px`;
+  furyroadSkullOverlay.style.transform = `translate(${Math.round(clientX - FURYROAD_SKULL_OVERLAY_HOTSPOT_X)}px, ${Math.round(clientY - FURYROAD_SKULL_OVERLAY_HOTSPOT_Y)}px) rotate(20deg)`;
+  furyroadSkullOverlay.style.opacity = show ? "1" : "0";
+}
+
+window.addEventListener(
+  "mousemove",
+  (e) => {
+    if (getCurrentTheme() !== "furyroadheat") return;
+    syncFuryroadSkullOverlay(e.clientX, e.clientY);
+  },
+  { passive: true }
+);
+
 // ── THEME SWITCHER ───────────────────────────────────────────────────
 /** @param {boolean} persistStorage When false (e.g. applying chrome.storage.onChanged), do not write storage again — avoids echo loops and races with the initial storage.get. */
 function switchTheme(theme, persistStorage = true) {
@@ -1149,6 +1192,10 @@ function switchTheme(theme, persistStorage = true) {
   if (resolved !== "topiaryshadow") {
     document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
     syncTopiaryScissorOverlay(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY, false);
+  }
+  if (resolved !== "furyroadheat") {
+    document.body.classList.remove("furyroadheat--show-skull-overlay");
+    furyroadSkullOverlay.style.opacity = "0";
   }
   setBodyThemeClass(resolved);
   syncMatrixRain();
