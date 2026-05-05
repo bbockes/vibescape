@@ -45,7 +45,10 @@ function parseArgs(argv) {
     aspectRatio: "16:9",
     /** @type {"0.5K"|"1K"|"2K"|"4K"} */
     resolution: "4K",
+    /** @type {"webp"|"png"} */
     outputFormat: "webp",
+    /** @type {"cover"|"contain"} */
+    fit: "cover",
     numImages: 1,
   };
   for (let i = 2; i < argv.length; i++) {
@@ -58,6 +61,8 @@ function parseArgs(argv) {
     else if (a === "--height" && argv[i + 1]) out.height = Number(argv[++i]);
     else if (a === "--aspect-ratio" && argv[i + 1]) out.aspectRatio = argv[++i];
     else if (a === "--resolution" && argv[i + 1]) out.resolution = argv[++i];
+    else if (a === "--output-format" && argv[i + 1]) out.outputFormat = argv[++i];
+    else if (a === "--fit" && argv[i + 1]) out.fit = argv[++i];
     else if (a === "--num-images" && argv[i + 1]) out.numImages = Math.min(4, Math.max(1, Number(argv[++i])));
     else if (a === "--help" || a === "-h") {
       console.log(`Usage: node scripts/fal-nano-banana-edit.mjs --input <file> --prompt "..." | --prompt-file <file> [--out <file>]
@@ -66,6 +71,8 @@ function parseArgs(argv) {
   --width/--height   default 3840 2160 (output normalized with sharp cover)
   --aspect-ratio     passed to Fal (default 16:9)
   --resolution       Fal: 0.5K | 1K | 2K | 4K (default 4K)
+  --output-format    webp | png (default webp)
+  --fit              cover | contain (default cover)
   --num-images       1-4 (default 1) — first image is used for --out
 FAL_KEY: env, or repo root .env.fal (see .gitignore)`);
       process.exit(0);
@@ -84,7 +91,15 @@ FAL_KEY: env, or repo root .env.fal (see .gitignore)`);
   if (!out.output) {
     const d = path.dirname(out.input);
     const base = path.basename(out.input, path.extname(out.input));
-    out.output = path.join(d, `${base}.fal-out.webp`);
+    out.output = path.join(d, `${base}.fal-out.${out.outputFormat}`);
+  }
+  if (out.outputFormat !== "webp" && out.outputFormat !== "png") {
+    console.error('Invalid --output-format. Use "webp" or "png".');
+    process.exit(1);
+  }
+  if (out.fit !== "cover" && out.fit !== "contain") {
+    console.error('Invalid --fit. Use "cover" or "contain".');
+    process.exit(1);
   }
   return out;
 }
@@ -160,11 +175,17 @@ async function main() {
     process.exit(1);
   }
   const buf = Buffer.from(await res.arrayBuffer());
-  const normalized = await sharp(buf)
+  const pipeline = sharp(buf)
     .rotate()
-    .resize(args.width, args.height, { fit: "cover", position: "centre" })
-    .webp({ quality: 88, effort: 6, alphaQuality: 100 })
-    .toBuffer();
+    .resize(args.width, args.height, {
+      fit: args.fit,
+      position: "centre",
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    });
+  const normalized =
+    args.outputFormat === "png"
+      ? await pipeline.png({ compressionLevel: 9, adaptiveFiltering: true }).toBuffer()
+      : await pipeline.webp({ quality: 88, effort: 6, alphaQuality: 100 }).toBuffer();
   await fs.writeFile(args.output, normalized);
   const meta = await sharp(normalized).metadata();
   console.log(JSON.stringify({ output: args.output, width: meta.width, height: meta.height, requestId: result.requestId }, null, 0));

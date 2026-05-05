@@ -642,7 +642,7 @@
     body.commonroom {
       background: #070504;
       font-family: 'Libre Baskerville', 'Cormorant Garamond', Georgia, serif;
-      cursor: url('assets/cursors/processed/harry-potter-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/harry-potter-cursor.png') 80 10, auto;
     }
     body.commonroom input.search-bar,
     body.commonroom textarea {
@@ -1063,7 +1063,7 @@
     body.tyrellnoir {
       background:#0a0e14;
       font-family:'Orbitron', 'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/blade-runner-cursor.png') 48 6, auto;
+      cursor: url('assets/cursors/processed/blade-runner-cursor.png') 32 5, auto;
     }
     body.tyrellnoir input.search-bar,
     body.tyrellnoir textarea {
@@ -1174,7 +1174,7 @@
     body.arrakisstone {
       background:#1c1814;
       font-family:'Marcellus', 'Cinzel', serif;
-      cursor: url('assets/cursors/processed/dune-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/dune-cursor.png') 36 5, auto;
     }
     body.arrakisstone input.search-bar,
     body.arrakisstone textarea {
@@ -1362,7 +1362,7 @@
     body.rivendelleve {
       background:#1a2218;
       font-family:'Libre Baskerville', Georgia, serif;
-      cursor: url('assets/cursors/processed/lord-of-the-rings-cursor.png') 45 6, auto;
+      cursor: url('assets/cursors/processed/lord-of-the-rings-cursor.png') 37 6, auto;
     }
     body.rivendelleve input.search-bar,
     body.rivendelleve textarea {
@@ -1458,7 +1458,7 @@
     body.mendlpastel {
       background:#f4e8ec;
       font-family:'Playfair Display', Georgia, serif;
-      cursor: url('assets/cursors/processed/grand-budapest-cursor.png') 51 6, auto;
+      cursor: url('assets/cursors/processed/grand-budapest-cursor.png') 64 8, auto;
     }
     body.mendlpastel input.search-bar,
     body.mendlpastel textarea {
@@ -1560,7 +1560,23 @@
     body.topiaryshadow {
       background:#c8c4d2;
       font-family: 'Times New Roman', Times, Georgia, serif;
-      cursor: url('assets/cursors/processed/scissorhands-cursor.png') 64 8, auto;
+      cursor: auto;
+    }
+    html:not(.vibe-no-custom-cursors) body.topiaryshadow.topiaryshadow--show-scissor-overlay {
+      cursor: none;
+    }
+    .topiary-scissor-cursor {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 156px;
+      height: 156px;
+      pointer-events: none;
+      user-select: none;
+      z-index: 2147483647;
+      opacity: 0;
+      transform: translate(-9999px, -9999px);
+      transform-origin: top left;
     }
     body.topiaryshadow input.search-bar,
     body.topiaryshadow textarea {
@@ -1828,7 +1844,7 @@
     */
     body.inkversepop {
       background-color: #120520;
-      background-image: url('assets/backgrounds/inkversepop/bg.webp');
+      background-image: url('assets/backgrounds/inkversepop/spiderman.webp');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -1836,7 +1852,7 @@
       background-attachment: fixed;
       font-family: 'Syne', sans-serif;
       transition: none;
-      cursor: url('assets/cursors/processed/spiderman-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/spiderman-cursor.png') 37 6, auto;
     }
     body.inkversepop input.search-bar,
     body.inkversepop textarea {
@@ -1901,7 +1917,7 @@
     body.bridesvengeance {
       background:#0a0a0a;
       font-family:'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/kill-bill-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/kill-bill-cursor.png') 80 10, auto;
     }
     body.bridesvengeance input.search-bar,
     body.bridesvengeance textarea {
@@ -1948,7 +1964,7 @@
     body.rabbitholedream {
       background:#87ceeb;
       font-family:'Cormorant Garamond', serif;
-      cursor: url('assets/cursors/processed/alice-in-wonderland-cursor.png') 45 6, auto;
+      cursor: url('assets/cursors/processed/alice-in-wonderland-cursor.png') 36 5, auto;
     }
     body.rabbitholedream input.search-bar,
     body.rabbitholedream textarea {
@@ -2040,7 +2056,7 @@
       background: #2a1812;
       font-family: 'Fredoka', 'Nunito', system-ui, sans-serif;
       --vs-drift-hue: 5deg;
-      cursor: url('assets/cursors/processed/ratatoutie-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/ratatoutie-cursor.png') 56 7, auto;
     }
     body.ratatouille input.search-bar,
     body.ratatouille textarea {
@@ -2185,7 +2201,7 @@
     body.lanternnarnia {
       background: #161412;
       font-family: 'Cinzel', serif;
-      cursor: url('assets/cursors/processed/narnia-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/narnia-cursor.png') 22 4, auto;
     }
     body.lanternnarnia input.search-bar,
     body.lanternnarnia textarea {
@@ -2315,7 +2331,7 @@
     body.droogclockwork {
       background:#f5f0e8;
       font-family:'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/clockwork-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/clockwork-cursor.png') 36 5, auto;
     }
     body.droogclockwork input.search-bar,
     body.droogclockwork textarea {
@@ -2425,7 +2441,7 @@
     body.bathspirited {
       background:#261c24;
       font-family:'Cormorant Garamond', serif;
-      cursor: url('assets/cursors/processed/spirited-away-cursor.png') 32 4, auto;
+      cursor: url('assets/cursors/processed/spirited-away-cursor.png') 22 4, auto;
     }
     body.bathspirited input.search-bar,
     body.bathspirited textarea {
@@ -2523,7 +2539,7 @@
     body.swampfable {
       background:#3d4a30;
       font-family:'Instrument Serif', Georgia, serif;
-      cursor: url('assets/cursors/processed/shrek-cursor.png') 38 5, auto;
+      cursor: url('assets/cursors/processed/shrek-cursor.png') 31 4, auto;
     }
     body.swampfable input.search-bar,
     body.swampfable textarea {
@@ -2578,7 +2594,7 @@
     body.gothamvigil {
       background:#080b10;
       font-family:'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/batman-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/batman-cursor.png') 37 6, auto;
     }
     body.gothamvigil input.search-bar,
     body.gothamvigil textarea {
@@ -2630,7 +2646,7 @@
     body.kanedared {
       background:#141618;
       font-family:'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/akira-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/akira-cursor.png') 80 10, auto;
     }
     body.kanedared input.search-bar,
     body.kanedared textarea {
@@ -2741,7 +2757,7 @@
     body.wickiesmono {
       background: #080808;
       font-family: 'Space Mono', monospace;
-      cursor: url('assets/cursors/processed/lighthouse-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/lighthouse-cursor.png') 36 5, auto;
     }
     body.wickiesmono input.search-bar,
     body.wickiesmono textarea {
@@ -2815,7 +2831,7 @@
     body.emeraldmyth {
       background:#0f1812;
       font-family:'Marcellus', 'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/oz-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/oz-cursor.png') 41 6, auto;
     }
     body.emeraldmyth input.search-bar,
     body.emeraldmyth textarea {
@@ -2889,7 +2905,7 @@
     body.furyroadheat {
       background:#120805;
       font-family:'Barlow Condensed', 'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/maxmax-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/maxmax-cursor.png') 32 5, auto;
     }
     body.furyroadheat input.search-bar,
     body.furyroadheat textarea {
@@ -2937,7 +2953,7 @@
     body.islasplice {
       background:#0c120e;
       font-family:'Syne', sans-serif;
-      cursor: url('assets/cursors/processed/jurassic-park-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/jurassic-park-cursor.png') 37 6, auto;
     }
     body.islasplice input.search-bar,
     body.islasplice textarea {
@@ -2986,7 +3002,7 @@
     body.dreamhousepop {
       background:#1a0a18;
       font-family:'Nunito', sans-serif;
-      cursor: url('assets/cursors/processed/barbie-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/barbie-cursor.png') 36 5, auto;
     }
     body.dreamhousepop input.search-bar,
     body.dreamhousepop textarea {
@@ -3056,7 +3072,7 @@
     body.discoverywhite {
       background:#ebe8e2;
       font-family:'Instrument Serif', Georgia, serif;
-      cursor: url('assets/cursors/processed/2001-space-odessey-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/2001-space-odessey-cursor.png') 36 5, auto;
     }
     body.discoverywhite input.search-bar,
     body.discoverywhite textarea {
@@ -3119,7 +3135,7 @@
     body.grandlinesea {
       background:#0b1e35;
       font-family:'Cormorant Garamond', Georgia, serif;
-      cursor: url('assets/cursors/processed/one-peice-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/one-peice-cursor.png') 36 5, auto;
     }
     body.grandlinesea input.search-bar,
     body.grandlinesea textarea {
@@ -3215,7 +3231,7 @@
     body.frozenheart {
       background:#0a1424;
       font-family:'Cinzel', 'Cormorant Garamond', serif;
-      cursor: url('assets/cursors/processed/frozen-cursor.png') 36 4, auto;
+      cursor: url('assets/cursors/processed/frozen-cursor.png') 27 4, auto;
     }
     body.frozenheart input.search-bar,
     body.frozenheart textarea {
@@ -3266,7 +3282,7 @@
     body.lalaland {
       background:#120818;
       font-family:'Cormorant Garamond', Georgia, serif;
-      cursor: url('assets/cursors/processed/lalaland-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/lalaland-cursor.png') 39 6, auto;
     }
     body.lalaland input.search-bar,
     body.lalaland textarea {
@@ -3314,7 +3330,7 @@
     body.titanicvow {
       background:#061018;
       font-family:'Playfair Display', Georgia, serif;
-      cursor: url('assets/cursors/processed/titanic-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/titanic-cursor.png') 27 4, auto;
     }
     body.titanicvow input.search-bar,
     body.titanicvow textarea {
@@ -3384,7 +3400,7 @@
       background: #0a060c;
       /* Jost ≈ geometric sans era of Futura — everywhere in 80s print, signage, and packaging */
       font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
-      cursor: url('assets/cursors/processed/stranger-things-cursor.png') 25 4, auto;
+      cursor: url('assets/cursors/processed/stranger-things-cursor.png') 32 5, auto;
     }
     body.strangerthings input.search-bar,
     body.strangerthings textarea {
@@ -3518,7 +3534,7 @@
     body.openingcrawl {
       background: #000;
       font-family: 'News Cycle', 'Barlow Condensed', sans-serif;
-      cursor: url('assets/cursors/processed/star-wars-cursor.png') 64 8, auto;
+      cursor: url('assets/cursors/processed/star-wars-cursor.png') 37 6, auto;
     }
     body.openingcrawl input.search-bar,
     body.openingcrawl textarea {

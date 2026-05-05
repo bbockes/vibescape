@@ -87,7 +87,7 @@ html.landing-prank body.commonroom {
   background: #070504;
   font-family: "Libre Baskerville", "Cormorant Garamond", Georgia, serif;
   color: #fff8e8;
-  cursor: url('assets/cursors/processed/harry-potter-cursor.png') 64 8, auto;
+  cursor: url('assets/cursors/processed/harry-potter-cursor.png') 80 10, auto;
 }
 
 html.landing-prank body.commonroom::before {
@@ -280,7 +280,7 @@ html.landing-prank body.openingcrawl {
   background: #000;
   font-family: "News Cycle", "Barlow Condensed", sans-serif;
   color: #ffe81f;
-  cursor: url('assets/cursors/processed/star-wars-cursor.png') 64 8, auto;
+  cursor: url('assets/cursors/processed/star-wars-cursor.png') 37 6, auto;
 }
 
 html.landing-prank body.openingcrawl::before {

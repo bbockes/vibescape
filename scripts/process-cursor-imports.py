@@ -30,18 +30,30 @@ except ImportError:
 
 # After normalizing to --size×--size, optional extra linear scale (square output; matches newtab cursor hotspots).
 POST_FIT_LINEAR_SCALE: dict[str, float] = {
-    "spirited-away-cursor.png": 0.5,
-    "alice-in-wonderland-cursor.png": 0.7,
-    "blade-runner-cursor.png": 0.75,
-    "frozen-cursor.png": 0.5625,
-    "lord-of-the-rings-cursor.png": 0.7,
-    "shrek-cursor.png": 0.6,
-    "stranger-things-cursor.png": 0.65,
+    "spirited-away-cursor.png": 0.40625,
+    "alice-in-wonderland-cursor.png": 0.45,
+    "blade-runner-cursor.png": 0.40625,
+    "frozen-cursor.png": 0.40625,
+    "shrek-cursor.png": 0.45,
+    "stranger-things-cursor.png": 0.55,
+    # Inspired vibes (batch 01): shrink closer to a standard OS cursor.
+    "dune-cursor.png": 0.45,
+    "oz-cursor.png": 0.45,
+    "lighthouse-cursor.png": 0.45,
+    "one-peice-cursor.png": 0.45,
+    "2001-space-odessey-cursor.png": 0.45,
+    "maxmax-cursor.png": 0.45,
+    "barbie-cursor.png": 0.45,
+    "clockwork-cursor.png": 0.45,
+    # Violet/“violent” jazz (La La Land): 20% larger than the “small” set.
+    "lalaland-cursor.png": 0.4875,
+    # Extra downscales
+    "spiderman-cursor.png": 0.40625,
 }
 
 # Uniform zoom then crop back to the current square (Chrome 128px cap). Tuple: (zoom, vertical: "center"|"top"|"bottom").
 ZOOM_SQUARE_CROP: dict[str, tuple[float, str]] = {
-    "scissorhands-cursor.png": (1.2, "bottom"),
+    "scissorhands-cursor.png": (1.0, "bottom"),
 }
 
 
