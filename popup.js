@@ -31,10 +31,6 @@ function activateNewTabSurfaceInActiveTab() {
 document.addEventListener("DOMContentLoaded", () => {
   const powerToggle = document.getElementById("vibe-power-toggle");
   const powerLabel = document.getElementById("vibe-power-label");
-  const animationsToggle = document.getElementById("vibe-animations-toggle");
-  const gearBtn = document.getElementById("gear-btn");
-  const gearDropdown = document.getElementById("gear-dropdown");
-
   function setPowerUi(enabled) {
     const on = enabled !== false;
     if (powerToggle) {
@@ -43,37 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (powerLabel) powerLabel.textContent = on ? "on" : "off";
   }
-
-  function setAnimationsUi(animOn) {
-    const on = animOn !== false;
-    if (animationsToggle) {
-      animationsToggle.classList.toggle("power-toggle--off", !on);
-      animationsToggle.setAttribute("aria-checked", on ? "true" : "false");
-    }
-  }
-
-  if (gearBtn && gearDropdown) {
-    gearBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const open = gearDropdown.hidden;
-      gearDropdown.hidden = !open;
-      gearBtn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-    document.addEventListener("click", (e) => {
-      if (!gearDropdown.hidden && !gearDropdown.contains(e.target) && e.target !== gearBtn) {
-        gearDropdown.hidden = true;
-        gearBtn.setAttribute("aria-expanded", "false");
-      }
-    });
-  }
-
-  animationsToggle?.addEventListener("click", () => {
-    chrome.storage.local.get({ vibePageAnimations: true }, (d) => {
-      const cur = d.vibePageAnimations !== false;
-      const next = !cur;
-      chrome.storage.local.set({ vibePageAnimations: next }, () => setAnimationsUi(next));
-    });
-  });
 
   powerToggle?.addEventListener("click", () => {
     chrome.storage.local.get({ vibeEnabled: true }, (d) => {
@@ -90,9 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (area !== "local") return;
     if (changes.vibeEnabled !== undefined) {
       setPowerUi(changes.vibeEnabled.newValue !== false);
-    }
-    if (changes.vibePageAnimations !== undefined) {
-      setAnimationsUi(changes.vibePageAnimations.newValue !== false);
     }
   });
 
@@ -336,7 +298,6 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       vibeTheme: "twilight",
       vibeEnabled: true,
-      vibePageAnimations: true,
       vibeFavoriteThemes: [],
     },
     (data) => {
@@ -350,7 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
       sortFavoritesFirst(favs);
       applyFavoriteUi(favs);
       setPowerUi(data?.vibeEnabled !== false);
-      setAnimationsUi(data?.vibePageAnimations !== false);
       if (data?.vibeTheme) setActive(data.vibeTheme);
       if (hasPager) {
         currentPage = pageForTheme(data?.vibeTheme || "twilight");

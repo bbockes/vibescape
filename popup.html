@@ -393,72 +393,6 @@
       border-bottom-style: dashed;
     }
 
-    .gear-wrapper {
-      position: relative;
-    }
-    .gear-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 30px;
-      height: 30px;
-      border: 1px solid rgba(155, 89, 255, 0.25);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      color: #c5a8ea;
-      cursor: pointer;
-      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.3s ease;
-    }
-    .gear-btn:hover {
-      background: rgba(155, 89, 255, 0.12);
-      border-color: rgba(200, 157, 255, 0.45);
-      color: #e8d5ff;
-    }
-    .gear-btn[aria-expanded="true"] {
-      background: rgba(155, 89, 255, 0.18);
-      border-color: rgba(200, 157, 255, 0.5);
-      color: #e8d5ff;
-      transform: rotate(45deg);
-    }
-    .gear-btn:focus-visible {
-      outline: 2px solid rgba(155, 89, 255, 0.55);
-      outline-offset: 2px;
-    }
-    .gear-dropdown {
-      position: absolute;
-      top: calc(100% + 6px);
-      right: 0;
-      z-index: 100;
-      min-width: 200px;
-      background: #1a1428;
-      border: 1px solid rgba(155, 89, 255, 0.25);
-      border-radius: 10px;
-      padding: 0.45rem 0.55rem;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(155, 89, 255, 0.08);
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-    .gear-dropdown[hidden] {
-      display: none;
-    }
-    .gear-dropdown__item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      padding: 0.3rem 0.2rem;
-      border-radius: 6px;
-    }
-    .gear-dropdown__label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #c5a8ea;
-      white-space: nowrap;
-    }
-
   </style>
 </head>
 <body>
@@ -470,26 +404,6 @@
       <div class="tagline">aesthetic for your browser</div>
     </div>
     <div class="header-controls">
-      <div class="gear-wrapper">
-        <button type="button" class="gear-btn" id="gear-btn" title="Settings" aria-expanded="false" aria-controls="gear-dropdown">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        </button>
-        <div class="gear-dropdown" id="gear-dropdown" hidden>
-          <div class="gear-dropdown__item">
-            <span class="gear-dropdown__label">Page animations</span>
-            <button
-              type="button"
-              class="power-toggle"
-              id="vibe-animations-toggle"
-              role="switch"
-              aria-checked="true"
-              title="Entrance animations when a new tab loads"
-            >
-              <span class="power-toggle__track" aria-hidden="true"><span class="power-toggle__thumb"></span></span>
-            </button>
-          </div>
-        </div>
-      </div>
       <button
         type="button"
         class="power-toggle"

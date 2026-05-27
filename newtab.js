@@ -1002,15 +1002,11 @@ setInterval(() => {
 }, 1200);
 
 // ── INIT ─────────────────────────────────────────────────────────────
-function applyPageAnimationsPreference(enabled) {
-  document.body.classList.toggle("animations-off", !enabled);
-}
-
 chrome.storage.local.get(
-  { vibeTheme: "twilight", vibeEnabled: true, vibePageAnimations: true },
+  { vibeTheme: "twilight", vibeEnabled: true },
   (data) => {
     if (data?.vibeEnabled === false) return;
-    applyPageAnimationsPreference(data?.vibePageAnimations !== false);
+    document.body.classList.remove("animations-off");
     let lsTheme = null;
     try {
       lsTheme = localStorage.getItem("vibeTheme");
@@ -1033,9 +1029,6 @@ chrome.storage.onChanged.addListener((changes, area) => {
       if (t?.id != null) chrome.tabs.update(t.id, { url: "chrome://new-tab-page" });
     });
     return;
-  }
-  if (changes.vibePageAnimations !== undefined) {
-    applyPageAnimationsPreference(changes.vibePageAnimations.newValue !== false);
   }
   if (changes.vibeTheme?.newValue !== undefined && changes.vibeTheme.newValue !== null) {
     switchTheme(changes.vibeTheme.newValue, false);
