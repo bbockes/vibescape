@@ -1,4 +1,7 @@
 scripts/.venv/
 
+# Chrome Web Store build artifacts (too large for GitHub)
+*.zip
+
 # Local Fal API key (see scripts/fal-nano-banana-edit.mjs)
 .env.fal

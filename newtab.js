@@ -228,10 +228,7 @@ const PRO_THEME_IDS = new Set([
 ]);
 
 const RANDOM_THEME_POOL = THEME_NAMES.filter((id) => !PRO_THEME_IDS.has(id));
-
-function isAllowedThemeId(id) {
-  return typeof id === "string" && !!themes[id] && !PRO_THEME_IDS.has(id);
-}
+const PRO_THEME_POOL = THEME_NAMES.filter((id) => PRO_THEME_IDS.has(id));
 
 /** Shuffled ring per pool (Pro vs regular); Random advances so no consecutive repeat until full loop. */
 const randomThemeCycle = {
@@ -262,15 +259,15 @@ function getShuffledCycleOrder(poolKind, pool) {
 
 function getCurrentTheme() {
   const t = document.body.dataset.theme;
-  return isAllowedThemeId(t) ? t : "twilight";
+  return t && themes[t] ? t : "twilight";
 }
 
 /** When chrome.storage and localStorage disagree, pick one valid theme (popup may sync LS before storage commits). */
 function pickInitialThemeFromStores(storedRaw, lsRaw) {
   const stored = typeof storedRaw === "string" ? storedRaw : "twilight";
   const ls = typeof lsRaw === "string" ? lsRaw : null;
-  const sOk = isAllowedThemeId(stored);
-  const lOk = isAllowedThemeId(ls);
+  const sOk = !!themes[stored];
+  const lOk = !!(ls && themes[ls]);
   if (!sOk && !lOk) return "twilight";
   if (sOk && !lOk) return stored;
   if (!sOk && lOk) return ls;
@@ -281,7 +278,7 @@ function pickInitialThemeFromStores(storedRaw, lsRaw) {
 }
 
 function setBodyThemeClass(theme) {
-  const resolved = isAllowedThemeId(theme) ? theme : "twilight";
+  const resolved = themes[theme] ? theme : "twilight";
   THEME_NAMES.forEach((name) => document.body.classList.remove(name));
   document.body.classList.add(resolved);
   document.body.dataset.theme = resolved;
@@ -932,299 +929,12 @@ function syncMatrixRain() {
   startMatrixRainIntro();
 }
 
-// ── COMMON ROOM: SNITCH MOTION AURA (soft glow follows pointer, no click) ─
-(function initSnitchMotionAura() {
-  const root = document.getElementById("snitch-motion");
-  const core = root?.querySelector?.(".snitch-motion__core");
-  if (!root || !core) return;
-
-  let mx = window.innerWidth * 0.5;
-  let my = window.innerHeight * 0.5;
-  let suppressWhileOverSearchUi = false;
-
-  // Hide the aura while the pointer is over the search UI (input + buttons),
-  // so the parchment field stays clean and readable.
-  const searchWrapper = document.querySelector(".search-wrapper");
-  if (searchWrapper) {
-    searchWrapper.addEventListener(
-      "pointerenter",
-      () => {
-        suppressWhileOverSearchUi = true;
-      },
-      { passive: true }
-    );
-    searchWrapper.addEventListener(
-      "pointerleave",
-      () => {
-        suppressWhileOverSearchUi = false;
-      },
-      { passive: true }
-    );
-  }
-
-  /* Match newtab.html body.commonroom cursor: url(...) <hx> <hy> (128×128; top-mid hotspot like all theme cursors). */
-  const COMMONROOM_CURSOR_HOTSPOT = { hx: 64, hy: 8 };
-  /* Wand tip sits near top-left of the PNG; nudge in px from image top-left if art isn’t flush. */
-  const WAND_TIP_FROM_IMAGE_TL = { x: 6, y: 8 };
-
-  window.addEventListener(
-    "mousemove",
-    (e) => {
-      if (getCurrentTheme() !== "commonroom") return;
-      mx = e.clientX;
-      my = e.clientY;
-    },
-    { passive: true }
-  );
-
-  function tick() {
-    const theme = getCurrentTheme();
-    const reduced = document.body.classList.contains("motion-reduced");
-    const noCustomCursor = document.documentElement.classList.contains("vibe-no-custom-cursors");
-    if (theme !== "commonroom" || reduced || noCustomCursor || suppressWhileOverSearchUi) {
-      root.hidden = true;
-      requestAnimationFrame(tick);
-      return;
-    }
-    root.hidden = false;
-
-    /* Glow center = wand tip: screen pos of image TL + offset (hotspot aligns mx,my with hx,hy in image). */
-    const cx = mx - COMMONROOM_CURSOR_HOTSPOT.hx + WAND_TIP_FROM_IMAGE_TL.x;
-    const cy = my - COMMONROOM_CURSOR_HOTSPOT.hy + WAND_TIP_FROM_IMAGE_TL.y;
-    core.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
-
-    requestAnimationFrame(tick);
-  }
-
-  requestAnimationFrame(tick);
-})();
-
-// ── GILDED JAZZ THEME: harbor-light cursor aura (#0b815a) ─
-(function initGildedHarborLightAura() {
-  const root = document.getElementById("green-light-motion");
-  const core = root?.querySelector?.(".green-light-motion__core");
-  if (!root || !core) return;
-
-  let mx = window.innerWidth * 0.5;
-  let my = window.innerHeight * 0.5;
-
-  window.addEventListener(
-    "mousemove",
-    (e) => {
-      if (getCurrentTheme() !== "gatsbygilded") return;
-      mx = e.clientX;
-      my = e.clientY;
-    },
-    { passive: true }
-  );
-
-  function tick() {
-    const theme = getCurrentTheme();
-    const reduced = document.body.classList.contains("motion-reduced");
-    const noCustomCursor = document.documentElement.classList.contains("vibe-no-custom-cursors");
-    if (theme !== "gatsbygilded" || reduced || noCustomCursor) {
-      root.hidden = true;
-      requestAnimationFrame(tick);
-      return;
-    }
-    root.hidden = false;
-
-    core.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
-
-    requestAnimationFrame(tick);
-  }
-
-  requestAnimationFrame(tick);
-})();
-
-function applyCustomCursorPreference(customCursorsEnabled) {
-  document.documentElement.classList.toggle(
-    "vibe-no-custom-cursors",
-    customCursorsEnabled === false
-  );
-  if (customCursorsEnabled === false) {
-    document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
-  }
-}
-
-// ── TOPIARY (Edward Scissorhands): Matrix cursor when pointer is over main content hub ─
-/** Padding around union of clock, greeting, date, search + buttons (viewport px). */
-const TOPIARY_MATRIX_ZONE_PAD = 100;
-const TOPIARY_SCISSOR_OVERLAY_SIZE = 106;
-const TOPIARY_SCISSOR_OVERLAY_HOTSPOT_X = 75;
-const TOPIARY_SCISSOR_OVERLAY_HOTSPOT_Y = 13;
-let topiaryMatrixZoneLastX = -1;
-let topiaryMatrixZoneLastY = -1;
-let topiaryMatrixZoneRaf = 0;
-const topiaryScissorOverlay = document.createElement("img");
-topiaryScissorOverlay.className = "topiary-scissor-cursor";
-topiaryScissorOverlay.src = "assets/cursors/processed/scissorhands-cursor.png";
-topiaryScissorOverlay.alt = "";
-topiaryScissorOverlay.setAttribute("aria-hidden", "true");
-document.body.appendChild(topiaryScissorOverlay);
-
-function isTopiaryInteractiveCursorTarget(target) {
-  return !!target?.closest(
-    "input, textarea, button, a, select, option, .search-btn, .search-mag, [role='button'], [contenteditable='true']"
-  );
-}
-
-function syncTopiaryScissorOverlay(clientX, clientY, show) {
-  topiaryScissorOverlay.style.transformOrigin = `${TOPIARY_SCISSOR_OVERLAY_HOTSPOT_X}px ${TOPIARY_SCISSOR_OVERLAY_HOTSPOT_Y}px`;
-  topiaryScissorOverlay.style.transform = `translate(${Math.round(clientX - TOPIARY_SCISSOR_OVERLAY_HOTSPOT_X)}px, ${Math.round(clientY - TOPIARY_SCISSOR_OVERLAY_HOTSPOT_Y)}px) rotate(20deg)`;
-  topiaryScissorOverlay.style.opacity = show ? "1" : "0";
-  document.body.classList.toggle("topiaryshadow--show-scissor-overlay", show);
-}
-
-function getTopiaryMatrixContentZoneRect() {
-  const rects = [];
-  for (const id of ["clock", "greeting", "dateline"]) {
-    const el = document.getElementById(id);
-    if (!el) continue;
-    const r = el.getBoundingClientRect();
-    if (r.width > 0 && r.height > 0) rects.push(r);
-  }
-  const searchWrap = document.querySelector(".content .search-wrapper");
-  if (searchWrap) {
-    const r = searchWrap.getBoundingClientRect();
-    if (r.width > 0 && r.height > 0) rects.push(r);
-  }
-  if (!rects.length) return null;
-
-  let left = Infinity;
-  let top = Infinity;
-  let right = -Infinity;
-  let bottom = -Infinity;
-  for (const r of rects) {
-    left = Math.min(left, r.left);
-    top = Math.min(top, r.top);
-    right = Math.max(right, r.right);
-    bottom = Math.max(bottom, r.bottom);
-  }
-  const p = TOPIARY_MATRIX_ZONE_PAD;
-  return {
-    left: left - p,
-    top: top - p,
-    right: right + p,
-    bottom: bottom + p,
-  };
-}
-
-function syncTopiaryMatrixCursorZone(clientX, clientY) {
-  if (getCurrentTheme() !== "topiaryshadow") {
-    document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
-    syncTopiaryScissorOverlay(clientX, clientY, false);
-    return;
-  }
-  if (document.documentElement.classList.contains("vibe-no-custom-cursors")) {
-    document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
-    syncTopiaryScissorOverlay(clientX, clientY, false);
-    return;
-  }
-  const zone = getTopiaryMatrixContentZoneRect();
-  if (!zone) {
-    document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
-    syncTopiaryScissorOverlay(clientX, clientY, false);
-    return;
-  }
-  const inside =
-    clientX >= zone.left &&
-    clientX <= zone.right &&
-    clientY >= zone.top &&
-    clientY <= zone.bottom;
-  document.body.classList.toggle("topiaryshadow--matrix-cursor-zone", inside);
-  const showOverlay = !inside && !isTopiaryInteractiveCursorTarget(document.elementFromPoint(clientX, clientY));
-  syncTopiaryScissorOverlay(clientX, clientY, showOverlay);
-}
-
-function scheduleTopiaryMatrixCursorZoneCheck(clientX, clientY) {
-  topiaryMatrixZoneLastX = clientX;
-  topiaryMatrixZoneLastY = clientY;
-  if (topiaryMatrixZoneRaf) return;
-  topiaryMatrixZoneRaf = requestAnimationFrame(() => {
-    topiaryMatrixZoneRaf = 0;
-    if (topiaryMatrixZoneLastX < 0) return;
-    syncTopiaryMatrixCursorZone(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY);
-  });
-}
-
-window.addEventListener(
-  "mousemove",
-  (e) => {
-    if (getCurrentTheme() !== "topiaryshadow") return;
-    scheduleTopiaryMatrixCursorZoneCheck(e.clientX, e.clientY);
-  },
-  { passive: true }
-);
-
-window.addEventListener("resize", () => {
-  if (getCurrentTheme() !== "topiaryshadow" || topiaryMatrixZoneLastX < 0) return;
-  scheduleTopiaryMatrixCursorZoneCheck(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY);
-});
-
-window.addEventListener("mouseleave", () => {
-  syncTopiaryScissorOverlay(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY, false);
-});
-
-window.addEventListener("blur", () => {
-  syncTopiaryScissorOverlay(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY, false);
-});
-
-// ── FURY ROAD HEAT (Mad Max): skull cursor overlay ─
-const furyroadSkullOverlay = document.createElement("img");
-furyroadSkullOverlay.className = "furyroadheat-skull-cursor";
-furyroadSkullOverlay.src = "assets/cursors/processed/skull.webp";
-furyroadSkullOverlay.alt = "";
-furyroadSkullOverlay.setAttribute("aria-hidden", "true");
-document.body.appendChild(furyroadSkullOverlay);
-
-const FURYROAD_SKULL_OVERLAY_HOTSPOT_X = 14;
-const FURYROAD_SKULL_OVERLAY_HOTSPOT_Y = 13;
-
-function syncFuryroadSkullOverlay(clientX, clientY) {
-  if (getCurrentTheme() !== "furyroadheat") {
-    document.body.classList.remove("furyroadheat--show-skull-overlay");
-    furyroadSkullOverlay.style.opacity = "0";
-    return;
-  }
-  if (document.documentElement.classList.contains("vibe-no-custom-cursors")) {
-    document.body.classList.remove("furyroadheat--show-skull-overlay");
-    furyroadSkullOverlay.style.opacity = "0";
-    return;
-  }
-  const target = document.elementFromPoint(clientX, clientY);
-  const interactive = !!target?.closest(
-    "input, textarea, button, a, select, option, .search-btn, .search-mag, [role='button'], [contenteditable='true']"
-  );
-  const show = !interactive;
-  document.body.classList.toggle("furyroadheat--show-skull-overlay", show);
-  furyroadSkullOverlay.style.transformOrigin = `${FURYROAD_SKULL_OVERLAY_HOTSPOT_X}px ${FURYROAD_SKULL_OVERLAY_HOTSPOT_Y}px`;
-  furyroadSkullOverlay.style.transform = `translate(${Math.round(clientX - FURYROAD_SKULL_OVERLAY_HOTSPOT_X)}px, ${Math.round(clientY - FURYROAD_SKULL_OVERLAY_HOTSPOT_Y)}px) rotate(20deg)`;
-  furyroadSkullOverlay.style.opacity = show ? "1" : "0";
-}
-
-window.addEventListener(
-  "mousemove",
-  (e) => {
-    if (getCurrentTheme() !== "furyroadheat") return;
-    syncFuryroadSkullOverlay(e.clientX, e.clientY);
-  },
-  { passive: true }
-);
 
 // ── THEME SWITCHER ───────────────────────────────────────────────────
 /** @param {boolean} persistStorage When false (e.g. applying chrome.storage.onChanged), do not write storage again — avoids echo loops and races with the initial storage.get. */
 function switchTheme(theme, persistStorage = true) {
-  const resolved = isAllowedThemeId(theme) ? theme : "twilight";
+  const resolved = typeof theme === "string" && themes[theme] ? theme : "twilight";
   if (!persistStorage && getCurrentTheme() === resolved) return;
-  if (resolved !== "topiaryshadow") {
-    document.body.classList.remove("topiaryshadow--matrix-cursor-zone");
-    syncTopiaryScissorOverlay(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY, false);
-  }
-  if (resolved !== "furyroadheat") {
-    document.body.classList.remove("furyroadheat--show-skull-overlay");
-    furyroadSkullOverlay.style.opacity = "0";
-  }
   setBodyThemeClass(resolved);
   syncMatrixRain();
   setQuote(resolved);
@@ -1232,11 +942,6 @@ function switchTheme(theme, persistStorage = true) {
   if (resolved === "twilight" || resolved === "witchy" || resolved === "openingcrawl") drawStars(resolved);
   if (persistStorage) {
     chrome.storage.local.set({ vibeTheme: resolved });
-  }
-  if (resolved === "topiaryshadow" && topiaryMatrixZoneLastX >= 0) {
-    requestAnimationFrame(() =>
-      syncTopiaryMatrixCursorZone(topiaryMatrixZoneLastX, topiaryMatrixZoneLastY)
-    );
   }
 }
 
@@ -1263,13 +968,14 @@ document.getElementById("search-mag")?.addEventListener("click", () => runGoogle
 
 function randomTheme() {
   const current = getCurrentTheme();
-  const pool = RANDOM_THEME_POOL;
+  const isPro = PRO_THEME_IDS.has(current);
+  const pool = isPro ? PRO_THEME_POOL : RANDOM_THEME_POOL;
   if (pool.length < 1) return;
   if (pool.length === 1) {
     if (pool[0] !== current) switchTheme(pool[0]);
     return;
   }
-  const order = getShuffledCycleOrder("regular", pool);
+  const order = getShuffledCycleOrder(isPro ? "pro" : "regular", pool);
   const idx = order.indexOf(current);
   if (idx === -1) {
     switchTheme(order[0]);
@@ -1301,10 +1007,9 @@ function applyPageAnimationsPreference(enabled) {
 }
 
 chrome.storage.local.get(
-  { vibeTheme: "twilight", vibeEnabled: true, vibeCustomCursors: true, vibePageAnimations: true },
+  { vibeTheme: "twilight", vibeEnabled: true, vibePageAnimations: true },
   (data) => {
     if (data?.vibeEnabled === false) return;
-    applyCustomCursorPreference(data?.vibeCustomCursors !== false);
     applyPageAnimationsPreference(data?.vibePageAnimations !== false);
     let lsTheme = null;
     try {
@@ -1328,9 +1033,6 @@ chrome.storage.onChanged.addListener((changes, area) => {
       if (t?.id != null) chrome.tabs.update(t.id, { url: "chrome://new-tab-page" });
     });
     return;
-  }
-  if (changes.vibeCustomCursors !== undefined) {
-    applyCustomCursorPreference(changes.vibeCustomCursors.newValue !== false);
   }
   if (changes.vibePageAnimations !== undefined) {
     applyPageAnimationsPreference(changes.vibePageAnimations.newValue !== false);

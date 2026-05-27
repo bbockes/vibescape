@@ -166,12 +166,6 @@
     .power-toggle:not(.power-toggle--off) .power-toggle__label {
       color: #c89dff;
     }
-    #vibe-cursor-label {
-      min-width: 2.45rem;
-      text-align: center;
-      letter-spacing: 0.1em;
-    }
-
     .label {
       font-size: 0.76rem;
       letter-spacing: 0.18em;
@@ -194,6 +188,7 @@
       flex-direction: column;
       gap: var(--theme-row-gap);
       min-height: calc((var(--theme-row-h) * 5) + (var(--theme-row-gap) * 4));
+      margin-bottom: 0.35rem;
     }
 
     .theme-section {
@@ -250,30 +245,6 @@
       flex-direction: column;
       gap: var(--theme-row-gap);
     }
-    .theme-section__stories-foot {
-      margin-top: 0.3rem;
-      padding: 0.2rem 0.15rem 0.1rem;
-      text-align: center;
-    }
-    .theme-section__stories-foot__link {
-      font-size: 0.72rem;
-      line-height: 1.45;
-      color: #a892d4;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(168, 146, 212, 0.42);
-      padding-bottom: 1px;
-      letter-spacing: 0.02em;
-    }
-    .theme-section__stories-foot__link:hover {
-      color: #dcc8ff;
-      border-bottom-color: rgba(220, 200, 255, 0.55);
-    }
-    .theme-section__stories-foot__link--pending {
-      opacity: 0.55;
-      cursor: default;
-      border-bottom-style: dashed;
-    }
-
     .theme-option {
       display: flex;
       align-items: center;
@@ -331,8 +302,8 @@
     .theme-option.active .theme-desc { color: #b69de3; }
 
     .pager {
-      margin-top: calc(0.75rem - 9px);
-      padding-top: calc(0.55rem - 4px);
+      margin-top: 0.55rem;
+      padding-top: 0.45rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -499,6 +470,26 @@
       <div class="tagline">aesthetic for your browser</div>
     </div>
     <div class="header-controls">
+      <div class="gear-wrapper">
+        <button type="button" class="gear-btn" id="gear-btn" title="Settings" aria-expanded="false" aria-controls="gear-dropdown">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+        <div class="gear-dropdown" id="gear-dropdown" hidden>
+          <div class="gear-dropdown__item">
+            <span class="gear-dropdown__label">Page animations</span>
+            <button
+              type="button"
+              class="power-toggle"
+              id="vibe-animations-toggle"
+              role="switch"
+              aria-checked="true"
+              title="Entrance animations when a new tab loads"
+            >
+              <span class="power-toggle__track" aria-hidden="true"><span class="power-toggle__thumb"></span></span>
+            </button>
+          </div>
+        </div>
+      </div>
       <button
         type="button"
         class="power-toggle"
@@ -518,6 +509,20 @@
 
   <div class="theme-list">
     <div class="theme-section">
+      <div
+        class="theme-section__header"
+        id="original-section-header"
+      >
+        <span class="theme-section__header-label">
+          <span
+            class="theme-section__pager-hint theme-section__pager-hint--leading"
+            id="original-section-pager-hint"
+            hidden
+            aria-hidden="true"
+          >←</span>
+          Original vibes
+        </span>
+      </div>
       <div class="theme-section__body">
     <div class="theme-option" data-theme="financebro">
       <div class="theme-emoji">📈</div>
@@ -624,39 +629,232 @@
         <div class="theme-desc">pastel royalty + jeweled mist</div>
       </div>
     </div>
-    <div class="theme-option" data-theme="graphiteglass">
-      <div class="theme-emoji">⬛</div>
-      <div class="theme-info">
-        <div class="theme-name">graphite glass</div>
-        <div class="theme-desc">modern charcoal UI, soft highlight, quiet luxury</div>
       </div>
     </div>
-    <div class="theme-option" data-theme="cobaltprint">
-      <div class="theme-emoji">🧿</div>
+    <div class="theme-section theme-section--stories">
+      <div
+        class="theme-section__header"
+        id="stories-section-header"
+      >
+        <span class="theme-section__header-label">
+          Inspired vibes
+          <span
+            class="theme-section__pager-hint"
+            id="stories-section-pager-hint"
+            hidden
+            aria-hidden="true"
+          >→</span>
+        </span>
+      </div>
+      <div class="theme-section__body">
+    <div class="theme-option" data-theme="ratatouille">
+      <div class="theme-emoji">🐀</div>
       <div class="theme-info">
-        <div class="theme-name">cobalt print</div>
-        <div class="theme-desc">blue ink contrast, crisp editorial energy</div>
+        <div class="theme-name">bistro night</div>
+        <div class="theme-desc">warm kitchen glow, midnight paris calm</div>
       </div>
     </div>
-    <div class="theme-option" data-theme="prismspectrum">
+    <div class="theme-option" data-theme="commonroom">
+      <div class="theme-emoji">📜</div>
+      <div class="theme-info">
+        <div class="theme-name">hearth scroll</div>
+        <div class="theme-desc">parchment bar, warm glow, cathedral serif time</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="inkversepop">
+      <div class="theme-emoji">🕸️</div>
+      <div class="theme-info">
+        <div class="theme-name">halftone pop</div>
+        <div class="theme-desc">comic halftone, ink rifts, chrome city still</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="lanternnarnia">
+      <div class="theme-emoji">🦁</div>
+      <div class="theme-info">
+        <div class="theme-name">winter lantern</div>
+        <div class="theme-desc">mythic frost, lamplit glow</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="openingcrawl">
+      <div class="theme-emoji">✦</div>
+      <div class="theme-info">
+        <div class="theme-name">starlit crawl</div>
+        <div class="theme-desc">deep void, amber text tilted in perspective</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="rivendelleve">
+      <div class="theme-emoji">⚔️</div>
+      <div class="theme-info">
+        <div class="theme-name">forest eve</div>
+        <div class="theme-desc">forest court at twilight, grounded epic fantasy</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="tyrellnoir">
+      <div class="theme-emoji">🌧️</div>
+      <div class="theme-info">
+        <div class="theme-name">spire noir</div>
+        <div class="theme-desc">acid rain, glass towers, electric gloom</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="arrakisstone">
+      <div class="theme-emoji">🏜️</div>
+      <div class="theme-info">
+        <div class="theme-name">sandstone brutal</div>
+        <div class="theme-desc">bleached dunes, harsh forms, quiet sci-fi epic</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="matrixfall">
+      <div class="theme-emoji">💊</div>
+      <div class="theme-info">
+        <div class="theme-name">cipher fall</div>
+        <div class="theme-desc">green glyph rain, sleek terminal mood</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="bathspirited">
+      <div class="theme-emoji">♨️</div>
+      <div class="theme-info">
+        <div class="theme-name">onsen dusk</div>
+        <div class="theme-desc">steam hush, lantern vermillion, soft twilight</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="mendlpastel">
+      <div class="theme-emoji">🏨</div>
+      <div class="theme-info">
+        <div class="theme-name">foyer pastel</div>
+        <div class="theme-desc">pastel symmetry, concierge calm</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="topiaryshadow">
+      <div class="theme-emoji">✂️</div>
+      <div class="theme-info">
+        <div class="theme-name">topiary shadow</div>
+        <div class="theme-desc">gothic suburbia, dark fairytale</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="bridesvengeance">
+      <div class="theme-emoji">⚔️</div>
+      <div class="theme-info">
+        <div class="theme-name">saffron blade</div>
+        <div class="theme-desc">bold yellow blocks, stark revenge energy</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="rabbitholedream">
+      <div class="theme-emoji">🐇</div>
+      <div class="theme-info">
+        <div class="theme-name">teacup dream</div>
+        <div class="theme-desc">surreal sky blues, crooked whimsy</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="wickiesmono">
+      <div class="theme-emoji">🗼</div>
+      <div class="theme-info">
+        <div class="theme-name">beacon grain</div>
+        <div class="theme-desc">tower beam haze, salt-spray noir</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="emeraldmyth">
       <div class="theme-emoji">🌈</div>
       <div class="theme-info">
-        <div class="theme-name">prism spectrum</div>
-        <div class="theme-desc">clean white glass with a gentle rainbow bloom</div>
+        <div class="theme-name">rainbow verge</div>
+        <div class="theme-desc">chroma path, gold sky strip, mythic green horizon</div>
       </div>
     </div>
-    <div class="theme-option" data-theme="electrictropics">
-      <div class="theme-emoji">🌴</div>
+    <div class="theme-option" data-theme="kanedared">
+      <div class="theme-emoji">🏍️</div>
       <div class="theme-info">
-        <div class="theme-name">electric tropics</div>
-        <div class="theme-desc">neon magenta + teal night energy, club stillness</div>
+        <div class="theme-name">taillight red</div>
+        <div class="theme-desc">neon concrete, speed streak, night-city fury</div>
       </div>
     </div>
-    <div class="theme-option" data-theme="glacierui">
-      <div class="theme-emoji">🧊</div>
+    <div class="theme-option" data-theme="gatsbygilded">
+      <div class="theme-emoji">✨</div>
       <div class="theme-info">
-        <div class="theme-name">glacier UI</div>
-        <div class="theme-desc">frosted glass, cool focus, clean lines</div>
+        <div class="theme-name">gilded jazz</div>
+        <div class="theme-desc">art-deco glamour, champagne gloom, harbor light</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="swampfable">
+      <div class="theme-emoji">🫏</div>
+      <div class="theme-info">
+        <div class="theme-name">swamp fable</div>
+        <div class="theme-desc">muddy fairytale parody, blunt charm</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="grandlinesea">
+      <div class="theme-emoji">🏴‍☠️</div>
+      <div class="theme-info">
+        <div class="theme-name">open blue</div>
+        <div class="theme-desc">deep odyssey blues, horizon gold, summer warmth</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="gothamvigil">
+      <div class="theme-emoji">🦇</div>
+      <div class="theme-info">
+        <div class="theme-name">signal storm</div>
+        <div class="theme-desc">noir rain, rooftop gold, solemn night watch</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="discoverywhite">
+      <div class="theme-emoji">🛰️</div>
+      <div class="theme-info">
+        <div class="theme-name">probe white</div>
+        <div class="theme-desc">sterile bay panels, lone crimson accent</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="furyroadheat">
+      <div class="theme-emoji">🔥</div>
+      <div class="theme-info">
+        <div class="theme-name">steel wasteland</div>
+        <div class="theme-desc">chaotic motion, desert chrome and flame</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="islasplice">
+      <div class="theme-emoji">🦖</div>
+      <div class="theme-info">
+        <div class="theme-name">amber grid</div>
+        <div class="theme-desc">lush jungle life, fence-line tension, system glow</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="dreamhousepop">
+      <div class="theme-emoji">💅</div>
+      <div class="theme-info">
+        <div class="theme-name">plastic palace</div>
+        <div class="theme-desc">hyper-pink glam, glossy sunset maximalism</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="droogclockwork">
+      <div class="theme-emoji">🍊</div>
+      <div class="theme-info">
+        <div class="theme-name">mod edge</div>
+        <div class="theme-desc">sharp suits, stylized youth, bruised citrus</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="frozenheart">
+      <div class="theme-emoji">❄️</div>
+      <div class="theme-info">
+        <div class="theme-name">aurora ice</div>
+        <div class="theme-desc">frost stills, quiet bonds, cold sparkle</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="lalaland">
+      <div class="theme-emoji">🎹</div>
+      <div class="theme-info">
+        <div class="theme-name">violet jazz</div>
+        <div class="theme-desc">horn glow, dream haze, city dusk</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="titanicvow">
+      <div class="theme-emoji">🚢</div>
+      <div class="theme-info">
+        <div class="theme-name">liner vow</div>
+        <div class="theme-desc">grand staircase mood, brass, salt air</div>
+      </div>
+    </div>
+    <div class="theme-option" data-theme="strangerthings">
+      <div class="theme-emoji">💡</div>
+      <div class="theme-info">
+        <div class="theme-name">upside echo</div>
+        <div class="theme-desc">small-town neon dread, fairy lights in the dark woods</div>
       </div>
     </div>
       </div>

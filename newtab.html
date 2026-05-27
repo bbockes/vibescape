@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="vibe-no-custom-cursors">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -868,62 +868,6 @@
       color: #e0c896;
       font-size: 0.9rem !important;
       text-shadow: 0 2px 14px rgba(0, 0, 0, 0.88);
-    }
-
-    /* Pointer-follow auras (JS-driven; under UI at z-index 1) */
-    .snitch-motion,
-    .green-light-motion {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
-      contain: strict;
-    }
-    .snitch-motion[hidden],
-    .green-light-motion[hidden] {
-      display: none !important;
-    }
-    .snitch-motion__core {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100px;
-      height: 100px;
-      margin: -50px 0 0 -50px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        rgba(255, 248, 220, 0.55) 0%,
-        rgba(255, 215, 120, 0.28) 38%,
-        rgba(255, 190, 70, 0.08) 62%,
-        transparent 72%
-      );
-      filter: blur(16px);
-      opacity: 0.92;
-      will-change: transform;
-      mix-blend-mode: screen;
-    }
-    .green-light-motion__core {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 220px;
-      height: 220px;
-      margin: -110px 0 0 -110px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        rgba(210, 255, 235, 0.82) 0%,
-        rgba(20, 200, 145, 0.62) 28%,
-        rgba(11, 129, 90, 0.55) 42%,
-        rgba(11, 129, 90, 0.28) 58%,
-        transparent 78%
-      );
-      filter: blur(24px);
-      opacity: 1;
-      will-change: transform;
-      mix-blend-mode: screen;
     }
 
     /* ─── THEME: STAR CARTOGRAPHER ───────────────────────────────────── */
@@ -2527,18 +2471,9 @@
     body.droogclockwork .quote { color:#2e2c28; font-style:normal; font-size:clamp(1.1rem,2vw,1.35rem)!important; text-shadow:0 1px 2px rgba(255,255,255,0.6); } body.droogclockwork .quote-author { color:#d45820; text-shadow:0 1px 2px rgba(255,255,255,0.5); }
 
     /* ─── GILDED JAZZ (art deco / jazz-age excess) ─────────────────── */
-    /* No visible cursor — only the green-light aura follows the pointer (see .green-light-motion). */
     body.gatsbygilded {
       background:#1c2840;
       font-family:'Playfair Display', Georgia, serif;
-      cursor: none;
-    }
-    body.gatsbygilded input.search-bar,
-    body.gatsbygilded textarea,
-    body.gatsbygilded button,
-    body.gatsbygilded .search-mag,
-    body.gatsbygilded .search-btn {
-      cursor: none;
     }
     body.gatsbygilded::before {
       content: '';
@@ -5514,7 +5449,7 @@
       animation: lanternnarniaStepThrough 2.65s cubic-bezier(0.2, 0.78, 0.28, 1) 0.08s both;
     }
 
-    /* Extension popup: “theme” vs “auto” cursor — fall back to normal system cursors. */
+    /* System cursors only (custom theme cursors disabled). */
     html.vibe-no-custom-cursors body {
       cursor: auto !important;
     }
@@ -5528,14 +5463,6 @@
 
   <canvas class="stars" id="stars"></canvas>
   <canvas class="matrix-rain" id="matrix-rain" aria-hidden="true"></canvas>
-
-  <div id="snitch-motion" class="snitch-motion" aria-hidden="true" hidden>
-    <div class="snitch-motion__core"></div>
-  </div>
-
-  <div id="green-light-motion" class="green-light-motion" aria-hidden="true" hidden>
-    <div class="green-light-motion__core"></div>
-  </div>
 
   <div class="page-wrapper">
     <div class="content">

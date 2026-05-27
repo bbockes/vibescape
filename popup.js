@@ -2,9 +2,6 @@
 const CHROME_FOOTER_HELP_URL =
   "https://support.google.com/chrome/answer/11032183?hl=en&co=GENIE.Platform%3DDesktop#zippy=%2Cturn-new-tab-page-footer-on-or-off:~:text=on%20or%20off.-,Hide%20footer%20on%20New%20Tab%20page,-On%20your%20computer";
 
-/** URL for the next-batch ideas form (popup link; opens in a new tab). */
-const INSPIRED_VIBES_VOTE_URL = "https://tally.so/r/obd0VP";
-
 /** If the user is already on Chrome's new-tab surface, load Vibescape without opening another tab. */
 function activateNewTabSurfaceInActiveTab() {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -34,7 +31,6 @@ function activateNewTabSurfaceInActiveTab() {
 document.addEventListener("DOMContentLoaded", () => {
   const powerToggle = document.getElementById("vibe-power-toggle");
   const powerLabel = document.getElementById("vibe-power-label");
-  const cursorToggle = document.getElementById("vibe-cursor-toggle");
   const animationsToggle = document.getElementById("vibe-animations-toggle");
   const gearBtn = document.getElementById("gear-btn");
   const gearDropdown = document.getElementById("gear-dropdown");
@@ -46,14 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
       powerToggle.setAttribute("aria-checked", on ? "true" : "false");
     }
     if (powerLabel) powerLabel.textContent = on ? "on" : "off";
-  }
-
-  function setCursorUi(customOn) {
-    const on = customOn !== false;
-    if (cursorToggle) {
-      cursorToggle.classList.toggle("power-toggle--off", !on);
-      cursorToggle.setAttribute("aria-checked", on ? "true" : "false");
-    }
   }
 
   function setAnimationsUi(animOn) {
@@ -79,14 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  cursorToggle?.addEventListener("click", () => {
-    chrome.storage.local.get({ vibeCustomCursors: true }, (d) => {
-      const cur = d.vibeCustomCursors !== false;
-      const next = !cur;
-      chrome.storage.local.set({ vibeCustomCursors: next }, () => setCursorUi(next));
-    });
-  });
-
   animationsToggle?.addEventListener("click", () => {
     chrome.storage.local.get({ vibePageAnimations: true }, (d) => {
       const cur = d.vibePageAnimations !== false;
@@ -111,9 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (changes.vibeEnabled !== undefined) {
       setPowerUi(changes.vibeEnabled.newValue !== false);
     }
-    if (changes.vibeCustomCursors !== undefined) {
-      setCursorUi(changes.vibeCustomCursors.newValue !== false);
-    }
     if (changes.vibePageAnimations !== undefined) {
       setAnimationsUi(changes.vibePageAnimations.newValue !== false);
     }
@@ -128,19 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
       chrome.tabs.create({ url });
       window.close();
     });
-  }
-
-  const inspiredVoteLink = document.getElementById("inspired-vibes-vote-link");
-  if (inspiredVoteLink) {
-    const voteUrl = INSPIRED_VIBES_VOTE_URL.trim();
-    if (voteUrl) {
-      inspiredVoteLink.href = voteUrl;
-      inspiredVoteLink.target = "_blank";
-    } else {
-      inspiredVoteLink.classList.add("theme-section__stories-foot__link--pending");
-      inspiredVoteLink.title = "Add your form URL to INSPIRED_VIBES_VOTE_URL in popup.js";
-      inspiredVoteLink.addEventListener("click", (e) => e.preventDefault());
-    }
   }
 
   const themeListEl = document.querySelector(".theme-list");
@@ -236,20 +200,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function updateInspiredVoteFootVisibility() {
-    const foot = document.getElementById("inspired-vibes-vote-foot");
-    if (!foot) return;
-    const themeRows = getThemeRows();
-    const start = hasPager ? currentPage * PAGE_SIZE : 0;
-    const end = hasPager ? start + PAGE_SIZE : themeRows.length;
-    const anyStoriesVisible = themeRows.some((row, index) => {
-      if (!row.closest(".theme-section--stories")) return false;
-      if (!hasPager) return true;
-      return index >= start && index < end;
-    });
-    foot.hidden = !anyStoriesVisible;
-  }
-
   /** Hide entire theme sections with no visible rows so the popup stays within Chrome’s 600px cap. */
   function updateThemeSectionVisibility() {
     if (!hasPager) {
@@ -284,7 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateThemeSectionVisibility();
     updateStoriesSectionPagerHint();
     updateOriginalSectionPagerHint();
-    updateInspiredVoteFootVisibility();
     schedulePopupFoldViewport();
   }
 
@@ -387,7 +336,6 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       vibeTheme: "twilight",
       vibeEnabled: true,
-      vibeCustomCursors: true,
       vibePageAnimations: true,
       vibeFavoriteThemes: [],
     },
@@ -402,7 +350,6 @@ document.addEventListener("DOMContentLoaded", () => {
       sortFavoritesFirst(favs);
       applyFavoriteUi(favs);
       setPowerUi(data?.vibeEnabled !== false);
-      setCursorUi(data?.vibeCustomCursors !== false);
       setAnimationsUi(data?.vibePageAnimations !== false);
       if (data?.vibeTheme) setActive(data.vibeTheme);
       if (hasPager) {
@@ -410,7 +357,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderPage();
       } else {
         updateThemeSectionVisibility();
-        updateInspiredVoteFootVisibility();
         schedulePopupFoldViewport();
       }
     }
