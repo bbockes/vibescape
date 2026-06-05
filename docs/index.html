@@ -72,7 +72,7 @@
 <body>
   <main>
     <h1>vibe<span>scape</span> — Privacy Policy</h1>
-    <p class="meta">Last updated: May 26, 2026</p>
+    <p class="meta">Last updated: June 4, 2026</p>
 
     <p>
       This policy describes how the <strong>Vibescape</strong> browser extension
@@ -117,6 +117,11 @@
         help article in a new tab when you choose the “hide Chrome footer” link
         in the popup.
       </li>
+      <li>
+        <strong>search</strong> — to submit queries from the new tab search box
+        through Chrome’s search API (<code>chrome.search.query()</code>), using
+        your selected default search engine.
+      </li>
     </ul>
     <p>
       The extension does not request broad access to browse all websites you visit.
@@ -126,9 +131,12 @@
     <h2>Search on the new tab page</h2>
     <p>
       If you use the search box on Vibescape’s new tab page and submit a query,
-      your browser navigates to <strong>Google Search</strong> with that query.
-      That request goes to Google under Google’s privacy policy, not ours. We do
-      not receive your search queries on our servers.
+      the extension uses Chrome’s <code>search</code> API
+      (<code>chrome.search.query()</code>) to run the search through your
+      browser’s selected default search engine. Vibescape does not hardcode a
+      search provider and does not receive your search queries on our servers.
+      The search provider you use (for example Google, Bing, or DuckDuckGo)
+      processes the query under its own privacy policy.
     </p>
 
     <h2>Third-party services</h2>
