@@ -946,25 +946,25 @@ function switchTheme(theme, persistStorage = true) {
 }
 
 // ── SEARCH ───────────────────────────────────────────────────────────
-function runGoogleSearch() {
+function runSearch() {
   const input = document.getElementById("search");
   const q = input.value.trim();
   if (!q) {
     input.focus();
     return;
   }
-  window.location.href = `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+  chrome.search.query({ text: q, disposition: "CURRENT_TAB" });
 }
 
 document.getElementById("search").addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
-    runGoogleSearch();
+    runSearch();
   }
 });
 
-document.getElementById("search-go")?.addEventListener("click", () => runGoogleSearch());
-document.getElementById("search-mag")?.addEventListener("click", () => runGoogleSearch());
+document.getElementById("search-go")?.addEventListener("click", () => runSearch());
+document.getElementById("search-mag")?.addEventListener("click", () => runSearch());
 
 function randomTheme() {
   const current = getCurrentTheme();
